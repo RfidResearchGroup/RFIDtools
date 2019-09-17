@@ -26,7 +26,7 @@
 
 - www.sneaktechnology.com
 
-## Feature of application
+## Feature for application
 
 - (non-rooted) The app runs on a non-rooted phone.
 - (mult device supported) has 5 device supported, More support in the future.
