@@ -30,8 +30,10 @@ The app support the following devices
 
 ## Where to download app?
 
-- Google playstore:  [RRG RFID Tools][link_download_google]
-- Download on this:  [Click][link_download_google] <small>(if have the apk)</small>
+- Google playstore: [RRG RFID Tools][link_download_google]
+<!--
+- [Download RFID Tools apk here][link_download_google]
+-->
 
 ## Proxmark3 firmware
 
