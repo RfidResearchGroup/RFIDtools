@@ -4,9 +4,9 @@
 
 <p>RRG Android App for use with the following devices</p>
 
-|Proxmark3                          |NFC Reader                                            |
-| --------------------------------- | ---------------------------------------------------- |
-| ![pm3](/githubsrc/rdv4.png "pm3") | ![NFC Reader](/githubsrc/phon3_nfc.png "NFC Reader") |
+|Proxmark3                          |NFC Reader                                                 |
+| --------------------------------- | --------------------------------------------------------- |
+| ![pm3](/githubsrc/rdv4.png "pm3") | ![NFC Reader](/githubsrc/phone_nfc_icon.png "NFC Reader") |
 
 | ACS ACR-122u              |
 | ------------------------- |
