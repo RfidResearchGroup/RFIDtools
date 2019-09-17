@@ -22,15 +22,17 @@
 |----------- |----------- |------------- |--------------- |----------- |
 | ![img_pm3] | ![img_nfc] |  ![img_122]  |   ![img_cml]   | ![img_532] |
 
+## Where to buy these devices?
 
-The app runs on a non-rooted phone.
+- www.sneaktechnology.com
 
-## Dwonload app
+## Feature of application
 
-1. Google playstore:  [RRG RFID Tools][link_download_google]
-1. Download on this:  [Click][link_download_google] <small>(if have the apk)</small>
+- (non-rooted) The app runs on a non-rooted phone.
+- (mult device supported) has 5 device supported, More support in the future.
+- (easy user interface) abstract ui action, implement all (MIREFA Classic) Tag read & write Simple operation.
 
-## Special firmware
+## Firmware for proxmark3
 
 To use your Proxmark3 RDV4 with blueshark via bluetooth with this app there is an extra step.
 Until some android issues is resolved with the RRG/Iceman repo you must use a special android adapted firmware with your Proxmark3 RDV4.  
@@ -38,28 +40,31 @@ Until some android issues is resolved with the RRG/Iceman repo you must use a sp
 Download and flash this one
 [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2lfeis/%5BCompiled%5DPM3-RRG-20190812.rar?dl=0)
 
-## Where to buy these devices?
+## Where to download app?
 
-- www.sneaktechnology.com
+- Google playstore:  [RRG RFID Tools][link_download_google]
+- Download on this:  [Click][link_download_google] <small>(if have the apk)</small>
 
-## Developement tools
+## Developement tools list
 
-1. IDE: Android Studio 3.5
-2. JRE: 1.8.0_202-release-1483-b03 amd64
-3. JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
-4. OS: Windows 10 10.0
-5. SDK: MIN 18 -> MAX 29
-6. ANDROID SDK Tools: 26.1.1
-7. CMAKE: 3.10
-8. NDK: 20.0.5594570
+- IDE: Android Studio 3.5
+- JRE: 1.8.0_202-release-1483-b03 amd64
+- JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+- OS: Windows 10 10.0
+- SDK: MIN 18 -> MAX 29
+- ANDROID SDK Tools: 26.1.1
+- CMAKE: 3.10
+- NDK: 20.0.5594570
 
-## Core implementation
+## App core implementation
 
-1. Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
+If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let's coding happy. :)
 
-2. Console program: Android defaults stdin, stdout, stderr to / dev / null, so the console program will not get normal output, we need to redirect them to the correct path, such as pointing to the file / sdcard / forward. stdxx, core: function freopen (), defined by C stdio. h, can redirect the standard stream. To local file.
+- Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
 
-3. Program architecture: DXL programming complies with MVP, the core architecture uses MVP to achieve layering, all the underlying data is placed in Model, all UI actions are placed in View, and all data calls are placed in Presenter. Module is used to realize resource management, reusable, and separate business can be placed in separate modules to reduce coupling and achieve reuse. Replacing concrete implementation with abstraction achieves the effects of extracting public implementation, abstracting private implementation, Interface-oriented and abstract programming, such as PN53X and mobile phone NFC read-write card use same UI, and information display.
+- Console program: Android defaults stdin, stdout, stderr to / dev / null, so the console program will not get normal output, we need to redirect them to the correct path, such as pointing to the file / sdcard / forward. stdxx, core: function freopen (), defined by C stdio. h, can redirect the standard stream. To local file.
+
+- Program architecture: DXL programming complies with MVP, the core architecture uses MVP to achieve layering, all the underlying data is placed in Model, all UI actions are placed in View, and all data calls are placed in Presenter. Module is used to realize resource management, reusable, and separate business can be placed in separate modules to reduce coupling and achieve reuse. Replacing concrete implementation with abstraction achieves the effects of extracting public implementation, abstracting private implementation, Interface-oriented and abstract programming, such as PN53X and mobile phone NFC read-write card use same UI, and information display.
 
 ## Maintainer
 
