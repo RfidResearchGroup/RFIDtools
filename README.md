@@ -1,24 +1,22 @@
-<p align="center"><img src="githubsrc/rfid.png" alt="RFID Tools" width="100" height="100"></p>
+<!-- def -->
+[img_pm3]: /githubsrc/rdv4.png
+[img_nfc]: /githubsrc/phon3_nfc.png
+[img_122]: /githubsrc/acr122u.png
+[img_cml]: /githubsrc/chameleon_rdv2.jpg
+[img_532]: /githubsrc/pn532core.png
+[img_logo]: githubsrc/rfid.png
+
+<p align="center"><img src="![img_logo]" alt="RFID Tools" width="100" height="100"></p>
 
 <h1 align="center">RFID Tools</h1>
 
 <p>RRG Android App for use with the following devices</p>
 
-|Proxmark3                          |NFC Reader                                                 |
-| --------------------------------- | --------------------------------------------------------- |
-| ![pm3](/githubsrc/rdv4.png "pm3") | ![NFC Reader](/githubsrc/phone_nfc_icon.png "NFC Reader") |
 
-| ACS ACR-122u              |
-| ------------------------- |
-| ![ACS ACR-122u](/githubsrc/acr122u.png "ACS ACR-122u") |
+|Proxmark3   |NFC Reader  |ACS ACR-122u  |Chameleon Mini  |PN532       |  
+|----------- |----------- |------------- |--------------- |----------- |
+| ![img_pm3] | ![img_nfc] |  ![img_122]  |   ![img_cml]   | ![img_532] |
 
-| Chameleon Mini            |
-| ------------------------- |
-| ![Chameleon Mini](/githubsrc/chameleon_rdv2.jpg "Chameleon Mini") |
-
-| PN532                     |
-| ------------------------- |
-| ![pn532](/githubsrc/pn532core.png "pn532") |
 
 The app runs on a non-rooted phone.
 
