@@ -14,9 +14,9 @@
 
 <br/>
 
-<h4>:boom:Devices:dash:</h4>
+<h4>:boom:Supported devices:dash:</h4>
 
-<p>RRG RFID Tools App for use with following devices</p>
+The app support the following devices
 
 |Proxmark3   |NFC Reader  |ACS ACR-122u  |Chameleon Mini  |PN532       |  
 |----------- |----------- |------------- |--------------- |----------- |
