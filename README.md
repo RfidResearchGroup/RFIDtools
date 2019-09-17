@@ -11,7 +11,7 @@ RRG Android App for use with the following devices
 
 ![chameleon_rdv2](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/chameleon_rdv2.png "chameleon_rdv2")
 
-![phone_nfc_icon](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/phone_nfc_icon.png "phone_nfc_icon")
+![phone_nfc_icon](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/phone_nfc_icon.jpg "phone_nfc_icon")
 
 ![pn532core](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/pn532core.png "pn532core")
 
