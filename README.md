@@ -1,11 +1,21 @@
 # RFID Tools
 RRG Android App for use with the following devices
 
-- Proxmark3
+- Proxmark3 
 - NFC Reader 
 - ACS ACR-122u
 - Chameleon Mini
 - PN532
+
+![Acr122u](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/acr122u.png "Acr122u")
+
+![chameleon_rdv2](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/chameleon_rdv2.png "chameleon_rdv2")
+
+![phone_nfc_icon](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/phone_nfc_icon.png "phone_nfc_icon")
+
+![pn532core](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/pn532core.png "pn532core")
+
+![rdv4](https://github.com/xianglin1998/RFIDtools/blob/master/githubsrc/rdv4.png "rdv4")
 
 The app runs on a non-rooted phone.
 
@@ -37,7 +47,11 @@ Download and flash this one
 
 
 ## Core implementation
-The core
+ 1. Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
+ 
+ 2. Console program: Android defaults stdin, stdout, stderr to / dev / null, so the console program will not get normal output, we need to redirect them to the correct path, such as pointing to the file / sdcard / forward. stdxx, core: function freopen (), defined by C stdio. h, can redirect the standard stream. To local file.
+ 
+ 3. Program architecture: DXL programming complies with MVP, the core architecture uses MVP to achieve layering, all the underlying data is placed in Model, all UI actions are placed in View, and all data calls are placed in Presenter. Module is used to realize resource management, reusable, and separate business can be placed in separate modules to reduce coupling and achieve reuse. Replacing concrete implementation with abstraction achieves the effects of extracting public implementation, abstracting private implementation, Interface-oriented and abstract programming, such as PN53X and mobile phone NFC read-write card, and information display.
 
 ## Maintainer
 - DXL
