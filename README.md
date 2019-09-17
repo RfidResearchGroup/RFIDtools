@@ -4,14 +4,18 @@
 [img_122]: /githubsrc/acr122u.png
 [img_cml]: /githubsrc/chameleon_rdv2.jpg
 [img_532]: /githubsrc/pn532core.png
-[img_logo]: /githubsrc/rfid.png
 
-<p align="center"><img src=![img_logo] alt="RFID Tools" width="100" height="100"></p>
+<div style="text-align: center; background: #ffbd4a; width: 100%">
+  <img src="/githubsrc/rfid.png" alt="RFID Tools" width="100" height="100">
+</div>
 
 <h1 align="center">RFID Tools</h1>
 
-<p>RRG Android App for use with the following devices</p>
+<br/>
 
+<h4>:boom:Devices:dash:</h4>
+
+<p>RRG Android App for use with the following devices</p>
 
 |Proxmark3   |NFC Reader  |ACS ACR-122u  |Chameleon Mini  |PN532       |  
 |----------- |----------- |------------- |--------------- |----------- |
