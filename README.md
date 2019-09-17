@@ -5,7 +5,9 @@
 [img_cml]: /githubsrc/chameleon_rdv2.jpg
 [img_532]: /githubsrc/pn532core.png
 
-<img align="center" src="/githubsrc/rfid.png" alt="RFID Tools" width="100" height="100">
+<p align="center" style="background:#000;">
+    <img align="center" src="/githubsrc/rfid.png" alt="RFID Tools" width="100" height="100">
+</p>
 
 <h1 align="center">RFID Tools</h1>
 
