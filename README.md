@@ -81,7 +81,13 @@ The app has been tested with these Android phones.  Feel free to contribute with
 Open issues here relating to the source code,  other support questions use `android@rfidresearchgroup.com`
 
 ## Maintainer
+Feel free to contribute and make this app better!
 
 - DXL
 
-Feel free to contribute and make this app better!
+## Copyright
+Copyright DXL 2019
+
+## Open source license
+GPL
+
