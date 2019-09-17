@@ -70,6 +70,14 @@ If you want to join our project, you must comply with the following development 
 
 - DXL
 
+Looking forward to your joining :)
+
 ## Compability
 
 These Android phones has been tested with 
+
+- Redmi k20 pro (MIUI 10 & android 9)
+- Redmi k20 (MIUI 10 & android 9)
+- OnePlus 5T (H2OS 5.1.2 & Android 8.1.0)
+
+Welcome to add. :)
