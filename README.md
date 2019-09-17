@@ -17,9 +17,13 @@
 
 <p>RRG Android App for use with the following devices</p>
 
+<center>
 |Proxmark3    |NFC Reader   |ACS ACR-122u   |Chameleon Mini   |PN532        |  
 |:-----------:|:-----------:|:-------------:|:---------------:|:-----------:|
-| ![img_pm3]  | ![img_nfc]  |  ![img_122]   |   ![img_cml]    | ![img_532] |
+| ![img_pm3]  | ![img_nfc]  |  ![img_122]   |   ![img_cml]    | ![img_532]  |
+</center>
+
+
 
 The app runs on a non-rooted phone.
 
