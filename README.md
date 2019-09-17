@@ -1,12 +1,12 @@
 <!-- def -->
 [img_pm3]: /githubsrc/rdv4.png
-[img_nfc]: /githubsrc/phon3_nfc.png
+[img_nfc]: /githubsrc/phone_nfc_icon.png
 [img_122]: /githubsrc/acr122u.png
 [img_cml]: /githubsrc/chameleon_rdv2.jpg
 [img_532]: /githubsrc/pn532core.png
 [img_logo]: /githubsrc/rfid.png
 
-<p align="center"><img src="![img_logo]" alt="RFID Tools" width="100" height="100"></p>
+<p align="center"><img src=![img_logo] alt="RFID Tools" width="100" height="100"></p>
 
 <h1 align="center">RFID Tools</h1>
 
