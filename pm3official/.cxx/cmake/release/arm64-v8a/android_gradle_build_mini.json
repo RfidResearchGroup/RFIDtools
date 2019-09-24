@@ -1,0 +1,25 @@
+{
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "pm3-Release-arm64-v8a": {
+      "artifactName": "pm3",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" pm3",
+      "abi": "arm64-v8a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libpm3.so"
+    },
+    "hardnested-Release-arm64-v8a": {
+      "artifactName": "hardnested",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" hardnested",
+      "abi": "arm64-v8a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\\libhardnested.a"
+    }
+  }
+}

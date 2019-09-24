@@ -1,0 +1,3 @@
+ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\pm3rdv4rrg\.cxx\cmake\debug\x86_64'
+[1/2] Building C object CMakeFiles/pm3rrg_rdv4.dir/client/proxmark3.c.o
+[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\pm3rdv4rrg\build\intermediates\cmake\debug\obj\x86_64\libpm3rrg_rdv4.so

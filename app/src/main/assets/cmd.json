@@ -1,0 +1,35 @@
+{
+  "group": [
+    [
+        {"name" : "Default"},
+        {"name": "Hf search", "cmd": "hf search"},
+        {"name": "Lf Search", "cmd": "lf search"},
+        {"name": "14a Reader", "cmd": "hf 14a reader"},
+        {"name": "Read T5577 info", "cmd": "lf t55xx detect\nlf t55xx info"},
+        {"name": "Dark Side Mifare", "cmd": "hf mf darkside"},
+        {"name": "Read T5577 Full", "cmd": "lf t55xx detect\nlf t55xx dump"},
+        {"name": "Check Mifare Keys", "cmd": "hf mf chk *1 ? d"},
+        {"name": "Mifare 1k Nested", "cmd": "hf mf nested 1 0 A FFFFFFFFFFFF d"},
+        {"name": "Mifare 1k Dump", "cmd": "hf mf dump"},
+        {"name": "Read iclass", "cmd": "hf iclass reader"},
+        {"name": "Dump iclass legacy", "cmd": "hf iclass dump k afa785a7dab33378"},
+        {"name": "Hardware Test", "cmd": "hw tune"}
+    ],
+    [
+      {"name" : "High Frequency"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"}
+    ],
+    [
+      {"name" : "Low Frequency"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"},
+      {"name": "按钮名", "cmd": "命令"}
+    ]
+  ]
+}

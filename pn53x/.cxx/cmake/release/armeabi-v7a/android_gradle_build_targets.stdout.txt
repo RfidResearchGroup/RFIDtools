@@ -1,0 +1,10 @@
+ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\pn53x\.cxx\cmake\release\armeabi-v7a'
+[1/2] Building C object mfcuk/CMakeFiles/mfcuk.dir/mfcuk.c.o
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfcuk/mfcuk.c:156:4: warning: "No bswap function found! Using untested alternatives..." [-W#warnings]
+#  warning "No bswap function found! Using untested alternatives..."
+   ^
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfcuk/mfcuk.c:1727:23: warning: result of comparison of constant 0 with expression of type 'bool' is always false [-Wtautological-constant-compare]
+                if (0 > nfc_initiator_mifare_cmd(pnd, k, block, &mp)) {
+                    ~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\pn53x\build\intermediates\cmake\release\obj\armeabi-v7a\libmfcuk.so

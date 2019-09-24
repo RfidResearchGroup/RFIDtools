@@ -1,0 +1,13 @@
+ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\pn53x\.cxx\cmake\debug\x86_64'
+[1/2] Building C object mfclassic/CMakeFiles/mfclassic.dir/mfclassic.c.o
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfclassic/mfclassic.c:38:1: warning: 'static' ignored on this declaration [-Wmissing-declarations]
+static struct MifareClassicTAG {
+^
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfclassic/mfclassic.c:692:38: warning: passing 'jbyte *' (aka 'signed char *') to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+    bool result = _write_card(block, data);
+                                     ^~~~
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfclassic/mfclassic.c:641:45: note: passing argument to parameter 'data' here
+static bool _write_card(int block, uint8_t *data) {
+                                            ^
+2 warnings generated.
+[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\pn53x\build\intermediates\cmake\debug\obj\x86_64\libmfclassic.so

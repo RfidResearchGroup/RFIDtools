@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/edtChameleon_Command_Input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnChameleon_Command_Send"
+            android:layout_width="76dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_selectot_blue"
+            android:text="发送"
+            android:textColor="@color/md_white_1000" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/md_blue_600"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="原生CMD控制台"
+        android:textColor="@color/md_white_1000" />
+
+    <TextView
+        android:id="@+id/txtDialogShowMsg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout1"
+        android:layout_below="@id/title"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textIsSelectable="true" />
+
+</RelativeLayout>

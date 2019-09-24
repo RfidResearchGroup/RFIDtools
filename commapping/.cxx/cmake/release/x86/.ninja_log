@@ -1,0 +1,19 @@
+# ninja log v5
+3	127	588490623	CMakeFiles/commapping.dir/tools.c.o	7cfff79d7a9fc2fa
+1	152	588490623	CMakeFiles/commapping.dir/com.c.o	3a7da5ea586c9c0c
+153	234	588490623	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	e1237b10201dc0a4
+4	260	588519189	CMakeFiles/commapping.dir/device.c.o	2a165cdfe97d16ee
+260	337	588519190	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	4caf37bdb499651e
+1	266	590321159	build.ninja	ce6c85783ac35ceb
+3	158	590321159	CMakeFiles/commapping.dir/com.c.o	3a7da5ea586c9c0c
+158	258	590321159	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	4caf37bdb499651e
+2	190	590321775	build.ninja	ce6c85783ac35ceb
+2	124	590321775	CMakeFiles/commapping.dir/map.c.o	d93d5ae7fa13e5b4
+124	204	590321775	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	6f45c06deb5b905f
+1	11	0	clean	b3a98260009de159
+3	136	590321930	CMakeFiles/commapping.dir/tools.c.o	7cfff79d7a9fc2fa
+7	163	590321931	CMakeFiles/commapping.dir/map.c.o	d93d5ae7fa13e5b4
+5	175	590321931	CMakeFiles/commapping.dir/com.c.o	3a7da5ea586c9c0c
+175	254	590321931	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	6f45c06deb5b905f
+3	151	590322488	CMakeFiles/commapping.dir/com.c.o	3a7da5ea586c9c0c
+151	227	590322488	D:/Developer/AndroidStudioProject/RFID-Tools/commapping/build/intermediates/cmake/release/obj/x86/libcommapping.so	6f45c06deb5b905f

@@ -1,0 +1,1075 @@
+{
+  "stringTable": {
+    "0": "D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/arm64-v8a",
+    "1": "--target=aarch64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -D__ANDROID_NDK__ -Dpm3_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/liblua -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/zlib -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/common -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/uart -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client/jansson -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client/fido -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client/tinycbor -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -std=c99 -O3 -fvisibility=hidden -w -O2 -DNDEBUG -fPIC -D getlocaledecpoint()='.'",
+    "2": "--target=aarch64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -D__ANDROID_NDK__ -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/common -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client -ID:/Developer/AndroidStudioProject/RFID-Tools/pm3official/src/main/cpp/client/hardnested -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -std=c99 -O3 -fvisibility=hidden -w -O2 -DNDEBUG -fPIC -D getlocaledecpoint()='.'",
+    "3": "null"
+  },
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "pm3-Release-arm64-v8a": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" pm3",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "arm64-v8a",
+      "artifactName": "pm3",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\uart\\uart_posix.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crapto1\\crapto1.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crapto1\\crypto1.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crc.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crc16.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crc32.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\crc64.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\parity.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\lfdemod.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\iso14443crc.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\iso15693tools.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\protocols.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\aes.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\base64.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\rsa.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\rsa_internal.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\arc4.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\bignum.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\asn1parse.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\asn1write.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\blowfish.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\camellia.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\certs.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\des.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\ecdsa.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\ecp.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\ecp_curves.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\entropy.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\entropy_poll.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\error.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\md.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\md5.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\md_wrap.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\sha1.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\sha256.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\sha512.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\timing.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\cmac.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\oid.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pem.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pk.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pk_wrap.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pkcs5.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pkcs12.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pkparse.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\pkwrite.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\x509.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\x509_crl.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\x509_crt.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\ctr_drbg.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\cipher_wrap.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\cipher.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\common\\mbedtls\\platform_util.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\crypto\\libpcrypto.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\crypto\\asn1utils.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\crypto\\asn1dump.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\utf.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\dump.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\path.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\load.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\error.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\value.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\memory.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\hashtable_seed.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\strbuffer.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\strconv.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\jansson\\hashtable.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\loclass\\cipherutils.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\loclass\\fileutils.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\loclass\\cipher.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\loclass\\ikeys.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\loclass\\elite_crack.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cliparser\\cliparser.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cliparser\\argtable3.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emvcore.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\cmdemv.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\tlv.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\dol.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emv_tags.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emv_roca.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\dump.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\crypto_polarssl.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\crypto.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emv_pk.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emv_pki.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\emvjson.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\apduinfo.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\test\\cryptotest.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\test\\sda_test.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\test\\dda_test.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\test\\cda_test.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\emv\\test\\crypto_test.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\fido\\additional_ca.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\fido\\cbortools.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\fido\\cose.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\fido\\fidocore.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborencoder.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborencoder_close_container_checked.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborerrorstrings.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborparser.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborparser_dup_string.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborpretty.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborpretty_stdio.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cbortojson.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\cborvalidation.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tinycbor\\open_memstream.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\mifarehost.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\graph.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\ui.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\tools.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\util.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\util_posix.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\comms.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmddata.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhf.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhf14a.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhf14b.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhf15.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhfepa.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhflegic.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhficlass.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhflist.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhfmf.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhfmfu.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhfmfp.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhftopaz.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhffido.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhw.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlf.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlffdx.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfio.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfem4x.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfhid.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfhitag.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfjablotron.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfti.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfpac.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfnoralsy.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfnexwatch.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfpresco.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfindala.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfviking.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfsecurakey.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfpyramid.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfparadox.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfcotag.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfgproxii.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfawid.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdparser.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdscript.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\mifare4.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfvisa2000.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\whereami.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdmain.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\mfkey.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\scripting.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\guidummy.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\pm3_binlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\proxmark3.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\pm3_bitlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\hidcardformats.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\hidcardformatutils.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlft55xx.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdlfpcf7931.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\zlib\\inflate.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\zlib\\inffast.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\zlib\\zutil.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\zlib\\inftrees.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\zlib\\adler32.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lapi.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ldo.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lgc.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ltm.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lvm.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lzio.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lcode.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\llex.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\liolib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\loslib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lopcodes.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lmem.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lmathlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ldump.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ldblib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lundump.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lcorolib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lauxlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ltablib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\linit.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lstring.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lctype.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ltable.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\ldebug.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lstate.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lstrlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lfunc.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lparser.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lobject.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\loadlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lbaselib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\liblua\\lbitlib.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\cmdhfmfhard.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\src\\main\\cpp\\client\\hardnested\\hardnested_bruteforce.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libpm3.so"
+    },
+    "hardnested-Release-arm64-v8a": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\" hardnested",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "arm64-v8a",
+      "artifactName": "hardnested",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\\CMakeFiles\\hardnested_nosimd.dir\\client\\hardnested\\hardnested_bf_core.c.o",
+          "flagsOrdinal": 3,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\\CMakeFiles\\hardnested_nosimd.dir\\client\\hardnested\\hardnested_bitarray_core.c.o",
+          "flagsOrdinal": 3,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cmake\\release\\arm64-v8a\\libhardnested.a"
+    }
+  },
+  "toolchains": {
+    "2944678014": {
+      "cCompilerExecutable": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

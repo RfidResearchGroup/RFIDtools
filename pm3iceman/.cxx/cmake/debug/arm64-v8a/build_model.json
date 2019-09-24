@@ -1,0 +1,73 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools",
+      "sdkFolder": "C:\\Users\\DXL\\android-sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\build\\intermediates",
+      "gradleModulePathName": ":pm3iceman",
+      "moduleRootFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman",
+      "makeFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\src\\main\\cpp\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\.cxx",
+      "cxxFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx",
+      "ndkFolder": "C:\\Users\\DXL\\android-sdk\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [
+      "-DANDROID_STL\u003dc++_static",
+      "-DPROJECTDIR\u003dD:/Developer/AndroidStudioProject/RFID-Tools"
+    ],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "debug",
+    "soFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARM64_V8A",
+  "abiPlatformVersion": 18,
+  "cxxBuildFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a",
+  "jsonFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a",
+  "objFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a",
+  "buildCommandFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\build_command.txt",
+  "buildOutputFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\build_output.txt",
+  "modelOutputFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\build_generation_state.json",
+    "cacheKeyFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3iceman\\.cxx\\cmake\\debug\\arm64-v8a\\compile_commands.json"
+}

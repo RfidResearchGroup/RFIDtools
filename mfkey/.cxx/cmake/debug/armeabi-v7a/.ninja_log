@@ -1,0 +1,19 @@
+# ninja log v5
+5	366	589103451	CMakeFiles/mfkey32.dir/mfkey32.c.o	a39b7e9b89796d81
+4	435	589103451	CMakeFiles/mfkey32.dir/tools.c.o	32005046e2b01672
+6	437	589103451	CMakeFiles/mfkey32.dir/crypto1.c.o	2ddb0cfb2cae35ff
+1	460	589103451	CMakeFiles/mfkey32.dir/parity.c.o	ac506ecedb478128
+7	546	589103452	CMakeFiles/mfkey32.dir/util_posix.c.o	e7e6c74af613982b
+7	568	589103452	CMakeFiles/mfkey32.dir/mfkey.c.o	c0de6d63f6e60d3d
+436	778	589103452	CMakeFiles/mfkey32.dir/bucketsort.c.o	b4a7c7d298cba1a4
+368	954	589103452	CMakeFiles/mfkey32.dir/crapto1.c.o	91bed71c6a2e70cb
+461	1014	589103452	CMakeFiles/mfkey64.dir/tools.c.o	4b2241f733179a6e
+438	1041	589103452	CMakeFiles/mfkey64.dir/mfkey64.c.o	60ac6b25b9ce09
+546	1069	589103452	CMakeFiles/mfkey64.dir/mfkey.c.o	e5e499fc3f13fadb
+568	1071	589103452	CMakeFiles/mfkey64.dir/util_posix.c.o	4233799d4a432896
+778	1433	589103452	CMakeFiles/mfkey64.dir/crypto1.c.o	26feeaa1984a8937
+1014	1589	589103452	CMakeFiles/mfkey64.dir/parity.c.o	72c6fed5031826d0
+1069	1635	589103453	CMakeFiles/mfkey64.dir/crapto1.c.o	71be914caa08e106
+1041	1639	589103453	CMakeFiles/mfkey64.dir/bucketsort.c.o	9d82f83b647e6836
+954	1856	589103453	D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/build/intermediates/cmake/debug/obj/armeabi-v7a/libmfkey32.so	101fef3cbd3e2096
+1639	2661	589103453	D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/build/intermediates/cmake/debug/obj/armeabi-v7a/libmfkey64.so	7b68ba5e1a8f5384

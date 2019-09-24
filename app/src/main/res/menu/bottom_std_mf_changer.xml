@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_operational_items"
+        android:icon="@drawable/opera_515151"
+        android:title="@string/operational_items" />
+
+    <item
+        android:id="@+id/menu_tag_information"
+        android:icon="@drawable/information"
+        android:title="@string/tag_information" />
+</menu>

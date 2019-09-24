@@ -1,0 +1,7 @@
+Executable : C:\Users\DXL\android-sdk\cmake\3.10.2.4988404\bin\ninja.exe
+arguments : 
+-C
+D:\Developer\AndroidStudioProject\RFID-Tools\crapto1\.cxx\cmake\debug\x86_64
+crapto1
+jvmArgs : 
+

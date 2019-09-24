@@ -1,0 +1,5 @@
+D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/armeabi-v7a/CMakeFiles/hardnested.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/armeabi-v7a/CMakeFiles/pm3.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/armeabi-v7a/CMakeFiles/hardnested_nosimd.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pm3official/.cxx/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir

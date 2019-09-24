@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_100"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <!--Toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_act_settings"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/toolbarStyle">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_white_1000">
+
+                    <TextView
+                        android:id="@+id/txtShowDevId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/settings_id"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="2147483647" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-> 设备序号、编号、ID" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/md_white_1000">
+
+                    <TextView
+                        android:id="@+id/txtShowUsrType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/settings_type"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="免费用户" />
+
+                    <Button
+                        android:id="@+id/btnPermissionChanger"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_selectot_blue"
+                        android:text="自切换权限"
+                        android:textColor="@color/md_white_1000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/md_white_1000">
+
+                    <TextView
+                        android:id="@+id/txtShowDevType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/driver"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="自带" />
+
+                    <Button
+                        android:id="@+id/btnDriverChange"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_selectot_blue"
+                        android:text="自切换驱动"
+                        android:textColor="@color/md_white_1000" />
+
+                </LinearLayout>
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/perGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    app:columnCount="2"
+                    app:useDefaultMargins="false">
+
+                    <TextView
+                        android:id="@+id/txtPerPN532_SPP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/pn532_hc05"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="PN532_SPP"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/txtPerPN532_OTG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/pn532"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="PN532_OTG"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/txtPerACR122_OTG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/acr122u"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="ACR122_OTG"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/txtPerPM3_OTG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/proxmark3"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="PM3_OTG"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/txtPerCML_OTG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/chameleon"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="变色龙_OTG"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/txtPerPM3_SPP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.2dp"
+                        android:background="@drawable/btn_selectot_white"
+                        android:drawableTop="@drawable/rdv4"
+                        android:drawablePadding="26dp"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:text="PM3_SPP"
+                        app:layout_columnWeight="1" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_white_1000"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edtSettingsInputPM3ConsoleDelayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableStart="@drawable/time"
+                        android:drawablePadding="10dp"
+                        android:inputType="number"
+                        android:paddingStart="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="10dp"
+                        android:text="1000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="PM3控制台转发延时"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:gravity="end|center"
+                        android:padding="6dp">
+
+                        <Button
+                            android:id="@+id/btnSettingsSavePM3ConsoleDelayTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/btn_selectot_blue"
+                            android:gravity="center"
+                            android:text="保存"
+                            android:textColor="@color/md_white_1000" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/md_white_1000"
+                    android:paddingStart="16dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/rom"
+                        android:gravity="center" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerPM3ClientSwitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="3dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/md_white_1000">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:drawableStart="@drawable/count"
+                    android:drawablePadding="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="主页面每行排列元素个数" />
+
+                <cn.dxl.common.widget.AdditionSubtractionView
+                    android:id="@+id/numDIViewMainPageColumnCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/md_white_1000"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/chameleon_32x32"
+                    android:drawablePadding="8dp"
+                    android:gravity="end|center"
+                    android:text="变色龙卡槽自定义别名(防止记错)"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:gravity="end|center"
+                    android:padding="6dp">
+
+                    <Button
+                        android:id="@+id/btnSettingsChameleonSlotAliases"
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/btn_selectot_blue"
+                        android:gravity="center"
+                        android:text="前往"
+                        android:textColor="@color/md_white_1000" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

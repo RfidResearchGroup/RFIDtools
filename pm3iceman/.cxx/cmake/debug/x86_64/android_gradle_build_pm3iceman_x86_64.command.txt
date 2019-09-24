@@ -1,0 +1,7 @@
+Executable : C:\Users\DXL\android-sdk\cmake\3.10.2.4988404\bin\ninja.exe
+arguments : 
+-C
+D:\Developer\AndroidStudioProject\RFID-Tools\pm3iceman\.cxx\cmake\debug\x86_64
+pm3iceman
+jvmArgs : 
+

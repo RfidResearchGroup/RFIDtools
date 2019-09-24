@@ -1,0 +1,97 @@
+[
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\mfkey32.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey32.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey32.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\tools.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\parity.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\mfkey.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\util_posix.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\crypto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\crapto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey32.dir\\bucketsort.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\mfkey64.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey64.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey64.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\tools.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\parity.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\mfkey.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\util_posix.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\crypto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\crapto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\mfkey64.dir\\bucketsort.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c"
+}
+]

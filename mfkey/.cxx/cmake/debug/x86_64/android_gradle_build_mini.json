@@ -1,0 +1,25 @@
+{
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\debug\\x86_64\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "mfkey32-Debug-x86_64": {
+      "artifactName": "mfkey32",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\debug\\x86_64\" mfkey32",
+      "abi": "x86_64",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libmfkey32.so"
+    },
+    "mfkey64-Debug-x86_64": {
+      "artifactName": "mfkey64",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\debug\\x86_64\" mfkey64",
+      "abi": "x86_64",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libmfkey64.so"
+    }
+  }
+}

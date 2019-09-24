@@ -1,0 +1,19 @@
+[
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dcrapto1_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\crapto1.dir\\crapto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\crapto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\crapto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dcrapto1_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\crapto1.dir\\crypto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\crypto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\crypto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/release/x86_64",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dcrapto1_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/crapto1/src/main/cpp/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -o CMakeFiles\\crapto1.dir\\main.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\main.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\crapto1\\src\\main\\cpp\\main.c"
+}
+]
