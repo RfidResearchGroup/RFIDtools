@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_dump_edt_save"
+        android:icon="@drawable/yes"
+        android:title="@string/dump_edit_save" />
+
+    <item
+        android:id="@+id/menu_dump_edt_del"
+        android:icon="@drawable/dump_delete"
+        android:title="@string/dump_edit_delete" />
+
+    <item
+        android:id="@+id/menu_dump_list"
+        android:icon="@drawable/edit"
+        android:title="@string/Open" />
+
+    <item
+        android:id="@+id/menu_dump_rename"
+        android:icon="@drawable/rename"
+        android:title="@string/rename" />
+
+    <item
+        android:id="@+id/menu_dump_equals"
+        android:icon="@drawable/dump_equals"
+        android:title="@string/difference" />
+
+    <item
+        android:id="@+id/menu_dump_extract"
+        android:icon="@drawable/dump_extract"
+        android:title="@string/dump_edit_key_extract" />
+
+    <item
+        android:id="@+id/menu_dump_share"
+        android:icon="@drawable/share"
+        android:title="@string/dump_edit_data_shared" />
+
+</menu>

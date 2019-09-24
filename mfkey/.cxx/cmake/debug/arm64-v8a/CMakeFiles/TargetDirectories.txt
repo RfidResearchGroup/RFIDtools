@@ -1,0 +1,4 @@
+D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/debug/arm64-v8a/CMakeFiles/mfkey32.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/debug/arm64-v8a/CMakeFiles/mfkey64.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir

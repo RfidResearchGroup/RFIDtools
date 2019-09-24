@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_blue_600"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:background="@drawable/oval"
+        android:text="圆形按钮" />
+
+</LinearLayout>

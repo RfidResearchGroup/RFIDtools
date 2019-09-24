@@ -1,0 +1,3 @@
+D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/crapto1.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir

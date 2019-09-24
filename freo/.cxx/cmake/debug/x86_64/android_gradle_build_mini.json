@@ -1,0 +1,19 @@
+{
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\freo\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\freo\\.cxx\\cmake\\debug\\x86_64\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\freo\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "freopen-Debug-x86_64": {
+      "artifactName": "freopen",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\freo\\.cxx\\cmake\\debug\\x86_64\" freopen",
+      "abi": "x86_64",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\freo\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libfreopen.so"
+    }
+  }
+}

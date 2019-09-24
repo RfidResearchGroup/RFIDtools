@@ -1,0 +1,3 @@
+ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\commapping\.cxx\cmake\release\x86_64'
+[1/2] Building C object CMakeFiles/commapping.dir/com.c.o
+[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\commapping\build\intermediates\cmake\release\obj\x86_64\libcommapping.so

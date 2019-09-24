@@ -1,0 +1,3 @@
+CMAKE_SYSTEM_PROCESSOR := aarch64
+Not building optimised targets
+Configuring done

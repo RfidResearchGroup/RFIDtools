@@ -1,0 +1,21 @@
+Executable : C:\Users\DXL\android-sdk\cmake\3.10.2.4988404\bin\cmake.exe
+arguments : 
+-HD:\Developer\AndroidStudioProject\RFID-Tools\pm3rdv4rrg\src\main\cpp
+-BD:\Developer\AndroidStudioProject\RFID-Tools\pm3rdv4rrg\.cxx\cmake\release\armeabi-v7a
+-DANDROID_ABI=armeabi-v7a
+-DANDROID_PLATFORM=android-18
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\Developer\AndroidStudioProject\RFID-Tools\pm3rdv4rrg\build\intermediates\cmake\release\obj\armeabi-v7a
+-DCMAKE_BUILD_TYPE=Release
+-DANDROID_NDK=C:\Users\DXL\android-sdk\ndk-bundle
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a
+-DCMAKE_SYSTEM_VERSION=18
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_ANDROID_NDK=C:\Users\DXL\android-sdk\ndk-bundle
+-DCMAKE_TOOLCHAIN_FILE=C:\Users\DXL\android-sdk\ndk-bundle\build\cmake\android.toolchain.cmake
+-G Ninja
+-DCMAKE_MAKE_PROGRAM=C:\Users\DXL\android-sdk\cmake\3.10.2.4988404\bin\ninja.exe
+-DANDROID_STL=c++_static
+-DPROJECTDIR=D:/Developer/AndroidStudioProject/RFID-Tools
+jvmArgs : 
+

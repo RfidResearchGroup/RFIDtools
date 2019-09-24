@@ -1,0 +1,72 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools",
+      "sdkFolder": "C:\\Users\\DXL\\android-sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates",
+      "gradleModulePathName": ":pn53x",
+      "moduleRootFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x",
+      "makeFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\.cxx",
+      "cxxFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx",
+      "ndkFolder": "C:\\Users\\DXL\\android-sdk\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [
+      "-DANDROID_STL\u003dc++_static",
+      "-DPROJECTDIR\u003dD:/Developer/AndroidStudioProject/RFID-Tools"
+    ],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "soFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARM64_V8A",
+      "ARMEABI_V7A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 18,
+  "cxxBuildFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a",
+  "jsonFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a",
+  "objFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a",
+  "buildCommandFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\armeabi-v7a\\compile_commands.json"
+}

@@ -1,0 +1,3 @@
+D:/Developer/AndroidStudioProject/RFID-Tools/commapping/.cxx/cmake/release/x86_64/CMakeFiles/edit_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/commapping/.cxx/cmake/release/x86_64/CMakeFiles/commapping.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/commapping/.cxx/cmake/release/x86_64/CMakeFiles/rebuild_cache.dir

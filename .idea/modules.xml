@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RFID-Tools.iml" filepath="$PROJECT_DIR$/RFID-Tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chameleon/chameleon.iml" filepath="$PROJECT_DIR$/chameleon/chameleon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commapping/commapping.iml" filepath="$PROJECT_DIR$/commapping/commapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/console/console.iml" filepath="$PROJECT_DIR$/console/console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crapto1/crapto1.iml" filepath="$PROJECT_DIR$/crapto1/crapto1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/freo/freo.iml" filepath="$PROJECT_DIR$/freo/freo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mfkey/mfkey.iml" filepath="$PROJECT_DIR$/mfkey/mfkey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mifaretag/mifaretag.iml" filepath="$PROJECT_DIR$/mifaretag/mifaretag.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm3iceman/pm3iceman.iml" filepath="$PROJECT_DIR$/pm3iceman/pm3iceman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm3official/pm3official.iml" filepath="$PROJECT_DIR$/pm3official/pm3official.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm3parser/pm3parser.iml" filepath="$PROJECT_DIR$/pm3parser/pm3parser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm3rdv4rrg/pm3rdv4rrg.iml" filepath="$PROJECT_DIR$/pm3rdv4rrg/pm3rdv4rrg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pn53x/pn53x.iml" filepath="$PROJECT_DIR$/pn53x/pn53x.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
+    </modules>
+  </component>
+</project>

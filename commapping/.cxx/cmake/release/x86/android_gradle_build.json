@@ -1,0 +1,52 @@
+{
+  "stringTable": {
+    "0": "D:/Developer/AndroidStudioProject/RFID-Tools/commapping/.cxx/cmake/release/x86",
+    "1": "--target=i686-none-linux-android18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dcommapping_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/commapping/src/main/cpp -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -O2 -DNDEBUG -fPIC"
+  },
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\.cxx\\cmake\\release\\x86\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\.cxx\\cmake\\release\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "commapping-Release-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\.cxx\\cmake\\release\\x86\" commapping",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "commapping",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\src\\main\\cpp\\com.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\src\\main\\cpp\\tools.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\src\\main\\cpp\\map.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\commapping\\build\\intermediates\\cmake\\release\\obj\\x86\\libcommapping.so"
+    }
+  },
+  "toolchains": {
+    "2944678014": {
+      "cCompilerExecutable": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

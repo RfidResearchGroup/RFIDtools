@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--顶部栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgView_FileSelect_Dialog_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/file_icon" />
+
+        <!--放个TextView作为标题的替代品!-->
+        <TextView
+            android:id="@+id/txtView_FileSelect_Dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/title_file_path_selector"
+            android:textColor="@color/md_blue_700"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/view_h_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--需要按钮取消选择和确认选择!-->
+        <LinearLayout
+            android:id="@+id/btnGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/btnFileSelector_negative"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selectot_blue"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/md_white_1000" />
+
+            <include layout="@layout/view_v_line" />
+
+            <Button
+                android:id="@+id/btnFileSelector_neutral"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selectot_blue"
+                android:text="@string/up_path"
+                android:textAllCaps="false"
+                android:textColor="@color/md_white_1000" />
+
+            <include layout="@layout/view_v_line" />
+
+            <Button
+                android:id="@+id/btnFileSelector_positive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selectot_blue"
+                android:text="@string/ok"
+                android:textAllCaps="false"
+                android:textColor="@color/md_white_1000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnGroup"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar_onLoading"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/txtShowPathAndMsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/loading" />
+
+            <!--实际的内容展示!,用listview充当容器!-->
+            <ListView
+                android:id="@+id/lstvFileSelectorList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/md_grey_300"
+                android:dividerHeight="1px"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

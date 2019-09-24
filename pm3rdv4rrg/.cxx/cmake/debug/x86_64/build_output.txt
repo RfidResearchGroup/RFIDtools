@@ -1,0 +1,3 @@
+CMAKE_SYSTEM_PROCESSOR := x86_64
+Building optimised x86/x86_64 binaries
+Configuring done

@@ -1,0 +1,129 @@
+{
+  "stringTable": {
+    "0": "D:/Developer/AndroidStudioProject/RFID-Tools/mfkey/.cxx/cmake/release/x86",
+    "1": "--target=i686-none-linux-android18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey32_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -O2 -DNDEBUG -fPIC",
+    "2": "--target=i686-none-linux-android18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dmfkey64_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/mfkey/src/main/cpp -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -O2 -DNDEBUG -fPIC"
+  },
+  "buildFiles": [
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\release\\x86\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\release\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "mfkey32-Release-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\release\\x86\" mfkey32",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "mfkey32",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey32.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\build\\intermediates\\cmake\\release\\obj\\x86\\libmfkey32.so"
+    },
+    "mfkey64-Release-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\.cxx\\cmake\\release\\x86\" mfkey64",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "mfkey64",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey64.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\tools.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\parity.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\mfkey.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\util_posix.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crypto1.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\crapto1.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\src\\main\\cpp\\bucketsort.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\mfkey\\build\\intermediates\\cmake\\release\\obj\\x86\\libmfkey64.so"
+    }
+  },
+  "toolchains": {
+    "2944678014": {
+      "cCompilerExecutable": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/toolbarStyle"
+        app:popupTheme="@style/popMenuStyle"
+        app:title="@string/title_devices_main" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!--TODO 由于设备列表变动并不大，因此不需要经过列表优化，直接硬编码!-->
+                <cn.dxl.common.widget.HtmlTextButton
+                    android:id="@+id/btnDeviceStandardNfc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_shadow"
+                    android:drawableEnd="@drawable/phone_nfc_icon"
+                    android:gravity="start|top"
+                    android:padding="16dp"
+                    android:paddingEnd="28dp"
+                    android:text="@string/device_name_standard_inner" />
+
+                <cn.dxl.common.widget.HtmlTextButton
+                    android:id="@+id/btnDeviceProxmark3Rdv4RRG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_shadow"
+                    android:drawableEnd="@drawable/rdv4"
+                    android:gravity="start|top"
+                    android:padding="16dp"
+                    android:paddingEnd="28dp"
+                    android:text="@string/device_name_proxmark3_rdv4rrg" />
+
+
+                <cn.dxl.common.widget.HtmlTextButton
+                    android:id="@+id/btnDeviceChameleon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_shadow"
+                    android:drawableEnd="@drawable/chameleon_rdv2"
+                    android:gravity="start|top"
+                    android:padding="16dp"
+                    android:paddingEnd="28dp"
+                    android:text="@string/device_name_chamelon" />
+
+                <cn.dxl.common.widget.HtmlTextButton
+                    android:id="@+id/btnDeviceAcr122u"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_shadow"
+                    android:drawableEnd="@drawable/acr122u"
+                    android:gravity="start|top"
+                    android:padding="16dp"
+                    android:paddingEnd="28dp"
+                    android:text="@string/device_name_acr122u" />
+
+                <cn.dxl.common.widget.HtmlTextButton
+                    android:id="@+id/btnDevicePN532"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_shadow"
+                    android:drawableEnd="@drawable/pn532core"
+                    android:gravity="start|top"
+                    android:padding="16dp"
+                    android:paddingEnd="28dp"
+                    android:text="@string/device_name_pn532" />
+
+                <TextView
+                    android:id="@+id/txtShowPowerByWhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="@string/poweredByWhat"
+                    android:textColor="@color/md_grey_600"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnCommonTools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_shadow"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:text="@string/name_common_tools" />
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnAppAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_shadow"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:text="@string/main_app_about" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

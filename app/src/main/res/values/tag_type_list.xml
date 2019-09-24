@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Taken from http://nfc-tools.org/index.php?title=ISO14443A
+        The string mame is tag_+ATQA+SAK+ATS with hex-letters in uppercase.
+        (Names must have at least one char. This is why it strats with "tag_")
+    -->
+    <!-- Special tag types -->
+    <string name="tag_unknown" translatable="false">Unknown</string>
+    <string name="tag_unknown_mf_classic" translatable="false">MIFARE Classic, Unknown</string>
+
+    <!-- With ATS -->
+    <string name="tag_0344207577810280" translatable="false">MIFARE DESFire or
+        \nMIFARE DESFire EV1, NXP</string>
+    <string name="tag_0304283877B14A434f503331" translatable="false">JCOP31, IBM</string>
+    <string name="tag_0048207877B1024A434F5076323431" translatable="false">JCOP31 v2.4.1, IBM</string>
+    <string name="tag_0048203833B14A434F503431563232" translatable="false">JCOP41 v2.2, IBM</string>
+    <string name="tag_0004283833B14A434F50343156323331" translatable="false">JCOP41 v2.3.1, IBM</string>
+
+    <!-- Without ATS (ATQA+SAK) -->
+    <string name="tag_000409" translatable="false">MIFARE Mini, NXP</string>
+    <string name="tag_000408" translatable="false">MIFARE Classic 1k, NXP</string>
+    <string name="tag_000218" translatable="false">MIFARE Classic 4k, NXP</string>
+    <string name="tag_004218" translatable="false">MIFARE Classic 4k, NXP</string>
+    <string name="tag_004400" translatable="false">MIFARE Ultralight, NXP</string>
+    <string name="tag_000488" translatable="false">MIFARE Classic 1K, Infineon</string>
+    <string name="tag_000298" translatable="false">MPCOS, Gemplus</string>
+    <string name="tag_000238" translatable="false">MIFARE Classic 4k - emulated (6212 Classic), Nokia</string>
+    <string name="tag_000838" translatable="false">MIFARE Classic 4k - emulated (6131 NFC), Nokia</string>
+    <string name="tag_034420" translatable="false">MIFARE DESFire or
+        \nMIFARE DESFire EV1, NXP</string>
+    <string name="tag_030428" translatable="false">JCOP31, IBM</string>
+    <string name="tag_004820" translatable="false">JCOP, IBM</string>
+    <string name="tag_000428" translatable="false">JCOP41, IBM</string>
+    <string name="tag_0F0101" translatable="false">TNP3xxx (MFC compatible), NXP</string>
+
+    <!-- Without SAK+ATS (only ATQA) -->
+    <string name="tag_0C00" translatable="false">Jewel, Innovision R&amp;T</string>
+</resources>

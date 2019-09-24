@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_radain_border"
+        android:orientation="vertical">
+
+        <!--需要显示按钮名称，也就是命令名称-->
+        <TextView
+            android:id="@+id/txtShowCMDName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="name"
+            android:textColor="@color/md_white_1000" />
+
+        <!--需要显示大概的命令，也就是命令本身!-->
+        <TextView
+            android:id="@+id/txtShowCMD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="2dp"
+            android:text="cmd"
+            android:textColor="@color/md_white_1000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

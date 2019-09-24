@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--选择状态的样式-->
+    <item android:drawable="@drawable/shape_bg_blue_600" android:state_checked="true" />
+    <!--默认样式!-->
+    <item android:drawable="@drawable/bg_border_grey400" />
+</selector>

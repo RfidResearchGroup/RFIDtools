@@ -1,0 +1,2 @@
+ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\freo\.cxx\cmake\release\x86'
+ninja: no work to do.

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_act_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/toolbarStyle"
+        app:popupTheme="@style/popMenuStyle"
+        app:title="@string/title_rdv4_function" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!--上部分red team-->
+        <cn.dxl.common.widget.HtmlTextButton
+            android:id="@+id/btnGo2Proxmark3Rdv4RRGRedTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableEnd="@drawable/hacker"
+            android:gravity="start"
+            android:padding="16dp"
+            android:paddingEnd="28dp"
+            android:text="@string/function_name_red_team" />
+
+        <cn.dxl.common.widget.HtmlTextButton
+            android:id="@+id/btnGo2Proxmark3Rdv4RRGReader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableEnd="@drawable/read_tag"
+            android:gravity="start"
+            android:padding="16dp"
+            android:paddingEnd="28dp"
+            android:text="@string/function_name_rdv4rrg_reader" />
+
+        <!--下部分scanner -->
+        <cn.dxl.common.widget.HtmlTextButton
+            android:id="@+id/btnGo2Proxmark3Rdv4RRGScanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableEnd="@drawable/scanner"
+            android:gravity="start"
+            android:padding="16dp"
+            android:paddingEnd="28dp"
+            android:text="@string/function_name_scanner"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

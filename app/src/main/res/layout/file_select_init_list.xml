@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/res"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="11sp" />
+
+        <RadioGroup
+            android:id="@+id/rdoGroupDataPath"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataDefaultPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Default" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataPM3Path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/pm3" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataMCTPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MCT" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataMToolsPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MTools" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataWecatPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wechat" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataQQPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnWriteDataSdcardPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/root" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</HorizontalScrollView>

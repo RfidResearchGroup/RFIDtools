@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_key_save"
+        android:icon="@drawable/yes"
+        android:title="@string/dump_edit_save" />
+
+    <item
+        android:id="@+id/menu_key_select"
+        android:icon="@drawable/edit"
+        android:title="@string/Open" />
+
+    <item
+        android:id="@+id/menu_key_new"
+        android:icon="@drawable/new_add"
+        android:title="@string/file_create" />
+
+    <item
+        android:id="@+id/menu_key_del"
+        android:icon="@drawable/dump_delete"
+        android:title="@string/delete" />
+
+    <item
+        android:id="@+id/menu_key_repeat"
+        android:icon="@drawable/chong"
+        android:title="@string/content_repeat" />
+
+    <item
+        android:id="@+id/menu_key_share"
+        android:icon="@drawable/share"
+        android:title="@string/dump_edit_data_shared" />
+
+</menu>
