@@ -10,40 +10,37 @@
     <img align="center" src="/githubsrc/rfidx100.png" alt="RFID Tools" width="100" height="100">
 </p>
 
-<h1 align="center">RFID Tools</h1>
+<h1 align="center">RFID Tools android app</h1>
 
 <br/>
 
-<h4>:boom:Devices:dash:</h4>
+<h4>:boom:Supported devices:dash:</h4>
 
-<p>RRG Android App for use with the following devices</p>
+The app support the following devices
 
 |Proxmark3   |NFC Reader  |ACS ACR-122u  |Chameleon Mini  |PN532       |  
 |----------- |----------- |------------- |--------------- |----------- |
 | ![img_pm3] | ![img_nfc] |  ![img_122]  |   ![img_cml]   | ![img_532] |
 
-## Where to buy these devices?
+## Application features
 
-- www.sneaktechnology.com
+- (non-rooted) it runs on a non-rooted phone.
+- (multi device supported) app supports five device. More support in the future.
+- (easy user interface) abstract UI action, implement tag operations like read & write with simple UI.
 
-## Feature for application
+## Where to download app?
 
-- (non-rooted) The app runs on a non-rooted phone.
-- (mult device supported) has 5 device supported, More support in the future.
-- (easy user interface) abstract ui action, implement all (MIREFA Classic) Tag read & write Simple operation.
+- Google playstore: [RRG RFID Tools][link_download_google]
+<!--
+- [Download RFID Tools apk here][link_download_google]
+-->
 
-## Firmware for proxmark3
+## Proxmark3 firmware
 
 To use your Proxmark3 RDV4 with blueshark via bluetooth with this app there is an extra step.
 Until some android issues is resolved with the RRG/Iceman repo you must use a special android adapted firmware with your Proxmark3 RDV4.  
 
-Download and flash this one
-[Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2lfeis/%5BCompiled%5DPM3-RRG-20190812.rar?dl=0)
-
-## Where to download app?
-
-- Google playstore:  [RRG RFID Tools][link_download_google]
-- Download on this:  [Click][link_download_google] <small>(if have the apk)</small>
+Download and flash [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2lfeis/%5BCompiled%5DPM3-RRG-20190812.rar?dl=0)
 
 ## Developement tools list
 
@@ -58,7 +55,7 @@ Download and flash this one
 
 ## App core implementation
 
-If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let's coding happy. :)
+If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let us have fun time coding.
 
 - Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
 
@@ -66,18 +63,31 @@ If you want to join our project, you must comply with the following development 
 
 - Program architecture: DXL programming complies with MVP, the core architecture uses MVP to achieve layering, all the underlying data is placed in Model, all UI actions are placed in View, and all data calls are placed in Presenter. Module is used to realize resource management, reusable, and separate business can be placed in separate modules to reduce coupling and achieve reuse. Replacing concrete implementation with abstraction achieves the effects of extracting public implementation, abstracting private implementation, Interface-oriented and abstract programming, such as PN53X and mobile phone NFC read-write card use same UI, and information display.
 
-## Maintainer
+## Compability list
 
-- DXL
-
-Looking forward to your joining :)
-
-## Compability
-
-These Android phones has been tested with 
+The app has been tested with these Android phones.  Feel free to contribute with your own findings.
 
 - Redmi k20 pro (MIUI 10 & android 9)
 - Redmi k20 (MIUI 10 & android 9)
 - OnePlus 5T (H2OS 5.1.2 & Android 8.1.0)
 
-Welcome to add. :)
+
+## Where to buy these devices?
+
+- www.sneaktechnology.com
+
+## Support
+
+Open issues here relating to the source code,  other support questions use `android@rfidresearchgroup.com`
+
+## Maintainer
+Feel free to contribute and make this app better!
+
+- DXL
+
+## Copyright
+Copyright DXL 2019
+
+## Open source license
+GPL
+
