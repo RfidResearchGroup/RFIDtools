@@ -319,5 +319,8 @@
     <string name="msg_special_tag">发现特殊的后门UID标签!</string>
     <string name="msg_normal_tag_found">发现普通的标签!</string>
     <string name="sector_line">扇 区</string>
+    <string name="msg_darkside_no_supported">卡片不支持Darkside漏洞（MFCUK、全加密）测试，请更换卡片或者使用Nested漏洞（MFOC、半加密）测试工具，或者Hardnested漏洞（高强度的Nested漏洞）测试工具，或者嗅探。</string>
+    <string name="msg_working_darkside_check">正在检查该卡片是否支持Darkside</string>
+    <string name="msg_darkside_support">该卡片支持Darkside漏洞</string>
 
 </resources>

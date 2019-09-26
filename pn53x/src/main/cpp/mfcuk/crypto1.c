@@ -23,7 +23,7 @@
 #include "parity.h"
 
 #define SWAPENDIAN(x)\
-	(x = (x >> 8 & 0xff00ff) | (x & 0xff00ff) << 8, x = x >> 16 | x << 16)
+    (x = (x >> 8 & 0xff00ff) | (x & 0xff00ff) << 8, x = x >> 16 | x << 16)
 
 #if defined(__arm__) && !defined(__linux__) && !defined(_WIN32) && !defined(__APPLE__)		// bare metal ARM Proxmark lacks malloc()/free()
 void crypto1_create(struct Crypto1State *s, uint64_t key)
@@ -103,10 +103,9 @@ uint32_t crypto1_word(struct Crypto1State *s, uint32_t in, int is_encrypted)
 /* prng_successor
  * helper used to obscure the keystream during authentication
  */
-uint32_t prng_successor(uint32_t x, uint32_t n)
-{
+uint32_t prng_successor(uint32_t x, uint32_t n) {
     SWAPENDIAN(x);
-    while(n--)
+    while (n--)
         x = x >> 1 | (x >> 16 ^ x >> 18 ^ x >> 19 ^ x >> 21) << 31;
 
     return SWAPENDIAN(x);

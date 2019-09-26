@@ -5,7 +5,6 @@
       "sdkFolder": "C:\\Users\\DXL\\android-sdk",
       "isNativeCompilerSettingsCacheEnabled": false,
       "isBuildOnlyTargetAbiEnabled": true,
-      "ideBuildTargetAbi": "x86",
       "splitsAbiFilterSet": [],
       "intermediatesFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\build\\intermediates",
       "gradleModulePathName": ":pm3official",
@@ -43,7 +42,10 @@
     "gradleBuildOutputFolder": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3official\\.cxx\\cxx\\release",
     "isDebuggableEnabled": false,
     "validAbiList": [
-      "X86"
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
     ],
     "buildTargetSet": []
   },

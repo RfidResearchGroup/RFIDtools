@@ -8,13 +8,15 @@
     "5": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dmfoc_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfoc/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfoc/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC",
     "6": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dmfcuk_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfcuk/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/mfcuk/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC",
     "7": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dnfclist_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/nfclist/../libnfc/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC",
-    "8": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../init/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../libnfc/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+    "8": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../libnfc/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC",
+    "9": "--target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_prng_check_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
   },
   "buildFiles": [
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\nfclist\\CMakeLists.txt",
     "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\libnfc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfclassic\\CMakeLists.txt",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfcuk\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfoc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\emulate\\CMakeLists.txt",
@@ -166,6 +168,22 @@
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libnfc.so"
     },
+    "emulate-Debug-armeabi-v7a": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" emulate",
+      "buildType": "debug",
+      "toolchain": "2944678014",
+      "abi": "armeabi-v7a",
+      "artifactName": "emulate",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\emulate\\emulate.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libemulate.so"
+    },
     "hard-Debug-armeabi-v7a": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" hard",
       "buildType": "debug",
@@ -207,22 +225,6 @@
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhard.so"
     },
-    "emulate-Debug-armeabi-v7a": {
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" emulate",
-      "buildType": "debug",
-      "toolchain": "2944678014",
-      "abi": "armeabi-v7a",
-      "artifactName": "emulate",
-      "files": [
-        {
-          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\emulate\\emulate.c",
-          "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 0
-        }
-      ],
-      "headers": [],
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libemulate.so"
-    },
     "mfclassic-Debug-armeabi-v7a": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" mfclassic",
       "buildType": "debug",
@@ -243,6 +245,48 @@
       ],
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libmfclassic.so"
+    },
+    "pn53x_prng_check-Debug-armeabi-v7a": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" pn53x_prng_check",
+      "buildType": "debug",
+      "toolchain": "2944678014",
+      "abi": "armeabi-v7a",
+      "artifactName": "pn53x_prng_check",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crapto1.c",
+          "flagsOrdinal": 9,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crypto1.c",
+          "flagsOrdinal": 9,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\check.c",
+          "flagsOrdinal": 9,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libpn53x_prng_check.so"
+    },
+    "pn53x-Debug-armeabi-v7a": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" pn53x",
+      "buildType": "debug",
+      "toolchain": "2944678014",
+      "abi": "armeabi-v7a",
+      "artifactName": "pn53x",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
+          "flagsOrdinal": 8,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libpn53x.so"
     },
     "mfcuk-Debug-armeabi-v7a": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" mfcuk",
@@ -294,22 +338,6 @@
       ],
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libmfcuk.so"
-    },
-    "pn53x-Debug-armeabi-v7a": {
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" pn53x",
-      "buildType": "debug",
-      "toolchain": "2944678014",
-      "abi": "armeabi-v7a",
-      "artifactName": "pn53x",
-      "files": [
-        {
-          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
-          "flagsOrdinal": 8,
-          "workingDirectoryOrdinal": 0
-        }
-      ],
-      "headers": [],
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libpn53x.so"
     }
   },
   "toolchains": {

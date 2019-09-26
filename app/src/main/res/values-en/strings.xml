@@ -323,5 +323,8 @@
     <string name="msg_special_tag">Found chinese magic tag.</string>
     <string name="msg_normal_tag_found">Found normal tag.</string>
     <string name="sector_line">Sector</string>
+    <string name="msg_darkside_no_supported">Cards do not support Darkside vulnerability (MFCUK, full encryption) testing. Replace the card or use the Nested vulnerability (MFOC, semi-encryption) testing tool, or the Hardnested vulnerability (high-intensity Nested vulnerability) testing tool, or sniff.</string>
+    <string name="msg_working_darkside_check">Checking whether the card supports Darkside</string>
+    <string name="msg_darkside_support">The card supports Darkside</string>
 
 </resources>

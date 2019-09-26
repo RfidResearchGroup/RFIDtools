@@ -11,7 +11,7 @@ jboolean openDev(JNIEnv *env, jobject instance) {
     nfc_device *pnd;
     nfc_init(&context);
     if (context == NULL) {
-        printf("Unable to init libnfc (malloc)");
+        LOGE("Unable to init libnfc (malloc)");
         return false;
     }
     //先检查是否有异常发生
@@ -27,10 +27,11 @@ jboolean openDev(JNIEnv *env, jobject instance) {
     // Try to open the NFC reader
     pnd = nfc_open(context, NULL);
     if (pnd == NULL) {
-        printf("Error opening NFC reader");
-        nfc_exit(context);
+        LOGE("Error opening NFC reader");
         //设备打不开则再次检查异常
         if ((*env)->ExceptionCheck(env)) {
+            nfc_close(pnd);
+            nfc_exit(context);
             (*env)->ExceptionDescribe(env);
             (*env)->ExceptionClear(env);
             (*env)->ThrowNew(env, (*env)->FindClass(env, "java/io/IOException"), "操作出错!");

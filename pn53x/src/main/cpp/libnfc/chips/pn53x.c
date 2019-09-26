@@ -1481,8 +1481,10 @@ pn53x_initiator_transceive_bits(struct nfc_device *pnd, const uint8_t *pbtTx, co
     // Check if we should prepare the parity bits ourself
     if ((!pnd->bPar) && (szTxBits > 0)) {
         // Convert data with parity to a frame
-        if ((res = pn53x_wrap_frame(pbtTx, szTxBits, pbtTxPar, abtCmd + 1)) < 0)
+        if ((res = pn53x_wrap_frame(pbtTx, szTxBits, pbtTxPar, abtCmd + 1)) < 0) {
+            //LOGE("pn53x_initiator_transceive_bits() -> pn53x_wrap_frame() Convert data with parity to a frame res < 0;");
             return res;
+        }
         szFrameBits = res;
     } else {
         szFrameBits = szTxBits;
@@ -1499,15 +1501,19 @@ pn53x_initiator_transceive_bits(struct nfc_device *pnd, const uint8_t *pbtTx, co
         memcpy(abtCmd + 1, pbtTx, szFrameBytes);
 
     // Set the amount of transmission bits in the PN53X chip register
-    if ((res = pn53x_set_tx_bits(pnd, ui8Bits)) < 0)
+    if ((res = pn53x_set_tx_bits(pnd, ui8Bits)) < 0) {
+        //LOGE("ERROR: Set the amount of transmission bits in the PN53X chip register");
         return res;
+    }
 
     // Send the frame to the PN53X chip and get the answer
     // We have to give the amount of bytes + (the command byte 0x42)
     uint8_t abtRx[PN53x_EXTENDED_FRAME__DATA_MAX_LEN];
     size_t szRx = sizeof(abtRx);
-    if ((res = pn53x_transceive(pnd, abtCmd, szFrameBytes + 1, abtRx, szRx, -1)) < 0)
+    if ((res = pn53x_transceive(pnd, abtCmd, szFrameBytes + 1, abtRx, szRx, -1)) < 0) {
+        //LOGE("ERROR: Send the frame to the PN53X chip and get the answer");
         return res;
+    }
     szRx = (size_t) res;
     // Get the last bit-count that is stored in the received byte
     if ((res = pn53x_read_register(pnd, PN53X_REG_CIU_Control, &ui8rcc)) < 0)

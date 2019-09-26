@@ -10,5 +10,6 @@ mfoc
 nfc
 nfclist
 pn53x
+pn53x_prng_check
 jvmArgs : 
 

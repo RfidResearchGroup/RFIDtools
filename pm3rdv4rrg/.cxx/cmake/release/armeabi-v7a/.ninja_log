@@ -290,3 +290,5 @@
 9176	10133	591018022	CMakeFiles/pm3rrg_rdv4.dir/client/cmdscript.c.o	8dbe16b75e997e32
 9556	10609	591018023	CMakeFiles/pm3rrg_rdv4.dir/client/cmdhfmfhard.c.o	3e4de0912bde68df
 10609	13382	591018026	D:/Developer/AndroidStudioProject/RFID-Tools/pm3rdv4rrg/build/intermediates/cmake/release/obj/armeabi-v7a/libpm3rrg_rdv4.so	d45da5af9c892df1
+11	881	591194685	CMakeFiles/pm3rrg_rdv4.dir/common/crapto1/crapto1.c.o	e0e4ec8285b7a15e
+881	16621	591194701	D:/Developer/AndroidStudioProject/RFID-Tools/pm3rdv4rrg/build/intermediates/cmake/release/obj/armeabi-v7a/libpm3rrg_rdv4.so	d45da5af9c892df1

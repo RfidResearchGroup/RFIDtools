@@ -1,0 +1,5 @@
+# ninja log v5
+1	341	591194423	CMakeFiles/crapto1.dir/crapto1.c.o	2ae20ff9d3de30c2
+4	356	591194423	CMakeFiles/crapto1.dir/crypto1.c.o	208a3418496fca92
+6	485	591194424	CMakeFiles/crapto1.dir/main.c.o	1902701a56f595ff
+485	811	591194424	D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/build/intermediates/cmake/debug/obj/x86/libcrapto1.so	ac668822d378730a

@@ -47,6 +47,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a/mfcuk/cmake_install.cmake")
   include("D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a/nfclist/cmake_install.cmake")
   include("D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a/pn53x/cmake_install.cmake")
+  include("D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a/check/cmake_install.cmake")
 
 endif()
 
