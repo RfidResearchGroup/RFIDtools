@@ -24,3 +24,6 @@ D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/nfclist/
 D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/pn53x/CMakeFiles/pn53x.dir
 D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/pn53x/CMakeFiles/edit_cache.dir
 D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/pn53x/CMakeFiles/rebuild_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/check/CMakeFiles/pn53x_prng_check.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/check/CMakeFiles/edit_cache.dir
+D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/debug/x86/check/CMakeFiles/rebuild_cache.dir

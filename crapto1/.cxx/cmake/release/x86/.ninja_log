@@ -1,5 +1,5 @@
 # ninja log v5
-6	929	590655335	CMakeFiles/crapto1.dir/main.c.o	abf70ed363b89f4b
-4	1021	590655335	CMakeFiles/crapto1.dir/crypto1.c.o	a9c0c0eff8c6d3e3
-1	1117	590655336	CMakeFiles/crapto1.dir/crapto1.c.o	3210260d95a136fd
-1117	2065	590655336	D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/build/intermediates/cmake/release/obj/x86/libcrapto1.so	9a1b8bb9e21a38f4
+2	482	591194925	CMakeFiles/crapto1.dir/crypto1.c.o	a9c0c0eff8c6d3e3
+3	518	591194925	CMakeFiles/crapto1.dir/main.c.o	abf70ed363b89f4b
+0	522	591194925	CMakeFiles/crapto1.dir/crapto1.c.o	3210260d95a136fd
+522	1201	591194926	D:/Developer/AndroidStudioProject/RFID-Tools/crapto1/build/intermediates/cmake/release/obj/x86/libcrapto1.so	9a1b8bb9e21a38f4

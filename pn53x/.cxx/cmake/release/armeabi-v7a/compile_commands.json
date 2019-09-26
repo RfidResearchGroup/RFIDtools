@@ -229,7 +229,25 @@
 
 {
   "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a",
-  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../init/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../libnfc/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -o pn53x\\CMakeFiles\\pn53x.dir\\test.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/pn53x/../libnfc/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -o pn53x\\CMakeFiles\\pn53x.dir\\test.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
   "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_prng_check_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -o check\\CMakeFiles\\pn53x_prng_check.dir\\crapto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crapto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crapto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_prng_check_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -o check\\CMakeFiles\\pn53x_prng_check.dir\\crypto1.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crypto1.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\crypto1.c"
+},
+
+{
+  "directory": "D:/Developer/AndroidStudioProject/RFID-Tools/pn53x/.cxx/cmake/release/armeabi-v7a",
+  "command": "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/DXL/android-sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -D__ANDROID_NDK__ -Dpn53x_prng_check_EXPORTS -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check/../libnfc/include -ID:/Developer/AndroidStudioProject/RFID-Tools/pn53x/src/main/cpp/check  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -o check\\CMakeFiles\\pn53x_prng_check.dir\\check.c.o   -c D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\check.c",
+  "file": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\check.c"
 }
 ]

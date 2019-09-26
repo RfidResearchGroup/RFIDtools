@@ -4,6 +4,7 @@
     "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\libnfc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfclassic\\CMakeLists.txt",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfcuk\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfoc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\emulate\\CMakeLists.txt",
@@ -17,17 +18,17 @@
   ],
   "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
   "libraries": {
-    "nfclist-Debug-arm64-v8a": {
-      "artifactName": "nfclist",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" nfclist",
-      "abi": "arm64-v8a",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnfclist.so"
-    },
     "mfoc-Debug-arm64-v8a": {
       "artifactName": "mfoc",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" mfoc",
       "abi": "arm64-v8a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libmfoc.so"
+    },
+    "nfclist-Debug-arm64-v8a": {
+      "artifactName": "nfclist",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" nfclist",
+      "abi": "arm64-v8a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnfclist.so"
     },
     "pn53x-Debug-arm64-v8a": {
       "artifactName": "pn53x",
@@ -53,17 +54,23 @@
       "abi": "arm64-v8a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libmfcuk.so"
     },
+    "nfc-Debug-arm64-v8a": {
+      "artifactName": "nfc",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" nfc",
+      "abi": "arm64-v8a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnfc.so"
+    },
     "emulate-Debug-arm64-v8a": {
       "artifactName": "emulate",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" emulate",
       "abi": "arm64-v8a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libemulate.so"
     },
-    "nfc-Debug-arm64-v8a": {
-      "artifactName": "nfc",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" nfc",
+    "pn53x_prng_check-Debug-arm64-v8a": {
+      "artifactName": "pn53x_prng_check",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\arm64-v8a\" pn53x_prng_check",
       "abi": "arm64-v8a",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnfc.so"
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libpn53x_prng_check.so"
     }
   }
 }

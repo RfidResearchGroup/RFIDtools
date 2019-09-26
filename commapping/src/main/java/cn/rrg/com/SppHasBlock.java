@@ -32,6 +32,7 @@ public class SppHasBlock extends AbsBluetoothSpp {
 
     @Override
     public int write(byte[] sendMsg, int offset, int length, int timeout) throws IOException {
+        setThreadPriority();
         if (outputStream == null) return -1;
         outputStream.write(sendMsg, offset, length - offset);
         outputStream.flush();
@@ -40,6 +41,7 @@ public class SppHasBlock extends AbsBluetoothSpp {
 
     @Override
     public int read(byte[] recvMsg, int offset, int length, int timeout) throws IOException {
+        setThreadPriority();
         if (inputStream == null) return -1;
         long start = System.currentTimeMillis();
         while (inputStream.available() < (length - offset)) {
@@ -58,5 +60,9 @@ public class SppHasBlock extends AbsBluetoothSpp {
     @Override
     public int getUniqueId() {
         return UNIQUE_ID;
+    }
+
+    private void setThreadPriority() {
+        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
     }
 }

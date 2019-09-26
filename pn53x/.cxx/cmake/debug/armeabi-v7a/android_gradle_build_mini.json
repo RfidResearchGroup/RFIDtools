@@ -4,6 +4,7 @@
     "C:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\libnfc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfclassic\\CMakeLists.txt",
+    "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\check\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfcuk\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\mfoc\\CMakeLists.txt",
     "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\emulate\\CMakeLists.txt",
@@ -35,17 +36,17 @@
       "abi": "armeabi-v7a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libnfc.so"
     },
-    "hard-Debug-armeabi-v7a": {
-      "artifactName": "hard",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" hard",
-      "abi": "armeabi-v7a",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhard.so"
-    },
     "emulate-Debug-armeabi-v7a": {
       "artifactName": "emulate",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" emulate",
       "abi": "armeabi-v7a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libemulate.so"
+    },
+    "hard-Debug-armeabi-v7a": {
+      "artifactName": "hard",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" hard",
+      "abi": "armeabi-v7a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhard.so"
     },
     "mfclassic-Debug-armeabi-v7a": {
       "artifactName": "mfclassic",
@@ -53,17 +54,23 @@
       "abi": "armeabi-v7a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libmfclassic.so"
     },
-    "mfcuk-Debug-armeabi-v7a": {
-      "artifactName": "mfcuk",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" mfcuk",
+    "pn53x_prng_check-Debug-armeabi-v7a": {
+      "artifactName": "pn53x_prng_check",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" pn53x_prng_check",
       "abi": "armeabi-v7a",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libmfcuk.so"
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libpn53x_prng_check.so"
     },
     "pn53x-Debug-armeabi-v7a": {
       "artifactName": "pn53x",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" pn53x",
       "abi": "armeabi-v7a",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libpn53x.so"
+    },
+    "mfcuk-Debug-armeabi-v7a": {
+      "artifactName": "mfcuk",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\armeabi-v7a\" mfcuk",
+      "abi": "armeabi-v7a",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libmfcuk.so"
     }
   }
 }
