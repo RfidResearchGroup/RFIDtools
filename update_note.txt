@@ -1,0 +1,13 @@
+2019/09/26 ver1.3.1: 
+1.MFCUK (fully encrypted) can determine whether a vulnerability can be tested. If it is judged that there is no vulnerability in the card, it will not execute the program to avoid getting stuck in the dead cycle.
+
+2019/09/27 ver1.3.2: 
+1. Fixed the problem that the equipment needs to be found in the interface.
+
+2. Fixed the problem of USB device removing the connection status that could not be updated.
+
+3. ACU122 equipment changed its name to ACS-ACR_122U (Longjie-ACR_122U)
+
+4. Change the name of USB_UART device to OTGToUart Serial (OTG to serial port)
+
+5. Delete Signature File Configuration
