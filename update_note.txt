@@ -11,3 +11,7 @@
 4. Change the name of USB_UART device to OTGToUart Serial (OTG to serial port)
 
 5. Delete Signature File Configuration
+
+6.Add signature configuration input windows.
+
+7.fixed signature configuration input.
