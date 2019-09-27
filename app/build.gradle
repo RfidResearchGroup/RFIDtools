@@ -10,10 +10,10 @@ android {
         * if you need to compile your version, please replace your signature or delete this signature, using the default debug signature.
         * */
         release {
-            keyAlias System.getProperty("KEYALIAS_GLOBAL")
-            keyPassword System.getProperty("PASSWORD_GLOBAL")
-            storeFile file(System.getProperty("KEYSTORE_GLOBAL"))
-            storePassword System.getProperty("STOREKEY_GLOBAK")
+            keyAlias System.getProperty("KEYALIAS_GLOBAL") == null ? "keyAlias" : System.getProperty("KEYALIAS_GLOBAL")
+            keyPassword System.getProperty("PASSWORD_GLOBAL") == null ? "keyPassword" : System.getProperty("PASSWORD_GLOBAL")
+            storeFile file(System.getProperty("KEYSTORE_GLOBAL") == null ? "storeFile" : System.getProperty("KEYSTORE_GLOBAL"))
+            storePassword System.getProperty("STOREKEY_GLOBAK") == null ? "storePassword" : System.getProperty("STOREKEY_GLOBAK")
         }
     }
     //构建项目的sdk版本
