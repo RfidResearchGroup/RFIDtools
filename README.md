@@ -38,7 +38,7 @@ The app support the following devices
 
 ## Updated note for app.
 
-- [RRG RFID Tools][link_updated_note]
+- [View note][link_updated_note]
 
 ## Proxmark3 firmware
 
