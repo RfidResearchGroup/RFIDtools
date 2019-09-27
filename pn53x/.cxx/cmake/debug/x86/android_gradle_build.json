@@ -62,22 +62,6 @@
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libemulate.so"
     },
-    "nfclist-Debug-x86": {
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" nfclist",
-      "buildType": "debug",
-      "toolchain": "2944678014",
-      "abi": "x86",
-      "artifactName": "nfclist",
-      "files": [
-        {
-          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\nfclist\\nfclist.c",
-          "flagsOrdinal": 7,
-          "workingDirectoryOrdinal": 0
-        }
-      ],
-      "headers": [],
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libnfclist.so"
-    },
     "hard-Debug-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" hard",
       "buildType": "debug",
@@ -118,6 +102,22 @@
       ],
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libhard.so"
+    },
+    "nfclist-Debug-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" nfclist",
+      "buildType": "debug",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "nfclist",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\nfclist\\nfclist.c",
+          "flagsOrdinal": 7,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libnfclist.so"
     },
     "nfc-Debug-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" nfc",
