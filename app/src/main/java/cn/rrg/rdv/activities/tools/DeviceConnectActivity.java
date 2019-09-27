@@ -107,7 +107,6 @@ public abstract class DeviceConnectActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //TODO 不需要解注册，避免在其他位置接收不到设备的移除广播!
         for (AbstractDeviceModel model : models) {
             model.unregister(this);
         }

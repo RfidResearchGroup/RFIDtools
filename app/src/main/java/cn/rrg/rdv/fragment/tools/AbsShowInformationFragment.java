@@ -78,9 +78,9 @@ public abstract class AbsShowInformationFragment
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (isVisible()) {
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
             workingMsgDialog.show();
             // 在用户切换到这个fragment时才进行信息请求!
             presenter.show();

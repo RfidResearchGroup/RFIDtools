@@ -5,43 +5,7 @@
   },
   {
     "level": "INFO",
-    "message": "Trying to locate CMake in local SDK repository."
-  },
-  {
-    "level": "INFO",
-    "message": "- CMake found in SDK at \u0027C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\u0027 had version \u00273.10.2\u0027"
-  },
-  {
-    "level": "INFO",
-    "message": "rebuilding JSON D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\\android_gradle_build.json due to:"
-  },
-  {
-    "level": "INFO",
-    "message": "- force flag, will remove stale json folder"
-  },
-  {
-    "level": "INFO",
-    "message": "removing stale contents from \u0027D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\u0027"
-  },
-  {
-    "level": "INFO",
-    "message": "created folder \u0027D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\u0027"
-  },
-  {
-    "level": "INFO",
-    "message": "executing cmake Executable : C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe\narguments : \n-HD:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\src\\main\\cpp\n-BD:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\n-DANDROID_ABI\u003dx86\n-DANDROID_PLATFORM\u003dandroid-18\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\build\\intermediates\\cmake\\release\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dRelease\n-DANDROID_NDK\u003dC:\\Users\\DXL\\android-sdk\\ndk-bundle\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DCMAKE_SYSTEM_VERSION\u003d18\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\DXL\\android-sdk\\ndk-bundle\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\DXL\\android-sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake\n-G Ninja\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe\n-DANDROID_STL\u003dc++_static\n-DPROJECTDIR\u003dD:/Developer/AndroidStudioProject/RFID-Tools\njvmArgs : \n\n"
-  },
-  {
-    "level": "INFO",
-    "message": "done executing cmake"
-  },
-  {
-    "level": "INFO",
-    "message": "write build output D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\\build_output.txt"
-  },
-  {
-    "level": "INFO",
-    "message": "write command file D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\\build_command.txt"
+    "message": "JSON \u0027D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pm3rdv4rrg\\.cxx\\cmake\\release\\x86\\android_gradle_build.json\u0027 was up-to-date"
   },
   {
     "level": "INFO",

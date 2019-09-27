@@ -7,11 +7,14 @@ import android.util.Log;
 
 import java.io.File;
 
+import cn.dxl.common.util.AppUtil;
 import cn.dxl.common.util.FileUtil;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.Device;
 import cn.rrg.com.DriverInterface;
+import cn.rrg.com.UsbAcr122Raw;
 import cn.rrg.devices.PN53X;
+import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.util.Commons;
@@ -46,6 +49,10 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
                 Commons.removeDevByList(devBean, devAttachList);
                 //如果设置了接口实现则需要通知接口移除
                 detachDispatcher(devBean);
+                // 如果是当前的驱动被移除，则我们需要将设备重置状态!
+                if (dev.equals(UsbAcr122Raw.DRIVER_ACR122U)) {
+                    RuntimeProperties.isConnected = false;
+                }
             }
         };
     }
@@ -57,7 +64,8 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
             UsbManager manager = mDI.getAdapter();
             if (manager != null)
                 if (manager.getDeviceList().size() > 0) {
-                    context.sendBroadcast(new Intent("cn.coderboy.nfc.usb_attach_acr"));
+                    Log.d(TAG, "发送广播成功！");
+                    AppUtil.getInstance().getApp().sendBroadcast(new Intent(UsbAcr122Raw.ACTION_BROADCAST));
                 } else Log.d(TAG, "startDiscovery: 找不到任何一个USB设备!");
         }
     }
@@ -76,7 +84,7 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
         }
         // TODO 谨记更换底层配置!
         FileUtil.writeString(new File(Paths.PN53X_CONF_FILE), "ACR122", false);
-        boolean ret = mDI.connect(null);
+        boolean ret = mDI.connect(UsbAcr122Raw.DRIVER_ACR122U);
         if (ret) {
             Log.d(TAG, "Acr122连接成功!");
             callback.onConnectSucces();
@@ -88,7 +96,9 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
 
     @Override
     public void disconnect() {
-        if (mDI != null)
+        if (mDI != null) {
             mDI.disconect();
+            RuntimeProperties.isConnected = false;
+        }
     }
 }
