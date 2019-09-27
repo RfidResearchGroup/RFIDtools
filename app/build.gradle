@@ -1,6 +1,21 @@
 apply plugin: 'com.android.application'
+apply from: 'keystore.gradle'
 
 android {
+    //签名文件配置
+    signingConfigs {
+        // 这个是我的APK签名，它无关我的身份的任何信息，如果你需要编译你的版本，请更换为你的签名或者删除此签名，使用默认的debug签名。
+        /*
+        * This is my apk signature, it is not my identity of any information,
+        * if you need to compile your version, please replace your signature or delete this signature, using the default debug signature.
+        * */
+        release {
+            keyAlias System.getProperty("KEYALIAS_GLOBAL")
+            keyPassword System.getProperty("PASSWORD_GLOBAL")
+            storeFile file(System.getProperty("KEYSTORE_GLOBAL"))
+            storePassword System.getProperty("STOREKEY_GLOBAK")
+        }
+    }
     //构建项目的sdk版本
     compileSdkVersion 29
     //构建器版本
@@ -25,6 +40,7 @@ android {
         release {
             minifyEnabled false
             shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         debug {

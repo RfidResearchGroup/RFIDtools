@@ -30,22 +30,6 @@
   ],
   "buildTargetsCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
   "libraries": {
-    "pn53x-Release-x86": {
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" pn53x",
-      "buildType": "release",
-      "toolchain": "2944678014",
-      "abi": "x86",
-      "artifactName": "pn53x",
-      "files": [
-        {
-          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
-          "flagsOrdinal": 8,
-          "workingDirectoryOrdinal": 0
-        }
-      ],
-      "headers": [],
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libpn53x.so"
-    },
     "mfclassic-Release-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" mfclassic",
       "buildType": "release",
@@ -66,6 +50,22 @@
       ],
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libmfclassic.so"
+    },
+    "pn53x-Release-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" pn53x",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "pn53x",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\pn53x\\test.c",
+          "flagsOrdinal": 8,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libpn53x.so"
     },
     "pn53x_prng_check-Release-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" pn53x_prng_check",
@@ -179,6 +179,22 @@
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libnfc.so"
     },
+    "nfclist-Release-x86": {
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" nfclist",
+      "buildType": "release",
+      "toolchain": "2944678014",
+      "abi": "x86",
+      "artifactName": "nfclist",
+      "files": [
+        {
+          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\nfclist\\nfclist.c",
+          "flagsOrdinal": 7,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libnfclist.so"
+    },
     "mfcuk-Release-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" mfcuk",
       "buildType": "release",
@@ -229,22 +245,6 @@
       ],
       "headers": [],
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libmfcuk.so"
-    },
-    "nfclist-Release-x86": {
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" nfclist",
-      "buildType": "release",
-      "toolchain": "2944678014",
-      "abi": "x86",
-      "artifactName": "nfclist",
-      "files": [
-        {
-          "src": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\src\\main\\cpp\\nfclist\\nfclist.c",
-          "flagsOrdinal": 7,
-          "workingDirectoryOrdinal": 0
-        }
-      ],
-      "headers": [],
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\release\\obj\\x86\\libnfclist.so"
     },
     "mfoc-Release-x86": {
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\release\\x86\" mfoc",
