@@ -1,5 +1,6 @@
 package cn.rrg.com;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,15 +20,23 @@ import java.util.List;
 
 import android.hardware.usb.UsbConstants;
 
+import cn.dxl.common.util.AppUtil;
+
 public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
 
+    // Application context, is global. cant cache activity context!
+    @SuppressLint("StaticFieldLeak")
+    private static final Context mContext = AppUtil.getInstance().getApp();
     //日志特征
     private static final String LOG_TAG = UsbAcr122Raw.class.getSimpleName();
     private static final int UNIQUE_ID = 0x03;
+    private static DevCallback<String> mCallback = null;
     //广播接收器,在设备插入和移除时使用
-    private static BroadcastReceiver mReceiver = null;
-    //控制广播注册状态
-    private boolean isRegister = false;
+    private static BroadcastReceiver mReceiver;
+    //主页状态!
+    private static boolean isRegister = false;
+    //广播过滤器!
+    private static IntentFilter filter = new IntentFilter();
     //缓存设备管理器
     private static UsbManager mUsbManger = null;
     //缓存插入的设备
@@ -41,8 +50,9 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
     //USB写端点
     private static UsbEndpoint mEpOut = null;
     //单例模式
+    @SuppressLint("StaticFieldLeak")
     private static UsbAcr122Raw mUsbRaw = null;
-    //设备码
+    //设备VP码
     private static final int[] VP_ID = new int[]{
             120566529, 120566532, 120554240, 120554242,
             120554247, 120554241, 120557568, 120557775,
@@ -64,6 +74,43 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
             120529482, 120553985, 120553990, 120557574,
             120557787, 120566272, 120566022
     };
+    public static final String ACTION_BROADCAST = "com.rrg.devices.usb_attach_acr";
+    public static final String DRIVER_ACR122U = "ACS-ACR_122U(龙杰-ACR_122U)";
+
+    static {
+        //建立意图过滤数组
+        filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        filter.addAction(ACTION_BROADCAST);
+        mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                final String _action = intent.getAction();
+                if (_action == null) {
+                    Log.d(LOG_TAG, "UsbAcr122Raw 广播action为空!");
+                    return;
+                }
+                switch (_action) {
+                    //在设备插入的时候初始化
+                    case UsbManager.ACTION_USB_DEVICE_ATTACHED:
+                    case ACTION_BROADCAST: {
+                        if (init(context)) {
+                            Log.d(LOG_TAG, "UsbAcr122Raw 广播发现设备: " + DRIVER_ACR122U);
+                            mCallback.onAttach(DRIVER_ACR122U);
+                        } else {
+                            Log.d(LOG_TAG, "init failed!");
+                        }
+                    }
+                    break;
+
+                    case UsbManager.ACTION_USB_DEVICE_DETACHED:
+                        mCallback.onDetach(DRIVER_ACR122U);
+                        break;
+                }
+            }
+        };
+    }
 
     //私有构造方法，避免被直接调用
     private UsbAcr122Raw() { /*can't using default constructor*/ }
@@ -80,8 +127,30 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
         return mUsbRaw;
     }
 
+    private void register1() {
+        unRegister();
+        try {
+            //注册广播事件
+            AppUtil.getInstance().getApp().registerReceiver(mReceiver, filter);
+            isRegister = true;
+            Log.d(LOG_TAG, "注册广播成功!");
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void unRegister() {
+        try {
+            if (isRegister) {
+                //注册广播事件
+                AppUtil.getInstance().getApp().unregisterReceiver(mReceiver);
+                isRegister = false;
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
     //初始化
-    private boolean init(Context context) {
+    private static boolean init(Context context) {
         if (mUsbManger == null) {
             Log.d(LOG_TAG, "USB管理器为空!");
             return false;
@@ -103,9 +172,7 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
                 //空链接，可能需要申请权限!
                 if (mCon == null) {
                     //发送广播申请权限
-                    PendingIntent intent =
-                            PendingIntent.getBroadcast(context,
-                                    0, new Intent("cn.rrg.devices.usb_attach_acr"), 0);
+                    PendingIntent intent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_BROADCAST), 0);
                     Log.d(LOG_TAG, "trying get usb permission!");
                     mUsbManger.requestPermission(mDevice, intent);
                     //当没有权限的时候应当直接返回
@@ -122,11 +189,10 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
         return true;
     }
 
-    private boolean isAcr122(int producetId, int ventorId) {
+    private static boolean isAcr122(int producetId, int ventorId) {
         boolean ret = false;
         int var3 = ventorId << 16 | producetId;
         int count = 0;
-
         while (true) {
             if (count >= 75) {
                 break;
@@ -142,46 +208,11 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
 
     @Override
     public void register(Context context, final DevCallback<String> callback) {
+        mCallback = callback;
         //初始化USB管理器资源
-        mUsbManger = (UsbManager) context.getSystemService(Context.USB_SERVICE);
-        //只注册一次广播
-        if (isRegister) return;
-        //建立意图过滤数组
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        filter.addAction("cn.rrg.devices.usb_attach_acr");
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                final String _action = intent.getAction();
-                if (_action == null) return;
-                switch (_action) {
-                    //在设备插入的时候初始化
-                    case UsbManager.ACTION_USB_DEVICE_ATTACHED:
-                    case "cn.rrg.devices.usb_attach_acr": {
-                        if (init(context)) {
-                            callback.onAttach("ACR_122");
-                        } else {
-                            Log.d(LOG_TAG, "init failed!");
-                        }
-                    }
-                    break;
-
-                    case UsbManager.ACTION_USB_DEVICE_DETACHED:
-                        callback.onDetach("ACR_122");
-                        break;
-                }
-            }
-        };
-        try {
-            //注册广播事件
-            context.registerReceiver(mReceiver, filter);
-        } catch (Exception ignored) {
-        }
-        //将标志置为true，避免重复注册!
-        isRegister = true;
+        mUsbManger = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
+        // register driver
+        register1();
     }
 
     @Override
@@ -263,13 +294,7 @@ public class UsbAcr122Raw implements DriverInterface<String, UsbManager> {
 
     @Override
     public void unregister(Context context) {
-        if (isRegister) {
-            try {
-                context.unregisterReceiver(mReceiver);
-                isRegister = false;
-            } catch (Exception ignored) {
-            }
-        }
+        unRegister();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cn.rrg.com;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,18 +20,25 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import cn.dxl.common.util.AppUtil;
+
 /*
  * Usb 2 uart Serial implements
  */
 public class UsbSerialControl extends ContextHandle implements DriverInterface<String, UsbManager> {
 
+    // Application context, is global.
+    @SuppressLint("StaticFieldLeak")
+    private static final Context mContext = AppUtil.getInstance().getApp();
     //日志标签
     private static final String LOG_TAG = UsbSerialControl.class.getSimpleName();
     private static final int UNIQUE_ID = 0x04;
     //广播名称
-    private static final String USB_PERMISSION_ACTION = "cn.rrg.nfctools.UsbSerialPer";
+    public static final String ACTION_BROADCAST = "com.rrg.devices.usb_attach_uart";
+    //权限请求广播!
+    private static final String ACTION_PERMISSION = "com.rrg.devices.usb_permission_uart";
     //设备名称!
-    private static final String usbName = "Usb2UartSerialDevice";
+    public static final String NAME_DRIVER_USB_UART = "OTGToUartSerial(OTG转串口)";
     //串口对象
     private static UsbSerialDevice mPort = null;
     //单例模式
@@ -38,11 +46,74 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     //回调接口
     private static DevCallback<String> mCallback = null;
     //广播接收，由于是单例，因此实际上广播接收也可以设置为单例!
-    private static BroadcastReceiver usbReceiver = null;
+    private static BroadcastReceiver usbReceiver;
     //注册状态
     private static boolean isRegister = false;
     //轮询队列
     private static final Queue<Byte> recvBufQueue = new LinkedList<>();
+    //广播过滤!
+    private static IntentFilter filter = new IntentFilter();
+
+    static {
+        filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        filter.addAction(ACTION_BROADCAST);
+        filter.addAction(ACTION_PERMISSION);
+        usbReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //取出广播的意图
+                String action = intent.getAction();
+
+                if (action != null) {
+                    //在申请权限的时候如果成功那么应当进行设备的初始化
+                    if (action.equals(ACTION_PERMISSION)) {
+                        //get permission success
+                        if (initUsbSerial(context)) {
+                            //初始化成功则回调串口设备加入方法
+                            mCallback.onAttach(NAME_DRIVER_USB_UART);
+                        } else {
+                            //不成则打印到LOG
+                            Log.e(LOG_TAG, "NAME_DRIVER_USB_UART: no usb permission!");
+                        }
+                    }
+
+                    //对比意图，根据意图做出回调选择
+                    if (action.equals(UsbManager.ACTION_USB_ACCESSORY_ATTACHED) ||
+                            action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED) ||
+                            action.equals(ACTION_BROADCAST)) {
+                        Log.d(LOG_TAG, "收到UsbSerial设备寻找的广播!");
+                        if (mCallback != null) {
+                            if (initUsbSerial(context)) {
+                                //初始化成功则回调串口设备加入方法
+                                mCallback.onAttach(NAME_DRIVER_USB_UART);
+                            } else {
+                                //不成则打印到LOG
+                                //Log.e(LOG_TAG, "no usb permission!");
+                            }
+                        }
+                    }
+
+                    //在设备移除时应当释放USB设备
+                    if (action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
+                        //判断并且释放USB串口
+                        if (mThiz != null) {
+                            try {
+                                mThiz.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        //回调设备移除接口
+                        if (mPort != null)
+                            if (mCallback != null)
+                                mCallback.onDetach(NAME_DRIVER_USB_UART);
+                    }
+                }
+            }
+        };
+    }
 
     /*私有化构造方法，懒汉单例模式*/
     private UsbSerialControl() {
@@ -62,9 +133,10 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     }
 
     //串口备初始化函数
-    private boolean initUsbSerial(Context context) {
+    private static boolean initUsbSerial(Context context) {
         //得到Usb管理器
         UsbManager usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
+        if (usbManager == null) return false;
         //尝试取出所有可用的列表
         if (usbManager.getDeviceList() == null || usbManager.getDeviceList().size() <= 0) {
             Log.d(LOG_TAG, "initUsbSerial() 未发现设备!");
@@ -82,16 +154,14 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
         //如果对于这个设备没有权限!
         if (!usbManager.hasPermission(usbDevice)) {
             //发送广播申请权限
-            PendingIntent intent =
-                    PendingIntent.getBroadcast(context,
-                            0, new Intent(USB_PERMISSION_ACTION), 0);
+            PendingIntent intent = PendingIntent.getBroadcast(context, 0, new Intent(ACTION_PERMISSION), 0);
             //Log.d(LOG_TAG, "尝试获得USB权限!");
             usbManager.requestPermission(usbDevice, intent);
             //当没有权限的时候应当直接返回
             return false;
         }
         //一切正常返回true!
-        return connect("dxl");
+        return connect1("dxl");
     }
 
     @Override
@@ -198,77 +268,38 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     @Override
     public void register(Context context, DevCallback<String> callback) {
         mCallback = callback;
-        if (isRegister) return;
-        IntentFilter filter = new IntentFilter(USB_PERMISSION_ACTION);
-        filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        filter.addAction("cn.rrg.devices.usb_attach_uart");
-        usbReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.d(LOG_TAG, "收到UsbSerial设备寻找的广播!");
-                //取到广播的意图
-                String action = intent.getAction();
-                //对比意图，根据意图做出回调选择
-                if (action.equals(UsbManager.ACTION_USB_ACCESSORY_ATTACHED) ||
-                        action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED) ||
-                        action.equals("cn.rrg.devices.usb_attach_uart")) {
-                    if (mCallback != null) {
-                        if (initUsbSerial(context)) {
-                            //初始化成功则回调串口设备加入方法
-                            mCallback.onAttach(usbName);
-                        } else {
-                            //不成则打印到LOG
-                            //Log.e(LOG_TAG, "no usb permission!");
-                        }
-                    }
-                }
-
-                //在申请权限的时候如果成功那么应当进行设备的初始化
-                if (USB_PERMISSION_ACTION.equals(action)) {
-                    //get permission success
-                    if (initUsbSerial(context)) {
-                        //初始化成功则回调串口设备加入方法
-                        mCallback.onAttach(usbName);
-                    } else {
-                        //不成则打印到LOG
-                        //Log.e(LOG_TAG, "no usb permission!");
-                    }
-                }
-
-                //在设备移除时应当释放USB设备
-                if (action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
-                    //判断并且释放USB串口
-                    if (mThiz != null) {
-                        try {
-                            mThiz.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    //回调设备移除接口
-                    if (mPort != null)
-                        if (mCallback != null)
-                            mCallback.onDetach(usbName);
-                }
-            }
-        };
-        try {
-            context.registerReceiver(usbReceiver, filter);
-        } catch (Exception ignored) {
-        }
-        isRegister = true;
+        register1();
     }
 
-    @Override
-    public boolean connect(String t) {
+    private void register1() {
+        if (!isRegister) {
+            unRegister();
+            try {
+                mContext.registerReceiver(usbReceiver, filter);
+                isRegister = true;
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    private void unRegister() {
+        if (isRegister) {
+            try {
+                mContext.unregisterReceiver(usbReceiver);
+                isRegister = false;
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    private static boolean connect1(String addr) {
         if (mPort != null) {
             mPort.close();
             mPort = null;
         }
         //得到Usb管理器
-        UsbManager usbManager = (UsbManager) getContext().getSystemService(Context.USB_SERVICE);
+        UsbManager usbManager = (UsbManager) get().getContext().getSystemService(Context.USB_SERVICE);
+        if (usbManager == null) return false;
         //迭代集合里面的设备对象
         List<UsbDevice> devList = new ArrayList<>(usbManager.getDeviceList().values());
         //取出第一个USB对象
@@ -278,7 +309,7 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
         //判断是否非空，为空证明没有权限
         if (connection == null) {
             //发送广播申请权限
-            PendingIntent intent = PendingIntent.getBroadcast(getContext(), 0, new Intent(USB_PERMISSION_ACTION), 0);
+            PendingIntent intent = PendingIntent.getBroadcast(get().getContext(), 0, new Intent(ACTION_PERMISSION), 0);
             //Log.d(LOG_TAG, "尝试获得USB权限!");
             usbManager.requestPermission(usbDevice, intent);
             //当没有权限的时候应当直接返回
@@ -317,6 +348,11 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     }
 
     @Override
+    public boolean connect(String t) {
+        return connect1(t);
+    }
+
+    @Override
     public UsbManager getAdapter() {
         return (UsbManager) getContext().getSystemService(Context.USB_SERVICE);
     }
@@ -339,12 +375,6 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     @Override
     public void unregister(Context context) {
         //广播解注册
-        if (isRegister) {
-            try {
-                context.unregisterReceiver(usbReceiver);
-                isRegister = false;
-            } catch (Exception ignored) {
-            }
-        }
+        unRegister();
     }
 }

@@ -30,17 +30,17 @@
       "abi": "x86",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libemulate.so"
     },
-    "hard-Debug-x86": {
-      "artifactName": "hard",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" hard",
-      "abi": "x86",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libhard.so"
-    },
     "nfclist-Debug-x86": {
       "artifactName": "nfclist",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" nfclist",
       "abi": "x86",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libnfclist.so"
+    },
+    "hard-Debug-x86": {
+      "artifactName": "hard",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" hard",
+      "abi": "x86",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libhard.so"
     },
     "nfc-Debug-x86": {
       "artifactName": "nfc",
@@ -60,17 +60,17 @@
       "abi": "x86",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libmfcuk.so"
     },
-    "mfoc-Debug-x86": {
-      "artifactName": "mfoc",
-      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" mfoc",
-      "abi": "x86",
-      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libmfoc.so"
-    },
     "pn53x_prng_check-Debug-x86": {
       "artifactName": "pn53x_prng_check",
       "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" pn53x_prng_check",
       "abi": "x86",
       "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libpn53x_prng_check.so"
+    },
+    "mfoc-Debug-x86": {
+      "artifactName": "mfoc",
+      "buildCommand": "C:\\Users\\DXL\\android-sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\.cxx\\cmake\\debug\\x86\" mfoc",
+      "abi": "x86",
+      "output": "D:\\Developer\\AndroidStudioProject\\RFID-Tools\\pn53x\\build\\intermediates\\cmake\\debug\\obj\\x86\\libmfoc.so"
     }
   }
 }

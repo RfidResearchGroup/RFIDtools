@@ -1,3 +1,0 @@
-ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\freo\.cxx\cmake\debug\x86'
-[1/2] Building C object CMakeFiles/freopen.dir/util.c.o
-[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\freo\build\intermediates\cmake\debug\obj\x86\libfreopen.so

@@ -1,15 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    //签名文件配置
-    signingConfigs {
-        DXL {
-            keyAlias 'DXL'
-            keyPassword '15219233050'
-            storeFile file('D:/DXL_AS_KEY/DXL.jks')
-            storePassword '15219233050'
-        }
-    }
     //构建项目的sdk版本
     compileSdkVersion 29
     //构建器版本
@@ -25,9 +16,9 @@ android {
         //单元测试的支持
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         //版本号，整形
-        versionCode 4
+        versionCode 5
         //版本名称，字符串!
-        versionName "1.3.1"
+        versionName "1.3.2"
     }
     //构建的类型，发布版和测试版
     buildTypes {
@@ -35,11 +26,9 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.DXL
         }
         debug {
             shrinkResources false
-            signingConfig signingConfigs.DXL
             minifyEnabled false
         }
     }
