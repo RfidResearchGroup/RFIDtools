@@ -1,46 +1,20 @@
 apply plugin: 'com.android.application'
-apply from: 'keystore.gradle'
 
 android {
-    //签名文件配置
-    signingConfigs {
-        // 这个是我的APK签名，它无关我的身份的任何信息，如果你需要编译你的版本，请更换为你的签名或者删除此签名，使用默认的debug签名。
-        /*
-        * This is my apk signature, it is not my identity of any information,
-        * if you need to compile your version, please replace your signature or delete this signature, using the default debug signature.
-        * */
-        release {
-            keyAlias System.getProperty("KEYALIAS_GLOBAL") == null ? "keyAlias" : System.getProperty("KEYALIAS_GLOBAL")
-            keyPassword System.getProperty("PASSWORD_GLOBAL") == null ? "keyPassword" : System.getProperty("PASSWORD_GLOBAL")
-            storeFile file(System.getProperty("KEYSTORE_GLOBAL") == null ? "storeFile" : System.getProperty("KEYSTORE_GLOBAL"))
-            storePassword System.getProperty("STOREKEY_GLOBAK") == null ? "storePassword" : System.getProperty("STOREKEY_GLOBAK")
-        }
-    }
-    //构建项目的sdk版本
     compileSdkVersion 29
-    //构建器版本
     buildToolsVersion "29.0.2"
-    //一些默认的配置
     defaultConfig {
-        //app的包名,也就是ID名。
         applicationId "com.rfidresearchgroup.rfidtools"
-        //最低支持的版本
         minSdkVersion 18
-        //目标的版本
         targetSdkVersion 29
-        //单元测试的支持
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        //版本号，整形
         versionCode 5
-        //版本名称，字符串!
         versionName "1.3.2"
     }
-    //构建的类型，发布版和测试版
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         debug {
@@ -48,7 +22,6 @@ android {
             minifyEnabled false
         }
     }
-    //编译器设置
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,7 +35,6 @@ android {
     }
 }
 
-//依赖库配置
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -85,6 +57,5 @@ dependencies {
     implementation project(':pm3iceman')
     implementation project(':pm3rdv4rrg')
 
-    /*单元测试支持导入!*/
     testImplementation 'junit:junit:4.12'
 }

@@ -1,3 +1,0 @@
-ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\commapping\.cxx\cmake\release\armeabi-v7a'
-[1/2] Building C object CMakeFiles/commapping.dir/com.c.o
-[2/2] Linking C shared library D:\Developer\AndroidStudioProject\RFID-Tools\commapping\build\intermediates\cmake\release\obj\armeabi-v7a\libcommapping.so

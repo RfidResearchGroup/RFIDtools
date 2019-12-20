@@ -1,8 +1,0 @@
-Executable : C:\Users\DXL\android-sdk\cmake\3.10.2.4988404\bin\ninja.exe
-arguments : 
--C
-D:\Developer\AndroidStudioProject\RFID-Tools\mfkey\.cxx\cmake\debug\arm64-v8a
-mfkey32
-mfkey64
-jvmArgs : 
-
