@@ -9,10 +9,6 @@ android {
         targetSdkVersion 29
         externalNativeBuild {
             cmake {
-                /*
-                * 参数必须给与-DHAVE_CONFIG_H，否则不可以把log文件附带编译!
-                * 指定以静态c++标准链接
-                * */
                 arguments '-DANDROID_STL=c++_static'
                 abiFilters "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
@@ -44,5 +40,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
