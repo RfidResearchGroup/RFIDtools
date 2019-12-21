@@ -158,7 +158,7 @@
     <string name="illegal_filenames">非法的文件名!</string>
     <string name="dump_parse_failed">解析数据失败!</string>
     <string name="dump_4k_no_support">抱歉，4K卡比较特殊，暂未支持解析</string>
-    <string name="data_parse_err">解析数据封包出错…</string>
+    <string name="data_parse_err">解析数据封包出错</string>
     <string name="data_fragmentary">无可用数据能被映射到视图当中，点击返回键可以返回到上级操作进行操作步骤查看问题!</string>
     <string name="file_err">文件异常</string>
     <string name="format_no_support">格式不支持</string>
@@ -283,9 +283,9 @@
     <string name="mag_read_failed">读取失败，请检查卡片秘钥或卡片信号!</string>
     <string name="msg_failed_merge_data">合并扇区数据的时候失败了！</string>
     <string name="msg_temp_file_noexists">模板文件不存在!</string>
+    <string name="msg_tag_noutfound">卡片不存在，请放置卡片到手机背面！</string>
     <string name="msg_app_permission_request">程序运行时需要一些权限，请给与，否则可能会出现一些导致软件不可用的问题！</string>
     <string name="pm3_not_respone">PM3 未响应</string>
-    <string name="msg_tag_noutfound">卡片不存在，请放置卡片到手机背面！</string>
     <string name="aliases">别名</string>
     <string name="title_slot_pos">卡位:</string>
     <string name="title_mode">模式:</string>

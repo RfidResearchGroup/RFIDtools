@@ -15,3 +15,6 @@
 6.Add signature configuration input windows.
 
 7.fixed signature configuration input.
+
+2019/12/21 ver1.3.2:
+Temporary addition of compatibility support for Android 10.

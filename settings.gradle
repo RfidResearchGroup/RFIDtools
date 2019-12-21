@@ -1,1 +1,1 @@
-include ':app', ':pm3parser', ':utils', ':freo', ':crapto1', ':mfkey', ':console', ':chameleon', ':commapping', ':pn53x', ':pm3official', ':pm3iceman', ':pm3rdv4rrg', ':mifaretag'
+include ':app', ':utils', ':freo', ':crapto1', ':mfkey', ':console', ':chameleon', ':commapping', ':pn53x', ':pm3official', ':pm3iceman', ':pm3rdv4rrg', ':mifaretag'
