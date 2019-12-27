@@ -161,7 +161,7 @@
     <string name="illegal_filenames">Illegal filenames!</string>
     <string name="dump_parse_failed">Failure to parse data!</string>
     <string name="dump_4k_no_support">4K Tag not supported.</string>
-    <string name="data_parse_err">Parse data package…</string>
+    <string name="data_parse_err">Parse data package failed</string>
     <string name="data_fragmentary">Fragmentary data, can not show in view, must have 1k or 2k or 4k!</string>
     <string name="file_err">File exception.</string>
     <string name="format_no_support">Format not supported.</string>

@@ -31,6 +31,10 @@ import cn.rrg.rdv.activities.tools.AboutActicity;
 import cn.rrg.rdv.activities.tools.MainSettingsActivity;
 import cn.rrg.rdv.activities.tools.ToolsAccessActivity;
 import cn.rrg.rdv.application.RuntimeProperties;
+import cn.rrg.rdv.models.AbstractDeviceModel;
+import cn.rrg.rdv.models.Acr122uUsbRawModel;
+import cn.rrg.rdv.models.ChameleonUsb2UartModel;
+import cn.rrg.rdv.models.PN532Usb2UartModel;
 
 /**
  * 界面重构在2019/7/29启动!
@@ -52,6 +56,8 @@ public class AppMainDevices extends BaseActivity {
     private ScrollView scrollView;
     private Toolbar toolbar;
 
+    private AbstractDeviceModel[] models;
+
     //是否是横屏切换!
     private boolean isBackPressed = false;
 
@@ -63,6 +69,17 @@ public class AppMainDevices extends BaseActivity {
         setContentView(R.layout.act_app_devices);
         initViews();
         initActions();
+
+        // USB_Device opt
+        models = new AbstractDeviceModel[]{
+                new Acr122uUsbRawModel(),
+                new ChameleonUsb2UartModel(),
+                new PN532Usb2UartModel()
+        };
+
+        for (AbstractDeviceModel model : models) {
+            model.register(this);
+        }
     }
 
     private void initViews() {
@@ -225,10 +242,13 @@ public class AppMainDevices extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //如果是横屏，那我们就没必要全部销毁。
+        //如果是横屏动作，那我们就没必要全部销毁。
         if (isBackPressed) {
             AppUtil.getInstance().finishAll();
             System.exit(0);
+        }
+        for (AbstractDeviceModel model : models) {
+            model.unregister(this);
         }
     }
 }

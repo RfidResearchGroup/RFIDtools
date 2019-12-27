@@ -861,7 +861,7 @@ static bool mfcuk_darkside_select_tag(nfc_device *pnd, int iSleepAtFieldOFF, int
 
     return true;
 }
-
+// check nack
 static bool
 valid_prng_check(nfc_device *pnd, nfc_target_info *target) {
     // 判断设备是否可用!
@@ -1562,11 +1562,6 @@ int main(int argc, char *argv[]) {
     if (!mfcuk_darkside_select_tag(pnd, iSleepAtFieldOFF, iSleepAfterFieldON, &ti.nti)) {
         ERR("selecting tag on the reader %s\n", nfc_device_get_name(pnd));
         goto error;
-    }
-
-    // 检测卡片对于prng的支持!
-    if (!valid_prng_check(pnd, &ti.nti)) {
-        return -1;
     }
 
     mfcuk_darkside_reset_advanced(pnd);

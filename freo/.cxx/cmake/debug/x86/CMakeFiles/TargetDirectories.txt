@@ -1,3 +1,0 @@
-D:/Developer/AndroidStudioProject/RFID-Tools/freo/.cxx/cmake/debug/x86/CMakeFiles/freopen.dir
-D:/Developer/AndroidStudioProject/RFID-Tools/freo/.cxx/cmake/debug/x86/CMakeFiles/edit_cache.dir
-D:/Developer/AndroidStudioProject/RFID-Tools/freo/.cxx/cmake/debug/x86/CMakeFiles/rebuild_cache.dir

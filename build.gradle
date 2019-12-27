@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         //这里指定构建工具支持的版本仓库
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 

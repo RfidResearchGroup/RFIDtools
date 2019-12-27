@@ -1,2 +1,0 @@
-ninja: Entering directory `D:\Developer\AndroidStudioProject\RFID-Tools\pm3official\.cxx\cmake\debug\armeabi-v7a'
-ninja: no work to do.

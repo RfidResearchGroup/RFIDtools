@@ -5,6 +5,8 @@
 [img_cml]: /githubsrc/chameleonx173.png
 [img_532]: /githubsrc/PN532x173.png
 [link_download_google]: https://play.google.com/store/apps/details?id=com.rfidresearchgroup.rfidtools&hl=en_US
+[link_download_github]: https://github.com/RfidResearchGroup/RFIDtools/releases
+[link_updated_note]: https://github.com/xianglin1998/RFIDtools/blob/master/update_note.txt
 
 <p align="center" background="#000000">
     <img align="center" src="/githubsrc/rfidx100.png" alt="RFID Tools" width="100" height="100">
@@ -31,9 +33,13 @@ The app support the following devices
 ## Where to download app?
 
 - Google playstore: [RRG RFID Tools][link_download_google]
-<!--
-- [Download RFID Tools apk here][link_download_google]
--->
+
+- Github release: [Go][link_download_github]
+
+
+## Updated note for app.
+
+- [View note][link_updated_note]
 
 ## Proxmark3 firmware
 

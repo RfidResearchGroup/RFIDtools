@@ -9,9 +9,9 @@ import cn.dxl.common.util.AppUtil;
 import cn.rrg.com.ContextCallback;
 import cn.rrg.com.ContextHandle;
 import cn.rrg.com.DevCallback;
-import cn.rrg.com.Device;
 import cn.rrg.com.DriverInterface;
-import cn.rrg.devices.Proxmark3RRGRdv4;
+import cn.rrg.com.UsbSerialControl;
+import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.util.Commons;
@@ -52,6 +52,10 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
                 Commons.removeDevByList(devBean, devAttachList);
                 //如果设置了接口实现则需要通知接口移除
                 detachDispatcher(devBean);
+                // 设置连接状态!
+                if (dev.equals(UsbSerialControl.NAME_DRIVER_USB_UART)) {
+                    RuntimeProperties.isConnected = false;
+                }
             }
         };
     }
@@ -62,7 +66,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
             UsbManager manager = mDI.getAdapter();
             if (manager != null)
                 if (manager.getDeviceList().size() > 0) {
-                    context.sendBroadcast(new Intent("cn.rrg.devices.usb_attach_uart"));
+                    AppUtil.getInstance().getApp().sendBroadcast(new Intent(UsbSerialControl.ACTION_BROADCAST));
                 } else Log.d(TAG, "startDiscovery: 找不到任何一个USB设备!");
         }
     }
@@ -95,6 +99,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
     public void disconnect() {
         if (mDI != null) {
             mDI.disconect();
+            RuntimeProperties.isConnected = false;
         }
     }
 }

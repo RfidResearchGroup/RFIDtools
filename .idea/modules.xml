@@ -13,7 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/mifaretag/mifaretag.iml" filepath="$PROJECT_DIR$/mifaretag/mifaretag.iml" />
       <module fileurl="file://$PROJECT_DIR$/pm3iceman/pm3iceman.iml" filepath="$PROJECT_DIR$/pm3iceman/pm3iceman.iml" />
       <module fileurl="file://$PROJECT_DIR$/pm3official/pm3official.iml" filepath="$PROJECT_DIR$/pm3official/pm3official.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pm3parser/pm3parser.iml" filepath="$PROJECT_DIR$/pm3parser/pm3parser.iml" />
       <module fileurl="file://$PROJECT_DIR$/pm3rdv4rrg/pm3rdv4rrg.iml" filepath="$PROJECT_DIR$/pm3rdv4rrg/pm3rdv4rrg.iml" />
       <module fileurl="file://$PROJECT_DIR$/pn53x/pn53x.iml" filepath="$PROJECT_DIR$/pn53x/pn53x.iml" />
       <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />

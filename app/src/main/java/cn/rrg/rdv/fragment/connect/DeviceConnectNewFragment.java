@@ -14,7 +14,7 @@ public class DeviceConnectNewFragment
         implements DevCallback<DevBean> {
 
     //持有中介者!
-    List<DeviceAttachPresenter> presenters = new ArrayList<>();
+    private List<DeviceAttachPresenter> presenters = new ArrayList<>();
 
     @Override
     public void onDestroy() {
@@ -36,6 +36,7 @@ public class DeviceConnectNewFragment
         if (models != null) {
             for (AbstractDeviceModel model : models) {
                 DeviceAttachPresenter presenter = new DeviceAttachPresenter(model);
+                presenters.add(presenter);
                 //初始化中介者并且绑定视图!
                 presenter.attachSubView(this);
                 presenter.attachView(this);

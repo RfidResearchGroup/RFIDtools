@@ -13,6 +13,9 @@ bin/
 gen/
 out/
 
+# Cmake gen
+.cxx/
+
 # Gradle files
 .gradle/
 build/
