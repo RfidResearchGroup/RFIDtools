@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!--TODO 由于设备列表变动并不大，因此不需要经过列表优化，直接硬编码!-->
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnDeviceStandardNfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_shadow"
+                android:drawableEnd="@drawable/phone_nfc_icon"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:paddingEnd="28dp"
+                android:text="@string/device_name_standard_inner" />
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnDeviceProxmark3Rdv4RRG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_shadow"
+                android:drawableEnd="@drawable/rdv4"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:paddingEnd="28dp"
+                android:text="@string/device_name_proxmark3_rdv4rrg" />
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnDeviceChameleon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_shadow"
+                android:drawableEnd="@drawable/chameleon_rdv2"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:paddingEnd="28dp"
+                android:text="@string/device_name_chamelon" />
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnDeviceAcr122u"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_shadow"
+                android:drawableEnd="@drawable/acr122u"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:paddingEnd="28dp"
+                android:text="@string/device_name_acr122u" />
+
+            <cn.dxl.common.widget.HtmlTextButton
+                android:id="@+id/btnDevicePN532"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_shadow"
+                android:drawableEnd="@drawable/pn532core"
+                android:gravity="start|top"
+                android:padding="16dp"
+                android:paddingEnd="28dp"
+                android:text="@string/device_name_pn532" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/poweredByWhat"
+                android:textColor="@color/md_grey_600"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCommonTools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="36dp"
+        android:src="@drawable/tools_box"
+        android:visibility="gone" />
+
+</RelativeLayout>

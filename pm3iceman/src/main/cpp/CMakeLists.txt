@@ -290,7 +290,7 @@ add_library(pm3iceman_hardnested STATIC
         ${SIMD_TARGETS})
 
 #声明变量
-set(COMMAPPING_FILE ${PROJECTDIR}/commapping/src/main/jniLibs/${ANDROID_ABI}/libcommapping.so)
+set(COMMAPPING_FILE ${PROJECTDIR}/communication/src/main/jniLibs/${ANDROID_ABI}/libcommapping.so)
 
 #添加动态库链接!
 target_link_libraries(pm3iceman ${COMMAPPING_FILE} pm3iceman_hardnested android log z)

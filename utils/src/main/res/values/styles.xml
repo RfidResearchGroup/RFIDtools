@@ -51,12 +51,6 @@
     </style>
 
     <!--Spinner样式-->
-    <style name="SpinnerStyle" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/md_black_1000</item>
-        <item name="android:paddingStart">1dp</item>
-        <item name="android:paddingEnd">1dp</item>
-    </style>
 
     <style name="FillParentWidthDialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
         <!-- 有无边框 -->

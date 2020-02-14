@@ -39,7 +39,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':commapping')
+    implementation project(':communication')
     implementation project(':console')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'

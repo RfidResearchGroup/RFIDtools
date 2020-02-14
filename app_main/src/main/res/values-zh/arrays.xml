@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--变色龙支持卡槽-->
+    <string-array name="chameleon_slot_list">
+        <item>卡一</item>
+        <item>卡二</item>
+        <item>卡三</item>
+        <item>卡四</item>
+        <item>卡五</item>
+        <item>卡六</item>
+        <item>卡七</item>
+        <item>卡八</item>
+    </string-array>
+
+    <!--变色龙支持模式-->
+    <string-array name="chameleon_type_list">
+        <item>关闭</item>
+        <item>UL</item>
+        <item>1K</item>
+        <item>4K</item>
+        <item>侦测</item>
+    </string-array>
+
+    <!--变色龙支持单击动作-->
+    <string-array name="chameleon_click_list">
+        <item>换卡</item>
+        <item>随机卡号</item>
+        <item>卡号左增</item>
+        <item>卡号右增</item>
+        <item>卡号左减</item>
+        <item>卡号右减</item>
+        <item>关闭动作</item>
+    </string-array>
+
+    <!--变色龙支持的容量-->
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Taken from http://nfc-tools.org/index.php?title=ISO14443A
+        The string mame is tag_+ATQA+SAK+ATS with hex-letters in uppercase.
+        (Names must have at least one char. This is why it strats with "tag_")
+    -->
+    <!-- Special tag types -->
+    <string name="tag_unknown" translatable="false">Unknown</string>
+    <string name="tag_unknown_mf_classic" translatable="false">MIFARE Classic, Unknown</string>
+
+    <!-- With ATS -->
+
+    <!-- Without ATS (ATQA+SAK) -->
+
+    <!-- Without SAK+ATS (only ATQA) -->
+</resources>

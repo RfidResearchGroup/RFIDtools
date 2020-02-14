@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--点下时-->
-    <item android:drawable="@drawable/layer_list_writetag_pressed" android:state_pressed="true" />
-    <!--恢复时-->
-    <item android:drawable="@drawable/layer_list_writetag_normal" />
-</selector>
