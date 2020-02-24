@@ -74,10 +74,10 @@ public class InitFragment
     private void go2MainAct() {
         Activity activity = getActivity();
         if (activity != null) {
-            startActivity(new Intent(getActivity(), AppMainDevices.class));
             //销毁自己!
             if (getActivity() != null)
                 getActivity().finish();
+            startActivity(new Intent(getActivity(), AppMainDevices.class));
         }
     }
 }
