@@ -8,14 +8,14 @@
       <module fileurl="file://$PROJECT_DIR$/io_redirect/RFID-Tools-io_redirect.iml" filepath="$PROJECT_DIR$/io_redirect/RFID-Tools-io_redirect.iml" group="RFID-Tools/io_redirect" />
       <module fileurl="file://$PROJECT_DIR$/libnfc_pn53x/RFID-Tools-libnfc_pn53x.iml" filepath="$PROJECT_DIR$/libnfc_pn53x/RFID-Tools-libnfc_pn53x.iml" group="RFID-Tools/libnfc_pn53x" />
       <module fileurl="file://$PROJECT_DIR$/mfkey_32_64/RFID-Tools-mfkey_32_64.iml" filepath="$PROJECT_DIR$/mfkey_32_64/RFID-Tools-mfkey_32_64.iml" group="RFID-Tools/mfkey_32_64" />
-      <module fileurl="file://$PROJECT_DIR$/app_main/app_main.iml" filepath="$PROJECT_DIR$/app_main/app_main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_main/app_main.iml" filepath="$PROJECT_DIR$/app_main/app_main.iml" group="RFID-Tools/app_main" />
       <module fileurl="file://$PROJECT_DIR$/chameleon/chameleon.iml" filepath="$PROJECT_DIR$/chameleon/chameleon.iml" group="RFID-Tools/chameleon" />
-      <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" group="RFID-Tools/communication" />
       <module fileurl="file://$PROJECT_DIR$/console/console.iml" filepath="$PROJECT_DIR$/console/console.iml" group="RFID-Tools/console" />
       <module fileurl="file://$PROJECT_DIR$/crapto1/crapto1.iml" filepath="$PROJECT_DIR$/crapto1/crapto1.iml" group="RFID-Tools/crapto1" />
-      <module fileurl="file://$PROJECT_DIR$/io_redirect/io_redirect.iml" filepath="$PROJECT_DIR$/io_redirect/io_redirect.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libnfc_pn53x/libnfc_pn53x.iml" filepath="$PROJECT_DIR$/libnfc_pn53x/libnfc_pn53x.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mfkey_32_64/mfkey_32_64.iml" filepath="$PROJECT_DIR$/mfkey_32_64/mfkey_32_64.iml" />
+      <module fileurl="file://$PROJECT_DIR$/io_redirect/io_redirect.iml" filepath="$PROJECT_DIR$/io_redirect/io_redirect.iml" group="RFID-Tools/io_redirect" />
+      <module fileurl="file://$PROJECT_DIR$/libnfc_pn53x/libnfc_pn53x.iml" filepath="$PROJECT_DIR$/libnfc_pn53x/libnfc_pn53x.iml" group="RFID-Tools/libnfc_pn53x" />
+      <module fileurl="file://$PROJECT_DIR$/mfkey_32_64/mfkey_32_64.iml" filepath="$PROJECT_DIR$/mfkey_32_64/mfkey_32_64.iml" group="RFID-Tools/mfkey_32_64" />
       <module fileurl="file://$PROJECT_DIR$/mifaretag/mifaretag.iml" filepath="$PROJECT_DIR$/mifaretag/mifaretag.iml" group="RFID-Tools/mifaretag" />
       <module fileurl="file://$PROJECT_DIR$/pm3iceman/pm3iceman.iml" filepath="$PROJECT_DIR$/pm3iceman/pm3iceman.iml" group="RFID-Tools/pm3iceman" />
       <module fileurl="file://$PROJECT_DIR$/pm3official/pm3official.iml" filepath="$PROJECT_DIR$/pm3official/pm3official.iml" group="RFID-Tools/pm3official" />
