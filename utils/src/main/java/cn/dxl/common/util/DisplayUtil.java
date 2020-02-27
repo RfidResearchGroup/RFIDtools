@@ -3,14 +3,16 @@ package cn.dxl.common.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+
+import java.lang.reflect.Method;
 
 /**
  * 屏幕显示工具类
@@ -30,6 +32,45 @@ public class DisplayUtil {
      */
     public static int getWindowWidth(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * 测量底部导航栏的高度
+     *
+     * @param mActivity:上下文环境
+     * @return：返回测量出的底部导航栏高度
+     */
+    public static int getNavigationBarHeight(Activity mActivity) {
+        Resources resources = mActivity.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
+    }
+
+    /*
+     * navigation 是否存在!
+     * */
+    private boolean checkDeviceHasNavigationBar(Context context) {
+
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hasNavigationBar;
     }
 
     /**
@@ -137,18 +178,9 @@ public class DisplayUtil {
         return translateAnimation;
     }
 
-    //判断是否是横屏!
-    public static boolean isScreenLand(Context context) {
-        // 如果是竖屏才隐藏两个不常用入口按钮！
-        Configuration mConfiguration = context.getResources().getConfiguration(); //获取设置的配置信息
-        int ori = mConfiguration.orientation; //获取屏幕方向
-        if (ori == Configuration.ORIENTATION_LANDSCAPE) {
-            //横屏
-            return true;
-        } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
-            //竖屏
-            return false;
-        }
-        return false;
+    //检查当前系统是否已开启暗黑模式
+    public static boolean isDarkModeStatus(Context context) {
+        int mode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return mode == Configuration.UI_MODE_NIGHT_YES;
     }
 }

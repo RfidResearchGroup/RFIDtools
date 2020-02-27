@@ -268,5 +268,7 @@
     <string name="msg_darkside_no_supported">卡片不支持Darkside漏洞（MFCUK、全加密）测试，请更换卡片或者使用Nested漏洞（MFOC、半加密）测试工具，或者Hardnested漏洞（高强度的Nested漏洞）测试工具，或者嗅探。</string>
     <string name="msg_working_darkside_check">正在检查该卡片是否支持Darkside</string>
     <string name="msg_darkside_support">该卡片支持Darkside漏洞</string>
+    <string name="main">主页面</string>
+    <string name="tools">工具箱</string>
 
 </resources>

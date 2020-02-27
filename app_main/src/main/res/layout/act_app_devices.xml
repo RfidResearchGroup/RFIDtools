@@ -1,109 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
+    <cn.dxl.common.widget.StatusBarHeightView
+        android:id="@+id/sbh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:visibility="gone">
+        android:background="@color/colorPrimaryDark" />
 
-        <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sbh">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!--TODO 由于设备列表变动并不大，因此不需要经过列表优化，直接硬编码!-->
-            <cn.dxl.common.widget.HtmlTextButton
-                android:id="@+id/btnDeviceStandardNfc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/selector_shadow"
-                android:drawableEnd="@drawable/phone_nfc_icon"
-                android:gravity="start|top"
-                android:padding="16dp"
-                android:paddingEnd="28dp"
-                android:text="@string/device_name_standard_inner" />
-
-            <cn.dxl.common.widget.HtmlTextButton
-                android:id="@+id/btnDeviceProxmark3Rdv4RRG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/selector_shadow"
-                android:drawableEnd="@drawable/rdv4"
-                android:gravity="start|top"
-                android:padding="16dp"
-                android:paddingEnd="28dp"
-                android:text="@string/device_name_proxmark3_rdv4rrg" />
-
-            <cn.dxl.common.widget.HtmlTextButton
-                android:id="@+id/btnDeviceChameleon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/selector_shadow"
-                android:drawableEnd="@drawable/chameleon_rdv2"
-                android:gravity="start|top"
-                android:padding="16dp"
-                android:paddingEnd="28dp"
-                android:text="@string/device_name_chamelon" />
-
-            <cn.dxl.common.widget.HtmlTextButton
-                android:id="@+id/btnDeviceAcr122u"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/selector_shadow"
-                android:drawableEnd="@drawable/acr122u"
-                android:gravity="start|top"
-                android:padding="16dp"
-                android:paddingEnd="28dp"
-                android:text="@string/device_name_acr122u" />
-
-            <cn.dxl.common.widget.HtmlTextButton
-                android:id="@+id/btnDevicePN532"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/selector_shadow"
-                android:drawableEnd="@drawable/pn532core"
-                android:gravity="start|top"
-                android:padding="16dp"
-                android:paddingEnd="28dp"
-                android:text="@string/device_name_pn532" />
+            app:expanded="true">
 
             <TextView
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/poweredByWhat"
-                android:textColor="@color/md_grey_600"
-                android:textSize="12sp" />
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/main"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="24sp"
+                app:layout_scrollFlags="scroll" />
 
-        </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:background="@color/colorBackground"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnCommonTools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="36dp"
-        android:src="@drawable/tools_box"
-        android:visibility="gone" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </RelativeLayout>

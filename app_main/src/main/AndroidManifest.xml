@@ -16,14 +16,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--NFC权限-->
     <uses-permission android:name="android.permission.NFC" />
-    <!--手机信息-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
     <!--网络连接-->
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-    <!--网络状态-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-    <!--全局对话框-->
-    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="cn.dxl.common.application.App"
@@ -33,6 +27,7 @@
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="q">
 
         <!--初始化Activity-->
@@ -57,7 +52,7 @@
         <activity android:name=".activities.tools.DumpActivity" />
         <activity android:name=".activities.tools.FormatCovertActivity" />
         <activity android:name=".activities.tools.ChameleonSoltAliasesActivity" />
-        <activity android:name=".activities.tools.ToolsAccessActivity" />
+        <activity android:name=".fragment.tools.ToolsAccessFragment" />
         <activity android:name=".activities.tools.AboutActicity" />
 
         <activity android:name=".activities.px53x.EmulateConsoleActivity" />
@@ -77,7 +72,7 @@
             android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGConsoleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
 
-        <activity android:name=".activities.main.AppMainDevices" />
+        <activity android:name=".fragment.base.AppMainDevicesFragment" />
 
         <activity
             android:name=".activities.connect.Proxmark3Rdv4RRGConnectActivity"
@@ -107,6 +102,10 @@
         <activity android:name=".activities.connect.ChameleonUsb2UartConnectActivity" />
         <activity android:name=".activities.chameleon.ChameleonGUIActivity" />
         <activity android:name=".activities.main.Proxmark3Rdv4RRGReaderMain" />
+
+        <activity
+            android:name=".activities.main.AppMain"
+            android:screenOrientation="nosensor" />
 
     </application>
 

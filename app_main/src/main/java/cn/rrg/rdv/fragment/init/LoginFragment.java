@@ -69,8 +69,8 @@ public class LoginFragment
             ViewPager vpBanner = view.findViewById(R.id.vpBanner);
 
             //初始化两个分页视图对象!
-            View v1 = ViewUtil.inflate(getContext(), R.layout.item_banner1);
-            View v2 = ViewUtil.inflate(getContext(), R.layout.item_banner2);
+            View v1 = ViewUtil.inflate(getContext(), R.layout.item_act_guide_banner1);
+            View v2 = ViewUtil.inflate(getContext(), R.layout.item_act_guide_banner2);
 
             btnStartChecks = v2.findViewById(R.id.btnStartChecks);
 

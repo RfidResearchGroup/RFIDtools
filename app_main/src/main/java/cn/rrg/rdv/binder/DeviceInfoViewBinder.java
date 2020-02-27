@@ -1,4 +1,4 @@
-package cn.rrg.rdv.activities.binder;
+package cn.rrg.rdv.binder;
 
 import android.view.LayoutInflater;
 import android.view.View;

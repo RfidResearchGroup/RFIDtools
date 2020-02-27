@@ -1,26 +1,5 @@
 <resources>
 
-    <!--MD主题-->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-        <!--文本颜色-->
-        <item name="android:textColor">@color/md_grey_800</item>
-
-        <!--工具栏颜色-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-
-        <!--状态栏颜色-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
-        <!--控件颜色-->
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <!--窗体颜色-->
-        <item name="android:windowBackground">@color/colorPrimaryDark</item>
-
-
-    </style>
-
     <style name="toolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!--菜单文本的颜色-->
         <item name="android:textColor">@color/md_white_1000</item>

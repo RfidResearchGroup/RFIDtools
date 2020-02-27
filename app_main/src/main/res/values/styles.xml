@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--文本颜色-->
-        <item name="android:textColor">@color/md_grey_800</item>
-        <!--工具栏颜色-->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!--状态栏颜色(深色系)-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!--控件颜色-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import cn.dxl.common.widget.ToastUtil;
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.activities.main.AppMainDevices;
+import cn.rrg.rdv.activities.main.AppMain;
 import cn.rrg.rdv.fragment.base.BaseFragment;
 import cn.rrg.rdv.util.InitUtil;
 
@@ -77,7 +77,7 @@ public class InitFragment
             //销毁自己!
             if (getActivity() != null)
                 getActivity().finish();
-            startActivity(new Intent(getActivity(), AppMainDevices.class));
+            startActivity(new Intent(getActivity(), AppMain.class));
         }
     }
 }
