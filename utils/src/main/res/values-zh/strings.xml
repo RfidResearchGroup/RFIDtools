@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">common</string>
-    <string name="after_s">秒后</string>
-    <string name="restart_msg">将会重启在</string>
     <string name="title_file_path_selector">文件路径选择器</string>
     <string name="cancel">取消</string>
     <string name="ok">确认</string>

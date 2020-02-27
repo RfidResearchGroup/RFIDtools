@@ -1,0 +1,274 @@
+<resources>
+    <!--常用短字符串-->
+    <string name="app_name">RFID Tools</string>
+    <string name="warning">警告</string>
+    <string name="help">帮助</string>
+    <string name="error">错误</string>
+    <string name="tips">提示</string>
+    <string name="cancel">取消</string>
+    <string name="agree">同意</string>
+    <string name="go2">前往</string>
+    <string name="ok">可以</string>
+    <string name="clear">清空</string>
+
+
+    <string name="help_union_key">
+        你可算是问到点子上了，联动密钥其实就是一个运行时被各种工具收集到的密钥，
+        比如全加测试、半加测试、读写卡，而联动密钥最终又可以被上述的工具利用上，这就是联合动作!对了，
+        对于保存的密钥文件,为了方便本程序提供了一个默认的名字，有需要请自行更改，否则会覆盖保存的喔！！!
+    </string>
+    <string name="mfoc">半加测试</string>
+    <string name="mfcuk">全加测试</string>
+    <string name="hardnested">Hard测试</string>
+    <string name="nfclist">近场列表</string>
+    <string name="emulate">模拟卡片</string>
+    <string name="readtag">读取卡片</string>
+    <string name="writetag">刷写卡片</string>
+    <string name="aboutApp">关于软件</string>
+    <string name="appSettings">软件设置</string>
+    <string name="usage">使用帮助</string>
+    <string name="disclaimer">免责声明</string>
+    <string name="joinGroup">加入Q群</string>
+    <string name="contactDev">联系Dev</string>
+    <string name="sendLog">发送Log</string>
+    <string name="clearData">清除数据</string>
+    <string name="checkUpdate">检查更新</string>
+    <string name="logList">日志列表</string>
+    <string name="tipls_clearData">您当前正在申请清空本APP“NfcTools”目录下的任何数据，当前操作不可逆转，你将失去一切历史数据，是否清空?</string>
+    <string name="cleaning">正在清除数据.....</string>
+    <string name="clearFinish">清除完成，将会重启.....</string>
+    <string name="version">版本</string>
+    <string name="device_connect_empty">未发现设备， 下拉可寻找....</string>
+    <string name="menu_title_newDevice">新设备</string>
+    <string name="menu_title_allDevice">已连接</string>
+
+    <string name="poweredByWhat">由RRG发布\n由ProxGrind提供技术支持</string>
+    <string name="common_tools">常用工具</string>
+    <string name="device_init_success">设备初始化成功!</string>
+    <string name="device_name_proxmark3_rdv4rrg">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Proxmark3&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Rdv4.0&lt;/big&gt;&lt;/p&gt;&lt;p&gt;固件: Rfid Research Group&lt;/p&gt;&lt;p&gt;&lt;small&gt;(OTG, 蓝牙)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="name_common_tools">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;常用&lt;/big&gt;&lt;/p&gt;&lt;p&gt;例如: 数据编辑&lt;/p&gt;&lt;p&gt;&lt;small&gt;(数据, 秘钥)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="main_app_about">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;关于&lt;/big&gt;&lt;/p&gt;&lt;p&gt;开发者: DXL&lt;p&gt;&lt;/p&gt;(RRG、PROXGRIND)&lt;/p&gt;&lt;p&gt;&lt;small&gt;(帮助, 更新)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="function_name_red_team">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Red Team&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 终端&lt;/big&gt;&lt;/p&gt;&lt;p&gt;技术支持: PROXGRIND、RRG&lt;/p&gt;&lt;p&gt;&lt;small&gt;(高频, 低频)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="function_name_rdv4rrg_reader">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;读写器&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 界面&lt;/big&gt;&lt;/p&gt;&lt;p&gt;支持操作: 读、写&lt;/p&gt;&lt;p&gt;&lt;small&gt;(高频)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="function_name_scanner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;扫描器&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 自动化&lt;/big&gt;&lt;/p&gt;&lt;p&gt;支持: 高频, 低频&lt;/p&gt;&lt;p&gt;&lt;small&gt;(IC&lt;13.56MHZ&gt;, ID&lt;125KHZ or 其他 &gt;)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="discovery_device">发现设备</string>
+    <string name="history_device">历史设备</string>
+    <string name="title_rdv4_function">Rdv4 功能</string>
+    <string name="title_devices_main"><![CDATA[设备 & 固件]]></string>
+    <string name="console_send">发送/执行</string>
+    <string name="console_clear_screen">清空屏幕</string>
+    <string name="console_stop_exe">停止执行</string>
+    <string name="console_gui">可视化</string>
+    <string name="console_dynamic_btn">动态按钮</string>
+    <string name="standard_output">标准输出:</string>
+    <string name="screen_scale">| 界面占用比例</string>
+    <string name="tips_no_input">提醒您，“标准输出”控制台消息区域支持上下左右滑动!</string>
+    <string name="other_output">其他输出:</string>
+    <string name="output_err">输出错误</string>
+    <string name="output_log">输出日志</string>
+    <string name="pm3_hint"><![CDATA[pm3 —>]]></string>
+    <string name="command_input_hint"><![CDATA[命令输入 <—]]></string>
+    <string name="com_err_tips">通信链接异常，请检查设备线路连接或设备电压!!!</string>
+    <string name="com_normal_tips">通信链路正常</string>
+    <string name="device_init_err">设备链路异常,请检查客户端版本！</string>
+    <string name="title_connecting">连接发起!</string>
+    <string name="title_connect_cancel">取消链接</string>
+    <string name="cancel_tips">取消链接会发生未知异常,需要重启程序!</string>
+    <string name="progress_msg">您好，当前您有一个线程在后台执行任务，为了操作安全请你耐心等待执行完成!</string>
+    <string name="tips_gui_not_support">暂未支持或者不需要此功能!</string>
+    <string name="title_panel">动态面板</string>
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+    <string name="modify">修改</string>
+    <string name="tips_pm3_version">如果固件非上述版本，可能会导致无法连接或使用过程有一些异常!</string>
+    <string name="command_input">命令输入</string>
+    <string name="title_input">标题输入</string>
+    <string name="button_edit">按钮编辑</string>
+    <string name="enter_delete">确定删除吗?</string>
+    <string name="yes">是的</string>
+    <string name="no">不</string>
+    <string name="btn_add">添加按钮</string>
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
+    <string name="dump_edit_save">保存修改</string>
+    <string name="dump_edit_delete">删除文件</string>
+    <string name="Open">选择文件</string>
+    <string name="rename">重新命名</string>
+    <string name="difference">对比文件</string>
+    <string name="dump_edit_key_extract">提取密钥</string>
+    <string name="dump_edit_data_shared">数据共享</string>
+    <string name="root">根</string>
+    <string name="wechat">微信</string>
+    <string name="Default">默认</string>
+    <string name="res">源:</string>
+    <string name="pm3">PM3</string>
+    <string name="title_select_dump_file">请选择需要编辑的DUMP文件!</string>
+    <string name="title_dump_save_mode">请选择保存方式!</string>
+    <string name="newFile">新的</string>
+    <string name="input_err">输入有误!</string>
+    <string name="cover">覆盖</string>
+    <string name="title_dump_select_cover">选择要覆盖的文件</string>
+    <string name="title_dump_delete">删除Dump文件</string>
+    <string name="delete_success">删除成功:</string>
+    <string name="delete_failed">删除失败:</string>
+    <string name="cant_select_not_file">不可以选择非文件!</string>
+    <string name="data_err">数据集合异常，请确认您的操作,是否选择了正确的文件之类的!</string>
+    <string name="data_name_dafault">无名数据</string>
+    <string name="title_shared_dump_file">共享选定的Dump文件</string>
+    <string name="newName">新名字</string>
+    <string name="illegal_filenames">非法的文件名!</string>
+    <string name="dump_parse_failed">解析数据失败!</string>
+    <string name="dump_4k_no_support">抱歉，4K卡比较特殊，暂未支持解析</string>
+    <string name="data_parse_err">解析数据封包出错</string>
+    <string name="data_fragmentary">无可用数据能被映射到视图当中，点击返回键可以返回到上级操作进行操作步骤查看问题!</string>
+    <string name="file_err">文件异常</string>
+    <string name="format_no_support">格式不支持</string>
+    <string name="data_edit">数据编辑</string>
+    <string name="key_editor">密钥编辑</string>
+    <string name="data_diff">数据对比</string>
+    <string name="format_covert">格式转化</string>
+    <string name="union_keys">联动密钥</string>
+    <string name="no_select">未选择</string>
+    <string name="diff_result">对比结果:</string>
+    <string name="diff_result_no">未对比，无相关信息可显示......</string>
+    <string name="block">块:</string>
+    <string name="title_data_editor">数据编辑</string>
+    <string name="key_file_select_state">未选择</string>
+    <string name="file_no_select_msg">空文件或者未选择，您可以直接输入而后另存，也可以在菜单中选择已存在的文件!</string>
+    <string name="title_keys_editor">密钥编辑</string>
+    <string name="title_plz_input_name">请输入文件名!</string>
+    <string name="input_check">请检查输入!</string>
+    <string name="file_create">新建文件</string>
+    <string name="content_repeat">内容去重</string>
+    <string name="equal_info">:信息</string>
+    <string name="title_file_select">选择文件</string>
+    <string name="key_file_new_tips">您未选择要操作的密钥文件，是否需要创建一个新的并写入?</string>
+    <string name="unrepeat_no_line">没有可以被去重的行!</string>
+    <string name="keys_show_failed">密钥显示失败</string>
+    <string name="file_create_failed">文件创建失败</string>
+    <string name="data_block_diff_count">不同的块计数:</string>
+    <string name="data_char_diff_count">,不同的字符计数:</string>
+    <string name="data_identical">数据完全相同!</string>
+    <string name="title_format_convert">格式转换</string>
+    <string name="tisp_select_convert_target">请选择转换目标!</string>
+    <string name="tisp_select_convert_save_path">请选择保存位置!</string>
+    <string name="tips_convert_result_null">转换结果为空!</string>
+    <string name="tips_convert_save_path_null">保存位置为空!</string>
+    <string name="tips_convert_save_name_null">保存名称为空!</string>
+    <string name="format_convert_from_where">1、从何处选择</string>
+    <string name="QQ">QQ接收目录</string>
+    <string name="app">本APP目录</string>
+    <string name="mct">MCT目录</string>
+    <string name="format_convert_file_name_input">文件名，不输入或者存在都将会覆盖</string>
+    <string name="format_convert_file_what_fromat">3、转为啥格式</string>
+    <string name="format_convert_to_where">2、保存到哪里</string>
+    <string name="format_bin">二进制文件格式</string>
+    <string name="format_txt">文本文件格式</string>
+    <string name="format_between">它们的区别?</string>
+    <string name="content_null">空内容</string>
+    <string name="sector">扇区:</string>
+    <string name="double_tap">双击退出!</string>
+    <string name="slide_to_next_page">滑动进入下一页</string>
+    <string name="about_enjoy_msg">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;开发者&lt;/big&gt;&lt;/p&gt;&lt;p&gt;团队: DXL、Olaf tan、Dennis Goh&lt;/p&gt;&lt;p&gt;&lt;small&gt;祝使用愉快. :)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="go2_proxgrind_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;技术&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: ProxGrind&lt;/p&gt;&lt;p&gt;&lt;small&gt;点击前往主页&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="go2_rrg_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;发布&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: RFID Research Group (RRG)&lt;/p&gt;&lt;p&gt;&lt;small&gt;点击前往主页&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="nfc_not_turned_on">NFC 未开启</string>
+    <string name="connect_errr_msg_1">&lt;p&gt;1、为确保固件版本一致，请登录&lt;/p&gt;
+&lt;p style=&quot;color:green&quot;&gt;http://proxgrind.com/free-sdk/&lt;/p&gt;
+&lt;p&gt;下载相应的版本。&lt;/p&gt;
+&lt;p&gt;2.确保电池有足够的电压.&lt;/p&gt;
+&lt;p&gt;3.重启外置设备和APP， 重新连接&lt;/p&gt;</string>
+    <string name="connect_faild">连接失败</string>
+    <string name="nfc_not_open">您的NFC未打开，无法使用该功能，请先打开您的NFC</string>
+    <string name="open">打开</string>
+    <string name="device_name_standard_inner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;标准NFC设备&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 内置&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读、写卡&lt;/p&gt;&lt;p&gt;&lt;small&gt;(简单, 快速)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="device_name_acr122u">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;龙杰122U&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 读写器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读写, 测试&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested测试)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="device_name_pn532">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;PN532&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 读写器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读写, 测试&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested 测试)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="device_name_chamelon">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;变色龙&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 侦测器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 侦测, 模拟&lt;/p&gt;&lt;p&gt;&lt;small&gt;(数据, 秘钥)&lt;/small&gt;&lt;/p&gt;</string>
+    <string name="tips_data_select">数据选择:</string>
+    <string name="operational_items">操作项目</string>
+    <string name="tag_information">标签信息</string>
+    <string name="tag_not_found">没有发现卡片</string>
+    <string name="tips_uid">发现标签,卡号为: </string>
+    <string name="nfc_not_supported">不支持NFC！</string>
+    <string name="msg_nfc_not_supported">对不起，您的设备不支持NFC，请更换设备。</string>
+    <string name="language">语言</string>
+    <string name="following_system">跟随系统</string>
+    <string name="settings">设置</string>
+    <string name="chinese_simple">中文简体</string>
+    <string name="english">English</string>
+    <string name="msg_language_change_success">切换语言成功，重启后生效。</string>
+    <string name="restart">重启</string>
+    <string name="keyfiles_no_select">秘钥文件未选择</string>
+    <string name="keys_invalid">秘钥无效!</string>
+    <string name="invalid_input">无效的输入</string>
+    <string name="save">保存</string>
+    <string name="msg_wite_finish">写入完成，您可以尝试读卡验证写入效果!</string>
+    <string name="data_invalid">数据异常</string>
+    <string name="msg_sector_invalid">扇区无效</string>
+    <string name="msg_block_invalid">块无效</string>
+    <string name="functions">功能集</string>
+    <string name="reader">读写器</string>
+    <string name="msg_connect_err_common">由于一些未知的原因导致连接失败，请检查您的设备是否正版、线路、电压，电流是否正常，或者您的设备使用的固件是否正确对应客户端版本!</string>
+    <string name="msg_connect_122u">连接中，请稍后等，如果连接失败或者使用的过程出现一些意料之外的问题，有可能您使用的Acr122u是盗版产品，请认准龙杰官方正版产品，为您带来良好的体验!</string>
+    <string name="msg_connect_common">连接中，请确保您的设备线路连接正确，并且电压电流正常!</string>
+    <string name="msg_union_key_help">联动密钥是啥啊?</string>
+    <string name="hint_union_keys">此密钥可被其他工具联动使用，应尽量保证简短，有效!</string>
+    <string name="Load">加载</string>
+    <string name="title_general_options">通用选项</string>
+    <string name="select_keys_files">选择密钥文件 *</string>
+    <string name="title_reader_options">读卡选项</string>
+    <string name="hint_read_sector">:读指定的扇区</string>
+    <string name="title_write_options">写卡选项</string>
+    <string name="title_allow_write_0">允许写厂商块(危险的操作)</string>
+    <string name="title_use_order_write">使用正序写卡(从0块到结尾)</string>
+    <string name="title_select_dump_files">选择数据文件 *</string>
+    <string name="title_write_block_hint">:写指定的块值</string>
+    <string name="data">数据</string>
+    <string name="title_final_operation">最终操作</string>
+    <string name="msg_data_invalid">数据异常!</string>
+    <string name="msg_keys_auth_finish">秘钥验证完成:</string>
+    <string name="mag_read_failed">读取失败，请检查卡片秘钥或卡片信号!</string>
+    <string name="msg_failed_merge_data">合并扇区数据的时候失败了！</string>
+    <string name="msg_temp_file_noexists">模板文件不存在!</string>
+    <string name="msg_app_permission_request">程序运行时需要一些权限，请给与，否则可能会出现一些导致软件不可用的问题！</string>
+    <string name="aliases">别名</string>
+    <string name="title_slot_pos">卡位:</string>
+    <string name="title_mode">模式:</string>
+    <string name="title_click">短按:</string>
+    <string name="title_long_click">长按:</string>
+    <string name="title">原生:</string>
+    <string name="title_memory">容量:</string>
+    <string name="title_unique_id">唯一卡号:</string>
+    <string name="hint_click_input_uid">点击输入卡号</string>
+    <string name="flash">刷写</string>
+    <string name="title_information_download">信息下载</string>
+    <string name="title_version_info">版本信息</string>
+    <string name="title_dev_reset">设备重置</string>
+    <string name="title_decrypt_all">解密所有</string>
+    <string name="title_decrypt_one">解密一个</string>
+    <string name="title_decrypt_history">解密日志</string>
+    <string name="title_tag_data_download">数据下载</string>
+    <string name="title_data_upload">数据上载</string>
+    <string name="title_data_clear">数据清除</string>
+    <string name="woring">工作中</string>
+    <string name="msg_not_data">无可用数据可以被保存!</string>
+    <string name="msg_create_chameleon_keyfile_err">创建变色龙专用的密钥文件失败!</string>
+    <string name="finish">完成</string>
+    <string name="msg_chameleon_reboot">重置设备后会强制重启APP，谨记，在重启之后，变色龙从启动到能被移动设备发现大概需要5秒间隔，请勿操作，否则容易出现问题!</string>
+    <string name="reset">重置</string>
+    <string name="msg_no_history">没有记录哦!</string>
+    <string name="msg_uid_input_err">UID输入异常!</string>
+    <string name="msg_slot_get_failed">请求获得卡槽失败!</string>
+    <string name="msg_mode_get_failed">请求获得模式失败!</string>
+    <string name="msg_get_click_err">请求获得单击事件失败!</string>
+    <string name="msg_special_tag">发现特殊的后门UID标签!</string>
+    <string name="msg_normal_tag_found">发现普通的标签!</string>
+    <string name="sector_line">扇 区</string>
+    <string name="msg_darkside_no_supported">卡片不支持Darkside漏洞（MFCUK、全加密）测试，请更换卡片或者使用Nested漏洞（MFOC、半加密）测试工具，或者Hardnested漏洞（高强度的Nested漏洞）测试工具，或者嗅探。</string>
+    <string name="msg_working_darkside_check">正在检查该卡片是否支持Darkside</string>
+    <string name="msg_darkside_support">该卡片支持Darkside漏洞</string>
+    <string name="main">主页面</string>
+    <string name="tools">工具箱</string>
+
+</resources>

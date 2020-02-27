@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--第一层级，圆形背景-->
-    <item android:drawable="@drawable/circular_vector_128_1976d2"/>
-
-    <!--第二层级，实体图标-->
-    <item android:drawable="@drawable/read_tag"
-        android:gravity="center"/>
-</layer-list>

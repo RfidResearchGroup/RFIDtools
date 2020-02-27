@@ -2,12 +2,11 @@
 buildscript {
     repositories {
         jcenter()
-
-        google() 
+        google()
     }
     dependencies {
         //这里指定构建工具支持的版本仓库
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:3.6.0'
     }
 }
 
@@ -15,5 +14,6 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
 }

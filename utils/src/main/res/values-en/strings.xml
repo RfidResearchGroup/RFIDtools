@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">common</string>
-    <string name="after_s">seconds</string>
-    <string name="restart_msg">will restart after</string>
     <string name="title_file_path_selector">File Path Selector</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Confirm</string>
