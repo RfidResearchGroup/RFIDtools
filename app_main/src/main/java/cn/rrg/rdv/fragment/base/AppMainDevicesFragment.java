@@ -1,12 +1,15 @@
 package cn.rrg.rdv.fragment.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,9 @@ import java.util.ArrayList;
 
 import cn.dxl.common.util.AppUtil;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.connect.Acr122uHkUsbConnectActivity;
+import cn.rrg.rdv.activities.main.PN53XNfcMain;
+import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.binder.BannerImageViewBinder;
 import cn.rrg.rdv.binder.DeviceInfoViewBinder;
 import cn.rrg.rdv.binder.TitleTextViewBinder;
@@ -81,7 +87,22 @@ public class AppMainDevicesFragment extends BaseFragment {
         multiTypeAdapter.register(DeviceInfoBean.class, new DeviceInfoViewBinder());
         multiTypeAdapter.register(TitleTextBean.class, new TitleTextViewBinder());
         multiTypeAdapter.register(BannerBean.class, new BannerImageViewBinder());
-        rvMainContainer.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                Object type = deviceItems.get(position);
+                if (type instanceof BannerBean) {
+                    return 2;
+                }
+                if (type instanceof DeviceInfoBean) {
+                    return 1;
+                }
+                return 1;
+            }
+        };
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
+        gridLayoutManager.setSpanSizeLookup(spanSizeLookup);
+        rvMainContainer.setLayoutManager(gridLayoutManager);
         multiTypeAdapter.setItems(deviceItems);
         rvMainContainer.setAdapter(multiTypeAdapter);
     }
@@ -138,7 +159,16 @@ public class AppMainDevicesFragment extends BaseFragment {
         deviceItems.add(new DeviceInfoBean("Proxmark3 Rdv4.0", R.drawable.rdv4));
         deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2));
         deviceItems.add(new DeviceInfoBean("PN532 NXP Module", R.drawable.pn532core));
-        deviceItems.add(new DeviceInfoBean("ACR122U ACS", R.drawable.acr122u));
+        deviceItems.add(new DeviceInfoBean("ACR122U ACS", R.drawable.acr122u) {
+            @Override
+            public void onClick() {
+                if (!RuntimeProperties.isConnected) {
+                    startActivity(new Intent(getContext(), Acr122uHkUsbConnectActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), PN53XNfcMain.class));
+                }
+            }
+        });
         multiTypeAdapter.notifyDataSetChanged();
     }
 

@@ -28,7 +28,7 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
 
     @Override
     public Device getDeviceInitImpl() {
-        return new PN53X();
+        return new PN53X(PN53X.NAME.ACR122);
     }
 
     @Override
@@ -82,8 +82,6 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
             callback.onConnectFail();
             return;
         }
-        // TODO 谨记更换底层配置!
-        FileUtil.writeString(new File(Paths.PN53X_CONF_FILE), "ACR122", false);
         boolean ret = mDI.connect(UsbAcr122Raw.DRIVER_ACR122U);
         if (ret) {
             Log.d(TAG, "Acr122连接成功!");

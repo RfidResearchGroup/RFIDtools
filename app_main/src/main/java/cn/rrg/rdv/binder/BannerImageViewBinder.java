@@ -32,7 +32,7 @@ public class BannerImageViewBinder extends ItemViewBinder<BannerBean, BannerImag
     @Override
     protected void onBindViewHolder(@NonNull BannerHolder holder, @NonNull BannerBean item) {
         holder.pager.setCanLoop(true)
-                .setPageMargin(32)
+                .setPageMargin(56)
                 .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
                 .setIndicatorMargin(0, 0, 0, DisplayUtil.dip2px(holder.itemView.getContext(), 4))
                 .setIndicatorGravity(IndicatorGravity.CENTER)

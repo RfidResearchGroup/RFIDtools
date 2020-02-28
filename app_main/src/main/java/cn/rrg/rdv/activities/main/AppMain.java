@@ -13,6 +13,7 @@ import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
+import cn.rrg.rdv.fragment.tools.MainSettingsFragment;
 import cn.rrg.rdv.fragment.tools.ToolsAccessFragment;
 
 public class AppMain extends BaseActivity {
@@ -22,6 +23,8 @@ public class AppMain extends BaseActivity {
     private AppMainDevicesFragment appMainDevicesFragment;
     // tools fragment
     private ToolsAccessFragment toolsAccessFragment;
+    // settings fragment
+    private MainSettingsFragment mainSettingsFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class AppMain extends BaseActivity {
 
         appMainDevicesFragment = new AppMainDevicesFragment();
         toolsAccessFragment = new ToolsAccessFragment();
+        mainSettingsFragment = new MainSettingsFragment();
 
         initViews();
         initActions();
@@ -56,6 +60,7 @@ public class AppMain extends BaseActivity {
                         gotoFragment(toolsAccessFragment);
                         break;
                     case R.id.item_setting:
+                        gotoFragment(mainSettingsFragment);
                         break;
                 }
                 return true;

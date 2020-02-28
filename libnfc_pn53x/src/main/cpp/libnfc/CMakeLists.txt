@@ -8,6 +8,7 @@ add_library(nfc SHARED
         chips/pn53x.c
         drivers/pn532_uart.c
         drivers/acr122_usb.c
+        drivers/pn53x_usb.c
         nfc.c nfc-device.c
         nfc-emulation.c nfc-internal.c
         mirror-subr.c target-subr.c

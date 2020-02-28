@@ -274,7 +274,7 @@ const struct acr122_usb_supported_device acr122_usb_supported_devices[] = {
 };
 
 // Find transfer endpoints for bulk transfers
-static void
+// static void
 acr122_usb_get_end_points(struct usb_device *dev, struct acr122_usb_data *data) {
     /*uint32_t uiIndex;
     uint32_t uiEndPoint;
@@ -399,99 +399,6 @@ acr122_usb_get_usb_device_name(struct usb_device *dev, usb_dev_handle *udev, cha
 static nfc_device *
 acr122_usb_open(const nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
-    //struct acr122_usb_descriptor desc = {NULL, NULL};
-    //int connstring_decode_level = connstring_decode(connstring, ACR122_USB_DRIVER_NAME, "usb", &desc.dirname, &desc.filename);
-    /*log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_DEBUG,
-            "%d element(s) have been decoded from \"%s\"", connstring_decode_level, connstring);
-    if (connstring_decode_level < 1) {
-        goto free_mem;
-    }*/
-
-    /*struct acr122_usb_data data = {
-            .pudh = NULL,
-            .uiEndPointIn = 0,
-            .uiEndPointOut = 0,
-    };
-    struct usb_bus *bus;
-    struct usb_device *dev;*/
-
-    //usb准备函数，不需要 usb_prepare();
-
-    /*for (bus = usb_get_busses(); bus; bus = bus->next) {
-        if (connstring_decode_level > 1) {
-            // A specific bus have been specified
-            if (0 != strcmp(bus->dirname, desc.dirname))
-                continue;
-        }
-        for (dev = bus->devices; dev; dev = dev->next) {
-            if (connstring_decode_level > 2) {
-                // A specific dev have been specified
-                if (0 != strcmp(dev->filename, desc.filename))
-                    continue;
-            }
-            // Open the USB devices
-            if ((data.pudh = usb_open(dev)) == NULL)
-                continue;
-            // Reset devices
-            usb_reset(data.pudh);
-            // Retrieve end points
-            acr122_usb_get_end_points(dev, &data);
-            // Claim interface
-            int res = usb_claim_interface(data.pudh, 0);
-            if (res < 0) {
-                log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR,
-                        "Unable to claim USB interface (%s)", _usb_strerror(res));
-                usb_close(data.pudh);
-                // we failed to use the specified devices
-                goto free_mem;
-            }
-
-            res = usb_set_altinterface(data.pudh, 0);
-            if (res < 0) {
-                log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR,
-                        "Unable to set alternate setting on USB interface (%s)",
-                        _usb_strerror(res));
-                usb_close(data.pudh);
-                // we failed to use the specified devices
-                goto free_mem;
-            }
-
-            // Allocate memory for the devices info and specification, fill it and return the info
-            pnd = nfc_device_new(context, connstring);
-            if (!pnd) {
-                perror("malloc");
-                goto error;
-            }
-            acr122_usb_get_usb_device_name(dev, data.pudh, pnd->name, sizeof(pnd->name));
-
-            pnd->driver_data = malloc(sizeof(struct acr122_usb_data));
-            if (!pnd->driver_data) {
-                perror("malloc");
-                goto error;
-            }
-            *DRIVER_DATA(pnd) = data;
-
-            // Alloc and init chip's data
-            if (pn53x_data_new(pnd, &acr122_usb_io) == NULL) {
-                perror("malloc");
-                goto error;
-            }
-
-            memcpy(&(DRIVER_DATA(pnd)->tama_frame), acr122_usb_frame_template,
-                   sizeof(acr122_usb_frame_template));
-            memcpy(&(DRIVER_DATA(pnd)->apdu_frame), acr122_usb_frame_template,
-                   sizeof(acr122_usb_frame_template));
-            CHIP_DATA(pnd)->timer_correction = 46; // empirical tuning
-            pnd->driver = &acr122_usb_driver;
-
-            if (acr122_usb_init(pnd) < 0) {
-                usb_close(data.pudh);
-                goto error;
-            }
-            DRIVER_DATA(pnd)->abort_flag = false;
-            goto free_mem;
-        }
-    }*/
 
     /*
      * TODO 自实现区域

@@ -80,6 +80,10 @@
 extern  "C" {
 #  endif                        // __cplusplus
 
+/* Device type set from java layer! */
+NFC_EXPORT void set_type(int type);
+NFC_EXPORT int get_type();
+
 /* Library initialization/deinitialization */
 NFC_EXPORT void nfc_init(nfc_context **context) ATTRIBUTE_NONNULL(1);
 NFC_EXPORT void nfc_exit(nfc_context *context) ATTRIBUTE_NONNULL(1);

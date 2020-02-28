@@ -104,8 +104,17 @@
 
 #endif
 
+#if defined(DRIVER_PN53X_UART_ENABLED)
+
+#include "drivers/pn53x_usb.h"
+
+#endif
+
 #define LOG_CATEGORY "libnfc.general"
 #define LOG_GROUP    NFC_LOG_GROUP_GENERAL
+
+// The type of device!
+static int device_type = 0;
 
 static void
 nfc_drivers_init(void) {
@@ -114,6 +123,9 @@ nfc_drivers_init(void) {
 #endif
 #ifdef DRIVER_ACR122_USB_ENABLED
     nfc_register_driver(&acr122_usb_driver);
+#endif
+#ifdef DRIVER_PN53X_UART_ENABLED
+    nfc_register_driver(&pn53x_usb_driver);
 #endif
 }
 
@@ -151,7 +163,7 @@ nfc_init(nfc_context **context) {
         perror("malloc");
         return;
     }
-    if (!&pn532_uart_driver && !&acr122_usb_driver)
+    if (!&pn532_uart_driver && !&acr122_usb_driver && !&pn53x_usb_driver)
         nfc_drivers_init();
 }
 
@@ -163,6 +175,14 @@ nfc_init(nfc_context **context) {
 void
 nfc_exit(nfc_context *context) {
     nfc_context_free(context);
+}
+
+void set_type(int type) {
+    device_type = type;
+}
+
+int get_type() {
+    return device_type;
 }
 
 /** @ingroup dev
@@ -184,30 +204,43 @@ nfc_exit(nfc_context *context) {
  */
 nfc_device *
 nfc_open(nfc_context *context, const nfc_connstring connstring) {
-    //TODO 实际上是在这里做设备打开操作
     nfc_device *pnd = NULL;
-    if (connstring == NULL) {
-        connstring = context->user_defined_devices[0].connstring;
-    }
-    //LOGD("打开设备前确认设备名: %s\n", context->user_defined_devices[0].name);
-    //TODO 这里做检测设备类型!
-    if (strcmp(context->user_defined_devices[0].name, "PN532") == 0) {
-        //LOGD("打开模式: 532\n");
-        //尝试打开532
-        pnd = pn532_uart_driver.open(context, connstring);
-        if (pnd != NULL) {
-            sprintf(pnd->name, "%s", "pn532");
-            return pnd;
+    switch (get_type()) {
+        case 0: {
+            LOGD("打开模式: 532_UART\n");
+            //尝试打开532
+            pnd = pn532_uart_driver.open(context, connstring);
+            if (pnd != NULL) {
+                sprintf(pnd->name, "%s", "pn532");
+                return pnd;
+            }
+            break;
         }
-    }
-    if (strcmp(context->user_defined_devices[0].name, "ACR122") == 0) {
-        //LOGD("打开模式: 122\n");
-        //尝试打开122
-        pnd = acr122_usb_driver.open(context, connstring);
-        if (pnd != NULL) {
-            sprintf(pnd->name, "%s", "acr122");
-            return pnd;
+
+        case 1: {
+            LOGD("打开模式: 122_USB\n");
+            //尝试打开122
+            pnd = acr122_usb_driver.open(context, connstring);
+            if (pnd != NULL) {
+                sprintf(pnd->name, "%s", "acr122");
+                return pnd;
+            }
+            break;
         }
+
+        case 2: {
+            LOGD("打开模式: PN53X_USB\n");
+            //尝试打开122
+            pnd = pn53x_usb_driver.open(context, connstring);
+            if (pnd != NULL) {
+                sprintf(pnd->name, "%s", "pn53x");
+                return pnd;
+            }
+            break;
+        }
+
+        default:
+            return NULL;
     }
     return NULL;
 }

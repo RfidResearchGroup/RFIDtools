@@ -1,9 +1,16 @@
-package cn.rrg.rdv.activities.tools;
+package cn.rrg.rdv.fragment.tools;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import java.io.File;
@@ -14,28 +21,32 @@ import cn.dxl.common.util.DiskKVUtil;
 import cn.dxl.common.util.RestartUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.BaseActivity;
+import cn.rrg.rdv.fragment.base.BaseFragment;
 import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.application.Properties;
 
 /*
  * 主设置活动!
  * */
-public class MainSettingsActivity
-        extends BaseActivity {
+public class MainSettingsFragment
+        extends BaseFragment {
 
     RadioGroup radioGroupLanguages;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_app_settings);
-
-        initViews();
-        initActions();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.act_app_settings, container, false);
     }
 
-    private void initViews() {
-        radioGroupLanguages = findViewById(R.id.rdoGroup);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initViews(view);
+        initActions(view.getContext());
+    }
+
+    private void initViews(View v) {
+        radioGroupLanguages = v.findViewById(R.id.rdoGroup);
         switch (Properties.v_app_language) {
             //选中了中文!
             case "zh":
@@ -53,7 +64,7 @@ public class MainSettingsActivity
         }
     }
 
-    private void initActions() {
+    private void initActions(Context context) {
         radioGroupLanguages.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

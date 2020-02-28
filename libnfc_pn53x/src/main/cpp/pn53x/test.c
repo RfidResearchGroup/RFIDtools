@@ -6,7 +6,7 @@
 #include <zconf.h>
 #include "tools.h"
 
-jboolean openDev(JNIEnv *env, jobject instance) {
+jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
     nfc_context *context;
     nfc_device *pnd;
     nfc_init(&context);
@@ -23,9 +23,20 @@ jboolean openDev(JNIEnv *env, jobject instance) {
         nfc_exit(context);
         return false;
     }
-
+    // 然后初始化固化的类型!
+    const char *nameChar = (*env)->GetStringUTFChars(env, name, false);
+    if (strcmp(nameChar, "PN532") == 0) {
+        set_type(0);
+    } else if (strcmp(nameChar, "ACR122") == 0) {
+        set_type(1);
+    } else {
+        set_type(2);
+    }
+    // 释放内存!
+    (*env)->ReleaseStringUTFChars(env, name, nameChar);
     // Try to open the NFC reader
     pnd = nfc_open(context, NULL);
+
     if (pnd == NULL) {
         LOGE("Error opening NFC reader");
         //设备打不开则再次检查异常
@@ -65,8 +76,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
     //构建和初始化函数结构体,分别是java层的函数名称，签名，对应的函数指针
     JNINativeMethod methods[] = {
-            {"testPN53x",  "()Z", (void *) openDev},
-            {"closePN53x", "()Z", closeDev}
+            {"testPN53x",  "(Ljava/lang/String;)Z", (void *) openDev},
+            {"closePN53x", "()Z",                   closeDev}
     };
     //注册函数
     if ((*jniEnv)->RegisterNatives(jniEnv, clazz, methods, sizeof(methods) / sizeof(methods[0])) !=

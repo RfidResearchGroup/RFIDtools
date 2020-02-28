@@ -42,6 +42,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:background="@color/colorBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
