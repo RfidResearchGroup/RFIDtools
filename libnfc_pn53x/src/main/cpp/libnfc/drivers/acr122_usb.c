@@ -430,7 +430,7 @@ acr122_usb_open(const nfc_context *context, const nfc_connstring connstring) {
     CHIP_DATA(pnd)->timer_correction = 46; // empirical tuning
     pnd->driver = &acr122_usb_driver;
     //设置名字
-    sprintf(pnd->name, "ACR122");
+    sprintf(pnd->name, "%s", "ACR122");
     if (acr122_usb_init(pnd) < 0) {
         //usb_close(data.pudh);
         c_close();

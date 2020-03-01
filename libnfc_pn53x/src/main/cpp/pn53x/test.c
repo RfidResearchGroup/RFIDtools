@@ -32,11 +32,10 @@ jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
     } else {
         set_type(2);
     }
+    // Try to open the NFC reader
+    pnd = nfc_open(context, nameChar);
     // 释放内存!
     (*env)->ReleaseStringUTFChars(env, name, nameChar);
-    // Try to open the NFC reader
-    pnd = nfc_open(context, NULL);
-
     if (pnd == NULL) {
         LOGE("Error opening NFC reader");
         //设备打不开则再次检查异常

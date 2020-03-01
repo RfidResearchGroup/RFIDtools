@@ -115,6 +115,8 @@
 
 // The type of device!
 static int device_type = 0;
+// The name of device!
+static char constring[1024] = {0};
 
 static void
 nfc_drivers_init(void) {
@@ -185,6 +187,10 @@ int get_type() {
     return device_type;
 }
 
+void save_device_name(const nfc_connstring con) {
+    strcpy(constring, con);
+}
+
 /** @ingroup dev
  * @brief Open a NFC device
  * @param context The context to operate on.
@@ -205,11 +211,21 @@ int get_type() {
 nfc_device *
 nfc_open(nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
+    // 解决NULL崩溃的问题！
+    nfc_connstring cTmp = {0};
+    if (connstring != NULL) {
+        save_device_name(connstring);
+    } else {
+        strcpy(cTmp, constring);
+    }
+    char msg[1024] = {0};
+    sprintf(msg, "%s", cTmp);
+    LOGD("nfc_connstring: %s", msg);
     switch (get_type()) {
         case 0: {
             LOGD("打开模式: 532_UART\n");
             //尝试打开532
-            pnd = pn532_uart_driver.open(context, connstring);
+            pnd = pn532_uart_driver.open(context, cTmp);
             if (pnd != NULL) {
                 sprintf(pnd->name, "%s", "pn532");
                 return pnd;
@@ -220,7 +236,7 @@ nfc_open(nfc_context *context, const nfc_connstring connstring) {
         case 1: {
             LOGD("打开模式: 122_USB\n");
             //尝试打开122
-            pnd = acr122_usb_driver.open(context, connstring);
+            pnd = acr122_usb_driver.open(context, cTmp);
             if (pnd != NULL) {
                 sprintf(pnd->name, "%s", "acr122");
                 return pnd;
@@ -231,7 +247,7 @@ nfc_open(nfc_context *context, const nfc_connstring connstring) {
         case 2: {
             LOGD("打开模式: PN53X_USB\n");
             //尝试打开122
-            pnd = pn53x_usb_driver.open(context, connstring);
+            pnd = pn53x_usb_driver.open(context, cTmp);
             if (pnd != NULL) {
                 sprintf(pnd->name, "%s", "pn53x");
                 return pnd;
@@ -301,8 +317,11 @@ nfc_list_devices(nfc_context *context, nfc_connstring connstrings[], const size_
         }
     }
 #endif // CONFFILES
-
+#ifdef ANDROID
+    return 1;
+#else
     return device_found;
+#endif
 }
 
 /** @ingroup properties

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidProject-RFID-Tools.iml" filepath="$PROJECT_DIR$/AndroidProject-RFID-Tools.iml" group="RFID-Tools" />
       <module fileurl="file://$PROJECT_DIR$/.idea/RFID-Tools.iml" filepath="$PROJECT_DIR$/.idea/RFID-Tools.iml" group="RFID-Tools" />
       <module fileurl="file://$PROJECT_DIR$/app_main/app_main.iml" filepath="$PROJECT_DIR$/app_main/app_main.iml" group="RFID-Tools/app_main" />
       <module fileurl="file://$PROJECT_DIR$/chameleon/chameleon.iml" filepath="$PROJECT_DIR$/chameleon/chameleon.iml" group="RFID-Tools/chameleon" />
