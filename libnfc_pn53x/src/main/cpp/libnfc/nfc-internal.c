@@ -82,7 +82,7 @@ nfc_context_new(void) {
     res->allow_autoscan = false;
     res->allow_intrusive_scan = false;
     res->user_defined_device_count = 1;
-    strcpy(res->user_defined_devices[0].connstring, "dxl");
+    strcpy(res->user_defined_devices[0].connstring, "c");
     strcpy(res->user_defined_devices[0].name, "UNKNOWN");
 #ifdef CONFFILES
     // TODO 手动加载配置文件 (ie. /sdcard/NfcTools/Settings/libnfc.conf)

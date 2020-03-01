@@ -213,14 +213,12 @@ nfc_open(nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
     // 解决NULL崩溃的问题！
     nfc_connstring cTmp = {0};
-    if (connstring != NULL) {
+    if (connstring != NULL && strlen(connstring) > 1) {
         save_device_name(connstring);
-    } else {
-        strcpy(cTmp, constring);
+        LOGD("保存设备链接字符串成功!");
     }
-    char msg[1024] = {0};
-    sprintf(msg, "%s", cTmp);
-    LOGD("nfc_connstring: %s", msg);
+    strcpy(cTmp, constring);
+    LOGD("nfc_connstring: %s", cTmp);
     switch (get_type()) {
         case 0: {
             LOGD("打开模式: 532_UART\n");

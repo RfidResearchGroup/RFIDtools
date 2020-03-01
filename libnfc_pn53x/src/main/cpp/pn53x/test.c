@@ -14,7 +14,6 @@ jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
         LOGE("Unable to init libnfc (malloc)");
         return false;
     }
-    //先检查是否有异常发生
     if ((*env)->ExceptionCheck(env)) {
         (*env)->ExceptionDescribe(env);
         (*env)->ExceptionClear(env);
@@ -23,8 +22,9 @@ jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
         nfc_exit(context);
         return false;
     }
-    // 然后初始化固化的类型!
-    const char *nameChar = (*env)->GetStringUTFChars(env, name, false);
+    // 在此处确认类型!
+    jboolean jb = false;
+    const char *nameChar = (*env)->GetStringUTFChars(env, name, &jb);
     if (strcmp(nameChar, "PN532") == 0) {
         set_type(0);
     } else if (strcmp(nameChar, "ACR122") == 0) {
@@ -32,9 +32,7 @@ jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
     } else {
         set_type(2);
     }
-    // Try to open the NFC reader
     pnd = nfc_open(context, nameChar);
-    // 释放内存!
     (*env)->ReleaseStringUTFChars(env, name, nameChar);
     if (pnd == NULL) {
         LOGE("Error opening NFC reader");
@@ -48,11 +46,8 @@ jboolean openDev(JNIEnv *env, jobject instance, jstring name) {
         }
         return false;
     }
-    //打开之后必须关闭!
     nfc_close(pnd);
     nfc_exit(context);
-    //TODO 漏了这一句。。导致没有正确的返回值，
-    //导致就算实际上连接了也无法判断连接不连接
     return true;
 }
 
