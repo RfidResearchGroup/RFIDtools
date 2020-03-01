@@ -72,8 +72,6 @@
             android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGConsoleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
 
-        <activity android:name=".fragment.base.AppMainDevicesFragment" />
-
         <activity
             android:name=".activities.connect.Proxmark3Rdv4RRGConnectActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
@@ -94,7 +92,6 @@
                 android:resource="@xml/nfc_filter" />
         </activity>
 
-        <activity android:name=".activities.tools.MainSettingsActivity" />
         <activity android:name=".activities.connect.Acr122uHkUsbConnectActivity" />
         <activity android:name=".activities.main.PN53XNfcMain" />
         <activity android:name=".activities.main.PN53XReaderMain" />

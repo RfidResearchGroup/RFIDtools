@@ -12,7 +12,7 @@ import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.models.PN532Usb2UartModel;
-import cn.rrg.rdv.models.PN53XSppUartModel;
+import cn.rrg.rdv.models.PN532SppUartModel;
 
 public class PN532UartConnectActivity extends DeviceConnectActivity {
 
@@ -31,7 +31,7 @@ public class PN532UartConnectActivity extends DeviceConnectActivity {
                 // PN532支持USB转串口链接
                 new PN532Usb2UartModel(),
                 // 并且还支持蓝牙SPP链接
-                new PN53XSppUartModel()
+                new PN532SppUartModel()
         };
     }
 

@@ -29,6 +29,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#include <client/proxmark3.h>
 
 #define BCD(c) (((c) >= '0' && (c) <= '9') ? ((c) - '0') : \
 		-1)

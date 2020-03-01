@@ -78,11 +78,12 @@ nfc_context_new(void) {
     if (!res) {
         return NULL;
     }
-    // 默认关闭自寻找设备
+    // 设置初始化参数!
     res->allow_autoscan = false;
     res->allow_intrusive_scan = false;
-    //手动更改用户定义设备数量为1；
     res->user_defined_device_count = 1;
+    strcpy(res->user_defined_devices[0].connstring, "c");
+    strcpy(res->user_defined_devices[0].name, "UNKNOWN");
 #ifdef CONFFILES
     // TODO 手动加载配置文件 (ie. /sdcard/NfcTools/Settings/libnfc.conf)
     conf_load(res);
