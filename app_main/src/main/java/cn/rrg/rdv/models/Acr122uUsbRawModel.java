@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
-import java.io.File;
-
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.FileUtil;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.Device;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.UsbAcr122Raw;
 import cn.rrg.devices.PN53X;
-import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.util.Commons;
-import cn.rrg.rdv.util.Paths;
 
 public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> {
     @Override
@@ -49,10 +44,6 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
                 Commons.removeDevByList(devBean, devAttachList);
                 //如果设置了接口实现则需要通知接口移除
                 detachDispatcher(devBean);
-                // 如果是当前的驱动被移除，则我们需要将设备重置状态!
-                if (dev.equals(UsbAcr122Raw.DRIVER_ACR122U)) {
-                    RuntimeProperties.isConnected = false;
-                }
             }
         };
     }
@@ -96,7 +87,6 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
     public void disconnect() {
         if (mDI != null) {
             mDI.disconect();
-            RuntimeProperties.isConnected = false;
         }
     }
 }

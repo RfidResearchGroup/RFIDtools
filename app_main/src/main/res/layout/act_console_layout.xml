@@ -6,10 +6,9 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <View
+    <cn.dxl.common.widget.StatusBarHeightView
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/md_grey_200" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

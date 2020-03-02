@@ -20,8 +20,8 @@ import cn.dxl.common.util.MyArrays;
  */
 public class Commons {
 
-    //短称路径
     public static final String LOG_TAG = Commons.class.getSimpleName();
+    public static String PM3_CLIENT_VERSION = "RRG/Iceman// 2020/02/11";
 
     private Commons() {
     }

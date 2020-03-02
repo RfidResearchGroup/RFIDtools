@@ -45,19 +45,12 @@
     <string name="menu_title_newDevice">New Devices</string>
     <string name="menu_title_allDevice">All Devices</string>
 
-    <string name="poweredByWhat">Distributed by RRG\nPowered by ProxGrind</string>
     <string name="common_tools">Common Tools</string>
     <string name="device_init_success">Device init success!</string>
-    <string name="device_name_proxmark3_rdv4rrg">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Proxmark3&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Rdv4.0&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Firmware: RRG、PROXGRIND&lt;/p&gt;&lt;p&gt;&lt;small&gt;(OTG, Bluetooth)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="name_common_tools">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;Common&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Such as: DumpEditor&lt;/p&gt;&lt;p&gt;&lt;small&gt;(Dump, Key)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="main_app_about">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;About&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Developer: DXL&lt;p&gt;&lt;/p&gt;(RRG、PROXGRIND)&lt;/p&gt;&lt;p&gt;&lt;small&gt;(Help, Update)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_red_team">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Red Team&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Terminal&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Support: RRG、PROXGRIND&lt;/p&gt;&lt;p&gt;&lt;small&gt;(HF, LF)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_rdv4rrg_reader">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Reader&lt;/big&gt;&lt;/big&gt;&lt;big&gt; UI&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Support: Read、Write&lt;/p&gt;&lt;p&gt;&lt;small&gt;(HF)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_scanner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Scanner&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Automatic&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Support: HF, LF&lt;/p&gt;&lt;p&gt;&lt;small&gt;(IC&lt;13.56MHZ&gt;, ID&lt;125KHZ or other &gt;)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="discovery_device">Discovering</string>
-    <string name="history_device">Existing Devices</string>
     <string name="title_rdv4_function">Rdv4.0 Function</string>
-    <string name="title_devices_main"><![CDATA[Devices & Firmwares]]></string>
     <string name="console_send">Send</string>
     <string name="console_clear_screen">Clear</string>
     <string name="console_stop_exe">Stop</string>
@@ -184,10 +177,6 @@
     <string name="connect_faild">Connection  failed</string>
     <string name="nfc_not_open">Your NFC is not open and cannot use this function. Please open your NFC first.</string>
     <string name="open">open</string>
-    <string name="device_name_standard_inner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Standard NFC&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Reader&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Function: Identify, Research&lt;/p&gt;&lt;p&gt;&lt;small&gt;(Phone NFC)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_acr122u">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;ACR-122U&lt;/big&gt;&lt;/big&gt;&lt;big&gt; ACS&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Function: Identify, Research&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested Test)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_pn532">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;PN532&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Reader&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Function: Identify, Research&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested Test)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_chamelon">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;ChameleonMini&lt;/big&gt;&lt;/big&gt;&lt;big&gt; RevE&lt;/big&gt;&lt;/p&gt;&lt;p&gt;Function: Sniff, Emulate&lt;/p&gt;&lt;p&gt;&lt;small&gt;(Dump, Keys)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="tips_data_select">File Select:</string>
     <string name="operational_items">Operational Items</string>
     <string name="tag_information">Tag Information</string>
@@ -210,7 +199,6 @@
     <string name="data_invalid">Data invalid</string>
     <string name="msg_sector_invalid">Sector input invalid!</string>
     <string name="msg_block_invalid">Block input invalid!</string>
-    <string name="functions">Functions</string>
     <string name="reader">Reader</string>
     <string name="msg_connect_err_common">Due to some unknown reasons leading to connection failure, please check whether your device is genuine, line, voltage, current is normal, or whether the firmware used by your device corresponds to the client version correctly!</string>
     <string name="msg_connect_122u">Connecting......, please wait a moment. If there are some unexpected problems in connection failure or use process, it is possible that the Acr122u you use is a pirated product. Please identify the official product of Longjie, and bring you a good experience!</string>

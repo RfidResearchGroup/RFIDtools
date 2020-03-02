@@ -40,11 +40,18 @@ public abstract class AbstractDeviceModel<D, A>
     //缓存一个设备回调!
     protected static final List<DevCallback<DevBean>> callbacks = new ArrayList<>();
 
-    //在构造函数中初始化设备驱动等等资源!
-    protected AbstractDeviceModel() {
-        mDI = getDriverInterface();
-        mDevice = getDeviceInitImpl();
-        devCallbackImpl = getDevCallback();
+    public AbstractDeviceModel() {
+        init();
+    }
+
+    private void init() {
+        // 初始化资源!
+        if (mDI == null)
+            mDI = getDriverInterface();
+        if (mDevice == null)
+            mDevice = getDeviceInitImpl();
+        if (devCallbackImpl == null)
+            devCallbackImpl = getDevCallback();
     }
 
     //分发到注册的回调中!
@@ -104,6 +111,8 @@ public abstract class AbstractDeviceModel<D, A>
 
     //注册需要的广播事件
     public void register(Context context) {
+        init();
+        // 注册驱动!
         if (mDI != null) {
             //直接注册!
             mDI.register(context, devCallbackImpl);

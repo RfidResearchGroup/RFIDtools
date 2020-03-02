@@ -10,12 +10,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--控件颜色-->
         <item name="colorAccent">@color/colorAccent</item>
-        <!--导航栏-->
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <!-- Api 21 -->
         <item name="overlapAnchor">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <!--设置按钮的正常状态下的颜色-->
-        <item name="android:colorButtonNormal">@color/colorBackground</item>
+        <item name="android:colorButtonNormal">@color/colorTextNormal</item>
     </style>
 
     <style name="toolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">

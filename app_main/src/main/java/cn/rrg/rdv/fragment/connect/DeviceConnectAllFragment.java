@@ -18,8 +18,6 @@ public class DeviceConnectAllFragment
     @Override
     protected void initResource() {
         super.initResource();
-        //初始化toolbar
-        getToolbar().setTitle(R.string.history_device);
         if (models != null) {
             for (AbstractDeviceModel model : models) {
                 DeviceExistsPresenter presenter = new DeviceExistsPresenter(model);
@@ -30,7 +28,7 @@ public class DeviceConnectAllFragment
                 presenter.existsDevList();
             }
         } else {
-            throw new RuntimeException("models not init exception!");
+            throw new RuntimeException("models no init exception!");
         }
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.util.Log;
 import android.view.View;
@@ -14,8 +15,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
+import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.presenter.DevicePresenter;
 import cn.rrg.rdv.view.DeviceView;
@@ -24,13 +25,11 @@ public abstract class DeviceConnectFragment
         extends DeviceConnectBaseFragment {
 
     //持有中介者,这个中介者只负责连接，不负责数据
-    ArrayList<DevicePresenter<DeviceView>> presenters = new ArrayList<>();
+    private ArrayList<DevicePresenter<DeviceView>> presenters = new ArrayList<>();
     AbstractDeviceModel[] models;
-    Class target;
-    //工具条!
-    Toolbar toolbar;
+    private Class target;
     //链接失败的回调，这个地方失败一般是设备或者设备使用的固件有问题，才会被回调!
-    ConnectFailedCtxCallback connectCallback;
+    private ConnectFailedCtxCallback connectCallback;
 
     @Override
     protected void initResource() {
@@ -57,24 +56,6 @@ public abstract class DeviceConnectFragment
         } else {
             throw new RuntimeException("Models not init exception!");
         }
-        initToolbar();
-
-    }
-
-
-    private void initToolbar() {
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        if (activity != null) {
-            View v = getView();
-            if (v != null) {
-                toolbar = v.findViewById(R.id.toolbar);
-                activity.setSupportActionBar(toolbar);
-            }
-        }
-    }
-
-    protected Toolbar getToolbar() {
-        return toolbar;
     }
 
     @Override
@@ -126,11 +107,21 @@ public abstract class DeviceConnectFragment
         //TODO 此次做出连接结果返回的处理!
         Activity activity = getActivity();
         if (activity != null) {
+            sendConnectResultBroadcast(activity, true);
             //跳转到目标act!
             startActivity(new Intent(getActivity(), target));
             //结束自身!
             activity.finish();
         }
+    }
+
+    private void sendConnectResultBroadcast(Activity act, boolean result) {
+        if (act == null) return;
+        // 发送广播告诉主页面连接成功了!
+        LocalBroadcastManager.getInstance(act).sendBroadcast(
+                new Intent(AppMainDevicesFragment.ACTION_CONNECTION_STATE_UPDATE)
+                        .putExtra(AppMainDevicesFragment.EXTRA_CONNECTION_STATE, result)
+        );
     }
 
     @Override
@@ -141,9 +132,11 @@ public abstract class DeviceConnectFragment
     @Override
     public void onInitNfcAdapterFail() {
         super.onInitNfcAdapterFail();
+        Activity activity = getActivity();
         // 如果回调不为空，则进行回调!
         if (connectCallback != null) {
-            connectCallback.onFailed(getActivity());
+            connectCallback.onFailed(activity);
         }
+        sendConnectResultBroadcast(activity, false);
     }
 }

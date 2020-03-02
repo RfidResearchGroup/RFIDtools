@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import java.util.Arrays;
 
+import cn.dxl.common.util.DisplayUtil;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.adapter.FragmentListPagerAdapter;

@@ -6,6 +6,7 @@ import cn.rrg.com.DriverInterface;
 import cn.rrg.com.SppHasBlock;
 import cn.rrg.com.SppNonBlock;
 import cn.rrg.com.StandardDriver;
+import cn.rrg.com.UniversalBulkTransfer;
 import cn.rrg.com.UsbAcr122Raw;
 import cn.rrg.com.UsbSerialControl;
 
@@ -45,5 +46,7 @@ public class DriverSource {
         driverMap.put(UsbSerialControl.get().getUniqueId(), UsbSerialControl.get());
         // 放入标准NFC设备到驱动映射表，只适用标准NFC! code 0x05
         driverMap.put(StandardDriver.get().getUniqueId(), StandardDriver.get());
+        // 通用USB RAW驱动!
+        driverMap.put(UniversalBulkTransfer.getTransfer().getUniqueId(), UniversalBulkTransfer.getTransfer());
     }
 }

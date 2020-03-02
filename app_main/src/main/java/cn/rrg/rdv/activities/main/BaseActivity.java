@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import cn.dxl.common.interfaces.OnTouchListener;
+import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.LanguageUtil;
 import cn.dxl.common.util.StatusBarUtil;
@@ -33,8 +34,6 @@ import cn.rrg.rdv.application.Properties;
  */
 public abstract class BaseActivity
         extends AppCompatActivity implements GlobalTag.OnNewTagListener {
-
-    private boolean isTagListener = false;
 
     protected String LOG_TAG = this.getClass().getSimpleName();
     protected Context context = this;
@@ -62,19 +61,19 @@ public abstract class BaseActivity
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        setStatus(false);
+        setStatus(!DisplayUtil.isDarkModeStatus(this));
     }
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        setStatus(false);
+        setStatus(!DisplayUtil.isDarkModeStatus(this));
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
-        setStatus(false);
+        setStatus(!DisplayUtil.isDarkModeStatus(this));
     }
 
     public void setStatus(boolean darkMode) {
@@ -92,6 +91,7 @@ public abstract class BaseActivity
             //这样半透明+白=灰, 状态栏的文字能看得清
             StatusBarUtil.setStatusBarColor(this, 0x55000000);
         }
+        StatusBarUtil.setLightNavigationBar(this, darkMode);
     }
 
     @Override

@@ -31,8 +31,6 @@ public class DeviceConnectNewFragment
     @Override
     protected void initResource() {
         super.initResource();
-        //初始化toolbar名字!
-        getToolbar().setTitle(R.string.discovery_device);
         if (models != null) {
             for (AbstractDeviceModel model : models) {
                 DeviceAttachPresenter presenter = new DeviceAttachPresenter(model);
@@ -47,7 +45,7 @@ public class DeviceConnectNewFragment
             //判断数据是否为空，显示相关的视图!
             showOrDismissEmptyView();
         } else {
-            throw new RuntimeException("models not init exception!");
+            throw new RuntimeException("models no init exception!");
         }
     }
 

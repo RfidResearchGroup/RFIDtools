@@ -7,6 +7,13 @@ package cn.rrg.com;
  * @version 1.0
  */
 public class UniversalBulkTransfer extends UsbBulkTransferRaw {
+
+    private static UniversalBulkTransfer transfer = new UniversalBulkTransfer();
+
+    public static UniversalBulkTransfer getTransfer() {
+        return transfer;
+    }
+
     @Override
     public boolean isRawDevice(int producetId, int ventorId) {
         return true;

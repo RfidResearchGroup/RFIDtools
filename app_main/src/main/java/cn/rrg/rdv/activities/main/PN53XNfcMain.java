@@ -15,7 +15,7 @@ import cn.rrg.rdv.activities.px53x.MfcukConsoleActivity;
 import cn.rrg.rdv.activities.px53x.MfocConsoleActivity;
 import cn.rrg.rdv.activities.px53x.NfcListConsoleActivity;
 
-public class PN53XNfcMain extends BaseActivity  {
+public class PN53XNfcMain extends BaseActivity {
 
     private Button btnNestedCrack = null;
     private Button btnPRNGCrack = null;

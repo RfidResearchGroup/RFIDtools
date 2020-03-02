@@ -3,9 +3,11 @@ package cn.rrg.rdv.fragment.connect;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +22,6 @@ import java.util.Arrays;
 
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.adapter.DevArrayAdapter;
-import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.fragment.base.BaseFragment;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.view.DeviceAttachView;
@@ -286,7 +287,6 @@ public abstract class DeviceConnectBaseFragment
                 }
             });
         }
-        RuntimeProperties.isConnected = false;
     }
 
     @Override
@@ -296,7 +296,6 @@ public abstract class DeviceConnectBaseFragment
                 showToast(getString(R.string.com_err_tips));
                 dialogConnectTips.dismiss();
             });
-        RuntimeProperties.isConnected = false;
     }
 
     @Override
@@ -316,7 +315,6 @@ public abstract class DeviceConnectBaseFragment
                         onInitSuccess();
                     }
             );
-        RuntimeProperties.isConnected = true;
     }
 
     @Override
@@ -327,6 +325,5 @@ public abstract class DeviceConnectBaseFragment
                         dialogConnectTips.dismiss();
                     }
             );
-        RuntimeProperties.isConnected = false;
     }
 }
