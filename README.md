@@ -24,7 +24,7 @@ The app support the following devices
 |----------- |----------- |------------- |--------------- |----------- |
 | ![img_pm3] | ![img_nfc] |  ![img_122]  |   ![img_cml]   | ![img_532] |
 
-|PN53X Derived|
+|PN53X Derived(NXP_PN533, NXP_PN531, SONY_PN531, SCM_SCL3711, SCM_SCL3712, SONY_RCS360)|
 |----------- |
 | ![img_532] |
 
