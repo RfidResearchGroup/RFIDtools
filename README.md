@@ -26,7 +26,7 @@ The app support the following devices
 
 |                                    PN53X Derived(Testing)                              |
 |----------------------------------------------------------------------------------------|
-| NXP_PN533  |  NXP_PN531  |  SONY_PN531  |  SCM_SCL3711  |  SCM_SCL3712  |  SONY_RCS360 |
+| NXP_PN533  &  NXP_PN531  &  SONY_PN531  &  SCM_SCL3711  &  SCM_SCL3712  &  SONY_RCS360 |
 
 ## Application features
 
