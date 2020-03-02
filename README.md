@@ -23,6 +23,7 @@ The app support the following devices
 |Proxmark3   |NFC Reader  |ACS ACR-122u  |Chameleon Mini  |PN532       |  
 |----------- |----------- |------------- |--------------- |----------- |
 | ![img_pm3] | ![img_nfc] |  ![img_122]  |   ![img_cml]   | ![img_532] |
+
 |PN53X Derived|
 |----------- |
 | ![img_532] |
