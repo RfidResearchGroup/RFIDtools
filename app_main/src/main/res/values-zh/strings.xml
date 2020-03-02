@@ -258,5 +258,6 @@
     <string name="msg_darkside_support">该卡片支持Darkside漏洞</string>
     <string name="main">主页面</string>
     <string name="tools">工具箱</string>
+    <string name="tips_app_reopen">请重新打开APP。</string>
 
 </resources>

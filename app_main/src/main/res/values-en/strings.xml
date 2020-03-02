@@ -70,7 +70,7 @@
     <string name="device_init_err">Device init error, please check your client version…</string>
     <string name="title_connecting">Connecting in progress!</string>
     <string name="title_connect_cancel">Cancel</string>
-    <string name="cancel_tips">Restart in progress!</string>
+    <string name="cancel_tips">An unknown exception will occur when unlinking. You need to restart the program!</string>
     <string name="progress_msg">Currently you have a task running，please wait for task to finish!</string>
     <string name="tips_gui_not_support">Not yet supported or not required!</string>
     <string name="title_panel">Easy Button Panel</string>
@@ -262,5 +262,6 @@
     <string name="msg_darkside_support">The card supports Darkside</string>
     <string name="main">Main</string>
     <string name="tools">Tools</string>
+    <string name="tips_app_reopen">Please reopen the app.</string>
 
 </resources>
