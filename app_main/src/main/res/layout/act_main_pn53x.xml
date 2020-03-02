@@ -6,13 +6,9 @@
     android:gravity="center|top"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <cn.dxl.common.widget.StatusBarHeightView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/toolbarStyle"
-        app:popupTheme="@style/popMenuStyle"
-        app:title="@string/functions" />
+        android:layout_height="wrap_content" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -27,7 +23,7 @@
             android:id="@+id/btnStartPN53XReaderAct"
             android:layout_width="0dp"
             android:layout_height="158dp"
-            android:layout_margin="0.2dp"
+            android:layout_margin="16dp"
             android:background="@drawable/selector_shadow"
             android:drawableTop="@drawable/main_write"
             android:drawablePadding="-50dp"
@@ -42,7 +38,7 @@
             android:id="@+id/btnNfcList"
             android:layout_width="0dp"
             android:layout_height="158dp"
-            android:layout_margin="0.2dp"
+            android:layout_margin="16dp"
             android:background="@drawable/selector_shadow"
             android:drawableTop="@drawable/main_nfclist"
             android:drawablePadding="-50dp"
@@ -57,7 +53,7 @@
             android:id="@+id/btnStartMfocAct"
             android:layout_width="0dp"
             android:layout_height="158dp"
-            android:layout_margin="0.2dp"
+            android:layout_margin="16dp"
             android:background="@drawable/selector_shadow"
             android:drawableTop="@drawable/main_mfoc"
             android:drawablePadding="-50dp"
@@ -72,7 +68,7 @@
             android:id="@+id/btnStartMfcukAct"
             android:layout_width="0dp"
             android:layout_height="158dp"
-            android:layout_margin="0.2dp"
+            android:layout_margin="16dp"
             android:background="@drawable/selector_shadow"
             android:drawableTop="@drawable/main_mfcuk"
             android:drawablePadding="-50dp"
@@ -87,7 +83,7 @@
             android:id="@+id/btnHardnested"
             android:layout_width="0dp"
             android:layout_height="158dp"
-            android:layout_margin="0.2dp"
+            android:layout_margin="16dp"
             android:background="@drawable/selector_shadow"
             android:drawableTop="@drawable/main_iterator"
             android:drawablePadding="-50dp"
@@ -96,6 +92,7 @@
             android:paddingBottom="28dp"
             android:text="@string/hardnested"
             android:textAllCaps="false"
+            android:visibility="gone"
             app:layout_columnWeight="1" />
 
 

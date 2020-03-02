@@ -42,19 +42,12 @@
     <string name="menu_title_newDevice">新设备</string>
     <string name="menu_title_allDevice">已连接</string>
 
-    <string name="poweredByWhat">由RRG发布\n由ProxGrind提供技术支持</string>
     <string name="common_tools">常用工具</string>
     <string name="device_init_success">设备初始化成功!</string>
-    <string name="device_name_proxmark3_rdv4rrg">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Proxmark3&lt;/big&gt;&lt;/big&gt;&lt;big&gt; Rdv4.0&lt;/big&gt;&lt;/p&gt;&lt;p&gt;固件: Rfid Research Group&lt;/p&gt;&lt;p&gt;&lt;small&gt;(OTG, 蓝牙)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="name_common_tools">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;常用&lt;/big&gt;&lt;/p&gt;&lt;p&gt;例如: 数据编辑&lt;/p&gt;&lt;p&gt;&lt;small&gt;(数据, 秘钥)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="main_app_about">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;关于&lt;/big&gt;&lt;/p&gt;&lt;p&gt;开发者: DXL&lt;p&gt;&lt;/p&gt;(RRG、PROXGRIND)&lt;/p&gt;&lt;p&gt;&lt;small&gt;(帮助, 更新)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_red_team">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;Red Team&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 终端&lt;/big&gt;&lt;/p&gt;&lt;p&gt;技术支持: PROXGRIND、RRG&lt;/p&gt;&lt;p&gt;&lt;small&gt;(高频, 低频)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_rdv4rrg_reader">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;读写器&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 界面&lt;/big&gt;&lt;/p&gt;&lt;p&gt;支持操作: 读、写&lt;/p&gt;&lt;p&gt;&lt;small&gt;(高频)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="function_name_scanner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;扫描器&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 自动化&lt;/big&gt;&lt;/p&gt;&lt;p&gt;支持: 高频, 低频&lt;/p&gt;&lt;p&gt;&lt;small&gt;(IC&lt;13.56MHZ&gt;, ID&lt;125KHZ or 其他 &gt;)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="discovery_device">发现设备</string>
-    <string name="history_device">历史设备</string>
     <string name="title_rdv4_function">Rdv4 功能</string>
-    <string name="title_devices_main"><![CDATA[设备 & 固件]]></string>
     <string name="console_send">发送/执行</string>
     <string name="console_clear_screen">清空屏幕</string>
     <string name="console_stop_exe">停止执行</string>
@@ -181,10 +174,6 @@
     <string name="connect_faild">连接失败</string>
     <string name="nfc_not_open">您的NFC未打开，无法使用该功能，请先打开您的NFC</string>
     <string name="open">打开</string>
-    <string name="device_name_standard_inner">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;标准NFC设备&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 内置&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读、写卡&lt;/p&gt;&lt;p&gt;&lt;small&gt;(简单, 快速)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_acr122u">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;龙杰122U&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 读写器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读写, 测试&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested测试)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_pn532">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;PN532&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 读写器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 读写, 测试&lt;/p&gt;&lt;p&gt;&lt;small&gt;(PRNG, Nested 测试)&lt;/small&gt;&lt;/p&gt;</string>
-    <string name="device_name_chamelon">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;&lt;big&gt;变色龙&lt;/big&gt;&lt;/big&gt;&lt;big&gt; 侦测器&lt;/big&gt;&lt;/p&gt;&lt;p&gt;功能: 侦测, 模拟&lt;/p&gt;&lt;p&gt;&lt;small&gt;(数据, 秘钥)&lt;/small&gt;&lt;/p&gt;</string>
     <string name="tips_data_select">数据选择:</string>
     <string name="operational_items">操作项目</string>
     <string name="tag_information">标签信息</string>
@@ -207,7 +196,6 @@
     <string name="data_invalid">数据异常</string>
     <string name="msg_sector_invalid">扇区无效</string>
     <string name="msg_block_invalid">块无效</string>
-    <string name="functions">功能集</string>
     <string name="reader">读写器</string>
     <string name="msg_connect_err_common">由于一些未知的原因导致连接失败，请检查您的设备是否正版、线路、电压，电流是否正常，或者您的设备使用的固件是否正确对应客户端版本!</string>
     <string name="msg_connect_122u">连接中，请稍后等，如果连接失败或者使用的过程出现一些意料之外的问题，有可能您使用的Acr122u是盗版产品，请认准龙杰官方正版产品，为您带来良好的体验!</string>

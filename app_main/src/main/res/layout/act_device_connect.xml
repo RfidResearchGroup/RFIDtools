@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
+        android:background="?android:selectableItemBackground"
+        app:itemIconTint="@color/color_state_menu_navi_main"
         app:menu="@menu/activity_device_connect" />
 
     <androidx.viewpager.widget.ViewPager

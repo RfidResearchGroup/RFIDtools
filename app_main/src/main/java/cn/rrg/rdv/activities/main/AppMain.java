@@ -70,10 +70,17 @@ public class AppMain extends BaseActivity {
 
     private void gotoFragment(Fragment fragment) {
         FragmentUtil.hides(getSupportFragmentManager(), fragment);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, fragment)
-                .commitAllowingStateLoss();
+        if (fragment.isAdded()) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(fragment)
+                    .commitAllowingStateLoss();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, fragment)
+                    .commitAllowingStateLoss();
+        }
     }
 
     @Override

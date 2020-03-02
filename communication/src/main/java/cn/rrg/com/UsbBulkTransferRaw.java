@@ -81,10 +81,7 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
 
     private void initAndCall(String name) {
         if (init()) {
-            Log.d(LOG_TAG, "UsbAcr122Raw 广播发现设备: " + name);
             mCallback.onAttach(name);
-        } else {
-            Log.d(LOG_TAG, "init failed!");
         }
     }
 

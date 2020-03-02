@@ -1,14 +1,20 @@
 package cn.rrg.rdv.fragment.base;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,20 +23,24 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import cn.dxl.common.util.AppUtil;
+import cn.dxl.mifare.StdMifareImpl;
+import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.chameleon.ChameleonGUIActivity;
 import cn.rrg.rdv.activities.connect.Acr122uHkUsbConnectActivity;
+import cn.rrg.rdv.activities.connect.ChameleonUsb2UartConnectActivity;
+import cn.rrg.rdv.activities.connect.PN532UartConnectActivity;
+import cn.rrg.rdv.activities.connect.PN53XUsbBulkTransferActivity;
+import cn.rrg.rdv.activities.connect.Proxmark3Rdv4RRGConnectActivity;
+import cn.rrg.rdv.activities.main.GeneralNfcDeviceMain;
 import cn.rrg.rdv.activities.main.PN53XNfcMain;
-import cn.rrg.rdv.application.RuntimeProperties;
+import cn.rrg.rdv.activities.main.Proxmark3Rdv4RRGMain;
 import cn.rrg.rdv.binder.BannerImageViewBinder;
 import cn.rrg.rdv.binder.DeviceInfoViewBinder;
 import cn.rrg.rdv.binder.TitleTextViewBinder;
 import cn.rrg.rdv.javabean.BannerBean;
 import cn.rrg.rdv.javabean.DeviceInfoBean;
 import cn.rrg.rdv.javabean.TitleTextBean;
-import cn.rrg.rdv.models.AbstractDeviceModel;
-import cn.rrg.rdv.models.Acr122uUsbRawModel;
-import cn.rrg.rdv.models.ChameleonUsb2UartModel;
-import cn.rrg.rdv.models.PN532Usb2UartModel;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -43,15 +53,27 @@ import me.drakeet.multitype.MultiTypeAdapter;
  */
 public class AppMainDevicesFragment extends BaseFragment {
 
-    private RecyclerView rvMainContainer;
+    public static String ACTION_CONNECTION_STATE_UPDATE = "AppMainDevicesFragment.connection_state_update";
+    public static String EXTRA_CONNECTION_STATE = "state";
 
-    private AbstractDeviceModel[] models;
-
-    //是否是横屏切换!
     private boolean isBackPressed = false;
+    private boolean isConnected = false;
 
     private MultiTypeAdapter multiTypeAdapter;
     private Items deviceItems;
+
+    private DeviceInfoBean deviceInfoBean;
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (ACTION_CONNECTION_STATE_UPDATE.equals(action)) {
+                isConnected = intent.getBooleanExtra(EXTRA_CONNECTION_STATE, false);
+                updateDeviceStatus(isConnected);
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -60,30 +82,31 @@ public class AppMainDevicesFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        initViews(view);
-        initActions();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        // USB_Device opt
-        models = new AbstractDeviceModel[]{
-                new Acr122uUsbRawModel(),
-                new ChameleonUsb2UartModel(),
-                new PN532Usb2UartModel()
-        };
-
-        for (AbstractDeviceModel model : models) {
-            model.register(view.getContext());
+        Context context = getContext();
+        if (context != null) {
+            LocalBroadcastManager.getInstance(context).registerReceiver(
+                    receiver, new IntentFilter(ACTION_CONNECTION_STATE_UPDATE)
+            );
         }
 
+        multiTypeAdapter = new MultiTypeAdapter();
+        deviceItems = new Items();
+        
+        initDeviceList(context);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initViews(view);
         initBanner();
-        initDeviceList();
-        initToolsList();
+        updateDeviceStatus(isConnected);
     }
 
     private void initViews(View view) {
-        rvMainContainer = view.findViewById(R.id.rvMainContainer);
-        multiTypeAdapter = new MultiTypeAdapter();
-        deviceItems = new Items();
+        RecyclerView rvMainContainer = view.findViewById(R.id.rvMainContainer);
         multiTypeAdapter.register(DeviceInfoBean.class, new DeviceInfoViewBinder());
         multiTypeAdapter.register(TitleTextBean.class, new TitleTextViewBinder());
         multiTypeAdapter.register(BannerBean.class, new BannerImageViewBinder());
@@ -107,33 +130,6 @@ public class AppMainDevicesFragment extends BaseFragment {
         rvMainContainer.setAdapter(multiTypeAdapter);
     }
 
-    private void initActions() {
-        /*StandardDriver sd = StandardDriver.get();
-        sd.register(context, null);
-        if (sd.getAdapter() != null) {
-            if (sd.getAdapter().isEnabled()) {
-                //设备已经连接，直接进入功能块!
-                startActivity(new Intent(context, GeneralNfcDeviceMain.class));
-            } else {
-                //设备未连接，进入连接块!
-                new AlertDialog.Builder(context).setTitle(R.string.tips)
-                        .setTitle(R.string.nfc_not_turned_on).setMessage(R.string.nfc_not_open)
-                        .setPositiveButton(getString(R.string.open), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Goto NFC Settings.
-                                startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
-                            }
-                        }).setNegativeButton(R.string.cancel, null).show();
-            }
-        } else {
-            //设备不支持NFC！
-            new AlertDialog.Builder(context).setTitle(R.string.error)
-                    .setTitle(R.string.nfc_not_supported).setMessage(R.string.msg_nfc_not_supported)
-                    .setPositiveButton(getString(R.string.ok), null).show();
-        }*/
-    }
-
     private void initBanner() {
         // 添加轮播图!
         BannerBean beanParent = new BannerBean();
@@ -149,30 +145,109 @@ public class AppMainDevicesFragment extends BaseFragment {
             tmpList.add(new BannerBean(url));
         }
         beanParent.setSubs(tmpList.toArray(new BannerBean[0]));
-        deviceItems.add(beanParent);
+        deviceItems.add(0, beanParent);
         multiTypeAdapter.notifyDataSetChanged();
     }
 
-    private void initDeviceList() {
+    private void initDeviceList(Context context) {
         // init device list!
-        deviceItems.add(new DeviceInfoBean("PhoneNFC Reader", R.drawable.phone_nfc_icon));
-        deviceItems.add(new DeviceInfoBean("Proxmark3 Rdv4.0", R.drawable.rdv4));
-        deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2));
-        deviceItems.add(new DeviceInfoBean("PN532 NXP Module", R.drawable.pn532core));
-        deviceItems.add(new DeviceInfoBean("ACR122U ACS", R.drawable.acr122u) {
+        deviceItems.add(new DeviceInfoBean("PhoneNFC Reader", R.drawable.phone_nfc_icon) {
             @Override
             public void onClick() {
-                if (!RuntimeProperties.isConnected) {
-                    startActivity(new Intent(getContext(), Acr122uHkUsbConnectActivity.class));
+                if (StdMifareImpl.hasMifareClassicSupport(context)) {
+                    if (StdMifareImpl.isNfcOpened(context)) {
+                        startActivity(new Intent(context, GeneralNfcDeviceMain.class));
+                    } else {
+                        new AlertDialog.Builder(context).setTitle(R.string.tips)
+                                .setTitle(R.string.nfc_not_turned_on).setMessage(R.string.nfc_not_open)
+                                .setPositiveButton(getString(R.string.open), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Goto NFC Settings.
+                                        startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
+                                    }
+                                }).setNegativeButton(R.string.cancel, null).show();
+                    }
                 } else {
-                    startActivity(new Intent(getContext(), PN53XNfcMain.class));
+                    new AlertDialog.Builder(context).setTitle(R.string.error)
+                            .setTitle(R.string.nfc_not_supported).setMessage(R.string.msg_nfc_not_supported)
+                            .setPositiveButton(getString(R.string.ok), null).show();
                 }
             }
         });
+        deviceItems.add(new DeviceInfoBean("Proxmark3 Rdv4.0", R.drawable.rdv4) {
+            @Override
+            public void onClick() {
+                deviceInfoBean = this;
+                connectOrGotoFunctionMain(
+                        Proxmark3Rdv4RRGConnectActivity.class,
+                        Proxmark3Rdv4RRGMain.class
+                );
+            }
+        });
+        deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2) {
+            @Override
+            public void onClick() {
+                deviceInfoBean = this;
+                connectOrGotoFunctionMain(
+                        ChameleonUsb2UartConnectActivity.class,
+                        ChameleonGUIActivity.class
+                );
+            }
+        });
+        deviceItems.add(new DeviceInfoBean(PN53X.NAME.PN532, R.drawable.pn532core) {
+            @Override
+            public void onClick() {
+                deviceInfoBean = this;
+                connectOrGotoFunctionMain(
+                        PN532UartConnectActivity.class,
+                        PN53XNfcMain.class
+                );
+            }
+        });
+        deviceItems.add(new DeviceInfoBean(PN53X.NAME.ACR122, R.drawable.acr122u) {
+            @Override
+            public void onClick() {
+                deviceInfoBean = this;
+                connectOrGotoFunctionMain(
+                        Acr122uHkUsbConnectActivity.class,
+                        PN53XNfcMain.class
+                );
+            }
+        });
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.NXP_PN533, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.NXP_PN531, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.SCM_SCL3711, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.SCM_SCL3712, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.SONY_PN531, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.SONY_RCS360, R.drawable.pn532core));
+        deviceItems.add(new PN53XDeviceInfoBean(PN53X.NAME.ASK_LOGO, R.drawable.pn532core));
         multiTypeAdapter.notifyDataSetChanged();
     }
 
-    private void initToolsList() {
+    private void updateDeviceStatus(boolean status) {
+        Log.d("TAG", "新状态：" + status);
+        // update device status to bean!
+        if (deviceInfoBean != null) {
+            deviceInfoBean.setEnable(status);
+        }
+        for (Object tmp : deviceItems) {
+            if (tmp instanceof DeviceInfoBean) {
+                if (tmp != deviceInfoBean) {
+                    ((DeviceInfoBean) tmp).setEnable(!status);
+                }
+            }
+        }
+        // update view from adapter!
+        multiTypeAdapter.notifyDataSetChanged();
+    }
+
+    private void connectOrGotoFunctionMain(Class connPage, Class main) {
+        if (isConnected) {
+            startActivity(new Intent(getContext(), main));
+        } else {
+            startActivity(new Intent(getContext(), connPage));
+        }
     }
 
     public void onBackPressed() {
@@ -187,8 +262,29 @@ public class AppMainDevicesFragment extends BaseFragment {
             AppUtil.getInstance().finishAll();
             System.exit(0);
         }
-        for (AbstractDeviceModel model : models) {
-            model.unregister(getContext());
+        Context context = getContext();
+        if (context != null) {
+            LocalBroadcastManager.getInstance(context).unregisterReceiver(receiver);
+        }
+    }
+
+    class PN53XDeviceInfoBean extends DeviceInfoBean {
+
+        PN53XDeviceInfoBean(@NonNull String name, int icon) {
+            super(name, icon);
+        }
+
+        @Override
+        public void onClick() {
+            deviceInfoBean = this;
+            if (isConnected) {
+                startActivity(
+                        new Intent(getContext(), PN53XNfcMain.class)
+                                .putExtra("name", getName())
+                );
+            } else {
+                startActivity(new Intent(getContext(), PN53XUsbBulkTransferActivity.class));
+            }
         }
     }
 }

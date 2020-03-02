@@ -5,9 +5,10 @@ import androidx.annotation.NonNull;
 
 public class DeviceInfoBean {
     @NonNull
-    public String name;
+    private String name;
     @DrawableRes
-    public int icon;
+    private int icon;
+    private boolean enable = true;
 
     public DeviceInfoBean(@NonNull String name, int icon) {
         this.name = name;
@@ -29,6 +30,14 @@ public class DeviceInfoBean {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public void onClick() {

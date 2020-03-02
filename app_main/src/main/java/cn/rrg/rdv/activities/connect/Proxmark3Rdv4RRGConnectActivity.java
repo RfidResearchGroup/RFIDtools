@@ -14,12 +14,12 @@ import cn.dxl.common.util.DisplayUtil;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.Proxmark3Rdv4RRGMain;
 import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
-import cn.rrg.rdv.application.RuntimeProperties;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.models.Proxmark3Rdv4SppModel;
 import cn.rrg.rdv.models.Proxmark3Rdv4UsbModel;
 import cn.dxl.common.util.PermissionUtil;
+import cn.rrg.rdv.util.Commons;
 
 /**
  * 专供RDV4连接设备
@@ -60,7 +60,7 @@ public class Proxmark3Rdv4RRGConnectActivity
     public String getConnectingMsg() {
         String msg = getString(R.string.progress_msg);
         msg += "\n\nFirmware: ";
-        String version = RuntimeProperties.PM3_CLIENT_VERSION;
+        String version = Commons.PM3_CLIENT_VERSION;
         msg += version + "\n\n";
         String tips = getString(R.string.tips_pm3_version);
         return msg + tips;

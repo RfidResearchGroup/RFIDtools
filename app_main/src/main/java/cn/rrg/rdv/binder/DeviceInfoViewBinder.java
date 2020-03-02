@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.javabean.DeviceInfoBean;
 import me.drakeet.multitype.ItemViewBinder;
@@ -34,13 +36,23 @@ public class DeviceInfoViewBinder extends ItemViewBinder<DeviceInfoBean, DeviceI
 
     @Override
     protected void onBindViewHolder(@NonNull DeviceInfoHolder holder, @NonNull DeviceInfoBean item) {
-        holder.icon.setImageResource(item.getIcon());
+        int iconRes = item.getIcon();
+        if (iconRes != -1) {
+            holder.icon.setImageResource(iconRes);
+        } else {
+            holder.icon.setVisibility(View.GONE);
+        }
         holder.txtName.setText(item.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                item.onClick();
-            }
-        });
+        if (item.isEnable()) {
+            holder.itemView.setEnabled(true);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.onClick();
+                }
+            });
+        } else {
+            holder.itemView.setEnabled(false);
+        }
     }
 }

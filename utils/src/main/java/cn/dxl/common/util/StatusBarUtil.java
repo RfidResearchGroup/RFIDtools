@@ -77,6 +77,24 @@ public class StatusBarUtil {
         }
     }
 
+    /**
+     *     * 修改NavigationBar按键颜色 两色可选【黑，白】
+     *     *
+     */
+    public static void setLightNavigationBar(Activity activity, boolean light) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int vis = activity.getWindow().getDecorView().getSystemUiVisibility();
+            if (light) {
+                vis |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;  // 黑色
+
+            } else {
+                //白色
+                vis &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            }
+            activity.getWindow().getDecorView().setSystemUiVisibility(vis);
+        }
+    }
+
 
     /**
      * 代码实现android:fitsSystemWindows

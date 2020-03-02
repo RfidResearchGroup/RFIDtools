@@ -104,6 +104,8 @@
             android:name=".activities.main.AppMain"
             android:screenOrientation="nosensor" />
 
+        <activity android:name=".activities.connect.PN53XUsbBulkTransferActivity" />
+
     </application>
 
 </manifest>
