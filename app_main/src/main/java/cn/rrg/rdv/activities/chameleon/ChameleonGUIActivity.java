@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import cn.dxl.common.util.FileUtils;
+import cn.dxl.common.util.IOUtils;
 import cn.dxl.common.widget.FilesSelectorDialog;
 import cn.rrg.chameleon.defined.BasicTypesCallback;
 import cn.rrg.chameleon.defined.ChameleonCMDSet;
@@ -41,19 +43,19 @@ import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.defined.ResultCallback;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.activities.tools.ChameleonSoltAliasesActivity;
-import cn.rrg.rdv.activities.tools.DumpActivity;
+import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.application.Properties;
 import cn.dxl.common.posixio.Communication;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.callback.DumpCallback;
 import cn.rrg.rdv.models.DumpModel;
 import cn.dxl.common.widget.FillParentWidthDialog;
+import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
 import cn.dxl.common.util.RestartUtils;
 import cn.dxl.common.util.SpinnerInitState;
 import cn.dxl.common.util.StringUtil;
 import cn.dxl.common.widget.ToastUtil;
-import cn.dxl.common.util.FileUtil;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.implement.ItemSelectedListenerImpl;
 import cn.dxl.common.util.ViewUtil;
@@ -169,13 +171,13 @@ public class ChameleonGUIActivity
                             return;
                         }
                         //进行迭代，追加写入!
-                        FileOutputStream fos = FileUtil.getFos(keyFile, true);
+                        FileOutputStream fos = FileUtils.getFos(keyFile, true);
                         for (ResultBean bean : resultBeanList) {
                             String key = bean.getKey() + "\n";
                             fos.write(key.getBytes());
                         }
                         //谨记关闭输出流!
-                        FileUtil.close(fos);
+                        IOUtils.close(fos);
                         showToast(getString(R.string.finish));
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -523,31 +525,9 @@ public class ChameleonGUIActivity
                     } else {
                         showToast("下载失败!");
                     }
-                    //进行转换!
-                    //Log.d(LOG_TAG, "本次接收到的字节数: " + bos.size());
                     byte[] result = Arrays.copyOfRange(bos.toByteArray(), 0, size);
-                    //Log.d(LOG_TAG, "本次接收到的数据: \n" + HexUtil.dumpHexString(result));
-                    //写入到实际文件!
-                    FileUtil.writeBytes(result, file, false);
-                    //调用dump编辑器进行显示!
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            new AlertDialog.Builder(context)
-                                    .setTitle(R.string.tips)
-                                    .setMessage("从变色龙内存中下载扇区数据貌似成功了，需要调用Dump编辑器显示么?")
-                                    .setPositiveButton("显示", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            startActivity(new Intent(context, DumpActivity.class)
-                                                    .putExtra("isConnected", false)
-                                                    .putExtra("isFileMode", true)
-                                                    .putExtra("file", file.getAbsolutePath()));
-                                        }
-                                    })
-                                    .setNegativeButton("不用", null).show();
-                        }
-                    });
+                    FileUtils.writeBytes(result, file, false);
+                    Commons.gotoDumpEdit(ChameleonGUIActivity.this, file);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -571,7 +551,7 @@ public class ChameleonGUIActivity
                             Communication com = ExecutorImpl.getInstance().getCom();
                             XModem128 modem = new XModem128(com);
                             new FilesSelectorDialog.Builder(context)
-                                    .setTitle("选择上载文件(二进制)!")
+                                    .setTitle(R.string.tips_data_select)
                                     .setCancelable(false)
                                     .setCanDismiss(false)
                                     .setPathOnLoad(Paths.DUMP_DIRECTORY)
@@ -591,9 +571,9 @@ public class ChameleonGUIActivity
                                                                 }
                                                                 ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
                                                                 if (modem.send(bis)) {
-                                                                    showToast("上传成功!");
+                                                                    showToast(getString(R.string.success));
                                                                 } else {
-                                                                    showToast("上传失败!");
+                                                                    showToast(getString(R.string.failed));
                                                                 }
                                                             } catch (IOException ioe) {
                                                                 ioe.printStackTrace();

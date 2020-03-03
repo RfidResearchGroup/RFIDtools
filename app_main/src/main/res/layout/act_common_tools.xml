@@ -6,13 +6,9 @@
     android:background="@color/md_grey_100"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <cn.dxl.common.widget.StatusBarHeightView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/toolbarStyle"
-        app:popupTheme="@style/popMenuStyle"
-        app:title="@string/common_tools" />
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -92,7 +88,8 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="8dp"
                 android:text="@string/data_diff"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btnUnionKeyEditor"
@@ -122,7 +119,8 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="8dp"
                 android:text="@string/format_covert"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="gone" />
 
         </LinearLayout>
 

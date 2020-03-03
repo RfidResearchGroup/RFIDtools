@@ -1,5 +1,6 @@
 package cn.rrg.rdv.util;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -7,13 +8,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RadioGroup;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cn.dxl.common.util.FileUtils;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.javabean.DevBean;
-import cn.dxl.common.util.MyArrays;
+import cn.dxl.common.util.ArrayUtils;
 
 /**
  * Created by DXL on 2017/10/27.
@@ -115,7 +119,7 @@ public class Commons {
         } else {
             return null;
         }
-        return MyArrays.list2Arr(devList);
+        return ArrayUtils.list2Arr(devList);
     }
 
     //设备是否是USB设备!
@@ -129,5 +133,25 @@ public class Commons {
                 return true;
         }
         return false;
+    }
+
+    public static void gotoDumpEdit(Activity activity, File file) {
+        if (activity == null || file == null) return;
+        activity.startActivity(
+                new Intent(activity, DumpEditActivity.class)
+                        .putExtra("file", file.getAbsolutePath())
+        );
+    }
+
+    public static File createInternalDump(String name) {
+        File ret = new File(Paths.DUMP_DIRECTORY + File.separator + name);
+        FileUtils.createFile(ret);
+        return ret;
+    }
+
+    public static File createInternalKey(String name) {
+        File ret = new File(Paths.KEY_DIRECTORY + File.separator + name);
+        FileUtils.createFile(ret);
+        return ret;
     }
 }

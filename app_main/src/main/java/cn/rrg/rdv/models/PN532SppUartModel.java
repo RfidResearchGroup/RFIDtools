@@ -3,14 +3,9 @@ package cn.rrg.rdv.models;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
-import java.io.File;
-
-import cn.dxl.common.util.FileUtil;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.Device;
 import cn.rrg.devices.PN53X;
-import cn.rrg.rdv.callback.ConnectCallback;
-import cn.rrg.rdv.util.Paths;
 
 /*
  * PN53X连接实现!

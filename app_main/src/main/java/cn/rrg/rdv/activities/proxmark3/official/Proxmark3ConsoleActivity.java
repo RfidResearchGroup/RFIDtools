@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 
 import java.io.File;
 
+import cn.dxl.common.util.FileUtils;
 import cn.rrg.console.define.ICommandType;
 import cn.rrg.freo.IORedirector;
 import cn.rrg.console.define.ICommandTools;
@@ -18,7 +19,6 @@ import cn.rrg.rdv.activities.tools.BaseConsoleActivity;
 import cn.rrg.rdv.implement.EntryICommandType;
 import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.R;
-import cn.dxl.common.util.FileUtil;
 
 public abstract class Proxmark3ConsoleActivity
         extends BaseConsoleActivity
@@ -58,7 +58,7 @@ public abstract class Proxmark3ConsoleActivity
 
     //通过键盘输入结束任务!
     protected void stopPM3Client4KeyBorad() {
-        FileUtil.writeString(new File(Paths.COMMON_FORWARD_I), "\n", true);
+        FileUtils.writeString(new File(Paths.COMMON_FORWARD_I), "\n", true);
     }
 
     @Override

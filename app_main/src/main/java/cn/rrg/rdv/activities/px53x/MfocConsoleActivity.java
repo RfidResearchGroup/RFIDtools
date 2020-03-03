@@ -2,7 +2,9 @@ package cn.rrg.rdv.activities.px53x;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import androidx.appcompat.app.AlertDialog;
+
 import android.util.Log;
 import android.view.View;
 
@@ -11,7 +13,8 @@ import java.io.File;
 import cn.rrg.console.define.ICommandTools;
 import cn.rrg.console.define.ICommandType;
 import cn.rrg.natives.MfocTools;
-import cn.rrg.rdv.activities.tools.DumpActivity;
+import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.util.DumpUtils;
 import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.util.UnionAction;
@@ -86,23 +89,7 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
 
     @Override
     protected int startTest(ICommandTools cmd) {
-        //判断联动密钥是否可用，拼接进去!
-        String[] keys = UnionAction.getKeys();
-        StringBuilder keyContact = new StringBuilder();
-        if (keys.length >= 1) {
-            for (String key : keys) {
-                //判断需不需要添加!
-                if (!isDefaultKeys(key)) {
-                    keyContact.append("-k ").append(key).append(" ");
-                }
-            }
-        }
-        mDefaultCMD = "mfoc " + keyContact.toString() + " -O " + mDefaultDumpFile;
-        Log.d(LOG_TAG, "测试输出命令: " + mDefaultCMD);
-        if (!isTesting()) {
-            //没有正在执行的任务，先清空可能缓存的联动数据!
-            UnionAction.removeData();
-        }
+        mDefaultCMD = "mfoc " + " -O " + mDefaultDumpFile;
         //执行父类，进行真正的逻辑判断，检查输入与是否在执行，进行下一步的操作!
         mIsRequsetMode = true;
         return super.startTest(cmd);
@@ -145,9 +132,9 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
                 @Override
                 public void run() {
                     new AlertDialog.Builder(MfocConsoleActivity.this)
-                            .setTitle("请求跳转")
-                            .setMessage("我们发现您的卡片是全加密，因此mfoc半加测试无法继续进行，是否允许我们请求mfcuk全加测试探测一个有效密钥?")
-                            .setPositiveButton("允许请求", new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.tips)
+                            .setMessage(R.string.tips_mfcuk_request)
+                            .setPositiveButton(R.string.go2, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     isNeedRequestMfcuk = true;
@@ -161,7 +148,7 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
                                     finish();
                                 }
                             })
-                            .setNegativeButton("我再玩玩", null)
+                            .setNegativeButton(R.string.no, null)
                             .show();
                 }
             });
@@ -179,7 +166,7 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
         for (String line : datas) {
             Log.d(LOG_TAG, "line: " + line);
             if (!DumpUtils.isBlockData(line)) {
-                showToast("解析出来的数据格式有误!");
+                showToast(getString(R.string.error));
                 return;
             }
         }
@@ -189,14 +176,14 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
                 public void run() {
                     //先提醒用户是否需要跳转!
                     new AlertDialog.Builder(mContext)
-                            .setTitle("请求跳转")
-                            .setMessage("我们发现了可能有效的数据，需要我们跳转到Dump编辑器显示这个数据么?")
-                            .setPositiveButton("需要", new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.tips)
+                            .setMessage(R.string.tips_mfoc_data_found)
+                            .setPositiveButton(R.string.go2, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //拥有足够的扇区数据，可以被解析显示!
                                     //TODO 因为控制台的输出有点问题，因此不能直接利用，需要打开输出的dump！
-                                    Intent intent = new Intent(mContext, DumpActivity.class);
+                                    Intent intent = new Intent(mContext, DumpEditActivity.class);
                                     intent.putExtra("isFileMode", true);
                                     intent.putExtra("isConnected", true);
                                     intent.putExtra("file", mDefaultDumpFile);
@@ -207,7 +194,7 @@ public class MfocConsoleActivity extends PN53XConsoleActivity {
                                     finish();
                                 }
                             })
-                            .setNegativeButton("不需要", null).show();
+                            .setNegativeButton(R.string.no, null).show();
                 }
             });
         }

@@ -2,7 +2,7 @@ package cn.rrg.chameleon.utils;
 
 import java.util.List;
 
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MfDataUtils;
 import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.javabean.DetectionDatas;
 import cn.rrg.mfkey.NativeMfKey32;
@@ -125,8 +125,8 @@ public class ChameleonDetection {
                         //如果成功，则拼装解密的结果!
                         ResultBean resultBean = new ResultBean();
                         resultBean.setId(HexUtil.toHexString(resultUtil.getUid()));
-                        resultBean.setSector(MifareUtils.blockToSector(data1.getBlock()));
-                        resultBean.setBlock(MifareUtils.getIndexOnSector(data1.getBlock(), resultBean.getSector()));
+                        resultBean.setSector(MfDataUtils.blockToSector(data1.getBlock()));
+                        resultBean.setBlock(MfDataUtils.getIndexOnSector(data1.getBlock(), resultBean.getSector()));
                         resultBean.setKeyA(data1.getType() == 1);
                         resultBean.setKey(key);
                         //拼装完成，进行解密!
@@ -161,8 +161,8 @@ public class ChameleonDetection {
                 //如果成功，则拼装解密的结果!
                 ResultBean resultBean = new ResultBean();
                 resultBean.setId(HexUtil.toHexString(resultUtil.getUid()));
-                resultBean.setSector(MifareUtils.blockToSector(d1.getBlock()));
-                resultBean.setBlock(MifareUtils.getIndexOnSector(d1.getBlock(), resultBean.getSector()));
+                resultBean.setSector(MfDataUtils.blockToSector(d1.getBlock()));
+                resultBean.setBlock(MfDataUtils.getIndexOnSector(d1.getBlock(), resultBean.getSector()));
                 resultBean.setKeyA(d1.getType() == 0);
                 resultBean.setKey(key);
                 //拼装完成，进行解密!

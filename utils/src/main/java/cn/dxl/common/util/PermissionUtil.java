@@ -65,7 +65,7 @@ public class PermissionUtil {
                 }
             }
             //缓存丢失的权限!
-            permissionLose = MyArrays.list2Arr(list);
+            permissionLose = ArrayUtils.list2Arr(list);
             //如果检查到的权限无法通过处理，则进行其他操作!
             callback.onPermissionLose(this);
         }

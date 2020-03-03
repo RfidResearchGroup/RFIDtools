@@ -22,7 +22,7 @@ import cn.rrg.rdv.view.FileReadLineView;
 import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.LineEqualUtil;
 import cn.rrg.rdv.util.Paths;
-import cn.dxl.common.util.MyArrays;
+import cn.dxl.common.util.ArrayUtils;
 import cn.dxl.common.widget.ToastUtil;
 
 public class DumpEqualActivity extends BaseActivity implements FileReadLineView {
@@ -74,7 +74,7 @@ public class DumpEqualActivity extends BaseActivity implements FileReadLineView 
             }
             //设置ID
             fileId = 1;
-            onReadFinish(MyArrays.list2Arr(data));
+            onReadFinish(ArrayUtils.list2Arr(data));
         }
     }
 
@@ -171,7 +171,7 @@ public class DumpEqualActivity extends BaseActivity implements FileReadLineView 
         if (canStart) {
             //已经可以进行对比!
             LineEqualUtil leu = new LineEqualUtil();
-            leu.putData(MyArrays.list2Arr(mData1), MyArrays.list2Arr(mData2));
+            leu.putData(ArrayUtils.list2Arr(mData1), ArrayUtils.list2Arr(mData2));
             String[] result = leu.finalResult();
             int blockDiffCount = leu.getBlockDiffCount();
             int allDiffCount = leu.getAllDiffCount();

@@ -40,7 +40,6 @@ public abstract class AbsStandardM1Activity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.act_std_mf_main);
 
         viewPager = findViewById(R.id.vpContainer);
@@ -79,13 +78,9 @@ public abstract class AbsStandardM1Activity
                 if (i == 1) {
                     //隐藏底部的导航栏!
                     setBnvAnimationAndVisible(false);
-                    //隐藏视图，触发动画！
-                    DisplayUtil.dismissStatusAndNavigationBar(activity);
                 } else {
                     //是0，则是第一个页面，我们需要显示底部的导航栏!
                     setBnvAnimationAndVisible(true);
-                    //显示视图，触发动画！
-                    DisplayUtil.showStatusAndNavigationBar(activity);
                 }
             }
         });

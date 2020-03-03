@@ -8,4 +8,5 @@
     <string name="loading">加载中...</string>
     <string name="empty_dir">空目录</string>
     <string name="save">保存</string>
+    <string name="item">项</string>
 </resources>

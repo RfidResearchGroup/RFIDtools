@@ -3,7 +3,7 @@ package cn.rrg.rdv.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import cn.dxl.common.util.MyArrays;
+import cn.dxl.common.util.ArrayUtils;
 import cn.dxl.common.util.StringUtil;
 
 /*
@@ -99,9 +99,9 @@ public class LineEqualUtil {
                 //进行判断，输出的格式为left 在上，right在下,x填充符在中!
                 for (int k = 0; k < max; k++) {
                     //判断达到了上限，即将越界，需要严格把控!
-                    String top = MyArrays.getElement(left, k);
+                    String top = ArrayUtils.getElement(left, k);
                     //Log.d("***", "当前的对比的上行数据 " + k + ": " + top);
-                    String bottom = MyArrays.getElement(right, k);
+                    String bottom = ArrayUtils.getElement(right, k);
                     //Log.d("***", "当前的对比的下行数据 " + k + ": " + bottom);
                     //进行最终的判断!
                     String xStr = x(top, bottom);

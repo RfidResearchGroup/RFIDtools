@@ -1,6 +1,7 @@
 package cn.dxl.common.util;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -9,14 +10,13 @@ import android.os.Build;
 
 public class ContextUtil {
 
-    private Context context;
+    private static Application context = AppUtil.getInstance().getApp();
 
-    public ContextUtil(Context context) {
-        this.context = context;
+    public ContextUtil() {
     }
 
     //根据colorId得到颜色
-    public int getColor(int colorId) {
+    public static int getColor(int colorId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(colorId);
         }
@@ -24,7 +24,7 @@ public class ContextUtil {
     }
 
     //根据drawableId得到drawable对象
-    public Drawable getDrawable(int drawableId) {
+    public static Drawable getDrawable(int drawableId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getDrawable(drawableId);
         }
@@ -32,7 +32,7 @@ public class ContextUtil {
     }
 
     //复制文本到剪贴板
-    public void copyStr2Clipborad(String label, String content) {
+    public static void copyStr2Clipborad(String label, String content) {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboardManager == null) return;
         //创建ClipData对象

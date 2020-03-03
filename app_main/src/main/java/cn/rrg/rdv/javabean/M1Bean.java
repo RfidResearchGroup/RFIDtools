@@ -1,6 +1,9 @@
 package cn.rrg.rdv.javabean;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class M1Bean implements Serializable {
 
@@ -9,7 +12,19 @@ public class M1Bean implements Serializable {
     //数据块的数据
     private String[] datas;
 
-    public int getSector() { 
+    public M1Bean() {
+    }
+
+    public M1Bean(int sector) {
+        this.sector = sector;
+    }
+
+    public M1Bean(int sector, String[] datas) {
+        this.sector = sector;
+        this.datas = datas;
+    }
+
+    public int getSector() {
         return sector;
     }
 
@@ -25,4 +40,12 @@ public class M1Bean implements Serializable {
         this.datas = datas;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "M1Bean{" +
+                "sector=" + sector +
+                ", datas=" + Arrays.toString(datas) +
+                '}';
+    }
 }

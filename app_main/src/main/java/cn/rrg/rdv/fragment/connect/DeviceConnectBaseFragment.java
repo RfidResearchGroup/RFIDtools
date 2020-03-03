@@ -138,13 +138,16 @@ public abstract class DeviceConnectBaseFragment
             dialogConnectTips.dismiss();
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.warning).setMessage(getString(R.string.cancel_tips))
-                    .setCancelable(false).show();
-            //断开链接
-            onDisconnect();
-            //销毁当前栈中所有的实例!
-            AppUtil.getInstance().finishAll();
-            //重启APP
-            RestartUtils.restartAPP(getContext());
+                    .setCancelable(false).setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //断开链接
+                    onDisconnect();
+                    //销毁当前栈中所有的实例!
+                    AppUtil.getInstance().finishAll();
+                    showToast(getString(R.string.tips_app_reopen));
+                }
+            }).show();
         });
         //设置对话框视图
         dialogConnectTips.setView(msgView);
@@ -184,27 +187,6 @@ public abstract class DeviceConnectBaseFragment
 
     @Override
     public void onRegisterError(String name) {
-        if (name == null) {
-            return;
-        }
-        //这里做一下控制，设备驱动没有注册时，应当怎么做？
-        switch (name) {
-            case "spp":
-                //TODO 待实现的spp注册异常处理
-                showToast(name);
-                break;
-
-            case "usb":
-                //TODO 待实现的usb注册异常处理
-                showToast(name);
-                break;
-
-            case "not":
-                //TODO 待实现的非spp和usb类型异常处理!
-                showToast(name);
-                break;
-        }
-        //showToast("在注册驱动: " + name + " 时出现异常，请重启程序!");
     }
 
     @Override

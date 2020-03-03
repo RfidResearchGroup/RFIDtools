@@ -94,7 +94,7 @@ public class AppMainDevicesFragment extends BaseFragment {
 
         multiTypeAdapter = new MultiTypeAdapter();
         deviceItems = new Items();
-        
+
         initDeviceList(context);
     }
 

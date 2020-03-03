@@ -3,6 +3,7 @@ package cn.dxl.common.util;
 import android.util.Log;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 public class HexUtil {
     private final static char[] HEX_DIGITS = {
@@ -71,6 +72,7 @@ public class HexUtil {
     }
 
     public static String toHexString(byte[] array) {
+        if (array == null) return null;
         return toHexString(array, 0, array.length);
     }
 
@@ -93,6 +95,16 @@ public class HexUtil {
 
     public static String toHexString(short i) {
         return toHexString(toByteArray(i));
+    }
+
+    public static String decorateHex(String hexStr) {
+        StringBuilder sb = new StringBuilder();
+        char[] charArr = hexStr.toCharArray();
+        for (int i = 0; i < charArr.length; i += 2) {
+            sb.append("0x").append(charArr[i])
+                    .append(charArr[i + 1]).append(" ");
+        }
+        return sb.toString();
     }
 
     public static byte[] toByteArray(byte b) {
@@ -133,6 +145,57 @@ public class HexUtil {
         return 0;
     }
 
+    public static int toInt(byte b) {
+        return b & 0xFF;
+    }
+
+    public static int toIntFrom2Byte(byte[] b) {
+        return Integer.parseInt(toHexString(b), 16);
+    }
+
+    /**
+     * 拆分byte数组
+     *
+     * @param bytes 要拆分的数组
+     * @param size  要按几个组成一份
+     * @return
+     */
+    public static byte[][] splitBytes(byte[] bytes, int size) {
+        double splitLength = Double.parseDouble(size + "");
+        int arrayLength = (int) Math.ceil(bytes.length / splitLength);
+        byte[][] result = new byte[arrayLength][];
+        int from, to;
+        for (int i = 0; i < arrayLength; i++) {
+            from = (int) (i * splitLength);
+            to = (int) (from + splitLength);
+            if (to > bytes.length)
+                to = bytes.length;
+            result[i] = Arrays.copyOfRange(bytes, from, to);
+        }
+        return result;
+    }
+
+    public static byte[] bytesMerge(byte[]... arrs) {
+        byte[] ret = new byte[byteArraysLength(arrs)];
+        int pos = 0;
+        for (byte[] tmp : arrs) {
+            if (tmp != null && tmp.length > 0) {
+                System.arraycopy(tmp, 0, ret, pos, tmp.length);
+                pos += tmp.length;
+            }
+        }
+        return ret;
+    }
+
+    public static int byteArraysLength(byte[]... arrs) {
+        int ret = 0;
+        for (byte[] tmp : arrs) {
+            if (tmp != null)
+                ret += tmp.length;
+        }
+        return ret;
+    }
+
     public static int byteArrayToInt(byte[] b) {
         return (b[3] & 0xFF) |
                 (b[2] & 0xFF) << 8 |
@@ -163,14 +226,14 @@ public class HexUtil {
     }
 
     public static byte[] hexStringToByteArray(String hexString) {
+        if (hexString == null) return null;
+        if (hexString.length() == 0) return null;
         int length = hexString.length();
         byte[] buffer = new byte[length / 2];
-
         for (int i = 0; i < length; i += 2) {
             buffer[i / 2] = (byte) ((toByte(hexString.charAt(i)) << 4) | toByte(hexString
                     .charAt(i + 1)));
         }
-
         return buffer;
     }
 
@@ -180,6 +243,9 @@ public class HexUtil {
 
     //判断是否是十六进制格式的字符串
     public static boolean isHexString(String str) {
-        return str.matches("[0-9a-fA-F]+");
+        if (str == null) return false;
+        if (str.matches("[0-9a-fA-F]+")) return true;
+        if (str.matches("0x[0-9a-fA-F]+")) return true;
+        return str.matches("0x[0-9a-fA-F] +");
     }
 }

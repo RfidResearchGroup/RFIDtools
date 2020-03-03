@@ -69,7 +69,7 @@
     <string name="device_init_err">Device init error, please check your client version…</string>
     <string name="title_connecting">Connecting in progress!</string>
     <string name="title_connect_cancel">Cancel</string>
-    <string name="cancel_tips">Restart in progress!</string>
+    <string name="cancel_tips">An unknown exception will occur when unlinking. You need to restart the program!</string>
     <string name="progress_msg">Currently you have a task running，please wait for task to finish!</string>
     <string name="tips_gui_not_support">Not yet supported or not required!</string>
     <string name="title_panel">Easy Button Panel</string>
@@ -261,5 +261,11 @@
     <string name="msg_darkside_support">The card supports Darkside</string>
     <string name="main">Main</string>
     <string name="tools">Tools</string>
+    <string name="tips_app_reopen">Please reopen the app.</string>
+    <string name="successful">Successful</string>
+    <string name="tips_enter_dump_name">Enter a file name for the dump:</string>
+    <string name="tips_mfcuk_request">We found that your card is fully encrypted, so the MFOC half plus test can\'t continue. Is it allowed for us to request the mfcuk full plus test to detect a valid key?</string>
+    <string name="tips_mfoc_data_found">We found possible valid data. Do we need to jump to dump editor to display this data?</string>
+    <string name="list">List</string>
 
 </resources>

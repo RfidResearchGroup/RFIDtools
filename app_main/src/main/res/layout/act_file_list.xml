@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.dxl.common.widget.StatusPenddingView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:orientation="vertical">
+
+    <cn.dxl.common.widget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -30,7 +32,7 @@
                     android:paddingTop="8dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="8dp"
-                    android:text="Edit"
+                    android:text="@string/list"
                     android:textColor="@color/md_grey_800"
                     android:textSize="23sp" />
 
@@ -48,11 +50,11 @@
                         android:paddingEnd="8dp">
 
                         <ImageButton
-                            android:id="@+id/btnSaveChange"
+                            android:id="@+id/btnAdd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="?android:selectableItemBackground"
-                            android:src="@drawable/ic_save_black_24dp" />
+                            android:src="@drawable/ic_add_black_24dp" />
 
                     </LinearLayout>
 
@@ -62,28 +64,13 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!--显示dump文件的信息，使用edittext填充-->
-        <androidx.core.widget.NestedScrollView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDumpList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <EditText
-                android:id="@+id/editText_edtKeyFile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:typeface="monospace" />
-
-        </androidx.core.widget.NestedScrollView>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <TextView
-        android:id="@+id/txtShowKeyEditError"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:gravity="center" />
-
-</cn.dxl.common.widget.StatusPenddingView>
+</LinearLayout>
