@@ -3,7 +3,7 @@ package cn.dxl.mifare;
 /*
  * MifareClassic标签用得到的工具!
  * */
-public class MifareUtils {
+public class MfDataUtils {
 
     public static boolean validateSector(int sector) {
         // Do not be too strict on upper bounds checking, since some cards

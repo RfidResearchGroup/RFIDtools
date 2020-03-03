@@ -3,9 +3,10 @@ package cn.rrg.rdv.models;
 import java.io.File;
 import java.io.IOException;
 
+import cn.dxl.common.util.FileUtils;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.callback.DumpCallback;
 import cn.rrg.rdv.util.DumpUtils;
-import cn.dxl.common.util.FileUtil;
 
 /*
  * 负责dump底层数据操作,mvc中属于M层
@@ -24,7 +25,7 @@ public class DumpModel {
         //得到读取到的字节数组
         byte[] bs = new byte[0];
         try {
-            bs = FileUtil.readBytes(txtFile);
+            bs = FileUtils.readBytes(txtFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,6 +64,7 @@ public class DumpModel {
      * 保存内容
      */
     public static void saveDumpModify(DumpCallback callback, String[] src, File dump) {
+        LogUtils.d("保存到: " + dump);
         if (dump != null) {
             StringBuilder sb = new StringBuilder();
             if (src == null) {
@@ -95,6 +97,7 @@ public class DumpModel {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    callback.onFileException();
                     return;
                 }
             }
@@ -105,7 +108,7 @@ public class DumpModel {
                 return;
             }
             //将数组写进文件中
-            FileUtil.writeString(dump, decorate, false);
+            FileUtils.writeString(dump, decorate, false);
             callback.onSuccess();
         } else {
             callback.onFileException();

@@ -47,9 +47,8 @@
         </activity>
 
         <activity android:name=".activities.tools.KeyFileEditActivity" />
-        <activity android:name=".activities.tools.UnionActionActivity" />
         <activity android:name=".activities.tools.DumpEqualActivity" />
-        <activity android:name=".activities.tools.DumpActivity" />
+        <activity android:name=".activities.tools.DumpEditActivity" />
         <activity android:name=".activities.tools.FormatCovertActivity" />
         <activity android:name=".activities.tools.ChameleonSoltAliasesActivity" />
         <activity android:name=".fragment.tools.ToolsAccessFragment" />
@@ -105,6 +104,8 @@
             android:screenOrientation="nosensor" />
 
         <activity android:name=".activities.connect.PN53XUsbBulkTransferActivity" />
+        <activity android:name=".activities.tools.DumpListActivity" />
+        <activity android:name=".activities.tools.KeyFileListActivity" />
 
     </application>
 

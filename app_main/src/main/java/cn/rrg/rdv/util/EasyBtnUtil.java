@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.dxl.common.util.FileUtils;
 import cn.rrg.rdv.javabean.EasyCMDEntry;
-import cn.dxl.common.util.FileUtil;
 
 /*
  * 动态按钮的操作工具!
@@ -23,7 +23,7 @@ public class EasyBtnUtil {
      * */
     public int getGroupCount() {
         try {
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             return array.size();
@@ -38,7 +38,7 @@ public class EasyBtnUtil {
      * */
     public int getButtonCount(int group) {
         try {
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             JSONArray innerArr = array.getJSONArray(group);
@@ -54,7 +54,7 @@ public class EasyBtnUtil {
      * */
     public EasyCMDEntry getButton(int group, int buttonPosition) {
         try {
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             JSONArray innerArr = array.getJSONArray(group);
@@ -86,7 +86,7 @@ public class EasyBtnUtil {
      * */
     public boolean deteleGroup(int group) {
         try {
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             array.remove(group);
@@ -107,7 +107,7 @@ public class EasyBtnUtil {
     public boolean deleteButton(int group, int button) {
         try {
             button += 1;
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             JSONArray innerArr = array.getJSONArray(group);
@@ -129,7 +129,7 @@ public class EasyBtnUtil {
     public boolean inertGroup(String name) {
         try {
             //根数组对象
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             //建立一个新的组，并且放入一个组名键值对元素!
@@ -156,7 +156,7 @@ public class EasyBtnUtil {
     public boolean inertButton(int group, String name, String cmd) {
         try {
             //根数组对象
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             //建立一个新的组，并且放入一个组名键值对元素!
@@ -183,7 +183,7 @@ public class EasyBtnUtil {
     public boolean updateGroup(int group, String name) {
         try {
             //根数组对象
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             //建立一个新的组，并且放入一个组名键值对元素!
@@ -209,7 +209,7 @@ public class EasyBtnUtil {
         try {
             button += 1;
             //根数组对象
-            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtil.readBytes(cmdXmlFile)));
+            JSONObject jsonObject = JSONObject.parseObject(new String(FileUtils.readBytes(cmdXmlFile)));
             //得到一个组对象，这个数组种存放了一个键值对的数组，也就是一个二维数组!
             JSONArray array = jsonObject.getJSONArray("group");
             //建立一个新的组，并且放入一个组名键值对元素!

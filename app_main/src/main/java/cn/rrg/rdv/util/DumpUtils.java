@@ -1,15 +1,19 @@
 package cn.rrg.rdv.util;
 
-import android.util.Log;
+import android.net.Uri;
+import android.nfc.tech.MifareClassic;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.RegexGroupUtil;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MfDataUtils;
 import cn.rrg.rdv.javabean.M1Bean;
 import cn.rrg.rdv.javabean.M1KeyBean;
 
@@ -18,17 +22,40 @@ public class DumpUtils {
 
     private static final String LOG_TAG = DumpUtils.class.getSimpleName();
 
-    //没有密钥时的填充
-    public static final String NO_KEY = "************";
-    //没有数据时的填充
-    public static final String NO_DAT = "################################";
-    //没有尾部块的时候的填充
-    public static final String NO_TRAIL = "????????";
     //默认的空数据!
     public static final String BLANK_DATA = "00000000000000000000000000000000";
+    // 默认的秘钥
+    public static final String BLANK_KEY = "FFFFFFFFFFFF";
+    // 默认的尾部块
+    public static final String BLANK_TRAIL = "FF078069";
+    // 空的尾部块!
+    public static final String BLANK_TRAIL_BLOCK = BLANK_KEY + BLANK_TRAIL + BLANK_KEY;
+    //没有密钥时的填充
+    public static final String NO_KEY = "*FFFFFFFFFFF";
+    //没有数据时的填充
+    public static final String NO_DAT = "*0000000000000000000000000000000";
+    //没有尾部块的时候的填充
+    public static final String NO_TRAIL = "*F078069";
     //默认的空尾部块!
-    public static final String BLANK_TRAIL = "FFFFFFFFFFFFFF078069FFFFFFFFFFFF";
+    public static final String NO_TRAIL_BLOCK = NO_KEY + NO_TRAIL + NO_KEY;
 
+    // 默认秘钥!
+    public final static String[] KEY_DEFAULT = new String[]{
+            "FFFFFFFFFFFF",
+            "A0A1A2A3A4A5",
+            "D3F7D3F7D3F7",
+            "000000000000",
+            "A0B0C0D0E0F0",
+            "A1B1C1D1E1F1",
+            "B0B1B2B3B4B5",
+            "4D3A99C351DD",
+            "1A982C7E459A",
+            "AABBCCDDEEFF"
+    };
+
+    public final static byte[][] KEY_DEFAULT_BYTE = mergeHexKeys(KEY_DEFAULT);
+
+    public final static long MAX_DUMP_FILE_SIZE = FileUtils.Size.KB * 10;
 
     /*
      * 由于卡的种类问题，扇区数不能固定，块数量也不能固定
@@ -51,14 +78,49 @@ public class DumpUtils {
     public static final int TYPE_BIN = 2;
     public static final int TYPE_NOT = -1;
 
+    // 将秘钥字符串数组转换为秘钥字节数组!
+    public static byte[][] mergeHexKeys(String[] hexKeys) {
+        byte[][] ret = new byte[hexKeys.length][];
+        for (int i = 0; i < ret.length; i++) {
+            // 将字符串转为字节!
+            ret[i] = HexUtil.hexStringToByteArray(hexKeys[i]);
+        }
+        return ret;
+    }
+
     //判断是否是注释行
     public static boolean isAnnotaion(String str) {
         return str.trim().startsWith("#");
     }
 
+    // 根据扇区号来获取相应的空扇区!
+    public static M1Bean getEmptyM1Bean(int sector) {
+        M1Bean ret = new M1Bean();
+        int blockCount = MfDataUtils.getBlockCountInSector(sector);
+        String[] datas = new String[blockCount];
+        for (int i = 0; i < blockCount; i++) {
+            datas[i] = i < (blockCount - 1) ? BLANK_DATA : BLANK_TRAIL_BLOCK;
+        }
+        ret.setDatas(datas);
+        ret.setSector(sector);
+        return ret;
+    }
+
     //判断是否是密钥格式
     public static boolean isKeyFormat(String key) {
         return HexUtil.isHexString(key) && key.length() == 12;
+    }
+
+    // 是否是正常的块数据!
+    public static boolean isBlocksValids(String[] datas) {
+        switch (datas.length) {
+            case MifareClassic.SIZE_1K / MifareClassic.BLOCK_SIZE:
+            case MifareClassic.SIZE_2K / MifareClassic.BLOCK_SIZE:
+            case MifareClassic.SIZE_4K / MifareClassic.BLOCK_SIZE:
+                return true;
+        }
+        // LogUtils.d("检测的长度: " + datas.length);
+        return false;
     }
 
     //提取密钥
@@ -234,19 +296,20 @@ public class DumpUtils {
             if (!isDataChar(cs[i])) {
                 //如果当前不是数据字符，则移动指针到上一位(也是顺序下一位)
                 pos = i + 1;
-                Log.d(LOG_TAG, "非数据字符，跳过");
+                // Log.d(LOG_TAG, "非数据字符，跳过");
                 break;
             }
         }
         //走常规的判断应当从尾部开始截取,直到遇见任何非16进制字符或者非注释字符时停止并获得定位
         if (pos == 0) {
-            Log.d(LOG_TAG, "定位在0,直接返回原字符串: " + str);
+            // Log.d(LOG_TAG, "定位在0,直接返回原字符串: " + str);
             return str;
         } else {
             ret = str.substring(pos);
-            Log.d(LOG_TAG, "定位不为零，返回经过裁剪后的: " + ret);
+            // Log.d(LOG_TAG, "定位不为零，返回经过裁剪后的: " + ret);
         }
-        return ret;
+        // 修复非有效块依旧返回的问题!
+        return isValidBlockData(ret) ? ret : null;
     }
 
     /*
@@ -265,26 +328,10 @@ public class DumpUtils {
      */
     public static byte[][] getBin(byte[] data) {
         if (data == null) return null;
-        byte[][] ret;
-        if (data.length == 1024 || data.length == 4096) {
-            //深入判断，将每一行抽取出来
-            if (data.length == 1024) {
-                ret = new byte[64][16];
-            } else {
-                ret = new byte[256][16];
-            }
-            //抽取个扇区
-            for (int i = 0, j = 0; i < data.length; i += 16, ++j) {
-                //裁剪
-                byte[] bs = new byte[16];
-                System.arraycopy(data, i, bs, 0, bs.length);
-                //转换为HEX
-                String hexStr = HexUtil.toHexString(bs);
-                if (!isBlockData(hexStr)) return null;
-                //储存进二维数组中!
-                ret[j] = bs;
-            }
-            return ret;
+        if (data.length == MifareClassic.SIZE_1K ||
+                data.length == MifareClassic.SIZE_2K ||
+                data.length == MifareClassic.SIZE_4K) {
+            return HexUtil.splitBytes(data, 16);
         } else {
             return null;
         }
@@ -313,7 +360,7 @@ public class DumpUtils {
         //转换为字符串
         String dataStr = new String(data);
         //根据换行符进行切割字符串
-        String[] dataLines = dataStr.split(getSystemLF("unix"));
+        String[] dataLines = splitDump(dataStr);
         //进行有效数据的判断切割
         for (int i = 0; i < dataLines.length; i++) {
             //判断一下，如果数据有效，则追加进字符串构造器中
@@ -328,7 +375,7 @@ public class DumpUtils {
             } else {
                 //如果大于32个字符则需要尝试截取一下
                 String vaildData = cutVaildData(dataLines[i]);
-                Log.d(LOG_TAG, "测试输出数据: " + vaildData);
+                // Log.d(LOG_TAG, "测试输出数据: " + vaildData);
                 //数据裁剪成功，添加进数据集中
                 if (vaildData != null) sb.append(vaildData);
                 //判断是否需要换行
@@ -340,9 +387,9 @@ public class DumpUtils {
         //分别符合1K,2K,4K的规范!
         //判断块数量，严格控制规范，使块数量在64或者256之间
         if (ret.length == 64 || ret.length == 128 || ret.length == 256) {
-            for (String b : ret) {
+            /*for (String b : ret) {
                 Log.d(LOG_TAG, "测试输出截取结果: " + b);
-            }
+            }*/
             return ret;
         } else {
             return null;
@@ -391,11 +438,13 @@ public class DumpUtils {
         //输出流，把字节输出到buf，初始大小1024，4k时自动扩展!
         ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
         //进行迭代
-        for (int i = 0; i < datas.length; i++) {
+        for (String data : datas) {
             //进行转换
-            byte[] _tmps = HexUtil.hexStringToByteArray(datas[i]);
+            byte[] _tmps = HexUtil.hexStringToByteArray(data);
             try {
-                baos.write(_tmps);
+                if (_tmps != null) {
+                    baos.write(_tmps);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -443,28 +492,34 @@ public class DumpUtils {
          * */
         //调用已经封装的字节数组转String数组的方法
         String[] blocks = getTxt(bytes);
+        return decorate(blocks);
+    }
+
+    public static String decorate(String[] bytes) {
         //根据规范，当块的数量是64时，他是1K卡（S50），有16个扇区
         //如果是256个块时，他是4K卡（S70）
-        if (blocks == null)
+        if (bytes == null) {
+            // LogUtils.d("decorate()函数截取失败!");
             return null;
-        if (blocks.length != 64 && blocks.length != 256)
+        }
+        if (bytes.length != 64 && bytes.length != 128 && bytes.length != 256)
             return null;
         String label = "+Sector: ";
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < blocks.length; i++) {
+        for (int i = 0; i < bytes.length; i++) {
             //当前是每个扇区的起始块！
             if (isHeader(i)) {
                 //添加扇区修饰，使数据可被MCT识别!
                 sb.append(label).append(toSector(i)).append('\n');
                 //继而将这个起始扇区写在后面
-                sb.append(blocks[i]).append('\n');
+                sb.append(bytes[i]).append('\n');
             } else {
-                if (i == blocks.length - 1) {
+                if (i == bytes.length - 1) {
                     //已经在最结尾的一行，不需要换行
-                    sb.append(blocks[i]);
+                    sb.append(bytes[i]);
                 } else {
                     //需要换行
-                    sb.append(blocks[i]).append('\n');
+                    sb.append(bytes[i]).append('\n');
                 }
             }
         }
@@ -525,6 +580,13 @@ public class DumpUtils {
      * */
     public static String[] mergeDatas(ArrayList<M1Bean> beans) {
         StringBuilder sb = new StringBuilder();
+        // 排序一下!l
+        Collections.sort(beans, new Comparator<M1Bean>() {
+            @Override
+            public int compare(M1Bean o1, M1Bean o2) {
+                return Integer.compare(o1.getSector(), o2.getSector());
+            }
+        });
         for (int i = 0; i < beans.size(); i++) {
             //取出bean
             M1Bean bean = beans.get(i);
@@ -557,10 +619,10 @@ public class DumpUtils {
         for (int i = 0; i < blockCount; ) {
             M1Bean bean = new M1Bean();
             //获取当前的扇区
-            int sector = MifareUtils.blockToSector(i);
+            int sector = MfDataUtils.blockToSector(i);
             bean.setSector(sector);
             //获取当前的块数量统计!
-            int blockCountInSecrot = MifareUtils.getBlockCountInSector(sector);
+            int blockCountInSecrot = MfDataUtils.getBlockCountInSector(sector);
             String[] dataArray = new String[blockCountInSecrot];
             //进行迭代添加!
             for (int j = i, k = 0; j < blockCountInSecrot; ++j, ++k) {
@@ -575,9 +637,15 @@ public class DumpUtils {
         return rets.toArray(new M1Bean[0]);
     }
 
+    // 是否整个块都是零!
+    public static boolean isBlockAllZero(String block) {
+        if (block == null) return true;
+        return block.matches("[0]{32}");
+    }
+
     //实现合并读取结果
     public static M1Bean mergeBean(M1Bean aBean, M1Bean bBean) {
-        M1Bean ret = null;
+        M1Bean ret;
         //判断某个bean是否可用
         if (aBean == null || bBean == null) {
             if (aBean != null) {
@@ -586,18 +654,23 @@ public class DumpUtils {
             if (bBean != null) {
                 return bBean;
             }
-            return null;
+            return getEmptyM1Bean(0);
         }
-        ret = new M1Bean();
-        //否则将数据进行对比合并
-        int last = aBean.getDatas().length - 1;
         //初始化结果bean
-        ret.setSector(aBean.getSector());
+        ret = new M1Bean(bBean.getSector());
+        //否则将数据进行对比合并
+        String[] aBeanDatas = aBean.getDatas();
+        if (aBeanDatas == null) {
+            aBean = getEmptyM1Bean(aBean.getSector());
+            aBeanDatas = aBean.getDatas();
+        }
+        int last = aBeanDatas.length - 1;
         //建立数据保存数组
         String[] datas = new String[aBean.getDatas().length];
         //取出块数据
-        String[] tmpA = aBean.getDatas();
-        String[] tmpB = bBean.getDatas();
+        String[] tmpA = aBeanDatas;
+        String[] tmpB = bBean.getDatas() == null ?
+                getEmptyM1Bean(bBean.getSector()).getDatas() : bBean.getDatas();
         for (int i = 0; i <= last; ++i) {
             //先判断两组块数据是否相同
             if (tmpA[i].equals(tmpB[i])) {
@@ -605,32 +678,54 @@ public class DumpUtils {
                 datas[i] = tmpA[i];
             } else {
                 if (i != last) {
-                    //否则判断哪个数据是有效的
-                    //将有效的数据合并到ret中
-                    if (DumpUtils.isBlockData(tmpA[i])) {
-                        datas[i] = tmpA[i];
-                    } else if (DumpUtils.isBlockData(tmpB[i])) {
-                        datas[i] = tmpB[i];
+                    //否则判断哪个数据是有效的,如果全部为零则优先考虑其他的情况!
+                    //将有效的数据合并到ret中，优先用KeyB的数据!
+                    boolean isADataAllZero = isBlockAllZero(tmpA[i]);
+                    boolean isBDataAllZero = isBlockAllZero(tmpB[i]);
+                    // 两者都是零，说明数据真的是0
+                    if (isADataAllZero && isBDataAllZero) {
+                        // 开始选择用正确的数据
+                        if (DumpUtils.isBlockData(tmpB[i])) {
+                            datas[i] = tmpB[i];
+                        } else if (DumpUtils.isBlockData(tmpA[i])) {
+                            datas[i] = tmpA[i];
+                        } else {
+                            //不符合数据规范，填充异常字符，跳过操作
+                            datas[i] = DumpUtils.BLANK_DATA;
+                        }
                     } else {
-                        //不符合数据规范，填充异常字符，跳过操作
-                        datas[i] = tmpA[i];
+                        // 开始选择用正确的数据
+                        if (DumpUtils.isBlockData(tmpB[i]) && isADataAllZero) {
+                            datas[i] = tmpB[i];
+                        } else if (DumpUtils.isBlockData(tmpA[i]) && isBDataAllZero) {
+                            datas[i] = tmpA[i];
+                        } else {
+                            //不符合数据规范，填充异常字符，跳过操作
+                            datas[i] = DumpUtils.BLANK_DATA;
+                        }
                     }
                 } else {
                     //判断bBean的块数据非空
                     //并且aBean中密钥B不可读的情况下
                     //才能将bBean中的数据传入到ret中
                     //得到控制位
-                    if (DumpUtils.isBlockData(tmpB[i])) {
-                        //有效的尾部块
-                        String opera = (tmpB[i]).substring(12, 20);
-                        if (!AccessBitUtil.isKeyBReadable(HexUtil.hexStringToByteArray(opera))) {
-                            datas[i] = tmpB[i];
-                        } else {
-                            datas[i] = tmpA[i];
-                        }
-                    } else {
-                        //有效的尾部块
+                    boolean isADataTrialerAllDefault = tmpA[i].equalsIgnoreCase(BLANK_TRAIL_BLOCK);
+                    boolean isBDataTrialerAllDefault = tmpB[i].equalsIgnoreCase(BLANK_TRAIL_BLOCK);
+                    // 两者皆为默认，暂且认定为真的数据就是这个!
+                    if (isADataTrialerAllDefault && isBDataTrialerAllDefault) {
+                        // 随便填充一个就行了!
                         datas[i] = tmpA[i];
+                    } else {
+                        if (DumpUtils.isBlockData(tmpB[i]) && isADataTrialerAllDefault) {
+                            //有效的尾部块
+                            datas[i] = tmpB[i];
+                        } else if (DumpUtils.isBlockData(tmpA[i]) && isBDataTrialerAllDefault) {
+                            datas[i] = tmpA[i];
+                        } else {
+                            //有效的尾部块
+                            // 置空尾部块！
+                            datas[i] = DumpUtils.BLANK_TRAIL_BLOCK;
+                        }
                     }
                 }
 
@@ -644,20 +739,26 @@ public class DumpUtils {
     public static void updateTrailer(M1Bean dB, M1KeyBean kB) {
         if (dB == null || kB == null) return;
         if (dB.getSector() != kB.getSector()) return;
+        String[] datas = dB.getDatas();
+        if (datas == null) {
+            dB = getEmptyM1Bean(dB.getSector());
+            datas = dB.getDatas();
+        }
         //有些时候，我们可以验证成功，但是无法读取操作数据块，此时，我们还是可以将密钥更新进数据集中
-        int lastIndex = dB.getDatas().length - 1;
+        int lastIndex = datas.length - 1;
         String last = dB.getDatas()[lastIndex];
         if (last.length() != 32) {
             //修复越界异常，我们进行判断并且跳过操作!
-            Log.d(LOG_TAG, "****************");
+            /*Log.d(LOG_TAG, "****************");
+            Log.d(LOG_TAG, "Update position: " + dB.getSector());
             Log.d(LOG_TAG, "Invalid content: " + last);
             Log.d(LOG_TAG, "Invalid length: " + last.length());
-            Log.d(LOG_TAG, "****************");
+            Log.d(LOG_TAG, "****************");*/
             return;
         }
         //截取到最后一个块（尾部块），然后把有效密钥更新进去
-        String _kA = kB.getKeyA();
-        String _kB = kB.getKeyB();
+        String _kA = kB.getKeyA().replaceAll("\\*", "F");
+        String _kB = kB.getKeyB().replaceAll("\\*", "F");
         //更新密钥进去
         last = _kA + last.substring(12, 32);
         last = last.substring(0, 20) + _kB;
@@ -684,5 +785,91 @@ public class DumpUtils {
                 break;
         }
         return ret;
+    }
+
+    public static M1Bean[] getSectorFromArray(String[] contents) {
+        ArrayList<M1Bean> retList = new ArrayList<>();
+        if (contents != null) {
+            // 类型判断!
+            boolean is4K = contents.length == MifareClassic.SIZE_4K / MifareClassic.BLOCK_SIZE;
+            boolean is2K = contents.length == MifareClassic.SIZE_2K / MifareClassic.BLOCK_SIZE;
+            boolean is1K = contents.length == MifareClassic.SIZE_1K / MifareClassic.BLOCK_SIZE;
+            boolean is1S = contents.length == 4 || contents.length == 16;
+            if (is4K || is2K || is1K) {
+                //1K卡,2K卡!
+                M1Bean bean = null;
+                String[] _tmps = null;
+                for (int i = 0; i < contents.length; ) {
+                    // 进行尾部的判断，如果是256的扇区的话我们需要进行偏移量的重新设置!
+                    int count = MfDataUtils.getBlockCountInSector(MfDataUtils.blockToSector(i));
+                    if (DumpUtils.isHeader(i)) {
+                        //在首部块!
+                        bean = new M1Bean();
+                        _tmps = new String[count];
+                    }
+                    //进行偏移拷贝!
+                    if (_tmps != null)
+                        System.arraycopy(contents, i, _tmps, 0, count);
+                    if (bean != null) {
+                        bean.setDatas(_tmps);
+                        bean.setSector(DumpUtils.toSector(i));
+                    }
+                    //结束(将结果添加至集合中)
+                    retList.add(bean);
+                    i += count;
+                }
+            }
+            if (is1S) { // 一个扇区!
+                M1Bean b1 = new M1Bean();
+                b1.setDatas(contents);
+                retList.add(b1);
+            }
+        }
+        return retList.toArray(new M1Bean[0]);
+    }
+
+    public static boolean isDump(File file) {
+        if (file == null) return false;
+        // 大于50k的数据也认为不是正确的数据!
+        if (file.length() > MAX_DUMP_FILE_SIZE) return false;
+        if (file.exists() && file.isFile()) {
+            try {
+                return getType(FileUtils.readBytes(file)) != TYPE_NOT;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDump(byte[] data) {
+        if (data == null) return false;
+        // 大于50k的数据也认为不是正确的数据!
+        if (data.length > MAX_DUMP_FILE_SIZE) return false;
+        return getType(data) != TYPE_NOT;
+    }
+
+    public static boolean isDump(Uri uri) {
+        byte[] data = readDump(uri);
+        if (data == null) return false;
+        return isDump(data);
+    }
+
+    public static byte[] readDump(Uri uri) {
+        try {
+            return FileUtils.readBytes(uri, -1, MAX_DUMP_FILE_SIZE, -1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static M1Bean[] readDumpBeans(Uri uri) {
+        byte[] hexDat = readDump(uri);
+        if (hexDat == null) return null;
+        String decorate = decorate(hexDat);
+        if (decorate == null) return null;
+        return getSectorFromArray(splitDump(decorate));
     }
 }

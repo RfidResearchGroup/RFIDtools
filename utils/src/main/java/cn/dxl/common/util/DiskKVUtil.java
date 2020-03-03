@@ -23,7 +23,7 @@ public class DiskKVUtil {
      */
     public static void update2Disk(String key, String value, File file) throws IOException {
         //由键值对到底层持久化的实现
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         //迭代判断行!
         for (int i = 0; i < dats.length; i++) {
@@ -41,7 +41,7 @@ public class DiskKVUtil {
         }
         String result = StringUtil.arr2Str(dats, "\n", true);
         //重新写入到磁盘!
-        FileUtil.writeBytes(result.getBytes(), file, false);
+        FileUtils.writeBytes(result.getBytes(), file, false);
     }
 
     /**
@@ -53,7 +53,7 @@ public class DiskKVUtil {
      */
     public static void update2Disk(String key, String[] value, File file) throws IOException {
         //由键值对到底层持久化的实现
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         //迭代判断行!
         for (int i = 0, j = 0; i < dats.length; i++) {
@@ -77,7 +77,7 @@ public class DiskKVUtil {
         }
         String result = StringUtil.arr2Str(dats, "\n", true);
         //重新写入到磁盘!
-        FileUtil.writeBytes(result.getBytes(), file, false);
+        FileUtils.writeBytes(result.getBytes(), file, false);
     }
 
     /**
@@ -89,7 +89,7 @@ public class DiskKVUtil {
      * @throws IOException 操作出现的各种问题!
      */
     public static String[] queryKVLine(String key, File file) throws IOException {
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         ArrayList<String> valueList = new ArrayList<>(16);
         for (String line : dats) {
@@ -110,7 +110,7 @@ public class DiskKVUtil {
      * @return 对应的键是否存在于配置文件中!
      */
     public static boolean isKVExists(String key, File file) throws IOException {
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         for (String line : dats) {
             //如果是注释则跳过处理
@@ -130,7 +130,7 @@ public class DiskKVUtil {
      * @return 对应的键是否存在于配置文件中!
      */
     public static boolean isKVExists(String key, String value, File file) throws IOException {
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         for (String line : dats) {
             //如果是注释则跳过处理
@@ -149,7 +149,7 @@ public class DiskKVUtil {
      */
     public static void insertKV(String key, String value, File file) throws IOException {
         String line = warp2KvLine(key, value) + "\n";
-        FileUtil.writeBytes(line.getBytes(), file, true);
+        FileUtils.writeBytes(line.getBytes(), file, true);
     }
 
     /**
@@ -159,7 +159,7 @@ public class DiskKVUtil {
      * @param file 操作的文件
      */
     public static void deleteKV(String key, File file) throws IOException {
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         ArrayList<String> valueList = new ArrayList<>(16);
         for (String line : dats) {
@@ -168,7 +168,7 @@ public class DiskKVUtil {
             }
         }
         String ret = StringUtil.arr2Str(valueList.toArray(new String[0]), "\n", true);
-        FileUtil.writeBytes(ret.getBytes(), file, false);
+        FileUtils.writeBytes(ret.getBytes(), file, false);
     }
 
     /**
@@ -179,7 +179,7 @@ public class DiskKVUtil {
      * @param file  操作的文件
      */
     public static void deleteKV(String key, String value, File file) throws IOException {
-        byte[] dataBuf = FileUtil.readBytes(file);
+        byte[] dataBuf = FileUtils.readBytes(file);
         String[] dats = new String(dataBuf).split("\n");
         ArrayList<String> valueList = new ArrayList<>(16);
         for (String line : dats) {
@@ -189,7 +189,7 @@ public class DiskKVUtil {
             }
         }
         String ret = StringUtil.arr2Str(valueList.toArray(new String[0]), "\n", true);
-        FileUtil.writeBytes(ret.getBytes(), file, false);
+        FileUtils.writeBytes(ret.getBytes(), file, false);
     }
 
     public static char toChar(String v, char defaultVar) {

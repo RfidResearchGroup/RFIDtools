@@ -18,11 +18,11 @@ import android.widget.Toast;
 import java.io.File;
 
 import cn.dxl.common.util.AppUtil;
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.widget.FilesSelectorDialog;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.util.Commons;
-import cn.dxl.common.util.FileUtil;
 import cn.rrg.rdv.util.Paths;
 import cn.dxl.common.util.RestartUtils;
 import cn.dxl.common.widget.ToastUtil;
@@ -114,7 +114,7 @@ public class AboutActicity extends BaseActivity {
                         .setOnSelectListener(new FilesSelectorDialog.OnSelectListener() {
                             @Override
                             public void selected(File file) {
-                                FileUtil.shareFile(AboutActicity.this, file);
+                                FileUtils.shareFile(file);
                             }
                         })
                         .create().show();
@@ -131,7 +131,7 @@ public class AboutActicity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(AboutActicity.this, getString(R.string.cleaning), Toast.LENGTH_SHORT).show();
-                                FileUtil.delete(new File(Paths.TOOLS_DIRECTORY));
+                                FileUtils.delete(new File(Paths.TOOLS_DIRECTORY));
                                 Toast.makeText(AboutActicity.this, getString(R.string.clearFinish), Toast.LENGTH_SHORT).show();
                                 //必须重启APP
                                 RestartUtils.restartAPP(AboutActicity.this, 1000, new RestartUtils.OnExitAction() {

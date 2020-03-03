@@ -6,10 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import cn.dxl.common.util.FileUtil;
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.mifare.MifareAdapter;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MfDataUtils;
 import cn.rrg.rdv.callback.KeysAuthCallback;
 import cn.rrg.rdv.javabean.M1KeyBean;
 import cn.rrg.rdv.util.DumpUtils;
@@ -73,7 +73,7 @@ public abstract class AbsTagKeysCheckModel extends AbsStopableTask {
             //读取出所有的密钥
             String[] _keyList;
             try {
-                _keyList = FileUtil.readLines(f, "[A-Fa-f0-9]{12}");
+                _keyList = FileUtils.readLines(f, "[A-Fa-f0-9]{12}");
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;
@@ -177,7 +177,7 @@ public abstract class AbsTagKeysCheckModel extends AbsStopableTask {
     private void authkeysInSector(int sector, KeysAuthCallback callBack) {
         // 初始化标签
         MifareAdapter stdMf = getTag();
-        if (!MifareUtils.validateSector(sector)) {
+        if (!MfDataUtils.validateSector(sector)) {
             //不是有效的扇区，可能是出现了BUG
             callBack.onResults(null);
             return;

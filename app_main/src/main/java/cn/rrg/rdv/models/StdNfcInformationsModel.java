@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import cn.dxl.common.util.FileUtil;
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.GlobalTag;
@@ -97,7 +97,7 @@ public class StdNfcInformationsModel {
 
                 try {
                     //读取本地的HTML模板文件!
-                    byte[] templateBytes = FileUtil.readBytes(template_mifare_info);
+                    byte[] templateBytes = FileUtils.readBytes(template_mifare_info);
                     String htmlSr = new String(templateBytes);
                     //替换信息!
                     htmlSr = htmlSr.replaceAll("\\$\\{UID\\}", uid);
@@ -124,7 +124,7 @@ public class StdNfcInformationsModel {
                 // Set error message.
                 try {
                     //读取本地的HTML模板文件!
-                    byte[] templateBytes = FileUtil.readBytes(template_tag_info);
+                    byte[] templateBytes = FileUtils.readBytes(template_tag_info);
                     String htmlSr = new String(templateBytes);
                     //替换信息!
                     htmlSr = htmlSr.replaceAll("\\$\\{UID\\}", uid);

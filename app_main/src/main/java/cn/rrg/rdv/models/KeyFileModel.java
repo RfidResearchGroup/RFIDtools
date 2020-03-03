@@ -3,9 +3,9 @@ package cn.rrg.rdv.models;
 import java.io.File;
 import java.io.IOException;
 
+import cn.dxl.common.util.FileUtils;
 import cn.rrg.rdv.callback.KeyFileCallbak;
 import cn.rrg.rdv.util.DumpUtils;
-import cn.dxl.common.util.FileUtil;
 import cn.rrg.rdv.util.Paths;
 import cn.dxl.common.util.StringUtil;
 
@@ -18,7 +18,7 @@ public class KeyFileModel {
     public static void getKeyString(String file, final KeyFileCallbak.KeyFileReadCallbak callback) {
         final String[] keyList;
         try {
-            keyList = FileUtil.readLines(new File(file));
+            keyList = FileUtils.readLines(new File(file));
         } catch (IOException e) {
             e.printStackTrace();
             return;
@@ -59,7 +59,7 @@ public class KeyFileModel {
             //写文件并且回调结果
             File _tmpFile = new File(file);
             if (_tmpFile.exists() && _tmpFile.isFile()) {
-                FileUtil.writeString(_tmpFile, keyStr, false);
+                FileUtils.writeString(_tmpFile, keyStr, false);
                 callback.onWriteSuccess("Success");
             } else {
                 callback.onWriteFail();

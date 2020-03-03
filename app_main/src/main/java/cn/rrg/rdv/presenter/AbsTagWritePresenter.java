@@ -1,6 +1,6 @@
 package cn.rrg.rdv.presenter;
 
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MfDataUtils;
 import cn.rrg.rdv.javabean.M1KeyBean;
 import cn.rrg.rdv.callback.WriterCallback;
 import cn.rrg.rdv.models.AbsTagWriteModel;
@@ -42,7 +42,7 @@ public abstract class AbsTagWritePresenter extends BasePresenter<TagWriteView> {
             if (data != null && keyBeans != null && keyBeans.length > 0 && sector != -1 && block != -1) {
                 writeModel = getWriteModel();
                 writeModel.reset();
-                block = MifareUtils.sectorToBlock(sector) + block;
+                block = MfDataUtils.sectorToBlock(sector) + block;
                 writeModel.writeBlock(
                         view.isWriteManufacturerAllow(),
                         block, keyBeans[0],
@@ -76,7 +76,7 @@ public abstract class AbsTagWritePresenter extends BasePresenter<TagWriteView> {
             if (data != null && keyBeans != null && keyBeans.length > 0 && sector != -1 && block != -1) {
                 writeModel = getWriteModel();
                 writeModel.reset();
-                block = MifareUtils.sectorToBlock(sector) + block;
+                block = MfDataUtils.sectorToBlock(sector) + block;
                 writeModel.writeBlock(block, data, callback);
             }
         }

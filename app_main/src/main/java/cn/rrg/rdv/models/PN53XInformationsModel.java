@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import cn.dxl.common.application.App;
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.FileUtil;
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.rrg.natives.SpclMf;
 import cn.rrg.rdv.R;
@@ -41,7 +41,7 @@ public class PN53XInformationsModel {
 
                     try {
                         //读取本地的HTML模板文件!
-                        byte[] templateBytes = FileUtil.readBytes(template_mifare_info);
+                        byte[] templateBytes = FileUtils.readBytes(template_mifare_info);
                         String htmlSr = new String(templateBytes);
                         //替换信息!
                         htmlSr = htmlSr.replaceAll("\\$\\{UID\\}", uid);

@@ -157,8 +157,6 @@
                 android:paddingRight="10dp"
                 android:text="@string/title_select_dump_files" />
 
-            <include layout="@layout/file_select_init_list" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

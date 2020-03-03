@@ -262,5 +262,10 @@
     <string name="main">Main</string>
     <string name="tools">Tools</string>
     <string name="tips_app_reopen">Please reopen the app.</string>
+    <string name="successful">Successful</string>
+    <string name="tips_enter_dump_name">Enter a file name for the dump:</string>
+    <string name="tips_mfcuk_request">We found that your card is fully encrypted, so the MFOC half plus test can\'t continue. Is it allowed for us to request the mfcuk full plus test to detect a valid key?</string>
+    <string name="tips_mfoc_data_found">We found possible valid data. Do we need to jump to dump editor to display this data?</string>
+    <string name="list">List</string>
 
 </resources>

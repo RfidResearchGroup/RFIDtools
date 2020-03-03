@@ -17,6 +17,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="48dp"
-        android:src="@drawable/ic_refresh_black_24dp" />
+        android:src="@drawable/ic_refresh_white_24dp" />
 
 </RelativeLayout>

@@ -3,8 +3,8 @@ package cn.rrg.rdv.models;
 import java.io.File;
 import java.io.IOException;
 
+import cn.dxl.common.util.FileUtils;
 import cn.rrg.rdv.callback.FileReadLineCallback;
-import cn.dxl.common.util.FileUtil;
 
 public class FileReadLineModel {
 
@@ -16,7 +16,7 @@ public class FileReadLineModel {
             @Override
             public void run() {
                 try {
-                    String[] ret = FileUtil.readLines(file);
+                    String[] ret = FileUtils.readLines(file);
                     callback.onReadFinish(ret);
                 } catch (IOException e) {
                     e.printStackTrace();

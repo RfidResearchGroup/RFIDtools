@@ -7,7 +7,7 @@ import java.util.List;
 /*
  * 一些数组，集合操作的封装类!
  * */
-public class MyArrays {
+public class ArrayUtils {
     //将字符串链表或者数列转换为一般字符串数组
     public static <T> T[] list2Arr(List<T> list) {
         if (list == null) return null;

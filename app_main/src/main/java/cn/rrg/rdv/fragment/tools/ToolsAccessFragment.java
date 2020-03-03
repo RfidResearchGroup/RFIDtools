@@ -13,14 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.activities.main.BaseActivity;
-import cn.rrg.rdv.activities.tools.DumpActivity;
+import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.activities.tools.DumpEqualActivity;
+import cn.rrg.rdv.activities.tools.DumpListActivity;
+import cn.rrg.rdv.activities.tools.FileListActivity;
 import cn.rrg.rdv.activities.tools.FormatCovertActivity;
 import cn.rrg.rdv.activities.tools.KeyFileEditActivity;
+import cn.rrg.rdv.activities.tools.KeyFileListActivity;
 import cn.rrg.rdv.activities.tools.MfKey32ConsoleActivity;
 import cn.rrg.rdv.activities.tools.MfKey64ConsoleActivity;
-import cn.rrg.rdv.activities.tools.UnionActionActivity;
 import cn.rrg.rdv.fragment.base.BaseFragment;
 
 public class ToolsAccessFragment
@@ -67,7 +68,7 @@ public class ToolsAccessFragment
 
         //设置数据编辑的按钮的接口实现
         btnDataEditor.setOnClickListener(v -> {
-            startActivity(new Intent(context, DumpActivity.class));
+            startActivity(new Intent(context, DumpListActivity.class).putExtra("mode", DumpListActivity.MODE.EDIT));
         });
 
         //数据对比
@@ -76,10 +77,9 @@ public class ToolsAccessFragment
         //格式转换act
         btnFormatCovert.setOnClickListener(v -> startActivity(new Intent(context, FormatCovertActivity.class)));
 
-        //联动密钥编辑的窗口实现!
-        btnUnionKeyEditor.setOnClickListener(v -> startActivity(new Intent(context, UnionActionActivity.class)));
-
         //设置密钥编辑的按钮的接口实现
-        btnKeyEditor.setOnClickListener(v -> startActivity(new Intent(context, KeyFileEditActivity.class)));
+        btnKeyEditor.setOnClickListener(v -> startActivity(
+                new Intent(context, KeyFileListActivity.class).putExtra("mode", FileListActivity.MODE.EDIT))
+        );
     }
 }

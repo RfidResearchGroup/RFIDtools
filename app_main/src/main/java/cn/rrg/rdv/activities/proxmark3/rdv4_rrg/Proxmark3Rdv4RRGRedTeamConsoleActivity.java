@@ -21,7 +21,7 @@ import cn.rrg.rdv.adapter.EasyBtnAdapter;
 import cn.rrg.rdv.javabean.EasyCMDEntry;
 import cn.rrg.rdv.util.EasyBtnUtil;
 import cn.dxl.common.widget.DoubleInputDialog;
-import cn.dxl.common.util.MyArrays;
+import cn.dxl.common.util.ArrayUtils;
 import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.ViewUtil;
 import cn.rrg.rdv.util.Paths;
@@ -196,6 +196,6 @@ public class Proxmark3Rdv4RRGRedTeamConsoleActivity
         //默认先拿0组的按钮，以后做多组分页的时候再做其他组的处理!
         List<EasyCMDEntry> btns = easyBtnUtil.getButtons(0);
         if (btns == null) return null;
-        return MyArrays.list2Arr(btns);
+        return ArrayUtils.list2Arr(btns);
     }
 }

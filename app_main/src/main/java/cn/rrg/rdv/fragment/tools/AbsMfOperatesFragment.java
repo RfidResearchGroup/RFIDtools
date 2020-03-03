@@ -1,7 +1,9 @@
 package cn.rrg.rdv.fragment.tools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,15 +32,17 @@ import java.util.List;
 
 import cn.dxl.common.util.DiskKVUtil;
 import cn.dxl.common.util.DisplayUtil;
-import cn.dxl.common.util.FileUtil;
+import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.FragmentUtil;
 import cn.dxl.common.util.HexUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.widget.FilesSelectorDialog;
 import cn.dxl.common.widget.ToastUtil;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MfDataUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.standard.AbsStandardM1Activity;
-import cn.rrg.rdv.activities.tools.DumpActivity;
+import cn.rrg.rdv.activities.tools.DumpEditActivity;
+import cn.rrg.rdv.activities.tools.DumpListActivity;
 import cn.rrg.rdv.application.Properties;
 import cn.rrg.rdv.fragment.base.BaseFragment;
 import cn.rrg.rdv.javabean.M1Bean;
@@ -116,7 +120,6 @@ public abstract class AbsMfOperatesFragment
 
     //写卡区域选项
     private SwitchCompat swOpenWriteStart2EndMode = null;
-    private RadioGroup radioGroupWriteDataPath = null;
     private EditText edtInputWriteTagSingleSector = null;
     private EditText edtInputWriteTagSingleBlock = null;
     private EditText edtInputWriteTagSingleBlockData = null;
@@ -160,16 +163,17 @@ public abstract class AbsMfOperatesFragment
         tagWritePresenter = getTagWritePresenter();
         tagWritePresenter.attachView(this);
 
-        if (getContext() != null) {
-            mFileSelector = new FilesSelectorDialog.Builder(getContext()).create();
+        Context context = getContext();
+        if (context != null) {
+            mFileSelector = new FilesSelectorDialog.Builder(context).create();
 
-            mDialogWorkingState = new AlertDialog.Builder(getContext()).create();
-            View _workingStateMsgView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_working_msg, null);
+            mDialogWorkingState = new AlertDialog.Builder(context).create();
+            View _workingStateMsgView = View.inflate(context, R.layout.dialog_working_msg, null);
             mDialogWorkingState.setView(_workingStateMsgView);
             mDialogWorkingState.setTitle(R.string.tips);
             mDialogWorkingState.setCancelable(false);
 
-            mTagAbnormalDialog = new AlertDialog.Builder(getContext())
+            mTagAbnormalDialog = new AlertDialog.Builder(context)
                     .setTitle(R.string.error)
                     .setMessage(R.string.tag_not_found).create();
         }
@@ -192,8 +196,13 @@ public abstract class AbsMfOperatesFragment
         if (requestCode == DUMP_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             //得到一个数据集合，进行解析添加操作，在进行这项操作之前，先清空旧的缓存！
             mDataBean.clear();
-            mDataBean.addAll((List) data.getSerializableExtra("dataList"));
-            String name = data.getStringExtra("dataName");
+            String path = data.getStringExtra("file");
+            if (path == null) throw new RuntimeException("The file path is null.");
+            File fileTmp = new File(path);
+            M1Bean[] dataBeans = DumpUtils.readDumpBeans(Uri.fromFile(fileTmp));
+            if (dataBeans == null) throw new RuntimeException("The dump read exception!");
+            mDataBean.addAll(Arrays.asList(dataBeans));
+            String name = fileTmp.getName();
             //自动的提取其中的密钥到列表
             String[] keys = DumpUtils.extractKeys(mDataBean.toArray(new M1Bean[0]));
             // 优化一下，将dump中的key提取，存放到一个文件中，并且将其设置到秘钥文件队列中!
@@ -202,13 +211,14 @@ public abstract class AbsMfOperatesFragment
                 // 创建文件!
                 File file = new File(Paths.KEY_DIRECTORY + "/" + "write_optimization.txt");
                 // 写入到以UID为名的文件中，并且加入到队列!
-                FileUtil.writeString(file, keyLine, false);
+                FileUtils.writeString(file, keyLine, false);
                 if (!keyFilesSelectedList.contains(file)) keyFilesSelectedList.add(file);
             }
             txtPN53X_MF_SelectDump.setText(name);
         } else if (requestCode == DUMP_REQUEST_CODE && resultCode == Activity.RESULT_CANCELED) {
             mDataBean.clear();
             txtPN53X_MF_SelectDump.setText(R.string.msg_data_invalid);
+            showToast(getString(R.string.msg_data_invalid));
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -229,7 +239,6 @@ public abstract class AbsMfOperatesFragment
         ckBoxReadTagIsSingleSectorMode = view.findViewById(R.id.ckBoxReadTagIsSingleSectorMode);
         //写卡区域
         swAllowWriteZero = view.findViewById(R.id.swAllowWriteZero);
-        radioGroupWriteDataPath = view.findViewById(R.id.rdoGroupDataPath);
         swOpenWriteStart2EndMode = view.findViewById(R.id.swOpenWriteStart2EndMode);
         edtInputWriteTagSingleSector = view.findViewById(R.id.edtInputWriteTagSingleSector);
         edtInputWriteTagSingleBlock = view.findViewById(R.id.edtInputWriteTagSingleBlock);
@@ -324,11 +333,8 @@ public abstract class AbsMfOperatesFragment
             @Override
             public void onClick(View v) {
                 //构建意图!
-                Intent intent = new Intent(getContext(), DumpActivity.class);
-                intent.putExtra("request_dump", DUMP_REQUEST_CODE);
-                //判断申请文件的初始化地址!
-                String path = Commons.getCustomerPath(radioGroupWriteDataPath);
-                intent.putExtra("path", path);
+                Intent intent = new Intent(getContext(), DumpListActivity.class);
+                intent.putExtra("mode", DumpListActivity.MODE.SELECT);
                 startActivityForResult(intent, DUMP_REQUEST_CODE);
             }
         });
@@ -647,36 +653,27 @@ public abstract class AbsMfOperatesFragment
         setCanScrollPager(true);
         if (datas == null) {
             Log.d(LOG_TAG, "数据集为空!");
-            ToastUtil.show(getContext(), "数据读取失败!", false);
+            ToastUtil.show(getContext(), getString(R.string.failed), false);
             return;
+        }
+        for (M1Bean b : datas) {
+            LogUtils.d(b.toString());
         }
         Log.d(LOG_TAG, "数据集长度: " + datas.length);
         if (datas.length == 0) {
-            // 数据长度不正常，可能读取出了问题!
             ToastUtil.show(getContext(), getString(R.string.mag_read_failed), false);
             return;
         }
-        //读取成功后将数据缓存下来，继而通过意图传递到Dump编辑Act
         mDataBean.clear();
         mDataBean.addAll(Arrays.asList(datas));
-        //合并数据为字符串数组!
         String[] _datas = DumpUtils.mergeDatas(mDataBean);
         if (_datas != null) {
-            Bundle _data_bundle = new Bundle();
-            _data_bundle.putStringArray("data_array", _datas);
-            //判断当前是否是单独读一个扇区的，是的话就传输当前的扇区过去!
+            Intent _intent_to_dump_act = new Intent(getContext(), DumpEditActivity.class);
             if (datas.length == 1) {
-                _data_bundle.putInt("sector", datas[0].getSector());
+                _intent_to_dump_act.putExtra("sector", datas[0].getSector());
             }
-            Intent _intent_to_dump_act = new Intent(getContext(), DumpActivity.class);
-            _intent_to_dump_act.putExtra("datas", _data_bundle);
+            _intent_to_dump_act.putExtra("data_array", _datas);
             startActivity(_intent_to_dump_act);
-            //销毁自身，避免历史的缓存数据沉余
-            //finish();
-            //测试打印
-            for (String data : _datas) {
-                Log.d(LOG_TAG, data);
-            }
         } else {
             showToast(getString(R.string.msg_failed_merge_data));
         }
@@ -692,8 +689,8 @@ public abstract class AbsMfOperatesFragment
             try {
                 // TODO 后期可以做类似MCT的多扇区(非全部扇区)或者单扇区读写实现!
                 //  目前只返回用户输入的扇区即可!
-                sector = Integer.valueOf(edtInputReadTagSingleSector.getText().toString());
-                if (!MifareUtils.validateSector(sector)) sector = -1;
+                sector = Integer.parseInt(edtInputReadTagSingleSector.getText().toString());
+                if (!MfDataUtils.validateSector(sector)) sector = -1;
             } catch (Exception ignored) {
             }
             for (M1KeyBean keyBean : keyBeans) {
@@ -724,7 +721,7 @@ public abstract class AbsMfOperatesFragment
     public int[] getReadeSectorSelected() {
         int i = -1;
         try {
-            i = Integer.valueOf(edtInputReadTagSingleSector.getText().toString());
+            i = Integer.parseInt(edtInputReadTagSingleSector.getText().toString());
         } catch (Exception ignored) {
         }
         // 暂时只返回一个扇区，后期可以做多个扇区同时选择!
@@ -754,7 +751,7 @@ public abstract class AbsMfOperatesFragment
     public int getSector() {
         int sector = -1;
         try {
-            sector = Integer.valueOf(edtInputWriteTagSingleSector.getText().toString());
+            sector = Integer.parseInt(edtInputWriteTagSingleSector.getText().toString());
             return sector;
         } catch (Exception ignored) {
         }
@@ -765,7 +762,7 @@ public abstract class AbsMfOperatesFragment
     public int getBlock() {
         int block = -1;
         try {
-            block = Integer.valueOf(edtInputWriteTagSingleBlock.getText().toString());
+            block = Integer.parseInt(edtInputWriteTagSingleBlock.getText().toString());
             return block;
         } catch (Exception ignored) {
         }
