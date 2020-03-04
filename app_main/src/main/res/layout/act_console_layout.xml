@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.dxl.common.widget.StatusBarHeightView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical">
-
-    <cn.dxl.common.widget.StatusBarHeightView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    android:orientation="vertical"
+    app:use_type="use_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -272,4 +271,4 @@
 
     </HorizontalScrollView>
 
-</LinearLayout>
+</cn.dxl.common.widget.StatusBarHeightView>

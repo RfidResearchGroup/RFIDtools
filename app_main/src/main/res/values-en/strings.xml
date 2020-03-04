@@ -268,5 +268,6 @@
     <string name="tips_mfcuk_request">We found that your card is fully encrypted, so the MFOC half plus test can\'t continue. Is it allowed for us to request the mfcuk full plus test to detect a valid key?</string>
     <string name="tips_mfoc_data_found">We found possible valid data. Do we need to jump to dump editor to display this data?</string>
     <string name="list">List</string>
+    <string name="share">Share</string>
 
 </resources>
