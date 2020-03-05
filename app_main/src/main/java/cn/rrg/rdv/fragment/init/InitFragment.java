@@ -62,12 +62,11 @@ public class InitFragment
                 InitUtil.startLogcat(true);
                 //进行一些设置的读取初始化!
                 InitUtil.initSettings();
-                //跳转到主页面处理!
-                go2MainAct();
             } catch (Exception e) {
                 e.printStackTrace();
-                go2MainAct();
             }
+            //跳转到主页面处理!
+            go2MainAct();
         }
     }
 

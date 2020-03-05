@@ -87,20 +87,12 @@ public class LoginActivity
                 Log.d(LOG_TAG, "权限正常!");
             }
         });
-        //6.0以及以上可能需要申请权限
+
         String[] permissionArray = new String[]{
-                //位置访问 TODO 2019/07/29 从APP必须的动态权限列表移除，替换为有设备需要时动态申请!
-                //Manifest.permission.ACCESS_COARSE_LOCATION,
-                //内存卡写
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                //内存卡读
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                //读取手机信息! TODO 2019/08/21 从APP必须的权限移除，目前暂时用不上IMEI!
-                //Manifest.permission.READ_PHONE_STATE
         };
-        //设置可能需要动态请求的权限！
         permissionUtil.setPermissions(permissionArray);
-        //开始请求!
         permissionUtil.checks();
     }
 
@@ -116,7 +108,7 @@ public class LoginActivity
         }
         //如果所有的权限都有才能让他初始化
         if (!result) {
-            Toast.makeText(this, "部分权限获取失败，请给予权限!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.tips_permission_request_failed, Toast.LENGTH_SHORT).show();
             //执行finish，结束当前act，直接退出初始化!!!
             finish();
         }

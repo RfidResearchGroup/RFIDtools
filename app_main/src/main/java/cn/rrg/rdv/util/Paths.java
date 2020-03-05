@@ -23,9 +23,8 @@ public interface Paths {
     String KEY_PATH = "keyFile";
     String DUMP_PATH = "dumpFile";
     String DEFAULT_KEYS_NAME = "default_keys.txt";
-    String DEFAULT_DUMP_NAME = "空白数据.dump";
+    String DEFAULT_DUMP_NAME = "BLANK(空白).dump";
     String DEFAULT_CMD_NAME = "cmd.json";
-    String DEFAULT_PN53X_CONF = "libnfc.conf";
 
     //绝对路径
     String TOOLS_DIRECTORY = EXTERNAL_STORAGE_DIRECTORY + "/" + TOOLS_PATH;
@@ -71,6 +70,4 @@ public interface Paths {
     String DEFAULT_KEYS_FILE = KEY_DIRECTORY + "/" + DEFAULT_KEYS_NAME;
     String DEFAULT_DUMP_FILE = DUMP_DIRECTORY + "/" + DEFAULT_DUMP_NAME;
     String DRIVER_DIRECTORY = TOOLS_DIRECTORY + "/" + DRIVER_PATH;
-
-    String PN53X_CONF_FILE = PN53X_DIRRECTORY + "/" + DEFAULT_PN53X_CONF;
 }

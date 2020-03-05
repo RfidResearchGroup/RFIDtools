@@ -268,5 +268,6 @@
     <string name="tips_mfoc_data_found">We found possible valid data. Do we need to jump to dump editor to display this data?</string>
     <string name="list">List</string>
     <string name="share">Share</string>
+    <string name="tips_permission_request_failed">Some permission requests failed.</string>
 
 </resources>

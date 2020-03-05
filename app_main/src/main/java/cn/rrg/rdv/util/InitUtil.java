@@ -117,7 +117,7 @@ public class InitUtil {
         //目标文件夹里是否有这个文件!
         if (!(target.exists() && target.isFile())) {
             //包里面是否有这个资源文件!
-            if (au.isFileExists(Paths.DEFAULT_DUMP_FILE)) {
+            if (au.isFileExists(Paths.DEFAULT_DUMP_NAME)) {
                 if (au.moveFile(Paths.DEFAULT_DUMP_NAME, Paths.DEFAULT_DUMP_FILE)) {
                     Log.d(LOG_TAG, "创建默认的空白数据文件成功!");
                 }
@@ -274,10 +274,6 @@ public class InitUtil {
         File file = new File(Paths.SETTINGS_FILE);
         if (!file.exists())
             if (!file.createNewFile()) return;
-        //在所有的文件目录检查完毕后，我们需要开始进行一轮设置初始化，取值！
-        //*************************************************************
-        //TODO 这里我们直接实例化，注册所有的设置类,如果不需要注册直接注释或者移除即可!
-        // 他们都是 extends by BaseSetting，实现了注册设置需要的步骤!
         BaseSetting[] baseSettings = new BaseSetting[]{
                 new ChameleonSlotAliasesSetting(),
                 new ChameleonSlotAliasesStatusSetting(),

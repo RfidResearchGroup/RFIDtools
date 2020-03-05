@@ -265,5 +265,6 @@
     <string name="tips_mfoc_data_found">我们发现了可能有效的数据，需要我们跳转到Dump编辑器显示这个数据么?</string>
     <string name="list">列表</string>
     <string name="share">共享</string>
+    <string name="tips_permission_request_failed">部分权限请求失败。</string>
 
 </resources>
