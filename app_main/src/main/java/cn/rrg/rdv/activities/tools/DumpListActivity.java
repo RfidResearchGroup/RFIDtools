@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileFilter;
 
 import cn.rrg.rdv.javabean.FileBean;
+import cn.rrg.rdv.util.DumpUtils;
 import cn.rrg.rdv.util.Paths;
 
 public class DumpListActivity extends FileListActivity {
@@ -40,8 +41,8 @@ public class DumpListActivity extends FileListActivity {
         return false;
     }
 
-    private boolean isHardnestedDir(String name) {
-        return Paths.HARDNESTED_PATH.equalsIgnoreCase(name);
+    private boolean isHardnestedDir(File name) {
+        return name.isDirectory() && Paths.HARDNESTED_PATH.equalsIgnoreCase(name.getName());
     }
 
     @Override
@@ -52,14 +53,20 @@ public class DumpListActivity extends FileListActivity {
                 // 1. The name is match!
                 // 2. not a hardnested res dir.
                 String name = pathname.getName();
-                return isDumpFileName(name) && !isHardnestedDir(name);
+                if (isHardnestedDir(pathname)) {
+                    return false;
+                }
+                if (pathname.isDirectory()) {
+                    return true;
+                }
+                return isDumpFileName(name) && DumpUtils.isDump(pathname);
             }
         };
     }
 
     @Override
     protected String onInitPath() {
-        return Paths.DUMP_DIRECTORY;
+        return Paths.TOOLS_DIRECTORY;
     }
 
     @Override
