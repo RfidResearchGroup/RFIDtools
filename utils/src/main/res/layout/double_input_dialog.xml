@@ -111,8 +111,7 @@
             android:layout_weight="1"
             android:background="@color/md_white_1000"
             android:text="@string/save"
-            android:textAllCaps="false"
-            android:textColor="@color/colorPrimary" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
