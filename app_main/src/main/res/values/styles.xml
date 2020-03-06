@@ -23,4 +23,13 @@
         <item name="android:colorBackground">@color/md_white_1000</item>
     </style>
 
+    <style name="CircleDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:windowBackground">@drawable/bg_circular_grey_radius_16dp</item>
+    </style>
+
 </resources>

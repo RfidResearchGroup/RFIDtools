@@ -37,6 +37,7 @@ import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.PrintUtil;
 import cn.rrg.rdv.R;
 import cn.dxl.common.util.DynamicLineParseUtil;
+import cn.rrg.rdv.implement.TextWatcherImpl;
 
 /*
  * TODO 此类留存，用于封装基础控制台!
@@ -142,7 +143,7 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             throw new RuntimeException("BaseConsoleActivity has some resources did not init!");
         }
 
-        txtOutConsole.addTextChangedListener(new TextWatcher() {
+        txtOutConsole.addTextChangedListener(new TextWatcherImpl() {
             //存放上次的尾部索引
             int last = 0;
 
@@ -150,10 +151,6 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //在文本改变之前的回调!
                 last = s.length();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
             @Override
@@ -168,7 +165,7 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             }
         });
 
-        txtErrConsole.addTextChangedListener(new TextWatcher() {
+        txtErrConsole.addTextChangedListener(new TextWatcherImpl() {
             //存放上次的尾部索引
             int last = 0;
 
@@ -176,10 +173,6 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //在文本改变之前的回调!
                 last = s.length();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
             @Override
@@ -193,17 +186,7 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             }
         });
 
-        txtLogConsole.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
+        txtLogConsole.addTextChangedListener(new TextWatcherImpl() {
             @Override
             public void afterTextChanged(Editable s) {
                 svLogContain.fullScroll(ScrollView.FOCUS_DOWN);

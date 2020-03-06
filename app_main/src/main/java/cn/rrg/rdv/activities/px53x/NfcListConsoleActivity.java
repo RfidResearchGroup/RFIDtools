@@ -5,6 +5,7 @@ import android.view.View;
 import cn.rrg.console.define.ICommandTools;
 import cn.rrg.console.define.ICommandType;
 import cn.rrg.natives.NfcListTools;
+import cn.rrg.rdv.R;
 import cn.rrg.rdv.implement.EntryICommandType;
 
 public class NfcListConsoleActivity extends PN53XConsoleActivity {
@@ -31,6 +32,6 @@ public class NfcListConsoleActivity extends PN53XConsoleActivity {
 
     @Override
     protected void onTestEnd() {
-        showToast("执行完成，您可以观察收集到的标签信息了!");
+        showToast(getString(R.string.finish));
     }
 }

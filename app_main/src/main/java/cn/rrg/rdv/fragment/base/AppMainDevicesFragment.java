@@ -228,13 +228,21 @@ public class AppMainDevicesFragment extends BaseFragment {
     private void updateDeviceStatus(boolean status) {
         Log.d("TAG", "新状态：" + status);
         // update device status to bean!
-        if (deviceInfoBean != null) {
-            deviceInfoBean.setEnable(status);
-        }
-        for (Object tmp : deviceItems) {
-            if (tmp instanceof DeviceInfoBean) {
-                if (tmp != deviceInfoBean) {
-                    ((DeviceInfoBean) tmp).setEnable(!status);
+        if (status) {
+            if (deviceInfoBean != null) {
+                deviceInfoBean.setEnable(status);
+            }
+            for (Object tmp : deviceItems) {
+                if (tmp instanceof DeviceInfoBean) {
+                    if (tmp != deviceInfoBean) {
+                        ((DeviceInfoBean) tmp).setEnable(false);
+                    }
+                }
+            }
+        } else {
+            for (Object tmp : deviceItems) {
+                if (tmp instanceof DeviceInfoBean) {
+                    ((DeviceInfoBean) tmp).setEnable(true);
                 }
             }
         }
