@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
  * 4. If you want to flash once, must to use the {@link Proxmark3Flasher#flashModeClose()} function to restart PM3 to os mode.
  * Otherwise, you don't need to call the {@link Proxmark3Flasher#flashModeClose()} function to turn off PM3's flash mode, thus flash all the firmware in once.
  * 5. Due to the differences in communication between different versions of the client, we cannot verify the client version!
+ * 6. All operations should be placed in the child thread
  *
  * @author DXL
  * @version 1.0
@@ -83,19 +84,6 @@ public class Proxmark3Flasher {
      */
     public native boolean isBootloaderMode() throws IllegalStateException;
 
-    // show warning
-    private void printLog() {
-        Log.w(LOG, "Try not to flash bootrom and fullmg at the same time");
-    }
-
-    // check file
-    private void checkFile(File file) throws FileNotFoundException {
-        boolean pass = file.exists() && file.isFile() && file.canRead();
-        if (!pass) {
-            throw new FileNotFoundException("The file is no exists or can't read.");
-        }
-    }
-
     /**
      * flash BootRom, if flash once please invoke {@link Proxmark3Flasher#flashModeClose()} behind finished.
      *
@@ -142,4 +130,17 @@ public class Proxmark3Flasher {
      * please invoke this function at all operation finished.
      */
     public native void flashModeClose();
+
+    // show warning
+    private void printLog() {
+        Log.w(LOG, "Try not to flash bootrom and fullmg at the same time");
+    }
+
+    // check file
+    private void checkFile(File file) throws FileNotFoundException {
+        boolean pass = file.exists() && file.isFile() && file.canRead();
+        if (!pass) {
+            throw new FileNotFoundException("The file is no exists or can't read.");
+        }
+    }
 }

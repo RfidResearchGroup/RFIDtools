@@ -266,5 +266,17 @@
     <string name="list">列表</string>
     <string name="share">共享</string>
     <string name="tips_permission_request_failed">部分权限请求失败。</string>
+    <string name="tips_device_no_found">设备未插入(Proxmark3 CDC)</string>
+    <string name="tips_flash_pm3">1、固件烧写只支持USB-CDC驱动的Proxmark3\n
+\n
+2、只支持RDV4（内置了APP支持的RRG固件）\n
+\n
+3、为了兼容性需要先刷写BOOT，然后刷OS\n
+\n
+4、刷写过程中请保证USB链接稳定\n
+\n
+5、刷写过程中会反复重启PM3，如果出现授权申请请点击允许。\n
+\n
+6、全部刷写完成后将会自动关闭此页面\n</string>
 
 </resources>

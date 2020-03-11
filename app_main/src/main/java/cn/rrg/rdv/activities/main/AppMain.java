@@ -43,7 +43,7 @@ public class AppMain extends BaseActivity {
 
         gotoFragment(appMainDevicesFragment);
 
-        startActivity(new Intent(context, FlasherMainActivity.class));
+        startActivity(new Intent(context, PM3FlasherMainActivity.class));
         finish();
     }
 

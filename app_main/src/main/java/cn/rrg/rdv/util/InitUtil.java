@@ -18,10 +18,8 @@ import cn.dxl.common.util.DiskKVUtil;
 
 public class InitUtil {
 
-    //短称路径
     public static final String LOG_TAG = InitUtil.class.getSimpleName();
 
-    //初始化dump文件目录
     public static void initApplicationResource(Context context) {
         AssetsUtil au = new AssetsUtil(context);
         File dump_dir = new File(Paths.DUMP_DIRECTORY);
@@ -74,11 +72,13 @@ public class InitUtil {
             if (!pm3_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init pm3 dir fail!");
             } else {
+                initProxmark3RDV4ImageFile(au);
                 initEasyButtonFile(au);
                 initPM3ForwardFile();
                 initHardnestedFile(au);
             }
         } else {
+            initProxmark3RDV4ImageFile(au);
             initEasyButtonFile(au);
             initPM3ForwardFile();
             initHardnestedFile(au);
@@ -99,17 +99,23 @@ public class InitUtil {
         }
     }
 
+    private static void initProxmark3RDV4ImageFile(AssetsUtil au) {
+        //初始化标准输入的文件!
+        File boot = new File(Paths.PM3_IMAGE_BOOT_FILE);
+        File os = new File(Paths.PM3_IMAGE_OS_FILE);
+        au.moveFile(Paths.PM3_BOOT_FILE_NAME, boot.getAbsolutePath());
+        au.moveFile(Paths.PM3_OS_FILE_NAME, os.getAbsolutePath());
+    }
+
     private static void initMfInfoMapsFile(AssetsUtil au) {
         File f1 = new File(Paths.COMMON_DIRECTORY + "/" + "template_mifare_info_en.html");
         File f2 = new File(Paths.COMMON_DIRECTORY + "/" + "template_tag_info_en.html");
 
         //移动两个标签信息HTML文件到指定目录!
-        if (/*!f1.exists()*/true)
-            au.moveFile("template_mifare_info_en.html",
-                    new File(Paths.COMMON_DIRECTORY + "/" + "template_mifare_info_en.html").getAbsolutePath());
-        if (/*!f2.exists()*/true)
-            au.moveFile("template_tag_info_en.html",
-                    new File(Paths.COMMON_DIRECTORY + "/" + "template_tag_info_en.html").getAbsolutePath());
+        au.moveFile("template_mifare_info_en.html",
+                new File(Paths.COMMON_DIRECTORY + "/" + "template_mifare_info_en.html").getAbsolutePath());
+        au.moveFile("template_tag_info_en.html",
+                new File(Paths.COMMON_DIRECTORY + "/" + "template_tag_info_en.html").getAbsolutePath());
     }
 
     private static void initDumpFile(AssetsUtil au) {
@@ -230,7 +236,6 @@ public class InitUtil {
         }
     }
 
-    //进行日志记录开始!
     public static void startLogcat(boolean open) {
         //拼接名字
         String name = "log.txt";
@@ -257,7 +262,6 @@ public class InitUtil {
         }
     }
 
-    //初始化必须要的设置!
     public static void initSettings() throws IOException {
         File dir = new File(Paths.SETTINGS_DIRECTORY);
         if (dir.exists()) {
@@ -269,7 +273,6 @@ public class InitUtil {
         }
     }
 
-    //私有初始化函数!
     private static void initSets() throws IOException {
         File file = new File(Paths.SETTINGS_FILE);
         if (!file.exists())

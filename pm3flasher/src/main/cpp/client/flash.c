@@ -324,8 +324,8 @@ int flash_load(flash_file_t *ctx, const char *name, int can_write_bl, int flash_
 static int get_proxmark_state(uint32_t *state) {
     SendCommandBL(CMD_DEVICE_INFO, 0, 0, 0, NULL, 0);
     PacketResponseNG resp;
-    WaitForResponse(CMD_UNKNOWN, &resp);  // wait for any response. No timeout.
-    // WaitForResponseTimeout(CMD_UNKNOWN, &resp, 3000);
+    // WaitForResponse(CMD_UNKNOWN, &resp);  // wait for any response. No timeout.
+    WaitForResponseTimeout(CMD_UNKNOWN, &resp, 1000);
 
     // Three outcomes:
     // 1. The old bootrom code will ignore CMD_DEVICE_INFO, but respond with an ACK
@@ -347,51 +347,6 @@ static int get_proxmark_state(uint32_t *state) {
     }
     LOGD("get_proxmark_state() Current state：%d", *state);
     return PM3_SUCCESS;
-}
-
-// Enter the bootloader to be able to start flashing
-static int enter_bootloader(char *serial_port_name) {
-    uint32_t state;
-    int ret;
-
-    if ((ret = get_proxmark_state(&state)) != PM3_SUCCESS)
-        return ret;
-
-    /* Already in flash state, we're done. */
-    if (state & DEVICE_INFO_FLAG_CURRENT_MODE_BOOTROM)
-        return PM3_SUCCESS;
-
-    if (state & DEVICE_INFO_FLAG_CURRENT_MODE_OS) {
-        PrintAndLogEx(SUCCESS, _BLUE_("Entering bootloader..."));
-
-        if ((state & DEVICE_INFO_FLAG_BOOTROM_PRESENT)
-            && (state & DEVICE_INFO_FLAG_OSIMAGE_PRESENT)) {
-            // New style handover: Send CMD_START_FLASH, which will reset the board
-            // and enter the bootrom on the next boot.
-            SendCommandBL(CMD_START_FLASH, 0, 0, 0, NULL, 0);
-            PrintAndLogEx(SUCCESS, "(Press and release the button only to " _YELLOW_("abort") ")");
-        } else {
-            // Old style handover: Ask the user to press the button, then reset the board
-            SendCommandBL(CMD_HARDWARE_RESET, 0, 0, 0, NULL, 0);
-            PrintAndLogEx(SUCCESS,
-                          "Press and hold down button NOW if your bootloader requires it.");
-        }
-        msleep(100);
-        CloseProxmark();
-        // Let time to OS to make the port disappear
-        msleep(1000);
-
-        if (OpenProxmark(serial_port_name, true, 60, true, FLASHMODE_SPEED)) {
-            PrintAndLogEx(NORMAL, " " _GREEN_("Found"));
-            return PM3_SUCCESS;
-        } else {
-            PrintAndLogEx(ERR, _RED_("Error:") "Proxmark3 not found.");
-            return PM3_ETIMEOUT;
-        }
-    }
-
-    PrintAndLogEx(ERR, _RED_("Error:") "Unknown Proxmark3 mode");
-    return PM3_EFATAL;
 }
 
 static int wait_for_ack(PacketResponseNG *ack) {
@@ -417,112 +372,6 @@ static void flash_suggest_update_bootloader(void) {
 static void flash_suggest_update_flasher(void) {
     PrintAndLogEx(ERR, _RED_("It is recommended that you first "
                                      _YELLOW_("update your flasher")));
-}
-
-// Go into flashing mode
-int flash_start_flashing(int enable_bl_writes, char *serial_port_name, uint32_t *max_allowed) {
-    uint32_t state;
-    uint32_t chipinfo = 0;
-    int ret;
-
-    ret = enter_bootloader(serial_port_name);
-    if (ret != PM3_SUCCESS)
-        return ret;
-
-    ret = get_proxmark_state(&state);
-    if (ret != PM3_SUCCESS)
-        return ret;
-
-    if (state & DEVICE_INFO_FLAG_UNDERSTANDS_CHIP_INFO) {
-        SendCommandBL(CMD_CHIP_INFO, 0, 0, 0, NULL, 0);
-        PacketResponseNG resp;
-        WaitForResponse(CMD_CHIP_INFO, &resp);
-        chipinfo = resp.oldarg[0];
-    }
-
-    int version = BL_VERSION_INVALID;
-    if (state & DEVICE_INFO_FLAG_UNDERSTANDS_VERSION) {
-        SendCommandBL(CMD_BL_VERSION, 0, 0, 0, NULL, 0);
-        PacketResponseNG resp;
-        WaitForResponse(CMD_BL_VERSION, &resp);
-        version = resp.oldarg[0];
-        if ((BL_VERSION_MAJOR(version) < BL_VERSION_FIRST_MAJOR) ||
-            (BL_VERSION_MAJOR(version) > BL_VERSION_LAST_MAJOR)) {
-            // version info seems fishy
-            version = BL_VERSION_INVALID;
-            PrintAndLogEx(ERR, _RED_("====================== OBS ! ==========================="));
-            PrintAndLogEx(ERR, _RED_("Note: Your bootloader reported an invalid version number"));
-            flash_suggest_update_bootloader();
-            //
-        } else if (BL_VERSION_MAJOR(version) < BL_VERSION_MAJOR(FLASHER_VERSION)) {
-            PrintAndLogEx(ERR,
-                          _RED_("====================== OBS ! ==================================="));
-            PrintAndLogEx(ERR,
-                          _RED_("Note: Your bootloader reported a version older than this flasher"));
-            flash_suggest_update_bootloader();
-        } else if (BL_VERSION_MAJOR(version) > BL_VERSION_MAJOR(FLASHER_VERSION)) {
-            PrintAndLogEx(ERR, _RED_("====================== OBS ! ========================="));
-            PrintAndLogEx(ERR, _RED_("Note: Your bootloader is more recent than this flasher"));
-            flash_suggest_update_flasher();
-        }
-    } else {
-        PrintAndLogEx(ERR,
-                      _RED_("====================== OBS ! ==========================================="));
-        PrintAndLogEx(ERR, _RED_("Note: Your bootloader does not understand the new "
-                                         _YELLOW_("CMD_BL_VERSION")
-                                         _RED_("command")));
-        flash_suggest_update_bootloader();
-    }
-
-    uint32_t flash_end = FLASH_START + AT91C_IFLASH_PAGE_SIZE * AT91C_IFLASH_NB_OF_PAGES / 2;
-    *max_allowed = 256;
-
-    int mem_avail = chipid_to_mem_avail(chipinfo);
-    if (mem_avail != 0) {
-        PrintAndLogEx(INFO, "Available memory on this board: "_YELLOW_("%uK") "bytes\n", mem_avail);
-        if (mem_avail > 256) {
-            if (BL_VERSION_MAJOR(version) < BL_VERSION_MAJOR(BL_VERSION_1_0_0)) {
-                PrintAndLogEx(ERR, _RED_("====================== OBS ! ======================"));
-                PrintAndLogEx(ERR, _RED_("Your bootloader does not support writing above 256k"));
-                flash_suggest_update_bootloader();
-            } else {
-                flash_end = FLASH_START + AT91C_IFLASH_PAGE_SIZE * AT91C_IFLASH_NB_OF_PAGES;
-                *max_allowed = mem_avail;
-            }
-        }
-    } else {
-        PrintAndLogEx(INFO, "Available memory on this board: "_RED_("UNKNOWN")"\n");
-        PrintAndLogEx(ERR,
-                      _RED_("====================== OBS ! ======================================"));
-        PrintAndLogEx(ERR, _RED_("Note: Your bootloader does not understand the new "
-                                         _YELLOW_("CHIP_INFO")
-                                         _RED_("command")));
-        flash_suggest_update_bootloader();
-    }
-
-    if (enable_bl_writes) {
-        PrintAndLogEx(INFO, "Permitted flash range: 0x%08x-0x%08x", FLASH_START, flash_end);
-    } else {
-        PrintAndLogEx(INFO, "Permitted flash range: 0x%08x-0x%08x", BOOTLOADER_END, flash_end);
-    }
-    if (state & DEVICE_INFO_FLAG_UNDERSTANDS_START_FLASH) {
-        PacketResponseNG resp;
-
-        if (enable_bl_writes) {
-            SendCommandBL(CMD_START_FLASH, FLASH_START, flash_end, START_FLASH_MAGIC, NULL, 0);
-        } else {
-            SendCommandBL(CMD_START_FLASH, BOOTLOADER_END, flash_end, 0, NULL, 0);
-        }
-        return wait_for_ack(&resp);
-    } else {
-        PrintAndLogEx(ERR,
-                      _RED_("====================== OBS ! ========================================"));
-        PrintAndLogEx(ERR, _RED_("Note: Your bootloader does not understand the new "
-                                         _YELLOW_("START_FLASH")
-                                         _RED_("command")));
-        flash_suggest_update_bootloader();
-    }
-    return PM3_SUCCESS;
 }
 
 static int write_block(uint32_t address, uint8_t *data, uint32_t length) {
@@ -725,14 +574,9 @@ jboolean is_bootloader_mode(JNIEnv *env, jobject thiz) {
 }
 
 jboolean flash_implement(JNIEnv *env, jobject thiz, jstring file, jboolean is_boot_rom) {
-
     jclass iae_clz = (*env)->FindClass(env, "java/lang/IllegalArgumentException");
     if (!conn.run) {
         (*env)->ThrowNew(env, iae_clz, "The pm3 client is closed, please open first.");
-        return false;
-    }
-    if (!is_bootloader_mode(env, thiz)) {
-        (*env)->ThrowNew(env, iae_clz, "The pm3 is not bootloader mode, please enter into.");
         return false;
     }
 
@@ -767,9 +611,6 @@ jboolean flash_implement(JNIEnv *env, jobject thiz, jstring file, jboolean is_bo
     flash_free(files);
 
     finish:
-    // don't close flash mode and communication.
-    // ret = flash_stop_flashing();
-    // CloseProxmark();
     (*env)->DeleteLocalRef(env, iae_clz);
     if (filepaths[0] != NULL) free(filepaths[0]);
     if (ret == PM3_SUCCESS) LOGD("All done.");
@@ -779,6 +620,7 @@ jboolean flash_implement(JNIEnv *env, jobject thiz, jstring file, jboolean is_bo
 
 void close_proxmkar3(JNIEnv *env, jobject thiz) {
     if (conn.run) {
+        clearCommandBuffer();
         CloseProxmark();
         deatchThread();
     }
@@ -817,11 +659,6 @@ jboolean enter_bootloader_mode(JNIEnv *env, jobject thiz) {
             SendCommandBL(CMD_HARDWARE_RESET, 0, 0, 0, NULL, 0);
             LOGD("Press and hold down button NOW if your bootloader requires it.");
         }
-        msleep(100);
-        CloseProxmark();
-        // Let time to OS to make the port disappear
-        msleep(1000);
-        deatchThread();
         return true;
     }
     return false;

@@ -27,7 +27,7 @@ import cn.dxl.common.util.HexUtil;
 /*
  * Usb 2 uart Serial implements
  */
-public class UsbSerialControl extends ContextHandle implements DriverInterface<String, UsbManager> {
+public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     // Application context, is global.
     @SuppressLint("StaticFieldLeak")
@@ -56,8 +56,6 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
     private final Queue<Byte> recvBufQueue = new LinkedList<>();
     //广播过滤!
     private IntentFilter filter = new IntentFilter();
-    // 波特率!
-    private int baudRate = 115200;
 
     /*私有化构造方法，懒汉单例模式*/
     private UsbSerialControl() {
@@ -297,10 +295,11 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
             mPort = null;
         }
         //得到Usb管理器
-        UsbManager usbManager = (UsbManager) get().getContext().getSystemService(Context.USB_SERVICE);
+        UsbManager usbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
         if (usbManager == null) return false;
         //迭代集合里面的设备对象
         List<UsbDevice> devList = new ArrayList<>(usbManager.getDeviceList().values());
+        if (devList.size() == 0) return false;
         //取出第一个USB对象
         UsbDevice usbDevice = devList.get(0);
         //USB链接!
@@ -308,7 +307,7 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
         //判断是否非空，为空证明没有权限
         if (connection == null) {
             //发送广播申请权限
-            PendingIntent intent = PendingIntent.getBroadcast(get().getContext(), 0, new Intent(ACTION_PERMISSION), 0);
+            PendingIntent intent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_PERMISSION), 0);
             //Log.d(LOG_TAG, "尝试获得USB权限!");
             usbManager.requestPermission(usbDevice, intent);
             //当没有权限的时候应当直接返回
@@ -319,7 +318,7 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
         //尝试打开串口
         if (mPort.open()) {
             //设置波特率
-            mPort.setBaudRate(baudRate);
+            mPort.setBaudRate(115200);
             //设置数据位
             mPort.setDataBits(UsbSerialDevice.DATA_BITS_8);
             //设置停止位
@@ -347,14 +346,6 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
         return false;
     }
 
-    public int getBaudRate() {
-        return baudRate;
-    }
-
-    public void setBaudRate(int baudRate) {
-        this.baudRate = baudRate;
-    }
-
     @Override
     public boolean connect(String t) {
         return connect1(t);
@@ -362,7 +353,7 @@ public class UsbSerialControl extends ContextHandle implements DriverInterface<S
 
     @Override
     public UsbManager getAdapter() {
-        return (UsbManager) getContext().getSystemService(Context.USB_SERVICE);
+        return (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
     }
 
     @Override
