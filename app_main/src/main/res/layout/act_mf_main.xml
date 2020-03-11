@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <!--中部的菜单可以随着模式或者选择的参数不同之类的而变化-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradual"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_200"
+                android:padding="10dp"
+                android:text="@string/title_general_options"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <TextView
+                android:id="@+id/txtPN53X_MF_SELECT_KEY_FILES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/mf_rw_goto"
+                android:gravity="center_vertical"
+                android:maxLength="58"
+                android:paddingStart="16dp"
+                android:paddingEnd="10dp"
+                android:text="@string/select_keys_files" />
+
+            <TextView
+                android:id="@+id/txtShowKeyFileSelectedList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/keyfiles_no_select" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradual"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_200"
+                android:padding="10dp"
+                android:text="@string/title_reader_options"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp">
+
+                <EditText
+                    android:id="@+id/edtInputReadTagSingleSector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/sector"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/ckBoxReadTagIsSingleSectorMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layoutDirection="rtl"
+                    android:paddingLeft="16dp"
+                    android:text="@string/hint_read_sector"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradual"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_200"
+                android:padding="10dp"
+                android:text="@string/title_write_options"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swAllowWriteZero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:text="@string/title_allow_write_0" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swOpenWriteStart2EndMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:text="@string/title_use_order_write" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <TextView
+                android:id="@+id/txtPN53X_MF_SELECT_DUMP_FILE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/mf_rw_goto"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:text="@string/title_select_dump_files" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingStart="16dp">
+
+                <EditText
+                    android:id="@+id/edtInputWriteTagSingleSector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/sector"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <EditText
+                    android:id="@+id/edtInputWriteTagSingleBlock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/block"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/ckBoxWriteTagIsSingleSectorMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layoutDirection="rtl"
+                    android:paddingLeft="16dp"
+                    android:text="@string/title_write_block_hint"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edtInputWriteTagSingleBlockData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/data"
+                android:maxLength="32" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradual"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_200"
+                android:padding="10dp"
+                android:text="@string/title_final_operation"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <Button
+                    android:id="@+id/btnStop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/btn_selectot_blue"
+                    android:text="@string/cancel"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/btnWriteTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:background="@drawable/btn_selectot_blue"
+                    android:text="@string/writetag"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/btnReadTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/btn_selectot_blue"
+                    android:text="@string/readtag"
+                    android:textColor="@color/md_white_1000" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtShowKeys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/key"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_onAuth"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

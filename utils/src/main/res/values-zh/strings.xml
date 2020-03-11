@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">common</string>
+    <string name="title_file_path_selector">文件路径选择器</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确认</string>
+    <string name="up_path">上一级</string>
+    <string name="loading">加载中...</string>
+    <string name="empty_dir">空目录</string>
+    <string name="save">保存</string>
+    <string name="item">项</string>
+</resources>

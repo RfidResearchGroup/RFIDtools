@@ -1,0 +1,19 @@
+CRAPTEV1
+--------
+
+Partial implementation of attacks detailed in:
+      Ciphertext-only Cryptanalysis on Hardened Mifare Classic Cards
+      URL: http://www.cs.ru.nl/~rverdult/Ciphertext-only_Cryptanalysis_on_Hardened_Mifare_Classic_Cards-CCS_2015.pdf
+      Carlo Meijer(The Kerckhoffs Institute), Roel Verdult (Radboud University)
+      carlo@youcontent.nl, rverdult@cs.ru.nl
+
+    Authors of the paper are not authors of the code.
+
+contents
+--------
+craptev1.c : main implementation library
+craptev1.h : defines interface, and parity functions
+solve.c    : a demo linux x86_64 client
+
+bla,
+blapost@gmail.com

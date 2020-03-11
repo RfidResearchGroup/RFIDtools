@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <cn.dxl.common.widget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="2"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+        <!--column：列-->
+        <!--row: 行-->
+
+        <Button
+            android:id="@+id/btnStartPN53XReaderAct"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_write"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/reader"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+        <Button
+            android:id="@+id/btnNfcList"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_nfclist"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/nfclist"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+        <Button
+            android:id="@+id/btnStartMfocAct"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_mfoc"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/mfoc"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+        <Button
+            android:id="@+id/btnStartMfcukAct"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_mfcuk"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/mfcuk"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+        <Button
+            android:id="@+id/btnHardnested"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_iterator"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/hardnested"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:layout_columnWeight="1" />
+
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="0.2dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/main_emulate"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/emulate"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:layout_columnWeight="1" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</LinearLayout>

@@ -1,0 +1,158 @@
+The project compiles on Linux, Mac OS X and Windows (MinGW/MSYS).
+
+it requires:
+- gcc >= 4.4
+- libpthread
+- GNU libreadline or BSD libedit (editline)
+- libusb
+- perl
+- an ARM cross-compiler to compile the firmware
+
+and optionally QT for the GUI
+
+
+To compile, just run "make".
+
+===========
+= Windows =
+===========
+The following is a complete list of packages required to setup the compile environment yourself. Alternatively you can download an archive of the full environment (see below).
+
+1 - Install QT SDK for Windows [1]
+
+In the following instructions, we'll assume you installed it to C:\QT
+
+2 - MSYS-1.0.11 [2]
+
+Just follow the installation procedure.
+When asked if you have MinGW installed and for its path, provide:
+C:/QT/mingw
+
+3 - readline-5.0-1-bin [5]
+
+From this archive, copy:
+bin/* to C:\QT\mingw\bin
+include/* to C:\QT\mingw\include
+lib/*.a to C:\QT\mingw\lib
+
+4 - libusb-win32-device-bin-0.1.12.2 [6]
+
+Be careful here, it is *NOT* working with the filter version!
+Likewise copy:
+include/usb.h to C:\QT\mingw\include
+lib/gcc/libusb.a to C:\QT\mingw\lib
+
+
+5 - Install DevkitPro [5]
+
+You'll need it to compile the firmware (ARM) side.
+You only need devkitARM, nothing more (no extra lib or anything else)
+Assuming you installed it to C:\devkitpro, make sure you set
+the DEVKITARM environment variable to /c/devkitPro/devkitARM :
+export DEVKITARM=/c/devkitPro/devkitARM
+Also, add its bin to your PATH:
+export PATH=$PATH:$DEVKITARM/bin
+
+6 - Install Strawberry Perl [6]
+
+7 - Setup a few variables
+
+In your shell from MSYS, make sure you set QTDIR to your QT installation:
+export QTDIR=/c/QT/qt
+And add its bin to your path as well:
+export PATH=$PATH:$QTDIR/bin
+
+Download links:
+
+[1] http://qt.nokia.com/downloads/sdk-windows-cpp
+[2] http://downloads.sourceforge.net/mingw/MSYS-1.0.11.exe
+[3] http://sourceforge.net/projects/gnuwin32/files/readline/5.0-1/readline-5.0-1-bin.zip/download
+[4] http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/0.1.12.2/libusb-win32-device-bin-0.1.12.2.tar.gz/download
+[5] http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download
+[6] http://strawberry-perl.googlecode.com/files/strawberry-perl-5.10.1.1.msi
+
+Rather than download and install every one of these packages, a new ProxSpace
+environment archive file will be made available for download on the project
+page at http://code.google.com/p/proxmark3/downloads/list
+
+Download the ProxSpace environment archive and extract it to C:\
+
+============
+= Mac OS X =
+============
+
+Installing from HomeBrew tap
+---------------------------
+This method is recommended and tested on macOS Sierra 10.12.3
+
+1. Install homebrew if you haven't yet already done so: http://brew.sh/
+
+2. Tap proxmark repo:
+    brew tap proxmark/proxmark3 
+
+3. Install Proxmark3:
+
+Stable release
+    brew install proxmark3
+
+Latest non-stable from GitHub (use this if previous command fails)
+    brew install --HEAD proxmark3
+
+For more information go to https://github.com/Proxmark/homebrew-proxmark3
+
+
+Compilling from source manually (Legacy)
+---------------------------
+
+Tested on OSX 10.10 Yosemite
+
+1 - Install Xcode and Xcode Command Line Tools
+
+2 - Install Homebrew and dependencies
+    brew install libusb p7zip libusb-compat wget qt5 pkgconfig
+
+3 - Install DevKitARM for OSX
+    Option 1:
+        http://sourceforge.net/projects/devkitpro/files/devkitARM/devkitARM_r44/
+        Unpack devkitARM_r44-osx.tar.bz2 to proxmark3 directory.
+    Option 2:
+        brew tap nitsky/stm32
+        brew install arm-none-eabi-gcc
+
+4 - Edit proxmark3/client/Makefile adding path qt5
+
+    LDLIBS = -L/usr/local/opt/qt5/lib -L/opt/local/lib -L/usr/local/lib ../liblua/liblua.a -lreadline -lpthread -lm
+    CFLAGS = -std=c99 -I/usr/local/opt/qt5/include -I. -I../include -I../common -I../zlib -I/opt/local/include -I../liblua -Wall $(COMMON_FLAGS) -g -O4
+
+5 - Set Environment
+
+    export DEVKITPRO=$HOME/proxmark3/
+    export DEVKITARM=$DEVKITPRO/devkitARM
+    export PATH=${PATH}:${DEVKITARM}/bin
+
+
+============
+=   Linux  =
+============
+
+1 - Download 
+
+A precompiled DevKitARM cross compiler tool chain package can be found at 
+http://sourceforge.net/projects/devkitpro/files/devkitARM
+Select the one you need (32bit or 64bit) and unpack to a convinient place, eg 
+$HOME/proxmark3/. It will create a devkitARM/ subdirectory.
+
+You will also need a general compiling environment on your computer for
+the client and the libusb headers. In most distributions you will get all you 
+need with the lsb-package (Linux Standard Base). In debian/ubuntu you simply 
+call `aptitude install lsb libusb-dev libreadline-dev libreadline6`. 
+
+For the graphical plot view, you might need the qtlibs (debian/ubuntu: 
+libqt4-dev), too.
+
+2 - Set Environment
+
+export DEVKITPRO=$HOME/proxmark3/
+export DEVKITARM=$DEVKITPRO/devkitARM
+export PATH=${PATH}:${DEVKITARM}/bin
+

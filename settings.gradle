@@ -1,0 +1,2 @@
+include ':app_main', ':utils', ':io_redirect', ':crapto1', ':mfkey_32_64', ':console', ':chameleon', ':communication', ':libnfc_pn53x', ':pm3official', ':pm3iceman', ':pm3rdv4rrg', ':mifaretag'
+include ':pm3flasher'

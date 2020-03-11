@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000"
+    android:fillAfter="false"
+    android:fillBefore="true"
+    android:fillEnabled="true"
+    android:fromAlpha="0.0"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:startOffset="0"
+    android:toAlpha="1.0">
+    <!--透明度动画-->
+</alpha>

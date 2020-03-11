@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--选择区域!-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_grey_200"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp"
+            android:text="@string/tips_data_select"
+            android:textColor="@color/md_grey_700"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtDumpEqualData1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:drawableEnd="@drawable/no_1"
+                android:gravity="center"
+                android:maxLength="23"
+                android:padding="10dp"
+                android:text="@string/no_select"
+                android:textColor="@color/md_blue_700" />
+
+            <include layout="@layout/view_v_line" />
+
+            <TextView
+                android:id="@+id/txtDumpEqualData2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:drawableEnd="@drawable/no_2"
+                android:gravity="center"
+                android:maxLength="23"
+                android:padding="10dp"
+                android:text="@string/no_select"
+                android:textColor="@color/md_blue_700" />
+
+        </LinearLayout>
+
+        <include layout="@layout/file_select_init_list" />
+
+        <include layout="@layout/view_h_line" />
+
+    </LinearLayout>
+
+    <!--对比结果显示区域!-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_grey_200"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp"
+            android:text="@string/diff_result"
+            android:textColor="@color/md_grey_700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txtShowEqualMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="@string/diff_result_no"
+            android:textColor="@color/md_blue_700" />
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvShowEqualResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null" />
+
+</LinearLayout>

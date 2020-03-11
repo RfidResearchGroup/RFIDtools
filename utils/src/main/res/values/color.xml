@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- google's material design colours from
+    http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
+
+    <!--reds-->
+    <color name="md_red_A700">#D50000</color>
+
+    <!-- pinks -->
+
+    <!-- purples -->
+
+    <!-- deep purples -->
+
+    <!-- indigo -->
+
+    <!--blue-->
+    <color name="md_blue_600">#1E88E5</color>
+    <color name="md_blue_700">#1976D2</color>
+    <color name="md_blue_800">#1565C0</color>
+
+    <!-- light blue-->
+
+    <!-- cyan -->
+
+    <!-- teal -->
+
+    <!-- green -->
+    <color name="md_green_600">#43A047</color>
+
+    <!--light green-->
+
+    <!-- lime-->
+
+    <!--yellow -->
+
+    <!--amber-->
+
+    <!--orange-->
+    <color name="md_orange_600">#FB8C00</color>
+
+    <!--deep orange-->
+
+    <!--brown -->
+
+    <!--grey-->
+    <color name="md_grey_50">#FAFAFA</color>
+    <color name="md_grey_100">#F5F5F5</color>
+    <color name="md_grey_200">#EEEEEE</color>
+    <color name="md_grey_300">#E0E0E0</color>
+    <color name="md_grey_600">#757575</color>
+    <color name="md_grey_700">#616161</color>
+    <color name="md_grey_800">#424242</color>
+    <color name="md_grey_900">#212121</color>
+    <color name="md_white_1000">#ffffff</color>
+
+    <!--blue grey-->
+    <color name="md_blue_grey_900">#263238</color>
+
+</resources>

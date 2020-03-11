@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edtUnionKeyContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:hint="@string/hint_union_keys" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/txtUnionKeyHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:text="@string/msg_union_key_help"
+            android:textColor="?attr/colorPrimary" />
+
+        <Button
+            android:id="@+id/btnLoadUnionKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_bg_blue_600"
+            android:text="@string/Load"
+            android:textColor="@color/md_white_1000" />
+
+        <Button
+            android:id="@+id/btnSaveUnionKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btnLoadUnionKey"
+            android:background="@drawable/shape_bg_blue_600"
+            android:text="@string/save"
+            android:textColor="@color/md_white_1000" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="toolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!--菜单文本的颜色-->
+        <item name="android:textColor">@color/md_white_1000</item>
+        <!--背景颜色-->
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <!--appbar文本的颜色-->
+        <item name="android:textColorPrimary">@color/md_white_1000</item>
+    </style>
+
+    <style name="popMenuStyle" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:textColor">@color/md_grey_800</item>
+        <item name="android:colorBackground">@color/md_white_1000</item>
+    </style>
+
+    <style name="CircleDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:windowBackground">@drawable/bg_circular_grey_radius_16dp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,412 @@
+version: 3.0.1.{build}
+image: Visual Studio 2017
+clone_folder: C:\ProxSpace\pm3
+init:
+- ps: >-
+    $psversiontable
+
+    #Get-ChildItem Env:
+
+
+    $releasename=""
+
+    $env:APPVEYOR_REPO_COMMIT_SHORT = $env:APPVEYOR_REPO_COMMIT.Substring(0, 8)
+
+    if ($env:appveyor_repo_tag -match "true"){
+      $releasename=$env:APPVEYOR_REPO_TAG_NAME + "/"
+    }
+
+    $releasename+=$env:APPVEYOR_BUILD_VERSION + " [" + $env:APPVEYOR_REPO_COMMIT_SHORT + "]"
+
+
+    Write-Host "repository: $env:appveyor_repo_name branch:$env:APPVEYOR_REPO_BRANCH release: $releasename" -ForegroundColor Yellow
+
+    Add-AppveyorMessage -Message "[$env:APPVEYOR_REPO_COMMIT_SHORT]$env:appveyor_repo_name($env:APPVEYOR_REPO_BRANCH)" -Category Information -Details "repository: $env:appveyor_repo_name branch: $env:APPVEYOR_REPO_BRANCH release: $releasename"
+
+
+    iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+clone_script:
+- ps: >-
+    Write-Host "Removing ProxSpace..." -NoNewLine
+
+    cd \
+
+    Remove-Item -Recurse -Force -Path c:\ProxSpace\*
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    Write-Host "Git clone ProxSpace..." -NoNewLine
+
+    git clone -q https://github.com/Gator96100/ProxSpace c:\ProxSpace
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    if(!(Test-Path -Path C:\ProxSpace\pm3)){
+
+    New-Item -ItemType Directory -Force -Path C:\ProxSpace\pm3
+
+    }    
+    
+    Write-Host "Removing pm3 dir..." -NoNewLine
+
+    Remove-Item -Recurse -Force -Path c:\ProxSpace\pm3\*
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    Write-Host "Cloning repository <$env:appveyor_repo_name> to $env:appveyor_build_folder ..." -NoNewLine
+
+    if(-not $env:appveyor_pull_request_number) {
+        git clone -q --branch=$env:appveyor_repo_branch https://github.com/$env:appveyor_repo_name.git $env:appveyor_build_folder
+        cd $env:appveyor_build_folder
+        git checkout -qf $env:appveyor_repo_commit
+    } else {
+        git clone -q https://github.com/$env:appveyor_repo_name.git $env:appveyor_build_folder
+        cd $env:appveyor_build_folder
+        git fetch -q origin +refs/pull/$env:appveyor_pull_request_number/merge:
+        git checkout -qf FETCH_HEAD
+    }
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    Write-Host "Fill msys2\etc\fstab file..." -NoNewLine
+
+    New-Item c:\ProxSpace\msys2\etc\fstab -type file -force -value "# For a description of the file format, see the Users Guide`n# http://cygwin.com/cygwin-ug-net/using.html#mount-table`nnone / cygdrive binary,posix=0,noacl,user 0 0 `nC:\ProxSpace\pm3 /pm3 ntfs noacl 0 0 `nC:\ProxSpace\gcc-arm-none-eabi /gcc-arm-none-eabi ntfs noacl 0 0 `n"
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    Write-Host "Update msys2 packages..."
+
+    $env:Path = "C:\ProxSpace\msys2\usr\bin;C:\ProxSpace\msys2\mingw32\bin;C:\ProxSpace\gcc-arm-none-eabi\bin;$env:Path"
+    
+    Function ExecUpdate($Name, $Cmd, $ErrorLine) {
+
+        Write-Host "Exec [$Name]...  " -NoNewLine 
+        #--- begin Job
+        
+        $Job = Start-Job -Name "$Name" -ScriptBlock {
+          $env:Path = "C:\ProxSpace\msys\bin;$env:Path"
+          Set-Location $using:PWD
+
+          $sb=[scriptblock]::Create("$using:Cmd")
+          #execute scriptblock
+          $Cond=&$sb
+
+          return $Cond
+        }
+
+        #--- end Job
+
+        $JobTime=[System.Environment]::TickCount
+        while($true) {
+          Try {
+            $Res = Receive-Job -Job $Job -Keep 2>&1 6>&1
+          }
+          Catch {
+            $Res = ""
+            Write-host "error in Receive-Job"
+          }
+          
+          if ($Res -is "String" -and $Res -like "*$ErrorLine*"){
+            Write-host "Exit by stop phrase" -ForegroundColor Green
+            break
+          }
+
+          if ($Res -is [Object]){
+            [bool]$needexit = $false
+            ForEach($line in $Res){
+              if ($line -like "*$ErrorLine*"){
+                Write-host "Exit by stop phrase [obj]" -ForegroundColor Green
+                $needexit = $true
+                break
+              }
+            }
+            if ($needexit) {
+              break
+            }
+          }
+
+          if(Wait-Job $Job -Timeout 5){
+            Write-host "Exit by end job" -ForegroundColor Green
+            break
+          }
+
+          if ([System.Environment]::TickCount-$JobTime -gt 1000000) {
+            Write-host "Exit by timeout" -ForegroundColor Yellow
+            break
+          }
+        }
+
+        Remove-Job -Force $Job
+    }
+    
+    cd C:\ProxSpace\
+    
+    C:\ProxSpace\msys2\ps\setup.cmd
+
+    ExecUpdate "update1"  "C:\ProxSpace\msys2\msys2_shell.cmd -mingw32 -defterm -no-start /dev/null"  "terminate?MSYS2"
+ 
+    ExecUpdate "update2"  "C:\ProxSpace\msys2\msys2_shell.cmd -mingw32 -defterm -no-start /dev/null"  "terminate?MSYS2"
+    
+    Write-Host "Update " -NoNewLine
+    
+    Write-Host "[ OK ]" -ForegroundColor Green
+install:
+- ps: >-
+    function Exec-External {
+              param(
+                [Parameter(Position=0,Mandatory=1)][scriptblock] $command
+              )
+              & $command
+              if ($LASTEXITCODE -ne 0) {
+                throw ("Command returned non-zero error-code ${LASTEXITCODE}: $command")
+              }
+            }
+build_script:
+- ps: >-
+    "C:\ProxSpace\msys2\usr\bin;C:\ProxSpace\msys2\mingw32\bin;C:\ProxSpace\gcc-arm-none-eabi\bin;$env:Path"
+
+
+    $env:MINGW_HOME="C:\ProxSpace\msys2\mingw32"
+
+    $env:MSYS_HOME="C:\ProxSpace\msys2"
+
+    $env:MSYSTEM="MINGW32"
+
+    $env:MINGW_PREFIX="/mingw32"
+
+    $env:SHELL="/bin/bash"
+
+    $env:MSYSTEM_CHOST="i686-w64-mingw32"
+
+    cd C:\ProxSpace\pm3
+
+    #make
+
+    bash -c -i 'pwd;make clean;make all'
+
+
+    #some checks
+
+    if(!(Test-Path C:\ProxSpace\pm3\client\proxmark3.exe)){
+
+    throw "Main file proxmark3.exe not exists."
+
+    }
+
+    if(!(Test-Path C:\ProxSpace\pm3\armsrc\obj\fullimage.elf)){
+
+    throw "ARM file fullimage.elf not exists."
+
+    }
+
+    if(!(Test-Path C:\ProxSpace\pm3\client\resources\hardnested_tables\*.bin.z)){
+
+    throw "Files in client\resources\hardnested_tables is not exists."
+
+    }
+
+
+    #install
+
+    Write-Host "Installing..." -NoNewLine -ForegroundColor Yellow
+
+    New-Item -ItemType Directory -Force -Path C:\ProxSpace\pm3\Release\bin
+
+    bash -c -i 'make install DESTDIR=Release PREFIX='
+
+    # dll files
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\libgcc_s_dw2-1.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\libstdc++-6.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\libwinpthread-1.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\Qt5Core.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\Qt5Gui.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\Qt5Widgets.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\libreadline*.dll C:\ProxSpace\pm3\Release\bin
+
+    Copy-Item C:\ProxSpace\msys2\mingw32\bin\libtermcap-0.dll C:\ProxSpace\pm3\Release\bin
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    #archive and push
+
+    $releasename=""
+
+    if ($env:appveyor_repo_tag -match "true"){
+
+    $releasename=$env:APPVEYOR_REPO_TAG_NAME + "/"
+
+    }
+
+    $releasename+=$env:APPVEYOR_BUILD_VERSION + " [" + $env:APPVEYOR_REPO_COMMIT.Substring(0, 7) + "]"
+
+
+    Write-Host "Archive and publish release files ($releasename)..." -NoNewLine -ForegroundColor Yellow
+
+    cd C:\ProxSpace
+
+    7z a release.zip C:\ProxSpace\pm3\Release
+
+    Push-AppveyorArtifact release.zip -DeploymentName "$releasename"
+
+    Write-Host "[ OK ]" -ForegroundColor Green
+
+
+    Write-Host "Builded..." -ForegroundColor Yellow
+test_script:
+- ps: >-
+    $env:Path = "C:\ProxSpace\msys\bin;$env:Path"
+
+    cd c:\ProxSpace\pm3
+
+
+    $global:TestsPassed=$true
+
+
+    Function ExecTest($Name, $File, $Cmd, $CheckResult) {
+    
+    #--- begin Job
+
+    $Job = Start-Job -ScriptBlock {
+      [bool]$res=$false
+      $TestTime=[System.Environment]::TickCount
+      $env:Path = "C:\ProxSpace\msys\bin;$env:Path"
+      Set-Location $using:PWD
+
+      $sb=[scriptblock]::Create("$using:Cmd")
+      #execute scriptblock
+      Write-host "Test [$using:Name] job: $using:Cmd"
+      $Cond=&$sb
+
+      if ($Cond -eq $null){
+      } ElseIf($using:CheckResult -ne $null) {
+        [String]$searchstr=""
+        if ($Cond -is [Object]){
+          ForEach($line in $Cond){
+            Write-host $line -ForegroundColor Gray
+            $searchstr += $line
+          }
+        }else{
+          Write-host "$Cond" -ForegroundColor Gray
+          $searchstr = $Cond
+        }
+        If($searchstr -like "*$using:CheckResult*") {
+          $res=$true
+        }
+        $Cond="*$using:CheckResult*"
+      } Else {
+        If (!($Cond -is [bool] -or $Cond -is [byte] -or $Cond -is [int16] -or $Cond -is [int32] -or $Cond -is [int64] -or $Cond -is [float])){
+            if ($Cond -is "String" -and $Cond -like "*passed*"){
+              $res= $true
+            }
+            if ($Cond -is "String" -and $Cond -like "*true*"){
+              $res= $true
+            }
+            ForEach($line in $Cond){
+              if ($line -like "*passed*"){
+                $res = $true
+                $Cond = $line
+                break
+              }
+            }
+        } Else {
+          $res=$Cond
+        }
+      }
+
+      If ($res) {
+        Write-host "Result[$using:Name]: $Cond" -ForegroundColor Green
+        Add-AppveyorTest -Name "$using:Name" -Framework NUnit -Filename "$using:File" -Outcome Passed -Duration "$([System.Environment]::TickCount-$TestTime)"
+      }Else {
+        Write-host "Result[$using:Name]: $Cond" -ForegroundColor Red
+        Add-AppveyorTest -Name "$using:Name" -Framework NUnit -Filename "$using:File" -Outcome Failed -Duration "$([System.Environment]::TickCount-$TestTime)" -ErrorMessage "command:$using:Cmd`nresult:$Cond"
+      }
+        return $res
+    }
+
+    #--- end Job
+
+      [bool]$res=$false
+      # Wait 180 sec timeout for Job
+      if(Wait-Job $Job -Timeout 180){
+        $Results = $Job | Receive-Job
+        if($Results -like "true"){
+          $res=$true
+        }
+      } else {
+        Write-host "Test [$Name] timeout" -ForegroundColor Red
+        Add-AppveyorTest -Name "$Name" -Framework NUnit -Filename "$File" -Outcome Failed -Duration 60000 -ErrorMessage "timeout"
+      }
+      Remove-Job -Force $Job
+
+      if(!$res){
+      Write-host "--------------------- tests fail" -ForegroundColor Red
+        $global:TestsPassed=$false
+      }
+    }
+
+
+    Write-Host "Running tests..." -ForegroundColor Yellow
+
+
+    #file test
+
+    ExecTest "proxmark3 exists" "proxmark3.exe" {Test-Path C:\ProxSpace\pm3\Release\bin\proxmark3.exe}
+
+    ExecTest "arm bootrom exists" "bootrom.elf" {Test-Path C:\ProxSpace\pm3\Release\share\proxmark3\firmware\bootrom.elf}
+
+    ExecTest "arm image exists" "fullimage.elf" {Test-Path C:\ProxSpace\pm3\Release\share\proxmark3\firmware\fullimage.elf}
+
+    ExecTest "arm recovery image exists" "proxmark3_recovery.bin" {Test-Path C:\ProxSpace\pm3\Release\share\proxmark3\firmware\proxmark3_recovery.bin}
+
+    ExecTest "hardnested tables exists" "hardnested" {Test-Path C:\ProxSpace\pm3\Release\share\proxmark3\resources\hardnested_tables\*.z}
+
+    ExecTest "release exists" "release.zip" {Test-Path C:\ProxSpace\release.zip}
+
+
+    #proxmark logic tests
+
+    ExecTest "proxmark help" "proxmark3 -h" {bash -lc 'cd ~/client;./proxmark3 -h 2>&1 | grep -q wait && echo passed || echo failed'}
+
+    ExecTest "proxmark help text ISO7816" "proxmark3 -t" {bash -lc 'cd ~/client;./proxmark3 -t 2>&1 | grep -q ISO7816 && echo passed || echo failed'}
+
+    ExecTest "proxmark help text hardnested" "proxmark3 -t" {bash -lc 'cd ~/client;./proxmark3 -t 2>&1 | grep -q hardnested && echo passed || echo failed'}
+
+
+    ExecTest "hf mf offline text" "hf mf" {bash -lc "cd ~/client;./proxmark3 -c 'hf mf'"} "at_enc"
+
+    #proxmark crypto tests
+
+    # Long tests:
+    #    ExecTest "hf mf hardnested" "hf mf hardnested" {bash -lc "cd ~/client;./proxmark3 -c 'hf mf hardnested t 1 000000000000'"} "found:"
+    #    ExecTest "hf mf iclass" "hf mf iclass" {bash -lc "cd ~/client;./proxmark3 -c 'hf iclass loclass t l'"} "verified ok"
+    #    ExecTest "emv test" "emv test" {bash -lc "cd ~/client;./proxmark3 -c 'emv test -i -l'"} "Test?s? ? OK"
+    # Short tests:
+    ExecTest "hf mf iclass" "hf mf iclass" {bash -lc "cd ~/client;./proxmark3 -c 'hf iclass loclass t'"} "OK!"
+    ExecTest "emv test" "emv test" {bash -lc "cd ~/client;./proxmark3 -c 'emv test -i'"} "Test?s? ? OK"
+
+
+    if ($global:TestsPassed) {
+      Write-Host "Tests [ OK ]" -ForegroundColor Green
+    } else {
+      Write-Host "Tests [ ERROR ]" -ForegroundColor Red
+      throw "Tests error."
+    }
+on_success:
+- ps: Write-Host "Build success..." -ForegroundColor Green
+on_failure:
+- ps: Write-Host "Build error." -ForegroundColor Red
+on_finish:
+- ps: $blockRdp = $false; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

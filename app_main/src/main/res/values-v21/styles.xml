@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!--文本颜色-->
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <!--工具栏颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--状态栏颜色(深色系)-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--控件颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Api 21 -->
+        <item name="overlapAnchor">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!--设置按钮的正常状态下的颜色-->
+        <item name="android:colorButtonNormal">@color/colorTextNormal</item>
+    </style>
+
+    <style name="toolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!--菜单文本的颜色-->
+        <item name="android:textColor">@color/md_white_1000</item>
+        <!--背景颜色-->
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <!--appbar文本的颜色-->
+        <item name="android:textColorPrimary">@color/md_white_1000</item>
+        <!--三点的颜色-->
+        <item name="android:colorControlNormal">@color/md_white_1000</item>
+    </style>
+
+    <style name="popMenuStyle" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:textColor">@color/md_grey_800</item>
+        <item name="android:colorBackground">@color/md_white_1000</item>
+    </style>
+
+</resources>

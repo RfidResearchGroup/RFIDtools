@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">common</string>
+    <string name="title_file_path_selector">File Path Selector</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Confirm</string>
+    <string name="up_path">Up</string>
+    <string name="loading">Loading.....</string>
+    <string name="empty_dir">empty dir</string>
+    <string name="save">Save</string>
+    <string name="item">Item</string>
+</resources>

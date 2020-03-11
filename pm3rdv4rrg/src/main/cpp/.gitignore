@@ -1,0 +1,83 @@
+# .gitignore
+# don't push these files to the repository
+
+.history
+.bash_history
+.bash_profile
+.bash_logout
+.bashrc
+.inputrc
+.profile
+*.log
+*.eml
+*.o
+*.a
+*.d
+*.elf
+*.s19
+*.map
+*.bin
+*.dll
+*.moc.cpp
+*.z
+*.Td
+*.DS_Store
+*.exe
+*.dsym
+version.c
+*.json
+*.old
+*.swp
+
+# new build file for add-ons.
+Makefile.platform
+# Cache for detecting platform def changes
+.Makefile.options.cache
+
+!client/hardnested/*.bin
+!client/hardnested/tables/*.z
+client/ui/ui_overlays.h
+client/reveng/bmptst
+
+hardnested_stats.txt
+proxmark3
+proxmark3-flasher
+flasher
+!flasher/
+lua
+luac
+fpga_compress
+mfkey32
+mfkey64
+tools/nonce2key/nonce2key
+
+fpga/*
+!fpga/tests
+!fpga/fpga_lf.bit
+!fpga/fpga_hf.bit
+!fpga/*.v
+!fpga/Makefile
+!fpga/fpga.ucf
+!fpga/xst_lf.scr
+!fpga/xst_hf.scr
+!fpga/go.bat
+!fpga/sim.tcl
+
+#client/*
+# my own traces folder
+client/traces/*
+*.ice
+*.new
+armsrc/TEMP EMV/*
+tools/mf_nonce_brute/*
+tools/andrew/*
+tools/jtag_openocd/openocd_configuration
+ppls patches/*
+*- Copy.*
+
+client/lualibs/mfc_default_keys.lua
+client/lualibs/pm3_cmd.lua
+# recompiled
+fpga_version_info.c
+
+.proxmark3/*
