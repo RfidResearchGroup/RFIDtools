@@ -75,6 +75,7 @@ public final class Com implements Serializable {
      * @throws IOException IOException in write error.
      */
     private static int write() throws IOException {
+        if (mCommunication == null) return -1;
         //加上偏移值
         //try {
         return mCommunication.write(send_buffer.array(),
@@ -92,6 +93,7 @@ public final class Com implements Serializable {
      * @throws IOException IOException in read error.
      */
     private static int read() throws IOException {
+        if (mCommunication == null) return -1;
         //try {
         return mCommunication.read(recv_buffer.array(),
                 recv_buffer.arrayOffset(), syncLength() +
@@ -105,6 +107,7 @@ public final class Com implements Serializable {
      * flush data, clear buffer!
      */
     private static void flush() throws IOException {
+        if (mCommunication == null) return;
         //try {
         mCommunication.flush();
         //} catch (IOException e) {
@@ -114,7 +117,7 @@ public final class Com implements Serializable {
 
     /**
      * close devices, clear buffer and break communication!
-     * TODO don't need close, because some communication can't close() in c layer.
+     * TODO don't close, because some communication can't close() in c layer.
      */
     private static void close() throws IOException {
         //try {

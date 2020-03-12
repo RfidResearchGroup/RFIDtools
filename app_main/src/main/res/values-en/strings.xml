@@ -272,5 +272,9 @@
     <string name="tips_permission_request_failed">Some permission requests failed.</string>
     <string name="tips_device_no_found">Device no found(Proxmark3 CDC)</string>
     <string name="tips_flash_pm3">1. Firmware flash only support proxmark3 driver by usb-cdc\n \n 2. Only rdv4 is supported (RRG firmware supported by app is needed)\n \n 3. In order to be compatible, flasher need to write boot first and then OS\n \n 4. Please make sure the USB link is stable work during the process of writing\n \n 5. PM3 will be restarted repeatedly during the flash process. In case of usb permission request, please click allow.\n \n 6. This Activity will be automatically closed after all flash are completed</string>
+    <string name="tips_boot_flash_success">BootRom flash successful.</string>
+    <string name="tips_boot_flash_failed">BootRom flash failed.</string>
+    <string name="tips_os_flash_success">OS flash successful.</string>
+    <string name="tips_os_flash_failed">OS flash failed.</string>
 
 </resources>

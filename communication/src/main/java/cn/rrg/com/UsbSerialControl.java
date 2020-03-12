@@ -43,7 +43,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     //设备名称!
     public static final String NAME_DRIVER_USB_UART = "OTGToUartSerial(OTG转串口)";
     //串口对象
-    private static UsbSerialDevice mPort = null;
+    private volatile UsbSerialDevice mPort = null;
     //单例模式
     private static UsbSerialControl mThiz = null;
     //回调接口
@@ -109,9 +109,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
                             }
                         }
                         //回调设备移除接口
-                        if (mPort != null)
-                            if (mCallback != null)
-                                mCallback.onDetach(NAME_DRIVER_USB_UART);
+                        if (mCallback != null) mCallback.onDetach(NAME_DRIVER_USB_UART);
                     }
                 }
             }
@@ -259,7 +257,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
             return;
         }
         mPort.close();
-
+        mPort = null;
     }
 
     @Override
@@ -291,8 +289,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     private boolean connect1(String addr) {
         if (mPort != null) {
-            mPort.close();
-            mPort = null;
+            return true;
         }
         //得到Usb管理器
         UsbManager usbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
@@ -358,7 +355,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     @Override
     public String getDevice() {
-        return mPort != null ? mPort.getClass().getSimpleName() : null;
+        return mPort != null ? mPort.getClass().getSimpleName() : NAME_DRIVER_USB_UART;
     }
 
     @Override

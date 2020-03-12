@@ -24,6 +24,14 @@ public class Proxmark3Flasher {
     private static Proxmark3Flasher flasher;
     private static String LOG = "Proxmark3Flasher";
 
+    /**
+     * 警告！！！！！！！！！！！！！！！！！！！！！！！！！！
+     * 使用刷写器的时候不要频繁关闭Client
+     * openProxmark3() 请在Activity -> onCreate() 中执行
+     * closeProxmark3() 请求Activity -> onDestroy() 中执行
+     * 频繁关闭客户端将会导致JNI Crash！！！！！！！！！！！！
+     * */
+
     static {
         //在静态块加载对应的模块
         System.loadLibrary("pm3_flasher");

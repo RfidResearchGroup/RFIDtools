@@ -15,11 +15,18 @@
             android:layout_height="wrap_content"
             android:src="@drawable/rdv4_2" />
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/tips_flash_pm3" />
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txtShowLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+        </ScrollView>
 
     </LinearLayout>
 
@@ -31,6 +38,7 @@
         android:layout_centerHorizontal="true"
         android:padding="16dp"
         android:text="@string/flash"
+        android:textAllCaps="false"
         android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>

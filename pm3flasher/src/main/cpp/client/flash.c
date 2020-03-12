@@ -325,7 +325,7 @@ static int get_proxmark_state(uint32_t *state) {
     SendCommandBL(CMD_DEVICE_INFO, 0, 0, 0, NULL, 0);
     PacketResponseNG resp;
     // WaitForResponse(CMD_UNKNOWN, &resp);  // wait for any response. No timeout.
-    WaitForResponseTimeout(CMD_UNKNOWN, &resp, 1000);
+    WaitForResponseTimeout(CMD_UNKNOWN, &resp, 3000);
 
     // Three outcomes:
     // 1. The old bootrom code will ignore CMD_DEVICE_INFO, but respond with an ACK
@@ -346,6 +346,7 @@ static int get_proxmark_state(uint32_t *state) {
             return PM3_EFATAL;
     }
     LOGD("get_proxmark_state() Current state：%d", *state);
+    if (*state == 0) return get_proxmark_state(state);
     return PM3_SUCCESS;
 }
 
@@ -448,7 +449,9 @@ void flash_free(flash_file_t *ctx) {
 
 // just reset the unit
 int flash_stop_flashing(void) {
-    SendCommandBL(CMD_HARDWARE_RESET, 0, 0, 0, NULL, 0);
+    if (conn.run) {
+        SendCommandBL(CMD_HARDWARE_RESET, 0, 0, 0, NULL, 0);
+    }
     return PM3_SUCCESS;
 }
 
@@ -577,7 +580,7 @@ jboolean flash_implement(JNIEnv *env, jobject thiz, jstring file, jboolean is_bo
     jclass iae_clz = (*env)->FindClass(env, "java/lang/IllegalArgumentException");
     if (!conn.run) {
         (*env)->ThrowNew(env, iae_clz, "The pm3 client is closed, please open first.");
-        return false;
+        goto finish;
     }
 
     const char *file_path = (*env)->GetStringUTFChars(env, file, false);
@@ -620,10 +623,9 @@ jboolean flash_implement(JNIEnv *env, jobject thiz, jstring file, jboolean is_bo
 
 void close_proxmkar3(JNIEnv *env, jobject thiz) {
     if (conn.run) {
-        clearCommandBuffer();
         CloseProxmark();
-        deatchThread();
     }
+    LOGD("关闭完成.");
 }
 
 jboolean enter_bootloader_mode(JNIEnv *env, jobject thiz) {
@@ -672,8 +674,9 @@ jboolean open_proxmark3(JNIEnv *env, jobject thiz) {
     if (conn.run) {
         LOGD("设备已经是打开状态，将会跳过打开！");
         return true;
+    } else {
+        LOGD("开启完成.");
     }
-    clearCommandBuffer();
     return (jboolean) OpenProxmark("dxl", false, 233, true, FLASHMODE_SPEED);
 }
 
