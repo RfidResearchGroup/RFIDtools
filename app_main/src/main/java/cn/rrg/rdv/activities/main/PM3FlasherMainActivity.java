@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.proxgrind.pm3flasher.Proxmark3Flasher;
+import com.proxgrind.pm3flasher.Target;
 
 import cn.dxl.com.Com;
 import cn.dxl.common.util.LogUtils;
@@ -35,7 +36,6 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     //在程序执行读卡，写卡操作时的程序后台交互性提醒对话框
     private AlertDialog mDialogWorkingState = null;
 
-    private TextView txtShowLog;
     private Button btnFlash;
 
     private MODE mode = MODE.BOOT;
@@ -61,18 +61,12 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         mDialogWorkingState.setCancelable(false);
 
         btnFlash = findViewById(R.id.btnFlash);
-        txtShowLog = findViewById(R.id.txtShowLog);
     }
 
     private void initActions() {
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!flasher.isPM3Opened()) {
-                    if (!flasher.openProxmark3()) {
-                        return;
-                    }
-                }
                 mode = MODE.BOOT;
                 if (control.connect(null)) {
                     flashDefaultFW();
@@ -83,32 +77,23 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         });
     }
 
-    private void appendLog(String log) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                txtShowLog.append("\n");
-                txtShowLog.append(log);
-            }
-        });
-    }
-
     private void flashDefaultFW() {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                if (!flasher.isStart(Target.CLIENT)) {
+                    if (!flasher.start(Target.CLIENT)) {
+                        return;
+                    }
+                }
                 // 如果没有在Bootloader模式下，我们需要先重启设备使其进入Bootloader模式下!
-                appendLog("开始判断当前是否是BOOTROM模式");
-                if (flasher.isBootloaderMode()) {
-                    appendLog("当前是BOOTROM模式");
+                if (flasher.isStart(Target.BOOT)) {
                     switch (mode) {
                         case BOOT:
                             if (flasher.flashBootRom(Paths.PM3_IMAGE_BOOT_FILE)) {
-                                // ToastUtil.show(context, getString(R.string.tips_boot_flash_success), false);
-                                appendLog(getString(R.string.tips_boot_flash_success));
+                                ToastUtil.show(context, getString(R.string.tips_boot_flash_success), false);
                             } else {
-                                // ToastUtil.show(context, getString(R.string.tips_boot_flash_failed), false);
-                                appendLog(getString(R.string.tips_boot_flash_failed));
+                                ToastUtil.show(context, getString(R.string.tips_boot_flash_failed), false);
                             }
                             finishFlash();
                             // 开启下一轮!
@@ -117,11 +102,9 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
                         case OS:
                             if (flasher.flashFullImg(Paths.PM3_IMAGE_OS_FILE)) {
-                                // ToastUtil.show(context, getString(R.string.tips_os_flash_success), false);
-                                appendLog(getString(R.string.tips_os_flash_success));
+                                ToastUtil.show(context, getString(R.string.tips_os_flash_success), false);
                             } else {
-                                // ToastUtil.show(context, getString(R.string.tips_os_flash_failed), false);
-                                appendLog(getString(R.string.tips_os_flash_failed));
+                                ToastUtil.show(context, getString(R.string.tips_os_flash_failed), false);
                             }
                             finishFlash();
                             ToastUtil.show(context, getString(R.string.finish), false);
@@ -129,9 +112,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
                             break;
                     }
                 } else {
-                    appendLog("当前不是BOOTROM模式，将会重启设备进入BOOTROM模式");
-                    if (!flasher.enterBootloader()) {
-                        appendLog("PM3进入刷写模式失败!");
+                    if (!flasher.start(Target.BOOT)) {
+                        ToastUtil.show(context, getString(R.string.tips_pm3_enter_failed), false);
                     }
                 }
             }
@@ -139,14 +121,15 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     }
 
     private void finishFlash() {
-        flasher.flashModeClose();
+        flasher.close(Target.BOOT);
+        flasher.close(Target.CLIENT);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         control.unregister(this);
-        flasher.closeProxmark3();
+        flasher.close(Target.CLIENT);
     }
 
     @Override
@@ -158,7 +141,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
     @Override
     public void onDetach(String dev) {
-
+        flasher.close(Target.CLIENT);
     }
 
     @Override

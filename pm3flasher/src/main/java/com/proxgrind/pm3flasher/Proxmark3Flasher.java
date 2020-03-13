@@ -21,15 +21,15 @@ import java.io.FileNotFoundException;
  */
 public class Proxmark3Flasher {
 
-    private static Proxmark3Flasher flasher;
+    private static final Proxmark3Flasher flasher;
     private static String LOG = "Proxmark3Flasher";
 
     /**
      * 警告！！！！！！！！！！！！！！！！！！！！！！！！！！
-     * 使用刷写器的时候不要频繁关闭Client
+     * 使用刷写器的时候尽量不要频繁关闭Client
      * openProxmark3() 请在Activity -> onCreate() 中执行
      * closeProxmark3() 请求Activity -> onDestroy() 中执行
-     * 频繁关闭客户端将会导致JNI Crash！！！！！！！！！！！！
+     * 频繁关闭客户端可能会导致JNI Crash！！！！！！！！！！！！
      * */
 
     static {
@@ -51,6 +51,43 @@ public class Proxmark3Flasher {
         return flasher;
     }
 
+    public boolean start(Target target) {
+        synchronized (flasher) {
+            switch (target) {
+                case CLIENT:
+                    return openProxmark3();
+                case BOOT:
+                    return enterBootloader();
+            }
+            return false;
+        }
+    }
+
+    public boolean isStart(Target target) {
+        synchronized (flasher) {
+            switch (target) {
+                case CLIENT:
+                    return isPM3Opened();
+                case BOOT:
+                    return isBootloaderMode();
+            }
+            return false;
+        }
+    }
+
+    public void close(Target target) {
+        synchronized (flasher) {
+            switch (target) {
+                case CLIENT:
+                    closeProxmark3();
+                    break;
+                case BOOT:
+                    flashModeClose();
+                    break;
+            }
+        }
+    }
+
     /**
      * The pm3 client state check!
      * if client is close, the UART communication will error.
@@ -58,19 +95,19 @@ public class Proxmark3Flasher {
      *
      * @return status, true is open, false is close.
      */
-    public native boolean isPM3Opened();
+    private native boolean isPM3Opened();
 
     /**
      * Open the client of pm3(Communication basic)
      *
      * @return true is opened, false is open failed!
      */
-    public native boolean openProxmark3();
+    private native boolean openProxmark3();
 
     /**
      * Close clint of pm3(Communication basic)
      */
-    public native void closeProxmark3();
+    private native void closeProxmark3();
 
     /**
      * Request to enter bootloader mode
@@ -83,14 +120,14 @@ public class Proxmark3Flasher {
      *
      * @return Request result, true is the request success, false is the request failure
      */
-    public native boolean enterBootloader() throws IllegalStateException;
+    private native boolean enterBootloader() throws IllegalStateException;
 
     /**
      * Check if bootloader mode is currently available
      *
      * @return true is available, false is unavailable
      */
-    public native boolean isBootloaderMode() throws IllegalStateException;
+    private native boolean isBootloaderMode() throws IllegalStateException;
 
     /**
      * flash BootRom, if flash once please invoke {@link Proxmark3Flasher#flashModeClose()} behind finished.
@@ -106,7 +143,9 @@ public class Proxmark3Flasher {
             e.printStackTrace();
             return false;
         }
-        return flash(file, true);
+        synchronized (flasher) {
+            return flash(file, true);
+        }
     }
 
     /**
@@ -123,7 +162,9 @@ public class Proxmark3Flasher {
             e.printStackTrace();
             return false;
         }
-        return flash(file, false);
+        synchronized (flasher) {
+            return flash(file, false);
+        }
     }
 
     /**
@@ -137,7 +178,7 @@ public class Proxmark3Flasher {
      * if you flash bootrom and fullimage same time,
      * please invoke this function at all operation finished.
      */
-    public native void flashModeClose();
+    private native void flashModeClose();
 
     // show warning
     private void printLog() {

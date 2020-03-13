@@ -275,5 +275,6 @@
     <string name="tips_boot_flash_failed">BootRom flash failed.</string>
     <string name="tips_os_flash_success">OS flash successful.</string>
     <string name="tips_os_flash_failed">OS flash failed.</string>
+    <string name="tips_pm3_enter_failed">PM3 failed to enter flash mode!</string>
 
 </resources>

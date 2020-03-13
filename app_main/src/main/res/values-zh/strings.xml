@@ -282,5 +282,6 @@
     <string name="tips_boot_flash_failed">引导器刷写失败.</string>
     <string name="tips_os_flash_success">操作系统刷写成功</string>
     <string name="tips_os_flash_failed">操作系统刷写失败</string>
+    <string name="tips_pm3_enter_failed">PM3进入刷写模式失败!</string>
 
 </resources>
