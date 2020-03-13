@@ -1,6 +1,5 @@
 package cn.rrg.rdv.activities.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 

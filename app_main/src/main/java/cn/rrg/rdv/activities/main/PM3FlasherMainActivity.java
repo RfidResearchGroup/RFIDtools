@@ -51,6 +51,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
         initViews();
         initActions();
+
+        setStatus(true);
     }
 
     private void initViews() {
