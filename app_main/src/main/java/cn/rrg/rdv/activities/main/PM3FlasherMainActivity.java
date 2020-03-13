@@ -78,6 +78,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     }
 
     private void flashDefaultFW() {
+        if (!mDialogWorkingState.isShowing())
+            mDialogWorkingState.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -108,7 +110,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
                             }
                             finishFlash();
                             ToastUtil.show(context, getString(R.string.finish), false);
-                            mode = MODE.BOOT;
+                            finish();
                             break;
                     }
                 } else {
@@ -125,11 +127,21 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         flasher.close(Target.CLIENT);
     }
 
+    private void closeClient() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                flasher.close(Target.CLIENT);
+            }
+        }).start();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mDialogWorkingState.dismiss();
         control.unregister(this);
-        flasher.close(Target.CLIENT);
+        closeClient();
     }
 
     @Override
@@ -141,7 +153,6 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
     @Override
     public void onDetach(String dev) {
-        flasher.close(Target.CLIENT);
     }
 
     @Override

@@ -751,7 +751,6 @@ bool WaitForResponseTimeoutW(uint32_t cmd, PacketResponseNG *response, size_t ms
 
     // Wait until the command is received
     while (true) {
-
         while (getReply(response)) {
             if (cmd == CMD_UNKNOWN || response->cmd == cmd) {
                 return true;

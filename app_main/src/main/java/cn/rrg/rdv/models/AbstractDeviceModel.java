@@ -3,10 +3,12 @@ package cn.rrg.rdv.models;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 
@@ -172,6 +174,13 @@ public abstract class AbstractDeviceModel<D, A>
                     if (Com.initCom(mDI, mDevice)) {
                         callback.onInitSuccess();
                     } else {
+                        try {
+                            LogUtils.d("初始化失败，将会调用设备封装类关闭设备!");
+                            // close device!
+                            mDevice.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         callback.onInitFail();
                     }
                 }

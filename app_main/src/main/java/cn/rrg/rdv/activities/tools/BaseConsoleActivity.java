@@ -454,7 +454,6 @@ public abstract class BaseConsoleActivity extends BaseActivity {
                     // 我们需要单独处理其中的每个/r，进行视觉更新!
                     for (String s : newLineReturnArr) {
                         arr[arr.length - 1] = s;
-                        Log.d(LOG_TAG, "当前被newLineReturnArr拼接的行: " + arr[arr.length - 1]);
                         // 拼接回去!
                         StringBuilder sb = new StringBuilder();
                         for (int j = 0; j < arr.length; ++j) {
@@ -466,7 +465,6 @@ public abstract class BaseConsoleActivity extends BaseActivity {
                     }
                 } else {
                     arr[arr.length - 1] = line;
-                    Log.d(LOG_TAG, "当前被arr拼接的行: " + arr[arr.length - 1]);
                     // 拼接回去!
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < arr.length; ++i) {

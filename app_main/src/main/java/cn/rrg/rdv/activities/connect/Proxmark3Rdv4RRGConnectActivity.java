@@ -2,6 +2,8 @@ package cn.rrg.rdv.activities.connect;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import cn.dxl.common.util.DisplayUtil;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.main.PM3FlasherMainActivity;
 import cn.rrg.rdv.activities.main.Proxmark3Rdv4RRGMain;
 import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
@@ -43,9 +46,7 @@ public class Proxmark3Rdv4RRGConnectActivity
     @Override
     public AbstractDeviceModel[] getModels() {
         return new AbstractDeviceModel[]{
-                //RDV4支持SPP数据源，因此提供SPP的通信!
                 new Proxmark3Rdv4SppModel(),
-                //RDV4还支持USB的数据源，同样提供USB的通信!
                 new Proxmark3Rdv4UsbModel()
         };
     }
@@ -76,14 +77,17 @@ public class Proxmark3Rdv4RRGConnectActivity
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                int paddingValue = DisplayUtil.dip2px(activity, 16);
-                TextView msg = new TextView(activity);
-                msg.setTextIsSelectable(true);
-                msg.setPadding(paddingValue, paddingValue, paddingValue, paddingValue);
-                msg.setText(Html.fromHtml(activity.getString(R.string.connect_errr_msg_1)));
                 new AlertDialog.Builder(activity)
                         .setTitle(R.string.connect_faild)
-                        .setView(msg).show();
+                        .setMessage(R.string.connect_errr_msg_1)
+                        .setPositiveButton(getString(R.string.flash) + "(OTG)", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(context, PM3FlasherMainActivity.class));
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null)
+                        .show();
             }
         });
     }
