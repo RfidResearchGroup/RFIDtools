@@ -998,7 +998,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
             {"isExecuting",  "()Z",                   (void *) isExecuting}
     };
     JNINativeMethod methods1[] = {
-            {"testPm3", "()Z", (void *) testPm3}
+            {"testPm3",  "()Z", (void *) testPm3},
+            {"closePm3", "()V", stopPm3}
     };
 //构建和初始化函数结构体,分别是java层的函数名称，签名，对应的函数指针
     JNINativeMethod methods2[] = {

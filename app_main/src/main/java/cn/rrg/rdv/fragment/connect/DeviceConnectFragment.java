@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
 import cn.rrg.rdv.models.AbstractDeviceModel;
@@ -33,12 +34,13 @@ public abstract class DeviceConnectFragment
 
     @Override
     protected void initResource() {
-        Bundle data = getArguments();
-        if (data != null) {
-            this.models = (AbstractDeviceModel[]) data.getSerializable("models");
-            this.target = (Class) data.getSerializable("target");
-            this.connectCallback = (ConnectFailedCtxCallback) data.getSerializable("callback");
+        Activity activity = getActivity();
+        if (activity == null) return;
+        if (activity instanceof DeviceConnectActivity) {
+            this.models = ((DeviceConnectActivity) activity).models;
             if (models != null) {
+                this.target = ((DeviceConnectActivity) activity).getTarget();
+                this.connectCallback = ((DeviceConnectActivity) activity).getCallback();
                 for (AbstractDeviceModel m : models) {
                     //初始化中介者并且绑定视图!
                     DevicePresenter<DeviceView> presenter = new DevicePresenter<>(m);
@@ -46,15 +48,13 @@ public abstract class DeviceConnectFragment
                     presenter.attachView(this);
                     presenters.add(presenter);
                 }
+                String msg = ((DeviceConnectActivity) activity).getConnectingMsg();
+                if (msg != null) {
+                    ((TextView) (msgView.findViewById(R.id.text1))).setText(msg);
+                }
             } else {
-                throw new RuntimeException("Models container null exception!");
+                throw new RuntimeException("Models not init exception!");
             }
-            String msg = data.getString("msg");
-            if (msg != null) {
-                ((TextView) (msgView.findViewById(R.id.text1))).setText(msg);
-            }
-        } else {
-            throw new RuntimeException("Models not init exception!");
         }
     }
 

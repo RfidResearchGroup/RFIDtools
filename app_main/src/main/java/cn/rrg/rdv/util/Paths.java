@@ -4,7 +4,6 @@ import android.os.Environment;
 
 public interface Paths {
 
-    //常用的相对路径文件夹 | 文件名定义!
     String EXTERNAL_STORAGE_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
     String TOOLS_PATH = "NfcTools";
     String SETTINGS_PATH = "Settings";
@@ -26,7 +25,6 @@ public interface Paths {
     String DEFAULT_DUMP_NAME = "BLANK(空白).dump";
     String DEFAULT_CMD_NAME = "cmd.json";
 
-    //绝对路径
     String TOOLS_DIRECTORY = EXTERNAL_STORAGE_DIRECTORY + "/" + TOOLS_PATH;
     String KEY_DIRECTORY = TOOLS_DIRECTORY + "/" + KEY_PATH;
     String LOG_DIRECTORY = TOOLS_DIRECTORY + "/" + LOG_PATH;
@@ -53,11 +51,15 @@ public interface Paths {
     String SETTINGS_DIRECTORY = TOOLS_DIRECTORY + "/" + SETTINGS_PATH;
     String SETTINGS_FILE = SETTINGS_DIRECTORY + "/" + "set.dat";
 
-    //一些重定向文件
+    String PM3_BOOT_FILE_NAME = "bootrom.elf";
+    String PM3_OS_FILE_NAME = "fullimage.elf";
     String PM3_FORWARD_O = PM3_DIRECTORY + "/" + "pm3_forward_o.txt";
     String PM3_FORWARD_E = PM3_DIRECTORY + "/" + "pm3_forward_e.txt";
-    //PM3的RDV4动态按钮
+    //PM3 Easy Button
     String PM3_CMD_FILE = PM3_DIRECTORY + "/" + DEFAULT_CMD_NAME;
+    // PM3 Image
+    String PM3_IMAGE_BOOT_FILE = Paths.PM3_DIRECTORY + "/" + PM3_BOOT_FILE_NAME;
+    String PM3_IMAGE_OS_FILE = Paths.PM3_DIRECTORY + "/" + PM3_OS_FILE_NAME;
 
     String PN53X_FORWARD_O = PN53X_DIRRECTORY + "/" + "pn53x_forward_o.txt";
     String PN53X_FORWARD_E = PN53X_DIRRECTORY + "/" + "pn53x_forward_e.txt";

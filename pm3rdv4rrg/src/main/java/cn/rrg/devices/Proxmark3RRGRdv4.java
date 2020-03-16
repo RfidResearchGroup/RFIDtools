@@ -5,6 +5,7 @@ import java.io.IOException;
 import cn.rrg.com.Device;
 
 public class Proxmark3RRGRdv4 implements Device {
+    
     static {
         System.loadLibrary("pm3rrg_rdv4");
     }
@@ -16,8 +17,11 @@ public class Proxmark3RRGRdv4 implements Device {
 
     @Override
     public boolean close() throws IOException {
-        return false;
+        closePm3();
+        return true;
     }
 
-    public native boolean testPm3() throws IOException;
+    private native boolean testPm3() throws IOException;
+
+    private native void closePm3();
 }

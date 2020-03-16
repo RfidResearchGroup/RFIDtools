@@ -19,18 +19,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
 
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        DriverInterface di = DriverSource.driverMap.get(0x04);
-        if (di != null) {
-            ContextHandle contextHandle = (ContextHandle) di;
-            contextHandle.setContextCallback(new ContextCallback() {
-                @Override
-                public Context getContext() {
-                    return AppUtil.getInstance().getApp();
-                }
-            });
-            return di;
-        }
-        return null;
+        return DriverSource.driverMap.get(0x04);
     }
 
     @Override

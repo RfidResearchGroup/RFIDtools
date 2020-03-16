@@ -170,11 +170,9 @@
     <string name="go2_proxgrind_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;Powered&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: ProxGrind&lt;/p&gt;&lt;p&gt;&lt;small&gt;Click go to web site&lt;/small&gt;&lt;/p&gt;</string>
     <string name="go2_rrg_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;Distributed&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: RFID Research Group (RRG)&lt;/p&gt;&lt;p&gt;&lt;small&gt;Click go to web site&lt;/small&gt;&lt;/p&gt;</string>
     <string name="nfc_not_turned_on">NFC not turned on</string>
-    <string name="connect_errr_msg_1">&lt;p&gt;1、To ensure that firmware versions are consistent, please login at&lt;/p&gt;
-&lt;p style=&quot;color:green&quot;&gt;http://proxgrind.com/free-sdk/&lt;/p&gt;
-&lt;p&gt;download the corresponding version.&lt;/p&gt;
-&lt;p&gt;2.Make sure the battery has sufficient voltage.&lt;/p&gt;
-&lt;p&gt;3.Restart the device and APP, reconnect.&lt;/p&gt;</string>
+    <string name="connect_errr_msg_1">1. Confirm that the firmware version is the same as the app client. You can log in "http://proxgrind.com/free-sdk/" to download the corresponding version, or directly click the button below to flash\n
+2. Make sure the battery has enough voltage\n
+3. Restart the external device and app and try to connect again</string>
     <string name="connect_faild">Connection  failed</string>
     <string name="nfc_not_open">Your NFC is not open and cannot use this function. Please open your NFC first.</string>
     <string name="open">open</string>
@@ -270,5 +268,12 @@
     <string name="list">List</string>
     <string name="share">Share</string>
     <string name="tips_permission_request_failed">Some permission requests failed.</string>
+    <string name="tips_device_no_found">Device no found(Proxmark3 CDC)</string>
+    <string name="tips_flash_pm3">1. Firmware flash only support proxmark3 driver by usb-cdc\n \n 2. Only rdv4 is supported (RRG firmware supported by app is needed)\n \n 3. In order to be compatible, flasher need to write boot first and then OS\n \n 4. Please make sure the USB link is stable work during the process of writing\n \n 5. PM3 will be restarted repeatedly during the flash process. In case of usb permission request, please click allow.\n \n 6. This Activity will be automatically closed after all flash are completed</string>
+    <string name="tips_boot_flash_success">BootRom flash successful.</string>
+    <string name="tips_boot_flash_failed">BootRom flash failed.</string>
+    <string name="tips_os_flash_success">OS flash successful.</string>
+    <string name="tips_os_flash_failed">OS flash failed.</string>
+    <string name="tips_pm3_enter_failed">PM3 failed to enter flash mode!</string>
 
 </resources>

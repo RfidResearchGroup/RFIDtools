@@ -166,11 +166,9 @@
     <string name="go2_proxgrind_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;技术&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: ProxGrind&lt;/p&gt;&lt;p&gt;&lt;small&gt;点击前往主页&lt;/small&gt;&lt;/p&gt;</string>
     <string name="go2_rrg_website">&lt;p style=&quot;color:black;&quot;&gt;&lt;big&gt;发布&lt;/big&gt;&lt;/p&gt;&lt;p&gt;By: RFID Research Group (RRG)&lt;/p&gt;&lt;p&gt;&lt;small&gt;点击前往主页&lt;/small&gt;&lt;/p&gt;</string>
     <string name="nfc_not_turned_on">NFC 未开启</string>
-    <string name="connect_errr_msg_1">&lt;p&gt;1、为确保固件版本一致，请登录&lt;/p&gt;
-&lt;p style=&quot;color:green&quot;&gt;http://proxgrind.com/free-sdk/&lt;/p&gt;
-&lt;p&gt;下载相应的版本。&lt;/p&gt;
-&lt;p&gt;2.确保电池有足够的电压.&lt;/p&gt;
-&lt;p&gt;3.重启外置设备和APP， 重新连接&lt;/p&gt;</string>
+    <string name="connect_errr_msg_1">1、确认固件版本与APP客户端一致，可以登录 http://proxgrind.com/free-sdk/ 下载相应的版本，或直接点击下方按钮刷写
+2、确保电池有足够的电压电量
+3、重启外置设备和APP并且重新尝试连接</string>
     <string name="connect_faild">连接失败</string>
     <string name="nfc_not_open">您的NFC未打开，无法使用该功能，请先打开您的NFC</string>
     <string name="open">打开</string>
@@ -266,5 +264,22 @@
     <string name="list">列表</string>
     <string name="share">共享</string>
     <string name="tips_permission_request_failed">部分权限请求失败。</string>
+    <string name="tips_device_no_found">设备未插入(Proxmark3 CDC)</string>
+    <string name="tips_flash_pm3">1、固件烧写只支持USB-CDC驱动的Proxmark3\n
+\n
+2、只支持RDV4（内置了APP支持的RRG固件）\n
+\n
+3、为了兼容性需要先刷写BOOT，然后刷OS\n
+\n
+4、刷写过程中请保证USB链接稳定\n
+\n
+5、刷写过程中会反复重启PM3，如果出现授权申请请点击允许。\n
+\n
+6、全部刷写完成后将会自动关闭此页面\n</string>
+    <string name="tips_boot_flash_success">引导器刷写成功.</string>
+    <string name="tips_boot_flash_failed">引导器刷写失败.</string>
+    <string name="tips_os_flash_success">操作系统刷写成功</string>
+    <string name="tips_os_flash_failed">操作系统刷写失败</string>
+    <string name="tips_pm3_enter_failed">PM3进入刷写模式失败!</string>
 
 </resources>

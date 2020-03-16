@@ -46,7 +46,7 @@ public abstract class DeviceConnectActivity
     public abstract ConnectFailedCtxCallback getCallback();
 
     //数据源承载数组!
-    AbstractDeviceModel[] models;
+    public AbstractDeviceModel[] models;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,16 +62,8 @@ public abstract class DeviceConnectActivity
             model.register(this);
         }
 
-        Bundle data = new Bundle();
-        data.putSerializable("models", models);
-        data.putSerializable("target", getTarget());
-        data.putSerializable("callback", getCallback());
-        data.putString("msg", getConnectingMsg());
-
         Fragment newDevFragment = new DeviceConnectNewFragment();
         Fragment allDevFragment = new DeviceConnectAllFragment();
-        newDevFragment.setArguments(data);
-        allDevFragment.setArguments(data);
 
         //初始化分页适配器！
         FragmentPagerAdapter mAdapter =

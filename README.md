@@ -65,7 +65,7 @@ Download and flash [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2l
 
 ## App core implementation
 
-If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let us have fun time coding.
+If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let us have target time coding.
 
 - Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
 

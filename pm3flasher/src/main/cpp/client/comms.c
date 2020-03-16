@@ -348,10 +348,6 @@ __attribute__((force_align_arg_pointer))
     PacketResponseNG rx;
     PacketResponseNGRaw rx_raw;
 
-#if defined(__MACH__) && defined(__APPLE__)
-    disableAppNap("Proxmark3 polling UART");
-#endif
-
     // is this connection->run a cross thread call?
     while (connection->run) {
         rxlen = 0;
@@ -556,10 +552,6 @@ __attribute__((force_align_arg_pointer))
     uart_close(sp);
     sp = NULL;
 
-#if defined(__MACH__) && defined(__APPLE__)
-    enableAppNap();
-#endif
-
     pthread_exit(NULL);
     return NULL;
 }
@@ -693,13 +685,17 @@ int TestProxmark(void) {
 void CloseProxmark(void) {
     conn.run = false;
 
+    LOGD("尝试释放资源！");
+
 #ifdef __BIONIC__
     if (communication_thread != 0) {
         pthread_join(communication_thread, NULL);
     }
 #else
-    pthread_join(communication_thread, NULL);
+        pthread_join(communication_thread, NULL);
 #endif
+
+    LOGD("释放线程资源完成！");
 
     if (sp) {
         uart_close(sp);
@@ -707,7 +703,9 @@ void CloseProxmark(void) {
 
     // Clean up our state
     sp = NULL;
-    memset(&communication_thread, 0, sizeof(pthread_t));
+    if (communication_thread != 0) {
+        memset(&communication_thread, 0, sizeof(pthread_t));
+    }
 
     session.pm3_present = false;
 }
@@ -753,7 +751,6 @@ bool WaitForResponseTimeoutW(uint32_t cmd, PacketResponseNG *response, size_t ms
 
     // Wait until the command is received
     while (true) {
-
         while (getReply(response)) {
             if (cmd == CMD_UNKNOWN || response->cmd == cmd) {
                 return true;
