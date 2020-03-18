@@ -10,10 +10,13 @@
 
 使用步骤：
     1、引入module, 设置好需要使用的abi版本!
+
     2、拷贝module中include文件夹里面的头文件到需要使用映射的目标模块
+
     3、配置依赖者module的参数传递，在externalNativeBuild -> cmake区域：  
 	String projectDirString = getRootDir().getPath().replaceAll("\\\\","/")
                 arguments "-DPROJECTDIR=${projectDirString}"
+
     4、在依赖者module中的cmake配置文件里配置so路径，参考：
 	#声明变量
 	set(DEPENDENT ${PROJECTDIR}/libdependent/src/main/jniLibs/${ANDROID_ABI}/libdependent.so)
