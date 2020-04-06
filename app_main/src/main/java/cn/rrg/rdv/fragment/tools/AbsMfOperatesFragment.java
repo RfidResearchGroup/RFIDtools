@@ -5,23 +5,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatCheckBox;
-import androidx.appcompat.widget.SwitchCompat;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SwitchCompat;
 
 import java.io.File;
 import java.io.IOException;
@@ -113,14 +112,16 @@ public abstract class AbsMfOperatesFragment
 
     //读卡区域选项
     private EditText edtInputReadTagSingleSector = null;
-    private AppCompatCheckBox ckBoxReadTagIsSingleSectorMode = null;
+    private SwitchCompat ckBoxReadTagIsSingleSectorMode = null;
+    private LinearLayout llInputReadTagSingleSector = null;
 
     //写卡区域选项
     private SwitchCompat swOpenWriteStart2EndMode = null;
     private EditText edtInputWriteTagSingleSector = null;
     private EditText edtInputWriteTagSingleBlock = null;
     private EditText edtInputWriteTagSingleBlockData = null;
-    private AppCompatCheckBox ckBoxWriteTagIsSingleSectorMode = null;
+    private SwitchCompat ckBoxWriteTagIsSingleSectorMode = null;
+    private LinearLayout llInputWriteTagSingleSector = null;
 
     /*
      * 维护一个读取成功的数据的缓存集合
@@ -234,6 +235,7 @@ public abstract class AbsMfOperatesFragment
         //读取区域
         edtInputReadTagSingleSector = view.findViewById(R.id.edtInputReadTagSingleSector);
         ckBoxReadTagIsSingleSectorMode = view.findViewById(R.id.ckBoxReadTagIsSingleSectorMode);
+        llInputReadTagSingleSector = view.findViewById(R.id.llInputReadTagSingleSector);
         //写卡区域
         swAllowWriteZero = view.findViewById(R.id.swAllowWriteZero);
         swOpenWriteStart2EndMode = view.findViewById(R.id.swOpenWriteStart2EndMode);
@@ -241,9 +243,31 @@ public abstract class AbsMfOperatesFragment
         edtInputWriteTagSingleBlock = view.findViewById(R.id.edtInputWriteTagSingleBlock);
         edtInputWriteTagSingleBlockData = view.findViewById(R.id.edtInputWriteTagSingleBlockData);
         ckBoxWriteTagIsSingleSectorMode = view.findViewById(R.id.ckBoxWriteTagIsSingleSectorMode);
+        llInputWriteTagSingleSector = view.findViewById(R.id.llInputWriteTagSingleSector);
     }
 
     private void initActions() {
+        ckBoxReadTagIsSingleSectorMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    llInputReadTagSingleSector.setVisibility(View.VISIBLE);
+                } else {
+                    llInputReadTagSingleSector.setVisibility(View.GONE);
+                }
+            }
+        });
+        ckBoxWriteTagIsSingleSectorMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    llInputWriteTagSingleSector.setVisibility(View.VISIBLE);
+                } else {
+                    llInputWriteTagSingleSector.setVisibility(View.GONE);
+                }
+            }
+        });
+
         // 选择读卡操作!
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -584,6 +608,8 @@ public abstract class AbsMfOperatesFragment
             dismissWorkDialogNotEnableBtn();
             setCanScrollPager(false);
             //直接读卡
+            boolean isReadSingleSectorMode = ckBoxReadTagIsSingleSectorMode.isChecked();
+            type = isReadSingleSectorMode ? Type.ONE : Type.ALL;
             if (type == Type.ALL) {
                 tagReadPresenter.readSpecialAll();
             } else {
@@ -594,6 +620,8 @@ public abstract class AbsMfOperatesFragment
             dismissWorkDialogNotEnableBtn();
             setCanScrollPager(false);
             //直接写卡!
+            boolean isReadSingleSectorMode = ckBoxWriteTagIsSingleSectorMode.isChecked();
+            type = isReadSingleSectorMode ? Type.ONE : Type.ALL;
             if (type == Type.ALL) {
                 tagWritePresenter.writeSpecialAll();
             } else {

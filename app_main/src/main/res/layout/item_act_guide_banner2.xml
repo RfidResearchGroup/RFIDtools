@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_selectot_blue"
+        android:background="@drawable/btn_selector_blue"
         android:text="@string/agree"
         android:textAllCaps="false"
         android:textColor="@color/md_white_1000" />

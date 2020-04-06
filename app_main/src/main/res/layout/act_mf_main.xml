@@ -60,13 +60,28 @@
             android:background="@drawable/gradual"
             android:orientation="vertical">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/md_grey_200"
-                android:padding="10dp"
-                android:text="@string/title_reader_options"
-                android:textSize="10sp" />
+                android:background="@color/md_grey_200">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/read_a_sector"
+                    android:textSize="10sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/ckBoxReadTagIsSingleSectorMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="10dp" />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -74,28 +89,21 @@
                 android:background="@color/md_grey_200" />
 
             <LinearLayout
+                android:id="@+id/llInputReadTagSingleSector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp">
+                android:paddingLeft="16dp"
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/edtInputReadTagSingleSector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:hint="@string/sector"
                     android:inputType="number"
-                    android:maxLength="3" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/ckBoxReadTagIsSingleSectorMode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layoutDirection="rtl"
-                    android:paddingLeft="16dp"
-                    android:text="@string/hint_read_sector"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="12sp" />
+                    android:maxLength="3"
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -162,57 +170,92 @@
                 android:layout_height="1dp"
                 android:background="@color/md_grey_200" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:paddingStart="16dp">
-
-                <EditText
-                    android:id="@+id/edtInputWriteTagSingleSector"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/sector"
-                    android:inputType="number"
-                    android:maxLength="3" />
-
-                <EditText
-                    android:id="@+id/edtInputWriteTagSingleBlock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/block"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/ckBoxWriteTagIsSingleSectorMode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layoutDirection="rtl"
-                    android:paddingLeft="16dp"
-                    android:text="@string/title_write_block_hint"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/edtInputWriteTagSingleBlockData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/data"
-                android:maxLength="32" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/md_grey_200" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradual"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_200">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/write_a_block"
+                    android:textSize="10sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/ckBoxWriteTagIsSingleSectorMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="10dp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200" />
+
+            <LinearLayout
+                android:id="@+id/llInputWriteTagSingleSector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:paddingStart="16dp">
+
+                    <EditText
+                        android:id="@+id/edtInputWriteTagSingleSector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sector"
+                        android:inputType="number"
+                        android:maxLength="3" />
+
+                    <EditText
+                        android:id="@+id/edtInputWriteTagSingleBlock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/block"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edtInputWriteTagSingleBlockData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="@string/data"
+                    android:maxLength="32" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -239,27 +282,30 @@
 
                 <Button
                     android:id="@+id/btnStop"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="38dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/btn_selectot_blue"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_selector_blue"
                     android:text="@string/cancel"
                     android:textColor="@color/md_white_1000" />
 
                 <Button
                     android:id="@+id/btnWriteTag"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="38dp"
-                    android:background="@drawable/btn_selectot_blue"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_selector_blue"
                     android:text="@string/writetag"
                     android:textColor="@color/md_white_1000" />
 
                 <Button
                     android:id="@+id/btnReadTag"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="38dp"
                     android:layout_marginStart="16dp"
-                    android:background="@drawable/btn_selectot_blue"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_selector_blue"
                     android:text="@string/readtag"
                     android:textColor="@color/md_white_1000" />
 

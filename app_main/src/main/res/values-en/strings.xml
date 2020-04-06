@@ -275,5 +275,7 @@
     <string name="tips_os_flash_success">OS flash successful.</string>
     <string name="tips_os_flash_failed">OS flash failed.</string>
     <string name="tips_pm3_enter_failed">PM3 failed to enter flash mode!</string>
+    <string name="read_a_sector">Read One Sector</string>
+    <string name="write_a_block">Write One Block</string>
 
 </resources>

@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_selectot_blue"
+                android:background="@drawable/btn_selector_blue"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/md_white_1000" />
@@ -65,7 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_selectot_blue"
+                android:background="@drawable/btn_selector_blue"
                 android:text="@string/up_path"
                 android:textAllCaps="false"
                 android:textColor="@color/md_white_1000" />
@@ -77,7 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_selectot_blue"
+                android:background="@drawable/btn_selector_blue"
                 android:text="@string/ok"
                 android:textAllCaps="false"
                 android:textColor="@color/md_white_1000" />
