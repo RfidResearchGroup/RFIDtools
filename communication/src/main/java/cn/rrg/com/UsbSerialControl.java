@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Queue;
 
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.HexUtil;
 
 /*
  * Usb 2 uart Serial implements
