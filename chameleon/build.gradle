@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':mfkey_32_64')
+    implementation 'com.github.xianglin1998:mfkey:1.0'
     implementation project(path: ':utils')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
