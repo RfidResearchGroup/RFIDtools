@@ -61,14 +61,6 @@
         <activity android:name=".activities.px53x.HardnestedConsoleActivity" />
 
         <activity
-            android:name=".activities.tools.MfKey32ConsoleActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
-
-        <activity
-            android:name=".activities.tools.MfKey64ConsoleActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
-
-        <activity
             android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGConsoleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
 

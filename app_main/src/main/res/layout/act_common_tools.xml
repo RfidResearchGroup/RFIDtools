@@ -22,33 +22,6 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnMfKey32"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_selectot_white"
-                android:gravity="start|center"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:text="MfKey32"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnMfKey64"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_selectot_white"
-                android:gravity="start|center"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:text="Mfkey64"
-                android:textAllCaps="false" />
-
-            <Button
                 android:id="@+id/btnDumpEditor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -57,7 +57,6 @@ dependencies {
     implementation 'com.github.xianglin1998:Crapto1:1.2'
 
     implementation project(':utils')
-    implementation project(':mfkey_32_64')
     implementation project(':libnfc_pn53x')
     implementation project(':console')
     implementation project(':chameleon')
