@@ -54,11 +54,11 @@ dependencies {
 
     // This my project maven from github release!
     implementation 'com.github.xianglin1998:IORedirector:1.0'
+    implementation 'com.github.xianglin1998:Crapto1:1.2'
 
     implementation project(':utils')
     implementation project(':mfkey_32_64')
     implementation project(':libnfc_pn53x')
-    implementation project(':crapto1')
     implementation project(':console')
     implementation project(':chameleon')
     implementation project(':communication')
