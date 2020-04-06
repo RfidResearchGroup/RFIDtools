@@ -19,7 +19,7 @@ public final class Com implements Serializable {
      * For standardization and security,
      * you should not change any functions and variables defined by the native keyword,
      * or you may have a big problem!
-     * If your implementation does not need to be mapped to the bottom (only Java exists), please do not use this tool class!
+     * If your implementation does not need to be mapped to the c/c++ (only Java exists), please do not use this tool class!
      *
      * 警告!!!
      * 为了规范性和安全性，你不应当更改任何native关键字定义的函数与变量，否则可能会出现大问题！

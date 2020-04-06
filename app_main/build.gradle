@@ -52,7 +52,9 @@ dependencies {
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 
-    implementation project(':io_redirect')
+    // This my project maven from github release!
+    implementation 'com.github.xianglin1998:IORedirector:1.0'
+
     implementation project(':utils')
     implementation project(':mfkey_32_64')
     implementation project(':libnfc_pn53x')

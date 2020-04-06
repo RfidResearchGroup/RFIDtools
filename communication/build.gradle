@@ -47,4 +47,5 @@ dependencies {
     api project(path: ':mifaretag')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.github.felHR85:UsbSerial:6.1.0'
 }
