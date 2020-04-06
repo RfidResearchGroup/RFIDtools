@@ -281,5 +281,7 @@
     <string name="tips_os_flash_success">操作系统刷写成功</string>
     <string name="tips_os_flash_failed">操作系统刷写失败</string>
     <string name="tips_pm3_enter_failed">PM3进入刷写模式失败!</string>
+    <string name="read_a_sector">读取一个扇区</string>
+    <string name="write_a_block">写入一个块</string>
 
 </resources>

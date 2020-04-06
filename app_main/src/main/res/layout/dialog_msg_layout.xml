@@ -23,7 +23,7 @@
             android:layout_height="36dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/btn_selectot_blue"
+            android:background="@drawable/btn_selector_blue"
             android:text="发送"
             android:textColor="@color/md_white_1000" />
 

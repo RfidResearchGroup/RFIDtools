@@ -226,7 +226,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_selectot_blue"
+                android:background="@drawable/btn_selector_blue"
                 android:text="保存"
                 android:textColor="@color/md_white_1000" />
 
