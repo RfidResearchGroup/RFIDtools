@@ -8,7 +8,7 @@ public class MfcukTools implements ICommandTools {
      * */
     static {
         System.loadLibrary("mfcuk");
-    } 
+    }
 
     @Override
     public native int startExecute(String cmd);

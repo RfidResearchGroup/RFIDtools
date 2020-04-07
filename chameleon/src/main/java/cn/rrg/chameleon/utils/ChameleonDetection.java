@@ -1,12 +1,13 @@
 package cn.rrg.chameleon.utils;
 
+import com.dxl.mfkey.NativeMfKey32;
+import com.dxl.mfkey.Nonce32;
+
 import java.util.List;
 
 import cn.dxl.mifare.MifareUtils;
 import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.javabean.DetectionDatas;
-import cn.rrg.mfkey.NativeMfKey32;
-import cn.rrg.mfkey.Nonce32;
 import cn.dxl.common.util.HexUtil;
 
 /**

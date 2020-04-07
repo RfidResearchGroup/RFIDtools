@@ -861,6 +861,7 @@ static bool mfcuk_darkside_select_tag(nfc_device *pnd, int iSleepAtFieldOFF, int
 
     return true;
 }
+
 // check nack
 static bool
 valid_prng_check(nfc_device *pnd, nfc_target_info *target) {
