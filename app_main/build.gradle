@@ -54,7 +54,7 @@ dependencies {
 
     // This my project maven from github release!
     implementation 'com.github.xianglin1998:IORedirector:1.0'
-    implementation 'com.github.xianglin1998:Crapto1:1.2'
+    implementation 'com.github.xianglin1998:Crapto1:1.3'
 
     implementation project(':utils')
     implementation project(':libnfc_pn53x')

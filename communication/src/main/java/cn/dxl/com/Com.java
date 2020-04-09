@@ -1,5 +1,7 @@
 package cn.dxl.com;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
@@ -57,15 +59,26 @@ public final class Com implements Serializable {
      * @return init communication, true is successful or false is error!sss
      */
     public static boolean initCom(Communication communication, Device dev) {
+        if (communication == null) throw new RuntimeException("The communication impl is null.");
+        if (dev == null) throw new RuntimeException("The device impl is null.");
         //初始化通信实现
         mCommunication = communication;
         //判断端口是否正常初始化
+        boolean ret = false;
         try {
-            return dev.working();
+            ret = dev.working();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
+        // open failed, we need
+        if (!ret) {
+            try {
+                dev.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return ret;
     }
 
     /**
@@ -75,6 +88,7 @@ public final class Com implements Serializable {
      * @throws IOException IOException in write error.
      */
     private static int write() throws IOException {
+        logCommunicationNonnull();
         if (mCommunication == null) return -1;
         //加上偏移值
         //try {
@@ -93,6 +107,7 @@ public final class Com implements Serializable {
      * @throws IOException IOException in read error.
      */
     private static int read() throws IOException {
+        logCommunicationNonnull();
         if (mCommunication == null) return -1;
         //try {
         return mCommunication.read(recv_buffer.array(),
@@ -107,6 +122,7 @@ public final class Com implements Serializable {
      * flush data, clear buffer!
      */
     private static void flush() throws IOException {
+        logCommunicationNonnull();
         if (mCommunication == null) return;
         //try {
         mCommunication.flush();
@@ -125,6 +141,13 @@ public final class Com implements Serializable {
         //} catch (IOException e) {
         //e.printStackTrace();
         //}
+    }
+
+    private static void logCommunicationNonnull() {
+        if (mCommunication == null) {
+            Log.e("Com", "Error: the communication interface implement cannot null!");
+            Log.e("Com", "错误: Communication接口的实现不可以为空，否则数据传输将不起作用!");
+        }
     }
 
     /*

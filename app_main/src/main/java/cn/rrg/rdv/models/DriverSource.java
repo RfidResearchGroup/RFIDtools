@@ -5,7 +5,7 @@ import android.util.SparseArray;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.SppHasBlock;
 import cn.rrg.com.SppNonBlock;
-import cn.rrg.com.StandardDriver;
+import cn.rrg.rdv.driver.StandardDriver;
 import cn.rrg.com.UniversalBulkTransfer;
 import cn.rrg.com.UsbAcr122Raw;
 import cn.rrg.com.UsbSerialControl;

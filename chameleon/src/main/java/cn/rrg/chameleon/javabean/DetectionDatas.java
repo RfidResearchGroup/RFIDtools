@@ -1,6 +1,6 @@
 package cn.rrg.chameleon.javabean;
 
-import cn.rrg.mfkey.Nonce32;
+import com.dxl.mfkey.Nonce32;
 
 public class DetectionDatas {
     //数据对应的UID

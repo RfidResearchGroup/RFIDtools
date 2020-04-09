@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.rrg.rdv.driver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.util.Log;
 import java.io.IOException;
 
 import cn.dxl.mifare.StdMifareIntent;
+import cn.rrg.com.DevCallback;
+import cn.rrg.com.DriverInterface;
 
 public class StandardDriver implements DriverInterface<String, NfcAdapter> {
 

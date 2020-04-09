@@ -6,8 +6,6 @@ import android.hardware.usb.UsbManager;
 import android.util.Log;
 
 import cn.dxl.common.util.AppUtil;
-import cn.rrg.com.ContextCallback;
-import cn.rrg.com.ContextHandle;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.UsbSerialControl;

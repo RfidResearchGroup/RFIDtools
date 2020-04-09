@@ -6,7 +6,7 @@ import android.nfc.NfcAdapter;
 
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
-import cn.rrg.com.StandardDriver;
+import cn.rrg.rdv.driver.StandardDriver;
 import cn.rrg.com.Device;
 import cn.rrg.devices.EmptyDeivce;
 import cn.rrg.rdv.javabean.DevBean;
