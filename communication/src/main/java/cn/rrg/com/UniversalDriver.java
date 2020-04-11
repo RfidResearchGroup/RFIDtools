@@ -17,6 +17,9 @@ public class UniversalDriver implements Communication {
 
     private OnWriteDataListener onWriteDataListener;
 
+    public UniversalDriver(OnWriteDataListener onWriteDataListener) {
+        this.onWriteDataListener = onWriteDataListener;
+    }
 
     @Override
     public int write(byte[] sendMsg, int offset, int length, int timeout) throws IOException {
