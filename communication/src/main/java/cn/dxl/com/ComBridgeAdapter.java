@@ -1,7 +1,6 @@
 package cn.dxl.com;
 
 import android.net.LocalServerSocket;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
