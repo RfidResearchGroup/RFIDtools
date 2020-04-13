@@ -8,12 +8,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.dxl.common.util.IOUtils;
 import cn.dxl.common.util.LogUtils;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 
-import cn.dxl.com.Com;
-import cn.rrg.com.Device;
+import cn.dxl.com.ComBridgeAdapter;
+import cn.dxl.com.DeviceChecker;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;
@@ -29,7 +30,7 @@ public abstract class AbstractDeviceModel<D, A>
 
     protected final String TAG = this.getClass().getSimpleName();
     //设备初始化类
-    protected Device mDevice;
+    protected DeviceChecker mDeviceChecker;
     //驱动的实现,此实例必须被初始化!
     protected DriverInterface<D, A> mDI;
 
@@ -50,8 +51,8 @@ public abstract class AbstractDeviceModel<D, A>
         // 初始化资源!
         if (mDI == null)
             mDI = getDriverInterface();
-        if (mDevice == null)
-            mDevice = getDeviceInitImpl();
+        if (mDeviceChecker == null)
+            mDeviceChecker = getDeviceInitImpl();
         if (devCallbackImpl == null)
             devCallbackImpl = getDevCallback();
     }
@@ -112,22 +113,22 @@ public abstract class AbstractDeviceModel<D, A>
     }
 
     //注册需要的广播事件
-    public void register(Context context) {
+    public void register() {
         init();
         // 注册驱动!
         if (mDI != null) {
             //直接注册!
-            mDI.register(context, devCallbackImpl);
+            mDI.register(devCallbackImpl);
         } else {
             Log.d(TAG, "驱动为空，可能是因为没有加载该驱动!");
         }
     }
 
     //解注册广播事件!
-    public void unregister(Context context) {
+    public void unregister() {
         //直接解注册!
         if (mDI != null)
-            mDI.unregister(context);
+            mDI.unregister();
     }
 
     // 设置当前驱动的链接状态!
@@ -144,7 +145,7 @@ public abstract class AbstractDeviceModel<D, A>
     public abstract DriverInterface<D, A> getDriverInterface();
 
     //必须初始化的设备初始化类!
-    public abstract Device getDeviceInitImpl();
+    public abstract DeviceChecker getDeviceInitImpl();
 
     //必须初始化的设备扫描相关的实现!
     public abstract DevCallback<D> getDevCallback();
@@ -171,17 +172,19 @@ public abstract class AbstractDeviceModel<D, A>
                 @Override
                 public void run() {
                     //直接连接，有需要时可重写!
-                    if (Com.initCom(mDI, mDevice)) {
-                        callback.onInitSuccess();
-                    } else {
-                        try {
+                    try {
+                        if (mDeviceChecker.working()) {
+                            callback.onInitSuccess();
+                        } else {
+
                             LogUtils.d("初始化失败，将会调用设备封装类关闭设备!");
                             // close device!
-                            mDevice.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            mDeviceChecker.close();
+                            callback.onInitFail();
                         }
-                        callback.onInitFail();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        IOUtils.close(mDeviceChecker);
                     }
                 }
             }).start();

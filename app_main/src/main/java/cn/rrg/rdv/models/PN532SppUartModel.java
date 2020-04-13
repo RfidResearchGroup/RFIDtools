@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
 import cn.rrg.com.DriverInterface;
-import cn.rrg.com.Device;
+import cn.dxl.com.DeviceChecker;
 import cn.rrg.devices.PN53X;
 
 /*
@@ -17,7 +17,7 @@ public class PN532SppUartModel extends AbstractSppDeviceModel {
     }
 
     @Override
-    public Device getDeviceInitImpl() {
-        return new PN53X(PN53X.NAME.PN532);
+    public DeviceChecker getDeviceInitImpl() {
+        return new PN53X(PN53X.NAME.PN532, mDI);
     }
 }

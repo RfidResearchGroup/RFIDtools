@@ -1,22 +1,17 @@
 package cn.rrg.rdv.activities.main;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.proxgrind.pm3flasher.Proxmark3Flasher;
 import com.proxgrind.pm3flasher.Target;
 
-import cn.dxl.com.Com;
-import cn.dxl.common.util.LogUtils;
+import cn.dxl.com.ComBridgeAdapter;
 import cn.dxl.common.widget.ToastUtil;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.UsbSerialControl;
@@ -46,8 +41,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         setContentView(R.layout.act_pm3_flasher);
 
         // init and try to connect.
-        control.register(this, this);
-        Com.initCom(control, new EmptyDeivce());
+        control.register(this);
+        ComBridgeAdapter.initCom(control);
 
         initViews();
         initActions();
@@ -142,7 +137,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     protected void onDestroy() {
         super.onDestroy();
         mDialogWorkingState.dismiss();
-        control.unregister(this);
+        control.unregister();
         closeClient();
     }
 

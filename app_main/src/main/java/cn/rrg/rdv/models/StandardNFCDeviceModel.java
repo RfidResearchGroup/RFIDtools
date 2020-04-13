@@ -7,7 +7,7 @@ import android.nfc.NfcAdapter;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.rdv.driver.StandardDriver;
-import cn.rrg.com.Device;
+import cn.dxl.com.DeviceChecker;
 import cn.rrg.devices.EmptyDeivce;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
@@ -21,9 +21,9 @@ public class StandardNFCDeviceModel extends AbstractDeviceModel<String, NfcAdapt
     }
 
     @Override
-    public Device getDeviceInitImpl() {
+    public DeviceChecker getDeviceInitImpl() {
         //直接返回一个空设备即可!
-        return new EmptyDeivce();
+        return new EmptyDeivce(null);
     }
 
     @Override

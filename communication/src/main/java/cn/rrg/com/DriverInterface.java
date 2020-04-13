@@ -1,8 +1,6 @@
 package cn.rrg.com;
 
-import android.content.Context;
-
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 
 /*
  * 驱动程序类
@@ -11,7 +9,7 @@ import cn.dxl.common.posixio.Communication;
  */
 public interface DriverInterface<D, A> extends Communication {
     //注册广播之类的事件
-    void register(Context context, DevCallback<D> callback);
+    void register(DevCallback<D> callback);
 
     //链接到设备
     boolean connect(D t);
@@ -29,5 +27,5 @@ public interface DriverInterface<D, A> extends Communication {
     int getUniqueId();
 
     //解注册广播之类的
-    void unregister(Context context);
+    void unregister();
 }

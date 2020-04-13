@@ -7,7 +7,7 @@ import android.util.Log;
 
 import cn.dxl.common.util.AppUtil;
 import cn.rrg.com.DevCallback;
-import cn.rrg.com.Device;
+import cn.dxl.com.DeviceChecker;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.UsbAcr122Raw;
 import cn.rrg.devices.PN53X;
@@ -22,8 +22,8 @@ public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> 
     }
 
     @Override
-    public Device getDeviceInitImpl() {
-        return new PN53X(PN53X.NAME.ACR122);
+    public DeviceChecker getDeviceInitImpl() {
+        return new PN53X(PN53X.NAME.ACR122, mDI);
     }
 
     @Override

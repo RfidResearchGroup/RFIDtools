@@ -26,4 +26,5 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     api project(path: ':mifaretag')
+    implementation project(path: ':communication')
 }

@@ -2,7 +2,7 @@ package cn.rrg.chameleon.utils;
 
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 import cn.dxl.common.util.RegexGroupUtil;
 import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.defined.BasicTypesCallback;

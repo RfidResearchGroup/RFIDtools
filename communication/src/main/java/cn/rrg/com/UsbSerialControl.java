@@ -1,7 +1,6 @@
 package cn.rrg.com;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,16 +20,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import cn.dxl.common.util.AppUtil;
+import cn.dxl.utils.ContextContentProvider;
 
 /*
  * Usb 2 uart Serial implements
  */
 public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
-    // Application context, is global.
     @SuppressLint("StaticFieldLeak")
-    private final Application mContext = AppUtil.getInstance().getApp();
+    private static Context mContext = ContextContentProvider.mContext;
     //日志标签
     private static final String LOG_TAG = UsbSerialControl.class.getSimpleName();
     // ID
@@ -260,7 +258,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     }
 
     @Override
-    public void register(Context context, DevCallback<String> callback) {
+    public void register(DevCallback<String> callback) {
         mCallback = callback;
         register1();
     }
@@ -368,7 +366,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     }
 
     @Override
-    public void unregister(Context context) {
+    public void unregister() {
         //广播解注册
         unRegister();
     }

@@ -2,16 +2,20 @@ package cn.rrg.devices;
 
 import java.io.IOException;
 
-import cn.rrg.com.Device;
+import cn.dxl.com.Communication;
+import cn.dxl.com.DeviceChecker;
 
-public class EmptyDeivce implements Device {
+public class EmptyDeivce extends DeviceChecker {
+    public EmptyDeivce(Communication communication) {
+        super(communication);
+    }
+
     @Override
     public boolean working() throws IOException {
         return true;
     }
 
     @Override
-    public boolean close() throws IOException {
-        return true;
+    public void close() throws IOException {
     }
 }

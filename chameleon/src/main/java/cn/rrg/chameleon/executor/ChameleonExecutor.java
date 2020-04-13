@@ -5,7 +5,7 @@ import android.util.Log;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 import cn.dxl.common.util.HexUtil;
 import cn.rrg.chameleon.utils.ChameleonResult;
 import cn.rrg.chameleon.defined.IChameleonExecutor;

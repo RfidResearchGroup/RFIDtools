@@ -2,7 +2,7 @@ package cn.rrg.chameleon.defined;
 
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 
 /**
  * 接口，定义变色龙的执行器的功能!

@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.models.AbstractDeviceModel;
-import cn.rrg.rdv.models.UniversalBulkRawModel;
+import cn.rrg.rdv.models.UniversalBulkPN53XRawModel;
 
 public class PN53XUsbBulkTransferActivity extends AbstractPN53XConnectActivity {
 
@@ -26,7 +26,7 @@ public class PN53XUsbBulkTransferActivity extends AbstractPN53XConnectActivity {
     @Override
     public AbstractDeviceModel[] getModels() {
         return new AbstractDeviceModel[]{
-                new UniversalBulkRawModel(name)
+                new UniversalBulkPN53XRawModel(name)
         };
     }
 }

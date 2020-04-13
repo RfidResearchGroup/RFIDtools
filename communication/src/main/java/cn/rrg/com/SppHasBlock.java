@@ -4,8 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 
 import java.io.IOException;
 
-import cn.dxl.common.util.SystemUtils;
-
 /**
  * Created by DXL on 2017/8/21.
  */
@@ -45,7 +43,7 @@ public class SppHasBlock extends AbsBluetoothSpp {
         if (inputStream == null) return -1;
         long start = System.currentTimeMillis();
         while (inputStream.available() < (length - offset)) {
-            if (SystemUtils.isTimeout(start, TIMEOUT)) {
+            if ((System.currentTimeMillis() - start) > TIMEOUT) {
                 // 已经超时!
                 return -1;
             }

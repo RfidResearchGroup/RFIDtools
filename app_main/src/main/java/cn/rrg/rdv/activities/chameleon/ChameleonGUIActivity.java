@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.proxgrind.xmodem.XModem128;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,9 +45,8 @@ import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.defined.ResultCallback;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.activities.tools.ChameleonSoltAliasesActivity;
-import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.application.Properties;
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.callback.DumpCallback;
 import cn.rrg.rdv.models.DumpModel;
@@ -59,7 +60,6 @@ import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.implement.ItemSelectedListenerImpl;
 import cn.dxl.common.util.ViewUtil;
-import cn.dxl.common.xmodem.XModem128;
 
 /**
  * @author DXL

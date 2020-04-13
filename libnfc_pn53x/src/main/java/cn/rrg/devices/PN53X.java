@@ -2,9 +2,10 @@ package cn.rrg.devices;
 
 import java.io.IOException;
 
-import cn.rrg.com.Device;
+import cn.dxl.com.Communication;
+import cn.dxl.com.DeviceChecker;
 
-public class PN53X implements Device {
+public class PN53X extends DeviceChecker {
 
     public interface NAME {
         String ACR122 = "ACR122";
@@ -21,7 +22,8 @@ public class PN53X implements Device {
 
     private String name;
 
-    public PN53X(String name) {
+    public PN53X(String name, Communication communication) {
+        super(communication);
         this.name = name;
     }
 
@@ -35,8 +37,8 @@ public class PN53X implements Device {
     }
 
     @Override
-    public boolean close() throws IOException {
-        return closePN53x();
+    public void close() throws IOException {
+        closePN53x();
     }
 
     //关闭设备函数!

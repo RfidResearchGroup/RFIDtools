@@ -61,10 +61,9 @@ dependencies {
     implementation project(':console')
     implementation project(':chameleon')
     implementation project(':communication')
-    implementation project(':pm3official')
-    implementation project(':pm3iceman')
     implementation project(':pm3rdv4rrg')
 
     testImplementation 'junit:junit:4.12'
     implementation project(path: ':pm3flasher')
+    implementation project(path: ':xmodem')
 }

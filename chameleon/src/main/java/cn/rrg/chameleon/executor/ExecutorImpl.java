@@ -2,7 +2,7 @@ package cn.rrg.chameleon.executor;
 
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
+import cn.dxl.com.Communication;
 import cn.rrg.chameleon.defined.IChameleonExecutor;
 
 /**

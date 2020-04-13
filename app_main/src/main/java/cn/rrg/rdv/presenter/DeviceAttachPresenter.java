@@ -15,7 +15,7 @@ public class DeviceAttachPresenter
     }
 
     //注册设备广播
-    public void register(Context context, int[] pers) {
+    public void register(int[] pers) {
         //先设置回调!
         adm.addCallback(new DevCallback<DevBean>() {
             @Override
@@ -31,6 +31,6 @@ public class DeviceAttachPresenter
             }
         });
         //再尝试注册实际的驱动!
-        adm.register(context);
+        adm.register();
     }
 }

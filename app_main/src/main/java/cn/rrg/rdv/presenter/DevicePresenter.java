@@ -39,14 +39,14 @@ public class DevicePresenter<T extends DeviceView>
     }
 
     //注册设备和广播!
-    public void register(Context context) {
-        adm.register(context);
+    public void register() {
+        adm.register();
     }
 
     //解注册广播
-    public void unregister(Context context) {
+    public void unregister() {
         //解注册所有的驱动!
-        adm.unregister(context);
+        adm.unregister();
     }
 
     //更新发现的设备List

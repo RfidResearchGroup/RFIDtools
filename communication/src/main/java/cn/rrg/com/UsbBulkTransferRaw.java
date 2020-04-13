@@ -1,6 +1,5 @@
 package cn.rrg.com;
 
-import android.app.Application;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,12 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.dxl.common.util.AppUtil;
+import cn.dxl.utils.ContextContentProvider;
 
 public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbManager> {
 
     // Application context, is global. cant cache activity context!
-    private static final Application mContext = AppUtil.getInstance().getApp();
+    private Context mContext = ContextContentProvider.mContext;
     //日志特征
     private static final String LOG_TAG = UsbBulkTransferRaw.class.getSimpleName();
     private DevCallback<String> mCallback = null;
@@ -158,7 +157,7 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
     }
 
     @Override
-    public void register(Context context, final DevCallback<String> callback) {
+    public void register(final DevCallback<String> callback) {
         mCallback = callback;
         //初始化USB管理器资源
         mUsbManger = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
@@ -239,7 +238,7 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
     }
 
     @Override
-    public void unregister(Context context) {
+    public void unregister() {
         unRegister();
     }
 

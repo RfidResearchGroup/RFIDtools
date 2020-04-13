@@ -1,5 +1,6 @@
 package cn.rrg.rdv.driver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +10,14 @@ import android.util.Log;
 
 import java.io.IOException;
 
+import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.StdMifareIntent;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 
 public class StandardDriver implements DriverInterface<String, NfcAdapter> {
 
+    private Application context = AppUtil.getInstance().getApp();
     private static final String LOG_TAG = StandardDriver.class.getSimpleName();
     private static final int UNIQUE_ID = 0x05;
     private DevCallback<String> callback = null;
@@ -54,7 +57,7 @@ public class StandardDriver implements DriverInterface<String, NfcAdapter> {
     }
 
     @Override
-    public void register(Context context, DevCallback<String> callback) {
+    public void register(DevCallback<String> callback) {
         if (!isRegister) {
             //实例化工具持有
             mMftools = new StdMifareIntent(context);
@@ -98,7 +101,7 @@ public class StandardDriver implements DriverInterface<String, NfcAdapter> {
     }
 
     @Override
-    public void unregister(Context context) {
+    public void unregister() {
         //解注册广播监听事件!
         context.unregisterReceiver(mReceiver);
         isRegister = false;

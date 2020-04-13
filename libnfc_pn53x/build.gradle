@@ -41,4 +41,5 @@ dependencies {
     implementation project(path: ':console')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation project(path: ':mifaretag')
 }

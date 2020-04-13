@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import cn.dxl.utils.ContextContentProvider;
+
 /**
  * Created by DXL on 2019/8/1.
  * 抽象SPP相关属性与动作，降低代码冗余!
@@ -23,6 +25,7 @@ import java.util.UUID;
  */
 public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice, BluetoothAdapter> {
 
+    private Context context = ContextContentProvider.mContext;
     //LOG的标签 LOG TAG
     private static final String LOG_TAG = "AbsBluetoothSpp";
     //允许失败的次数上限，事不过三...
@@ -95,7 +98,7 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     }
 
     @Override
-    public void register(Context context, final DevCallback<BluetoothDevice> callback) {
+    public void register(final DevCallback<BluetoothDevice> callback) {
         if (!registerState) {
             //注册广播
             btBroadcastRecv = new BroadcastReceiver() {
@@ -208,7 +211,7 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     }
 
     @Override
-    public void unregister(Context context) {
+    public void unregister() {
         if (registerState) {
             try {
                 context.unregisterReceiver(btBroadcastRecv);

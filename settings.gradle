@@ -1,2 +1,3 @@
-include ':app_main', ':utils', ':console', ':chameleon', ':communication', ':libnfc_pn53x', ':pm3official', ':pm3iceman', ':pm3rdv4rrg', ':mifaretag'
+include ':app_main', ':utils', ':console', ':chameleon', ':communication', ':libnfc_pn53x', ':pm3rdv4rrg', ':mifaretag'
 include ':pm3flasher'
+include ':xmodem'
