@@ -6,6 +6,7 @@ import cn.dxl.com.Communication;
 import cn.dxl.com.DeviceChecker;
 
 public class EmptyDeivce extends DeviceChecker {
+
     public EmptyDeivce(Communication communication) {
         super(communication);
     }

@@ -74,7 +74,8 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
                         break;
 
                     case UsbManager.ACTION_USB_DEVICE_DETACHED:
-                        mCallback.onDetach(name);
+                        if (mCallback != null)
+                            mCallback.onDetach(name);
                         break;
                 }
             }
@@ -83,7 +84,8 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
 
     private void initAndCall(String name) {
         if (init()) {
-            mCallback.onAttach(name);
+            if (mCallback != null)
+                mCallback.onAttach(name);
         }
     }
 
