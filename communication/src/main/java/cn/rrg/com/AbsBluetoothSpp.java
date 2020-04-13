@@ -37,11 +37,10 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     //蓝牙设备套接字
     private static BluetoothSocket btSocket = null;
     //蓝牙设备适配器
-    //TODO 他们的子类被动态加载，万万不可操作这个类的相关字段，操作了也应当更新子类。
-    protected static BluetoothAdapter btAdapter = null;
+    protected BluetoothAdapter btAdapter = null;
     //蓝牙SPP的IO接口
-    protected static InputStream inputStream = null;
-    protected static OutputStream outputStream = null;
+    protected InputStream inputStream = null;
+    protected OutputStream outputStream = null;
     //广播注册状态
     private static boolean registerState = false;
     // SPP UUID
