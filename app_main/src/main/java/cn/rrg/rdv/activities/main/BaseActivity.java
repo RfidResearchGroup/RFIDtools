@@ -24,7 +24,7 @@ import cn.dxl.common.util.LanguageUtil;
 import cn.dxl.common.util.StatusBarUtil;
 import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.VibratorUtils;
-import cn.dxl.mifare.GlobalTag;
+import cn.dxl.mifare.NfcTagListenUtils;
 import cn.dxl.mifare.StdMifareIntent;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.application.Properties;
@@ -33,7 +33,7 @@ import cn.rrg.rdv.application.Properties;
  * Created by DXL on 2017/10/26.
  */
 public abstract class BaseActivity
-        extends AppCompatActivity implements GlobalTag.OnNewTagListener {
+        extends AppCompatActivity implements NfcTagListenUtils.OnNewTagListener {
 
     protected String LOG_TAG = this.getClass().getSimpleName();
     protected Context context = this;
@@ -50,7 +50,7 @@ public abstract class BaseActivity
         //实例化一个标准NFC设备工具对象!
         mStdMfUtil = new StdMifareIntent(this);
         //添加全局的标签状态监听!
-        GlobalTag.addListener(this);
+        NfcTagListenUtils.addListener(this);
         //建立事件观察数列!
         onTouchListeners = new ArrayList<>();
 
@@ -134,12 +134,12 @@ public abstract class BaseActivity
             Tag tag = data.getParcelable(NfcAdapter.EXTRA_TAG);
             if (tag != null) {
                 //存入全局操作域!
-                GlobalTag.setTag(tag);
+                NfcTagListenUtils.setTag(tag);
                 //显示 UID！
                 ToastUtil.show(this, getString(R.string.tips_uid) + HexUtil.toHexString(tag.getId()), true);
                 //震动一下!
                 VibratorUtils.runOneAsDelay(context, 1000);
-                GlobalTag.notifyOnNewTag(tag);
+                NfcTagListenUtils.notifyOnNewTag(tag);
             }
         }
         super.onNewIntent(intent);
@@ -183,7 +183,7 @@ public abstract class BaseActivity
     protected void onDestroy() {
         //Log.d(LOG_TAG, "Act is destory");
         super.onDestroy();
-        GlobalTag.removeListener(this);
+        NfcTagListenUtils.removeListener(this);
     }
 
     @Override

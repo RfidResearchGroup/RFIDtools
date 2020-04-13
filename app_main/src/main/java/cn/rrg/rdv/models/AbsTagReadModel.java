@@ -9,7 +9,7 @@ import java.util.Arrays;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.LogUtils;
 import cn.dxl.mifare.MifareAdapter;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.callback.ReaderCallback;
 import cn.rrg.rdv.javabean.M1Bean;
 import cn.rrg.rdv.javabean.M1KeyBean;
@@ -54,9 +54,9 @@ public abstract class AbsTagReadModel extends AbsStopableTask {
             ret = new M1Bean();
             ret.setSector(sector);
             //验证成功，则得到当前扇区的块数量，进行遍历读取
-            int blockCount = MifareUtils.getBlockCountInSector(sector);
+            int blockCount = MifareClassicUtils.getBlockCountInSector(sector);
             //得到块开始的位置
-            int startBlock = MifareUtils.sectorToBlock(sector);
+            int startBlock = MifareClassicUtils.sectorToBlock(sector);
             //得到块结束的位置
             int endBlock = startBlock + blockCount;
             //建立一个数组，存放数据!
@@ -186,11 +186,11 @@ public abstract class AbsTagReadModel extends AbsStopableTask {
         //设置扇区
         ret.setSector(sector);
         //得到扇区总数量
-        int blockCount = MifareUtils.getBlockCountInSector(sector);
+        int blockCount = MifareClassicUtils.getBlockCountInSector(sector);
         //建立数据块字符串数组
         String[] datas = new String[blockCount];
         //这个扇区的第一块
-        int firstBlock = MifareUtils.sectorToBlock(sector);
+        int firstBlock = MifareClassicUtils.sectorToBlock(sector);
         //迭代扇区中的块!
         for (int i = 0, j = firstBlock; i < blockCount; ++i, ++j) {
             //Log.d(LOG_TAG, "读取块: " + i);

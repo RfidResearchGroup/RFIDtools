@@ -35,7 +35,7 @@ import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.widget.FilesSelectorDialog;
 import cn.dxl.common.widget.ToastUtil;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.standard.AbsStandardM1Activity;
 import cn.rrg.rdv.activities.tools.DumpEditActivity;
@@ -715,7 +715,7 @@ public abstract class AbsMfOperatesFragment
                 // TODO 后期可以做类似MCT的多扇区(非全部扇区)或者单扇区读写实现!
                 //  目前只返回用户输入的扇区即可!
                 sector = Integer.parseInt(edtInputReadTagSingleSector.getText().toString());
-                if (!MifareUtils.validateSector(sector)) sector = -1;
+                if (!MifareClassicUtils.validateSector(sector)) sector = -1;
             } catch (Exception ignored) {
             }
             for (M1KeyBean keyBean : keyBeans) {

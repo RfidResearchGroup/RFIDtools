@@ -55,10 +55,11 @@ dependencies {
     // This my project maven from github release!
     implementation 'com.github.xianglin1998:IORedirector:1.0'
     implementation 'com.github.xianglin1998:Crapto1:1.3'
+    implementation 'com.github.xianglin1998:nfctag:1.0'
+    implementation 'com.github.xianglin1998:nfc_console:1.0'
 
     implementation project(':utils')
     implementation project(':libnfc_pn53x')
-    implementation project(':console')
     implementation project(':chameleon')
     implementation project(':communication')
     implementation project(':pm3rdv4rrg')

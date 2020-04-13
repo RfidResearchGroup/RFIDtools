@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.mifare.MifareAdapter;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.javabean.M1KeyBean;
 import cn.rrg.rdv.javabean.M1Bean;
 import cn.rrg.rdv.callback.WriterCallback;
@@ -69,7 +69,7 @@ public abstract class AbsTagWriteModel
         if (block == 0 && !writeZero) return false;
         boolean ret = false;
         boolean auth;
-        int sector = MifareUtils.blockToSector(block);
+        int sector = MifareClassicUtils.blockToSector(block);
         try {
             if (useKeyB) {
                 auth = tag.authB(sector, key);
@@ -96,7 +96,7 @@ public abstract class AbsTagWriteModel
         }
         MifareAdapter tag = getTag();
         //判断给出的密钥是否可以用来验证这个块
-        if (MifareUtils.blockToSector(block) != keys.getSector()) {
+        if (MifareClassicUtils.blockToSector(block) != keys.getSector()) {
             Log.d(LOG_TAG, "给出的密钥bean不符合输入的block值!");
             callback.onFinish();
             return;
@@ -135,7 +135,7 @@ public abstract class AbsTagWriteModel
         //取出数据尝试写入!
         String[] datas = data.getDatas();
         //进一步验证数据和卡片类型的映射!
-        if (datas.length != MifareUtils.getBlockCountInSector(data.getSector())) {
+        if (datas.length != MifareClassicUtils.getBlockCountInSector(data.getSector())) {
             //数据长度跟卡片对应扇区的块数量不匹配!
             Log.d(LOG_TAG, "发现了致命的问题,传入的数据块数量与标签的块数量不匹配!");
             stopLable = true;
@@ -146,7 +146,7 @@ public abstract class AbsTagWriteModel
         if (order) {
             //正序写!
             int sector = data.getSector();
-            int startBlobk = MifareUtils.sectorToBlock(sector);
+            int startBlobk = MifareClassicUtils.sectorToBlock(sector);
             for (int i = 0, j = startBlobk; i < datas.length; ++i, ++j) {
                 //Log.d(LOG_TAG, "写入块" + j);
                 //TODO 当前是扇区顺写，数据也要是倒写的，因此，我们需要进行验证流程!!
@@ -187,7 +187,7 @@ public abstract class AbsTagWriteModel
             }
         } else {
             int sector = data.getSector();
-            int lastBlock = MifareUtils.sectorToBlock(sector) + MifareUtils.getBlockCountInSector(sector) - 1;
+            int lastBlock = MifareClassicUtils.sectorToBlock(sector) + MifareClassicUtils.getBlockCountInSector(sector) - 1;
             for (int i = datas.length - 1, j = lastBlock; i >= 0; --i, --j) {
                 //Log.d(LOG_TAG, "写入块" + j);
                 //TODO 当前是扇区倒写，数据也要是倒写的，因此，我们需要进行验证流程!!
@@ -205,7 +205,7 @@ public abstract class AbsTagWriteModel
                 if (!retA && !retB) {
                     Log.d(LOG_TAG, "使用AB密钥写入块" + j + "失败!");
                 }
-                if (MifareUtils.isTrailerBlock(j)) {
+                if (MifareClassicUtils.isTrailerBlock(j)) {
                     //写入了尾部块后应当重新截取密钥!
                     if (retA) {
                         keyA = HexUtil.hexStringToByteArray(datas[i].substring(0, 12));
@@ -366,7 +366,7 @@ public abstract class AbsTagWriteModel
         }
         String[] datas = data.getDatas();
         //验证将要被写入的数据个数是否与卡片的块个数一致
-        if (datas.length != MifareUtils.getBlockCountInSector(data.getSector())) {
+        if (datas.length != MifareClassicUtils.getBlockCountInSector(data.getSector())) {
             //不一致,需要反馈!
             Log.d(LOG_TAG, "致命的错误发生在写扇区 " + data + "，要写入的数据个数与标签支持的个数无法成功对应上!");
             callback.onFinish();
@@ -374,7 +374,7 @@ public abstract class AbsTagWriteModel
         }
         int _sector = data.getSector();
         //获得当前扇区最后一个块
-        int lastBlock = MifareUtils.sectorToBlock(_sector) + MifareUtils.getBlockCountInSector(_sector) - 1;
+        int lastBlock = MifareClassicUtils.sectorToBlock(_sector) + MifareClassicUtils.getBlockCountInSector(_sector) - 1;
         //经过必要写入前步骤判断之后，开始写入，倒着写!
         for (int i = datas.length - 1, j = lastBlock; i >= 0; --i, --j) {
             if (DumpUtils.isValidBlockData(datas[i])) {

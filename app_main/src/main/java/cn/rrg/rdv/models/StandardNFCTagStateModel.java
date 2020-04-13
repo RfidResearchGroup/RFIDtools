@@ -6,13 +6,13 @@ import android.nfc.tech.MifareClassic;
 import java.io.IOException;
 
 import cn.dxl.common.util.IOUtils;
-import cn.dxl.mifare.GlobalTag;
+import cn.dxl.mifare.NfcTagListenUtils;
 
 public class StandardNFCTagStateModel extends AbsTagStateModel {
     @Override
     protected boolean checkTagState() {
         //判断标准设备MF是否存在实例引用
-        Tag tag = GlobalTag.getTag();
+        Tag tag = NfcTagListenUtils.getTag();
         // 直接判断全局的标签状态是否正常!
         if (tag != null) {
             //判断能否链接!

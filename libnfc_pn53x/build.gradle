@@ -36,10 +36,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.xianglin1998:nfctag:1.0'
+    implementation 'com.github.xianglin1998:nfc_console:1.0'
+
     implementation project(path: ':communication')
     implementation project(path: ':utils')
-    implementation project(path: ':console')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation project(path: ':mifaretag')
 }
