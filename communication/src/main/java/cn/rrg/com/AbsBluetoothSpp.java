@@ -64,7 +64,8 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
                             //避免重复添加已经绑定过的设备
                             if (device != null) {
                                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-                                    callback.onAttach(device);
+                                    if (callback != null)
+                                        callback.onAttach(device);
                                 }
                             }
                             break;
@@ -77,7 +78,8 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
                         case BluetoothDevice.ACTION_ACL_DISCONNECTED:
                             //蓝牙断开连接广播
                             device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                            callback.onDetach(device);
+                            if (callback != null)
+                                callback.onDetach(device);
                             break;
                         case BluetoothAdapter.ACTION_STATE_CHANGED:
                             //蓝牙状态改变广播

@@ -67,7 +67,8 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
                         //get permission success
                         if (init1()) {
                             //初始化成功则回调串口设备加入方法
-                            mCallback.onAttach(NAME_DRIVER_USB_UART);
+                            if (mCallback != null)
+                                mCallback.onAttach(NAME_DRIVER_USB_UART);
                         } else {
                             //不成则打印到LOG
                             Log.e(LOG_TAG, "NAME_DRIVER_USB_UART: no usb permission!");
@@ -79,8 +80,8 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
                             action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED) ||
                             action.equals(ACTION_BROADCAST)) {
                         Log.d(LOG_TAG, "收到UsbSerial设备寻找的广播!");
-                        if (mCallback != null) {
-                            if (init1()) {
+                        if (init1()) {
+                            if (mCallback != null) {
                                 //初始化成功则回调串口设备加入方法
                                 mCallback.onAttach(NAME_DRIVER_USB_UART);
                             } else {
