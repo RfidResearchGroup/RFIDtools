@@ -1,6 +1,7 @@
 package cn.rrg.com;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 import cn.dxl.common.posixio.Communication;
 
@@ -67,7 +68,10 @@ public class UniversalDriver implements Communication {
          * @param data the new data from write fun
          * @return your process ret
          */
-        public int onWriteData(byte[] data, int offset, int length, int timeout) {
+        public int onWriteData(byte[] data,
+                               int offset,
+                               int length,
+                               int timeout) throws IOException {
             return data.length;
         }
     }
