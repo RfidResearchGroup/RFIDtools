@@ -3,8 +3,6 @@ package cn.rrg.com;
 public class UsbAcr122Raw extends UsbBulkTransferRaw {
     //日志特征
     private static final String LOG_TAG = UsbAcr122Raw.class.getSimpleName();
-    // ID!
-    private static final int UNIQUE_ID = 0x03;
     // single instance!
     private static UsbAcr122Raw mUsbRaw;
     //设备VP码
@@ -66,6 +64,16 @@ public class UsbAcr122Raw extends UsbBulkTransferRaw {
         return DRIVER_ACR122U;
     }
 
+    @Override
+    public String getDevice() {
+        return DRIVER_ACR122U;
+    }
+
+    @Override
+    public void disconect() {
+        //TODO don't need
+    }
+
     private static boolean isAcr122(int producetId, int ventorId) {
         boolean ret = false;
         int var3 = ventorId << 16 | producetId;
@@ -81,20 +89,5 @@ public class UsbAcr122Raw extends UsbBulkTransferRaw {
             ++count;
         }
         return ret;
-    }
-
-    @Override
-    public String getDevice() {
-        return DRIVER_ACR122U;
-    }
-
-    @Override
-    public void disconect() {
-        //TODO don't need
-    }
-
-    @Override
-    public int getUniqueId() {
-        return UNIQUE_ID;
     }
 }

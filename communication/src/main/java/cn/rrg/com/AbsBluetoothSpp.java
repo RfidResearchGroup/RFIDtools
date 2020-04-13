@@ -26,8 +26,6 @@ import cn.dxl.utils.ContextContentProvider;
 public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice, BluetoothAdapter> {
 
     private Context context = ContextContentProvider.mContext;
-    //LOG的标签 LOG TAG
-    private static final String LOG_TAG = "AbsBluetoothSpp";
     //允许失败的次数上限，事不过三...
     private static final int FAILD_MAX = 3;
     //优化，超过多少次就判断失败，不自动连接!
@@ -37,7 +35,7 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     //蓝牙设备套接字
     private static BluetoothSocket btSocket = null;
     //蓝牙设备适配器
-    protected BluetoothAdapter btAdapter = null;
+    private BluetoothAdapter btAdapter;
     //蓝牙SPP的IO接口
     protected InputStream inputStream = null;
     protected OutputStream outputStream = null;
@@ -46,54 +44,8 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     // SPP UUID
     private static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    /**
-     * 实现了SPP的发送
-     *
-     * @param sendMsg 发送缓冲区，内有将要被发送的字节数据!
-     * @param offset  偏移值
-     * @param length  长度
-     * @param timeout 超时值
-     * @return 返回接收的实际长度
-     * @throws IOException 在出现IO异常时抛出!
-     */
-    @Override
-    public abstract int write(byte[] sendMsg, int offset, int length, int timeout) throws IOException;
-
-    /**
-     * 实现了SPP的接收
-     *
-     * @param recvMsg 接收缓冲区!
-     * @param offset  偏移值
-     * @param length  长度
-     * @param timeout 超时值
-     * @return 返回接收的实际长度
-     * @throws IOException 在出现IO异常时抛出!
-     */
-    @Override
-    public abstract int read(byte[] recvMsg, int offset, int length, int timeout) throws IOException;
-
-    /**
-     * 刷新输出缓冲区，这个应当是不会再变动的!
-     */
-    @Override
-    public void flush() throws IOException {
-        if (outputStream != null)
-            outputStream.flush();
-    }
-
-    /**
-     * 关闭设备，此实现也应当是不变的，因此不需要设为抽象!
-     */
-    @Override
-    public void close() throws IOException {
-        if (outputStream != null && inputStream != null) {
-            outputStream.close();
-            inputStream.close();
-        }
-        if (btSocket != null && btSocket.isConnected()) {
-            btSocket.close();
-            btSocket = null;
-        }
+    public AbsBluetoothSpp() {
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
     @Override
@@ -206,6 +158,17 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
             close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void close() throws IOException {
+        if (outputStream != null && inputStream != null) {
+            outputStream.close();
+            inputStream.close();
+        }
+        if (btSocket != null && btSocket.isConnected()) {
+            btSocket.close();
+            btSocket = null;
         }
     }
 

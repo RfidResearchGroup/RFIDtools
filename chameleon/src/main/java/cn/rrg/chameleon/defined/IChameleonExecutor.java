@@ -16,7 +16,7 @@ public interface IChameleonExecutor {
 
     byte[] requestChameleon(int timeout, int length);
 
-    int requestChameleon(String at, int timeout) throws IOException;
+    void requestChameleon(String at) throws IOException;
 
     Communication getCom();
 

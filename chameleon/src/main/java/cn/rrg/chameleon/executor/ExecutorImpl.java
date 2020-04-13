@@ -46,8 +46,8 @@ public class ExecutorImpl implements IChameleonExecutor {
     }
 
     @Override
-    public int requestChameleon(String at, int timeout) throws IOException {
-        return mExecutor.requestChameleon(at, timeout);
+    public void requestChameleon(String at) throws IOException {
+        mExecutor.requestChameleon(at);
     }
 
     @Override

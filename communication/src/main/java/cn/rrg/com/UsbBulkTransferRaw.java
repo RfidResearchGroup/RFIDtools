@@ -13,12 +13,15 @@ import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import cn.dxl.utils.ContextContentProvider;
+import cn.rrg.bulkio.BulkInputStream;
+import cn.rrg.bulkio.BulkOutputStream;
 
 public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbManager> {
 
@@ -243,39 +246,12 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
     }
 
     @Override
-    public int write(byte[] sendMsg, int offset, int length, int timeout) throws IOException {
-        //Log.d(LOG_TAG, "write: " + HexUtil.toHexString(sendMsg, offset, length));
-        //Log.d(LOG_TAG, "write: " + length);
-        //if (len < 0) throw new IOException("write timeout");
-        //Log.d(LOG_TAG, "write timeout value: " + timeout);
-        //Log.d(LOG_TAG, "write length result: " + len);
-        return mCon.bulkTransfer(mEpOut, sendMsg, offset, length, timeout);
+    public OutputStream getOutput() {
+        return new BulkOutputStream(mCon, mEpOut);
     }
 
     @Override
-    public int read(byte[] recvMsg, int offset, int length, int timeout) throws IOException {
-        //Log.d(LOG_TAG, "read: " + HexUtil.toHexString(recvMsg, offset, length));
-        //Log.d(LOG_TAG, "read: 要接收的字节数 " + length);
-        /*do {
-            len = mCon.bulkTransfer(mEpIn, recvMsg, offset, length, 50);
-            Log.d(LOG_TAG, "read: 接收到的的字节数 " + len);
-            if (len == -1) return;
-        } while (len != length);
-        */
-        //Log.d(LOG_TAG, "read timeout value: " + timeout);
-        //Log.d(LOG_TAG, "read length result: " + len);
-        return mCon.bulkTransfer(mEpIn, recvMsg, offset, length, timeout);
-        //Log.d(LOG_TAG, "read: " + len);
-        //if (len < 0) throw new IOException("recv timeout");
-    }
-
-    @Override
-    public void flush() throws IOException {
-        //TODO don't need
-    }
-
-    @Override
-    public void close() throws IOException {
-        mCon.close();
+    public InputStream getInput() {
+        return new BulkInputStream(mCon, mEpIn);
     }
 }

@@ -28,9 +28,4 @@ public class UniversalBulkTransfer extends UsbBulkTransferRaw {
     public String getDeviceNameOnFound() {
         return "PN53X";
     }
-
-    @Override
-    public int getUniqueId() {
-        return 0x06;
-    }
 }

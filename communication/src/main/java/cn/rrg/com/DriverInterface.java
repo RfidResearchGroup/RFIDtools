@@ -23,9 +23,6 @@ public interface DriverInterface<D, A> extends Communication {
     //断开与设备的链接（在某些设备上不一定是立刻生效的）
     void disconect();
 
-    //获得驱动的ID!
-    int getUniqueId();
-
     //解注册广播之类的
     void unregister();
 }

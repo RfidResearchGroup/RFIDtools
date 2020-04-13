@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import cn.dxl.com.Communication;
-
 public class XModem128 extends AbstractXModem {
 
     /**
@@ -21,11 +19,9 @@ public class XModem128 extends AbstractXModem {
 
     // 开始
     private byte SOH = 0x01;
-    // 超时
-    private final int TIMEOUT = 1000;
 
-    public XModem128(Communication com) {
-        super(com);
+    public XModem128(InputStream input, OutputStream output) {
+        super(input, output);
     }
 
     @Override
@@ -52,14 +48,14 @@ public class XModem128 extends AbstractXModem {
             errorCount = 0;
             while (errorCount < mErrorMax) {
                 // 控制字符 + 包序号 + 包序号的反码 + 数据 + 校验和
-                write(SOH, TIMEOUT); //1、发送控制字符!
-                write(blockNumber, TIMEOUT); //2、发送包序号!
-                write((byte) (255 - blockNumber), TIMEOUT); //3、发送包序号的反码!
+                write(SOH); //1、发送控制字符!
+                write(blockNumber); //2、发送包序号!
+                write((byte) (255 - blockNumber)); //3、发送包序号的反码!
                 checkSum = calcChecksum(sector, mBlockSize); //4、计算数据的校验和
-                write(sector, new byte[]{checkSum}, TIMEOUT); //5、进行数据+校验和的封包发送!
+                write(sector, new byte[]{checkSum}); //5、进行数据+校验和的封包发送!
                 flush(); //6、刷新缓冲区，发送数据!
                 // 获取应答数据
-                byte data = read(TIMEOUT);
+                byte data = read();
                 //Log.d(LOG_TAG, "应答数据为: " + HexUtil.toHexString(data));
                 // 如果收到应答数据则跳出循环，发送下一包数据
                 // 未收到应答，错误包数+1，继续重发
@@ -83,8 +79,8 @@ public class XModem128 extends AbstractXModem {
         // 所有数据发送完成后，发送结束标识
         boolean isAck = false;
         while (!isAck) {
-            write(mEOT, TIMEOUT);
-            isAck = read(TIMEOUT) == mACK;
+            write(mEOT);
+            isAck = read() == mACK;
         }
         return true;
     }
@@ -102,14 +98,14 @@ public class XModem128 extends AbstractXModem {
         // 初始化数据缓冲区
         byte[] sector = new byte[mBlockSize];
         // 握手，发起传输!
-        write(mNAK, TIMEOUT);
+        write(mNAK);
         while (true) {
             if (errorCount > mErrorMax) {
                 //Log.d(LOG_TAG, "错误重试次数已达上限!");
                 return false;
             }
             // 获取应答数据
-            data = read(TIMEOUT);
+            data = read();
             if (data != mEOT) {
                 try {
                     // 判断接收到的是否是开始标识
@@ -119,7 +115,7 @@ public class XModem128 extends AbstractXModem {
                         continue;
                     }
                     // 获取包序号
-                    data = read(TIMEOUT);
+                    data = read();
                     //Log.d(LOG_TAG, "包序号: " + data);
                     // 判断包序号是否正确
                     if (data != blocknumber) {
@@ -128,7 +124,7 @@ public class XModem128 extends AbstractXModem {
                         continue;
                     }
                     // 获取包序号的反码
-                    byte _blocknumber = read(TIMEOUT);
+                    byte _blocknumber = read();
                     //Log.d(LOG_TAG, "包序号的反码: " + _blocknumber);
                     // 判断包序号的反码是否正确
                     if (data + _blocknumber != (byte) 255) {
@@ -138,11 +134,11 @@ public class XModem128 extends AbstractXModem {
                     }
                     // 获取数据
                     for (int i = 0; i < mBlockSize; i++) {
-                        sector[i] = read(TIMEOUT);
+                        sector[i] = read();
                     }
                     //Log.d(LOG_TAG, "获取到的数据: " + HexUtil.toHexString(sector));
                     // 获取校验和
-                    checkSum = read(TIMEOUT);
+                    checkSum = read();
                     //Log.d(LOG_TAG, "接收到的校验和: " + checkSum);
                     // 判断校验和是否正确
                     int crc = calcChecksum(sector, mBlockSize);
@@ -154,7 +150,7 @@ public class XModem128 extends AbstractXModem {
                     }
                     //Log.d(LOG_TAG, "接收一帧完成!");
                     // 发送应答
-                    write(mACK, TIMEOUT);
+                    write(mACK);
                     // 包序号自增
                     blocknumber++;
                     // 将数据写入本地
@@ -167,7 +163,7 @@ public class XModem128 extends AbstractXModem {
                     // 如果出错发送重传标识
                     if (errorCount != 0) {
                         //Log.d(LOG_TAG, "错误，将发送重传标志!");
-                        write(mNAK, TIMEOUT);
+                        write(mNAK);
                     }
                 }
             } else {
@@ -175,7 +171,7 @@ public class XModem128 extends AbstractXModem {
             }
         }
         // 发送应答
-        write(mACK, TIMEOUT);
+        write(mACK);
         return true;
     }
 
@@ -186,7 +182,7 @@ public class XModem128 extends AbstractXModem {
      * @param byteCount
      * @return byte checksum value
      */
-    public byte calcChecksum(byte[] buffer, int byteCount) {
+    private byte calcChecksum(byte[] buffer, int byteCount) {
         byte checksum = 0;
         int bufPos = 0;
         while (byteCount-- != 0) {

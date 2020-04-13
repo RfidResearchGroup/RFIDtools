@@ -6,9 +6,6 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import cn.dxl.com.Communication;
-
-
 /**
  * @author DXL
  * 抽象XModem，定义协议的基本特性，通用动作!
@@ -32,10 +29,12 @@ public abstract class AbstractXModem {
     protected int mErrorMax = 10;
 
     // 通信接口,用于读取串口数据
-    private Communication mCom;
+    private InputStream inputStream;
+    private OutputStream outputStream;
 
-    public AbstractXModem(Communication com) {
-        this.mCom = com;
+    public AbstractXModem(InputStream input, OutputStream output) {
+        inputStream = input;
+        outputStream = output;
     }
 
     /**
@@ -56,7 +55,7 @@ public abstract class AbstractXModem {
      * @throws IOException 异常
      */
     protected void flush() throws IOException {
-        mCom.flush();
+        outputStream.flush();
     }
 
     /**
@@ -65,22 +64,18 @@ public abstract class AbstractXModem {
      * @return 数据
      * @throws IOException 异常
      */
-    protected byte read(int timeout) throws IOException {
-        byte[] b = new byte[1];
-        mCom.read(b, 0, 1, timeout);
-        return b[0];
+    protected byte read() throws IOException {
+        return (byte) inputStream.read();
     }
 
     /**
      * 发送数据
      *
      * @param data 数据
-     * @return 发送成功的字节长度!
      * @throws IOException 异常
      */
-    protected int write(byte data, int timeout) throws IOException {
-        byte[] b = {data};
-        return mCom.write(b, 0, 1, timeout);
+    protected void write(byte data) throws IOException {
+        outputStream.write(data);
     }
 
     /**
@@ -91,7 +86,7 @@ public abstract class AbstractXModem {
      * @return 发送成功的字节
      * @throws IOException 异常
      */
-    protected int write(byte[] dataByte, byte[] checkSum, int timeout) throws IOException {
+    protected void write(byte[] dataByte, byte[] checkSum) throws IOException {
         //分配缓冲区!
         ByteBuffer bb = ByteBuffer
                 .allocate(dataByte.length + checkSum.length)
@@ -99,15 +94,13 @@ public abstract class AbstractXModem {
                 .put(dataByte)   //提交数据!
                 .put(checkSum);  //提交校验!
         byte[] array = bb.array();
-        return mCom.write(array, 0, array.length, timeout);
+        outputStream.write(array);
     }
 
     /**
      * 取消传输。使停止!
-     *
-     * @param timeout 超时值!
      */
-    public void cancel(int timeout) throws IOException {
-        write(mCAN, timeout);
+    public void cancel() throws IOException {
+        write(mCAN);
     }
 }
