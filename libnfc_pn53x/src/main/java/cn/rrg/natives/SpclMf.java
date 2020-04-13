@@ -2,9 +2,9 @@ package cn.rrg.natives;
 
 import android.nfc.tech.MifareClassic;
 
-import cn.dxl.common.util.HexUtil;
 import cn.dxl.mifare.BatchAdapter;
 import cn.dxl.mifare.MifareAdapter;
+import cn.rrg.utils.HexUtil;
 
 /**
  * Created by DXL on 2018/3/8.
@@ -167,7 +167,7 @@ public class SpclMf implements MifareAdapter {
     @Override
     public int getType() {
         try {
-            int sakInt = Integer.valueOf(HexUtil.toHexString(getSak()));
+            int sakInt = Integer.parseInt(HexUtil.toHexString(getSak()));
             switch (sakInt) {
                 case 0x01:
                 case 0x08:
