@@ -18,7 +18,6 @@ public class Proxmark3Rdv4RRGMain
         extends BaseActivity {
 
     private Button btnGo2Proxmark3Rdv4RRGRedTeam;
-    private Button btnGo2Proxmark3Rdv4RRGReader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class Proxmark3Rdv4RRGMain
 
     private void initViews() {
         btnGo2Proxmark3Rdv4RRGRedTeam = findViewById(R.id.btnGo2Proxmark3Rdv4RRGRedTeam);
-        btnGo2Proxmark3Rdv4RRGReader = findViewById(R.id.btnGo2Proxmark3Rdv4RRGReader);
     }
 
     private void initActions() {
@@ -39,12 +37,6 @@ public class Proxmark3Rdv4RRGMain
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(context, Proxmark3Rdv4RRGRedTeamConsoleActivity.class));
-            }
-        });
-        btnGo2Proxmark3Rdv4RRGReader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(context, Proxmark3Rdv4RRGReaderMain.class));
             }
         });
     }

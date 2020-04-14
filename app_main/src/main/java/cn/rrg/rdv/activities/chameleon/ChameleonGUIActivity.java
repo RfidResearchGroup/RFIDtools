@@ -516,7 +516,7 @@ public class ChameleonGUIActivity
             @Override
             public void run() {
                 //文件处理完成，进行接下来的下载!
-                XModem128 modem = new XModem128(com);
+                XModem128 modem = new XModem128(com.getInput(), com.getOutput());
                 try {
                     ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 64);
                     boolean b = modem.recv(bos);
@@ -549,7 +549,7 @@ public class ChameleonGUIActivity
                         public void run() {
                             //文件处理完成，进行接下来的下载!
                             Communication com = ExecutorImpl.getInstance().getCom();
-                            XModem128 modem = new XModem128(com);
+                            XModem128 modem = new XModem128(com.getInput(), com.getOutput());
                             new FilesSelectorDialog.Builder(context)
                                     .setTitle(R.string.tips_data_select)
                                     .setCancelable(false)
@@ -625,7 +625,7 @@ public class ChameleonGUIActivity
 
     private void cancelXmodem(XModem128 modem) {
         try {
-            modem.cancel(1000);
+            modem.cancel();
         } catch (IOException e) {
             e.printStackTrace();
         }

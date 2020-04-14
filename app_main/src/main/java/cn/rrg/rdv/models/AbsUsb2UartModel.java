@@ -17,7 +17,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
 
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        return DriverSource.driverMap.get(0x04);
+        return UsbSerialControl.get();
     }
 
     @Override

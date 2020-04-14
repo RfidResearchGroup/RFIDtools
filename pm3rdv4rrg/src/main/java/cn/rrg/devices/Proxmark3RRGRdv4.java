@@ -16,7 +16,8 @@ public class Proxmark3RRGRdv4 extends DeviceChecker {
     }
 
     @Override
-    public boolean working() throws IOException {
+    public boolean check() throws IOException {
+        super.check();
         return testPm3();
     }
 

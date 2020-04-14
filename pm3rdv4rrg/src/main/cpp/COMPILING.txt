@@ -1,2 +1,0 @@
-
-Refer to doc/md/Installation_Instructions/ for up-to-date intructions for various platforms.

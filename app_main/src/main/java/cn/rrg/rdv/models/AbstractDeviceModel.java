@@ -13,7 +13,6 @@ import cn.dxl.common.util.LogUtils;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.DriverInterface;
 
-import cn.dxl.com.ComBridgeAdapter;
 import cn.dxl.com.DeviceChecker;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
@@ -173,10 +172,9 @@ public abstract class AbstractDeviceModel<D, A>
                 public void run() {
                     //直接连接，有需要时可重写!
                     try {
-                        if (mDeviceChecker.working()) {
+                        if (mDeviceChecker.check()) {
                             callback.onInitSuccess();
                         } else {
-
                             LogUtils.d("初始化失败，将会调用设备封装类关闭设备!");
                             // close device!
                             mDeviceChecker.close();

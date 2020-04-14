@@ -12,7 +12,7 @@ public class EmptyDeivce extends DeviceChecker {
     }
 
     @Override
-    public boolean working() throws IOException {
+    public boolean check() throws IOException {
         return true;
     }
 

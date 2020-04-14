@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import cn.dxl.com.Communication;
-
 public class XModem1024 extends AbstractXModem {
 
     //起始头!

@@ -42,7 +42,9 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
         // init and try to connect.
         control.register(this);
-        ComBridgeAdapter.initCom(control);
+        ComBridgeAdapter.getInstance()
+                .setInputStream(control.getInput())
+                .setOutputStream(control.getOutput());
 
         initViews();
         initActions();

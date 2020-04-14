@@ -21,8 +21,5 @@ target_include_directories(nfc PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include/
         ${CMAKE_CURRENT_SOURCE_DIR}/include/nfc/)
 
-#声明变量
-set(COMMAPPING_FILE ${PROJECTDIR}/communication/src/main/jniLibs/${ANDROID_ABI}/libcommapping.so)
-
 #进行最终动态库的链接!
-target_link_libraries(nfc ${COMMAPPING_FILE} android log)
+target_link_libraries(nfc android log)

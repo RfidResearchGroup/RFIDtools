@@ -10,6 +10,7 @@ import cn.rrg.com.DevCallback;
 import cn.dxl.com.DeviceChecker;
 import cn.rrg.com.DriverInterface;
 import cn.rrg.com.UniversalBulkTransfer;
+import cn.rrg.com.UsbBulkTransferRaw;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
@@ -26,7 +27,7 @@ public class UniversalBulkPN53XRawModel extends AbstractDeviceModel<String, UsbM
 
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        return DriverSource.driverMap.get(0x06);
+        return UniversalBulkTransfer.getTransfer();
     }
 
     @Override

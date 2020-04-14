@@ -25,33 +25,6 @@
             android:paddingEnd="28dp"
             android:text="@string/function_name_red_team" />
 
-        <!-- can't work -->
-        <cn.dxl.common.widget.HtmlTextButton
-            android:id="@+id/btnGo2Proxmark3Rdv4RRGReader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/selector_shadow"
-            android:drawableEnd="@drawable/read_tag"
-            android:gravity="start"
-            android:padding="16dp"
-            android:paddingEnd="28dp"
-            android:text="@string/function_name_rdv4rrg_reader"
-            android:visibility="gone" />
-
-        <!--下部分scanner -->
-        <cn.dxl.common.widget.HtmlTextButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/selector_shadow"
-            android:drawableEnd="@drawable/scanner"
-            android:gravity="start"
-            android:padding="16dp"
-            android:paddingEnd="28dp"
-            android:text="@string/function_name_scanner"
-            android:visibility="gone" />
-
     </LinearLayout>
 
 </LinearLayout>

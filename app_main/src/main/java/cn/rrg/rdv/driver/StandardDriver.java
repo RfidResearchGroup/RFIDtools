@@ -9,6 +9,8 @@ import android.nfc.NfcAdapter;
 import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.StdMifareIntent;
@@ -96,11 +98,6 @@ public class StandardDriver implements DriverInterface<String, NfcAdapter> {
     }
 
     @Override
-    public int getUniqueId() {
-        return UNIQUE_ID;
-    }
-
-    @Override
     public void unregister() {
         //解注册广播监听事件!
         context.unregisterReceiver(mReceiver);
@@ -108,22 +105,12 @@ public class StandardDriver implements DriverInterface<String, NfcAdapter> {
     }
 
     @Override
-    public int write(byte[] sendMsg, int offset, int length, int timeout) throws IOException {
-        throw new IOException("can't invoke");
+    public OutputStream getOutput() {
+        return null;
     }
 
     @Override
-    public int read(byte[] recvMsg, int offset, int length, int timeout) throws IOException {
-        throw new IOException("can't invoke");
-    }
-
-    @Override
-    public void flush() throws IOException {
-        throw new IOException("can't invoke");
-    }
-
-    @Override
-    public void close() throws IOException {
-        throw new IOException("can't invoke");
+    public InputStream getInput() {
+        return null;
     }
 }

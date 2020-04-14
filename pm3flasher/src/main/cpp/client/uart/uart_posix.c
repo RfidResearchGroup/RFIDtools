@@ -561,6 +561,18 @@ int uart_reconfigure_timeouts(uint32_t value) {
     return PM3_SUCCESS;
 }
 
+// 暂时处理
+
+int c_open(){}
+
+int c_close(){}
+
+int c_flush(){}
+
+int c_read(uint8_t *pbtRx, const size_t szRx, int timeout){}
+
+int c_write(const uint8_t *pbtTx, const size_t szTx, int timeout){}
+
 serial_port uart_open(const char *pcPortName, uint32_t speed) {
     serial_port_unix *sp = malloc(sizeof(serial_port_unix));
     if (sp == 0) return INVALID_SERIAL_PORT;

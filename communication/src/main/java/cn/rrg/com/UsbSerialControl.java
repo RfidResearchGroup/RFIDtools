@@ -163,12 +163,16 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     @Override
     public OutputStream getOutput() {
-        return mPort.getOutputStream();
+        if (mPort != null)
+            return mPort.getOutputStream();
+        return null;
     }
 
     @Override
     public InputStream getInput() {
-        return mPort.getInputStream();
+        if (mPort != null)
+            return mPort.getInputStream();
+        return null;
     }
 
     private boolean init1() {

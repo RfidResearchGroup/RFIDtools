@@ -92,7 +92,6 @@
         <activity android:name=".activities.connect.PN532UartConnectActivity" />
         <activity android:name=".activities.connect.ChameleonUsb2UartConnectActivity" />
         <activity android:name=".activities.chameleon.ChameleonGUIActivity" />
-        <activity android:name=".activities.main.Proxmark3Rdv4RRGReaderMain" />
 
         <activity
             android:name=".activities.main.AppMain"

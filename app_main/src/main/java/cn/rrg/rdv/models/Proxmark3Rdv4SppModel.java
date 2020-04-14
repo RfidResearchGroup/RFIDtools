@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 
 import cn.rrg.com.DriverInterface;
 import cn.dxl.com.DeviceChecker;
+import cn.rrg.com.SppNonBlock;
 import cn.rrg.devices.Proxmark3RRGRdv4;
 
 /*
@@ -14,7 +15,7 @@ public class Proxmark3Rdv4SppModel extends AbstractSppDeviceModel {
 
     @Override
     public DriverInterface<BluetoothDevice, BluetoothAdapter> getDriverInterface() {
-        return DriverSource.driverMap.get(0x01);
+        return SppNonBlock.get();
     }
 
     @Override

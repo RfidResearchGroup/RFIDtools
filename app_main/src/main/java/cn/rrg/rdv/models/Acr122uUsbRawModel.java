@@ -18,7 +18,7 @@ import cn.rrg.rdv.util.Commons;
 public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> {
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        return DriverSource.driverMap.get(0x03);
+        return UsbAcr122Raw.get();
     }
 
     @Override

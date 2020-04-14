@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 
 import cn.rrg.com.DriverInterface;
 import cn.dxl.com.DeviceChecker;
+import cn.rrg.com.SppHasBlock;
 import cn.rrg.devices.PN53X;
 
 /*
@@ -13,7 +14,7 @@ import cn.rrg.devices.PN53X;
 public class PN532SppUartModel extends AbstractSppDeviceModel {
     @Override
     public DriverInterface<BluetoothDevice, BluetoothAdapter> getDriverInterface() {
-        return DriverSource.driverMap.get(0x02);
+        return SppHasBlock.get();
     }
 
     @Override

@@ -369,12 +369,12 @@ public class ChameleonVCUtil {
         String cmdStr = ChameleonCMDStr.getCMD4E(ChameleonCMDSet.DETECTION);
         try {
             //执行命令
-            executor.requestChameleon(cmdStr, 1000);
+            executor.requestChameleon(cmdStr);
             //接收指定长度的数据
             Communication com = executor.getCom();
             byte[] buf = new byte[218];
             //开始接收!
-            com.read(buf, 0, buf.length, 3000);
+            com.getInput().read(buf, 0, buf.length);
             //开始进行解密!
             new ChameleonDetection(new ChameleonDetection.DecryptCallback() {
                 @Override
