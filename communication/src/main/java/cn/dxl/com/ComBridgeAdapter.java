@@ -69,9 +69,9 @@ public final class ComBridgeAdapter implements Serializable {
                         Log.e(LOG_TAG, "please disconnect your previous con.");
                         continue;
                     }
+                    isHasClient = true;
                     new DataThread(mOutputStream, socket.getInputStream()).start();
                     new DataThread(socket.getOutputStream(), mInputStream).start();
-                    isHasClient = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                     isHasClient = false;
@@ -90,7 +90,7 @@ public final class ComBridgeAdapter implements Serializable {
         private OutputStream os;
         private InputStream is;
 
-        DataThread(OutputStream os, InputStream is) throws IOException {
+        DataThread(OutputStream os, InputStream is) {
             this.os = os;
             this.is = is;
         }
