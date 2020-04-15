@@ -37,18 +37,15 @@ public class LanguageUtil {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1) {
             switch (language) {
                 case "zh":
-                    Log.d("setAppLanguage()", "配置为中文!");
                     configuration.setLocale(Locale.SIMPLIFIED_CHINESE);
                     break;
                 case "en":
                 default:
-                    Log.d("setAppLanguage()", "配置为英语或跟随系统!");
                     configuration.setLocale(Locale.ENGLISH);
                     break;
             }
             return AppUtil.getInstance().getApp().createConfigurationContext(configuration);
         } else {
-            Log.d("updateConfiguration()", "配置为: " + language);
             context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
             return context;
         }

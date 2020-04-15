@@ -11,6 +11,8 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
+import com.felhr.usbserial.SerialInputStream;
+import com.felhr.usbserial.SerialOutputStream;
 import com.felhr.usbserial.UsbSerialDevice;
 
 import java.io.IOException;
@@ -163,15 +165,21 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     @Override
     public OutputStream getOutput() {
-        if (mPort != null)
-            return mPort.getOutputStream();
+        if (mPort != null) {
+            SerialOutputStream os = mPort.getOutputStream();
+            os.setTimeout(0);
+            return os;
+        }
         return null;
     }
 
     @Override
     public InputStream getInput() {
-        if (mPort != null)
-            return mPort.getInputStream();
+        if (mPort != null) {
+            SerialInputStream is = mPort.getInputStream();
+            is.setTimeout(0);
+            return is;
+        }
         return null;
     }
 

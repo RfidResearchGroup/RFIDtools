@@ -17,23 +17,26 @@ public abstract class DeviceChecker implements Serializable, Closeable {
         this.communication = communication;
     }
 
-    private void initCom() {
-        // Auto init communication to mapper.
-        LocalComBridgeAdapter.getInstance()
-                .setInputStream(communication.getInput())
-                .setOutputStream(communication.getOutput())
-                .start();
-    }
-
     /**
      * Test a device is can work!
      *
      * @return if can work return true, if no, return false
      */
-    public boolean check() throws IOException {
-        initCom();
-        return false;
+    public final boolean check() throws IOException {
+        // Auto init communication to mapper.
+        LocalComBridgeAdapter.getInstance()
+                .setInputStream(communication.getInput())
+                .setOutputStream(communication.getOutput())
+                .startServer();
+        if (!checkDevice()) {
+            // if check failed, we must to close device!
+            LocalComBridgeAdapter.getInstance().stopClient();
+            return false;
+        }
+        return true;
     }
+
+    protected abstract boolean checkDevice() throws IOException;
 
     /**
      * Close the device(Should no close communication. only close device!)

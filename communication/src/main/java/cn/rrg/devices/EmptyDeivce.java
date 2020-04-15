@@ -12,9 +12,10 @@ public class EmptyDeivce extends DeviceChecker {
     }
 
     @Override
-    public boolean check() throws IOException {
+    protected boolean checkDevice() throws IOException {
         return true;
     }
+
 
     @Override
     public void close() throws IOException {

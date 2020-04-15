@@ -32,8 +32,7 @@ public class PN53X extends DeviceChecker {
     }
 
     @Override
-    public boolean check() throws IOException {
-        super.check();
+    public boolean checkDevice() throws IOException {
         return testPN53x(name);
     }
 

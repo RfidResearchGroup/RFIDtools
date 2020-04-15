@@ -6,7 +6,7 @@ import cn.dxl.com.Communication;
 import cn.dxl.com.DeviceChecker;
 
 public class Proxmark3RRGRdv4 extends DeviceChecker {
-    
+
     static {
         System.loadLibrary("pm3rrg_rdv4");
     }
@@ -16,8 +16,7 @@ public class Proxmark3RRGRdv4 extends DeviceChecker {
     }
 
     @Override
-    public boolean check() throws IOException {
-        super.check();
+    public boolean checkDevice() throws IOException {
         return testPm3();
     }
 

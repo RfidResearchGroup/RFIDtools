@@ -63,8 +63,13 @@ public class Proxmark3Rdv4RRGRedTeamConsoleActivity
         initViews();
         initActions();
 
-        // 更改工作目录!
-        IORedirector.chdir(Paths.PM3_DIRECTORY);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 更改工作目录!
+                IORedirector.chdir(Paths.PM3_DIRECTORY);
+            }
+        }).start();
     }
 
     private void initViews() {

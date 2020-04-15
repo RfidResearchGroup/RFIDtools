@@ -28,10 +28,16 @@ public abstract class Proxmark3ConsoleActivity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //重定向!
-        IORedirector.setStdEO(Paths.PM3_FORWARD_O, IORedirector.STD_OUT);
-        IORedirector.setStdEO(Paths.PM3_FORWARD_E, IORedirector.STD_ERR);
-        IORedirector.setStdIN(Paths.COMMON_FORWARD_I);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //重定向!
+                IORedirector.setStdEO(Paths.PM3_FORWARD_O, IORedirector.STD_OUT);
+                IORedirector.setStdEO(Paths.PM3_FORWARD_E, IORedirector.STD_ERR);
+                IORedirector.setStdIN(Paths.COMMON_FORWARD_I);
+            }
+        }).start();
+
         //父类先初初始化!
         super.onCreate(savedInstanceState);
 

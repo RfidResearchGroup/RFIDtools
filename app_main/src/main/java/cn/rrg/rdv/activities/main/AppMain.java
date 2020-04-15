@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import cn.dxl.com.LocalComBridgeAdapter;
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
 import cn.rrg.rdv.fragment.tools.MainSettingsFragment;
@@ -94,6 +95,7 @@ public class AppMain extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalComBridgeAdapter.getInstance().stop();
+        LocalComBridgeAdapter.getInstance().stopServer();
+        LogUtils.d("AppMain结束!");
     }
 }

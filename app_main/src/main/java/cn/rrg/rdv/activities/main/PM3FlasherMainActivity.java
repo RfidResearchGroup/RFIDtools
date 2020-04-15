@@ -46,7 +46,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         LocalComBridgeAdapter.getInstance()
                 .setInputStream(control.getInput())
                 .setOutputStream(control.getOutput())
-                .start();
+                .startServer();
 
         initViews();
         initActions();
@@ -144,7 +144,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         control.unregister();
         closeClient();
         LocalComBridgeAdapter.getInstance()
-                .stop();
+                .stopClient();
     }
 
     @Override
