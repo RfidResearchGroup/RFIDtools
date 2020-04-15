@@ -20,8 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import cn.dxl.utils.ContextContentProvider;
-import cn.rrg.bulkio.BulkInputStream;
-import cn.rrg.bulkio.BulkOutputStream;
+import cn.dxl.bulkio.BulkInputStream;
+import cn.dxl.bulkio.BulkOutputStream;
 
 public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbManager> {
 

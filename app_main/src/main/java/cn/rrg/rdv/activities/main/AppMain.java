@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import cn.dxl.com.LocalComBridgeAdapter;
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
 import cn.rrg.rdv.R;
@@ -88,5 +89,11 @@ public class AppMain extends BaseActivity {
         super.onBackPressed();
         // back event dispatch!
         appMainDevicesFragment.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalComBridgeAdapter.getInstance().stop();
     }
 }

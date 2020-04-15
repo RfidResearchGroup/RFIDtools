@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,12 @@ public class ContextContentProvider extends ContentProvider {
     public boolean onCreate() {
         mContext = getContext();
         return false;
+    }
+
+    @Override
+    public void shutdown() {
+        super.shutdown();
+        Log.d("LOG", "关闭内容提供者!");
     }
 
     @Nullable

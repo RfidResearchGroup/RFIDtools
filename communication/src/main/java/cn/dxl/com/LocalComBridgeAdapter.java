@@ -4,19 +4,18 @@ import android.net.LocalServerSocket;
 import android.net.LocalSocket;
 import android.util.Log;
 
-import com.felhr.utils.HexData;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * @author DXL
  * Created by DXL on 2017/8/21.
  * 通信控制映射类，直接实现进程间通信!
  */
-public final class ComBridgeAdapter implements Serializable {
+public final class LocalComBridgeAdapter implements Serializable {
     /*
      * Warning!!!
      * If your implementation does not need to be mapped to the c/c++ (only Java exists), please do not use this tool class!
@@ -32,7 +31,7 @@ public final class ComBridgeAdapter implements Serializable {
     // 本地套接字服务!
     private LocalServerSocket serverSocket;
     // 单例!
-    private static ComBridgeAdapter instance;
+    private static LocalComBridgeAdapter instance;
     // 输入流!
     private InputStream mInputStream;
     // 输出流!
@@ -42,16 +41,8 @@ public final class ComBridgeAdapter implements Serializable {
     // 暂停转发!
     private boolean pause = false;
 
-    // No instantiation is required
-    private ComBridgeAdapter() {
-        synchronized (ComBridgeAdapter.class) {
-            try {
-                serverSocket = new LocalServerSocket(NAMESPACE);
-                new WorkThread().start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private LocalComBridgeAdapter() {
+        // No instantiation is required
     }
 
     /**
@@ -70,8 +61,8 @@ public final class ComBridgeAdapter implements Serializable {
                         continue;
                     }
                     isHasClient = true;
-                    new DataThread(mOutputStream, socket.getInputStream()).start();
-                    new DataThread(socket.getOutputStream(), mInputStream).start();
+                    new DataThread(socket, mOutputStream, socket.getInputStream()).start();
+                    new DataThread(socket, socket.getOutputStream(), mInputStream).start();
                 } catch (IOException e) {
                     e.printStackTrace();
                     isHasClient = false;
@@ -81,18 +72,16 @@ public final class ComBridgeAdapter implements Serializable {
         }
     }
 
-    @Override
-    protected void finalize() {
-        isHasClient = false;
-    }
-
     class DataThread extends Thread {
+        private LocalSocket socket;
         private OutputStream os;
         private InputStream is;
+        private byte[] buffer = new byte[1024];
 
-        DataThread(OutputStream os, InputStream is) {
+        DataThread(LocalSocket socket, OutputStream os, InputStream is) {
             this.os = os;
             this.is = is;
+            this.socket = socket;
         }
 
         @Override
@@ -100,26 +89,40 @@ public final class ComBridgeAdapter implements Serializable {
             while (isHasClient) {
                 try {
                     if (pause) {
-                        Log.e(LOG_TAG, "暂停中！");
+                        Log.e(LOG_TAG, "pausing！");
                         continue;
                     }
                     if (os != null && is != null) {
-                        Log.d(LOG_TAG, "接收中");
-                        byte b = (byte) is.read();
-                        os.write(b);
-                        os.flush();
-                        Log.e(LOG_TAG, "数据: " + HexData.hexToString(new byte[]{b}));
+                        int len = is.read(buffer);
+                        if (len != -1) {
+                            os.write(Arrays.copyOf(buffer, len));
+                            os.flush();
+                        }
+                    } else {
+                        throw new IOException("IO closed.");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                     isHasClient = false;
+                    try {
+                        socket.shutdownInput();
+                        socket.shutdownOutput();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     break;
                 }
             }
+            isHasClient = false;
         }
     }
 
-    public static ComBridgeAdapter getInstance() {
+    @Override
+    protected void finalize() throws Throwable {
+        stop();
+    }
+
+    public static LocalComBridgeAdapter getInstance() {
         return instance;
     }
 
@@ -127,7 +130,7 @@ public final class ComBridgeAdapter implements Serializable {
         return mInputStream;
     }
 
-    public ComBridgeAdapter setInputStream(InputStream mInputStream) {
+    public LocalComBridgeAdapter setInputStream(InputStream mInputStream) {
         this.mInputStream = mInputStream;
         return this;
     }
@@ -136,16 +139,44 @@ public final class ComBridgeAdapter implements Serializable {
         return mOutputStream;
     }
 
-    public ComBridgeAdapter setOutputStream(OutputStream mOutputStream) {
+    public LocalComBridgeAdapter setOutputStream(OutputStream mOutputStream) {
         this.mOutputStream = mOutputStream;
         return this;
     }
 
     public void pause() {
         pause = true;
+        Log.d(LOG_TAG, "ComBridgeAdapter pause!");
+    }
+
+    public LocalComBridgeAdapter start() {
+        synchronized (LocalComBridgeAdapter.class) {
+            try {
+                if (serverSocket != null) stop();
+                serverSocket = new LocalServerSocket(NAMESPACE);
+                new WorkThread().start();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e(LOG_TAG, "If you see an error message like \"Address already in use\", check that you call the stop function");
+                Log.e(LOG_TAG, "如果你看到了类似Address already in use的错误消息，请检查你是否调用停止函数");
+            }
+        }
+        Log.d(LOG_TAG, "ComBridgeAdapter start!");
+        return this;
+    }
+
+    public void stop() {
+        isHasClient = false;
+        try {
+            if (serverSocket != null)
+                serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(LOG_TAG, "ComBridgeAdapter stop!");
     }
 
     static {
-        instance = new ComBridgeAdapter();
+        instance = new LocalComBridgeAdapter();
     }
 }

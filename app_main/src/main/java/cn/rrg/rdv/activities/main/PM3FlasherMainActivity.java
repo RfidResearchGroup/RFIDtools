@@ -11,11 +11,10 @@ import androidx.annotation.Nullable;
 import com.proxgrind.pm3flasher.Proxmark3Flasher;
 import com.proxgrind.pm3flasher.Target;
 
-import cn.dxl.com.ComBridgeAdapter;
+import cn.dxl.com.LocalComBridgeAdapter;
 import cn.dxl.common.widget.ToastUtil;
 import cn.rrg.com.DevCallback;
 import cn.rrg.com.UsbSerialControl;
-import cn.rrg.devices.EmptyDeivce;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.util.Paths;
 
@@ -42,9 +41,12 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
 
         // init and try to connect.
         control.register(this);
-        ComBridgeAdapter.getInstance()
+
+        // start communication forward!
+        LocalComBridgeAdapter.getInstance()
                 .setInputStream(control.getInput())
-                .setOutputStream(control.getOutput());
+                .setOutputStream(control.getOutput())
+                .start();
 
         initViews();
         initActions();
@@ -141,6 +143,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         mDialogWorkingState.dismiss();
         control.unregister();
         closeClient();
+        LocalComBridgeAdapter.getInstance()
+                .stop();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.rrg.bulkio;
+package cn.dxl.bulkio;
 
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbEndpoint;

@@ -15,14 +15,14 @@ public abstract class DeviceChecker implements Serializable, Closeable {
 
     public DeviceChecker(Communication communication) {
         this.communication = communication;
-        initCom();
     }
 
-    private void initCom(){
+    private void initCom() {
         // Auto init communication to mapper.
-        ComBridgeAdapter.getInstance()
+        LocalComBridgeAdapter.getInstance()
                 .setInputStream(communication.getInput())
-                .setOutputStream(communication.getOutput());
+                .setOutputStream(communication.getOutput())
+                .start();
     }
 
     /**

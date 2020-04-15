@@ -1,10 +1,9 @@
-package cn.rrg.bulkio;
+package cn.dxl.bulkio;
 
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbEndpoint;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
