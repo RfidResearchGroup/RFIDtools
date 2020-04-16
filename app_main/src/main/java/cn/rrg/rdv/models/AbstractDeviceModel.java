@@ -179,6 +179,7 @@ public abstract class AbstractDeviceModel<D, A>
                             // close device!
                             mDeviceChecker.close();
                             callback.onInitFail();
+                            mDI.disconect();
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

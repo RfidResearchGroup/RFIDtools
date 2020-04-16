@@ -166,9 +166,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     @Override
     public OutputStream getOutput() {
         if (mPort != null) {
-            SerialOutputStream os = mPort.getOutputStream();
-            os.setTimeout(0);
-            return os;
+            return mPort.getOutputStream();
         }
         return null;
     }
@@ -177,7 +175,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     public InputStream getInput() {
         if (mPort != null) {
             SerialInputStream is = mPort.getInputStream();
-            is.setTimeout(0);
+            // is.setTimeout(2048);
             return is;
         }
         return null;

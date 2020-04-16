@@ -27,33 +27,43 @@ public final class LocalComBridgeAdapter implements Serializable {
     // The namespace of the LocalServerSocket
     public static final String NAMESPACE = "LocalComBridgeAdapter";
     // The tag of the log.
-    public static final String LOG_TAG = "LocalComBridgeAdapter";
+    private final String LOG_TAG = "LocalComBridgeAdapter";
     // 本地套接字服务!
     private LocalServerSocket serverSocket;
     // 单例!
     private static LocalComBridgeAdapter instance;
-    // 输入流!
-    private InputStream mInputStream;
-    // 输出流!
-    private OutputStream mOutputStream;
+    // 设备输入流!
+    private InputStream mInputStreamFromDevice;
+    // 设备输出流!
+    private OutputStream mOutputStreamFromDevice;
+    // 客户端输入流
+    private InputStream mInputStreamFromSocket;
+    // 客户端输出流
+    private OutputStream mOutputStreamFromSocket;
     // 是否已经连接!
     private volatile boolean isHasClient = false;
     // 是否关闭监听!
     private volatile boolean listenAccept = false;
-    // 暂停转发!
-    private boolean pause = false;
     // 连接到转发服务的客户端!
     private LocalSocket socket;
+    // 设备数据转发线程是否可以工作
+    private volatile boolean forwardWork = false;
+    // connection lock!
+    private static final Object LOCK = new Object();
 
-    private LocalComBridgeAdapter() {
-        // No instantiation is required
+    private LocalComBridgeAdapter() {   // No instantiation is required
+        if (!forwardWork) {
+            forwardWork = true;
+            // 创建一个数据转发线程
+            new DeviceDataThread().start();
+        }
     }
 
     /**
      * Data forward thread!
      * data will from a InputStream to a OutputStream!
      */
-    private class WorkThread extends Thread {
+    private class ConServerThread extends Thread {
         @Override
         public void run() {
             while (listenAccept) {
@@ -66,12 +76,14 @@ public final class LocalComBridgeAdapter implements Serializable {
                             Log.e(LOG_TAG, "please disconnect your previous con.");
                             continue;
                         }
-                        isHasClient = true;
-                        Thread socket2Device = new DataThread(socket, mOutputStream, socket.getInputStream());
-                        Thread device2Socket = new DataThread(socket, socket.getOutputStream(), mInputStream);
-                        // start task!
-                        device2Socket.start();
-                        socket2Device.start();
+                        if (socket != null) {
+                            synchronized (LOCK) {
+                                isHasClient = true;
+                                mInputStreamFromSocket = socket.getInputStream();
+                                mOutputStreamFromSocket = socket.getOutputStream();
+                                new SocketDataThread().start();
+                            }
+                        }
                     } else {
                         return;
                     }
@@ -79,51 +91,77 @@ public final class LocalComBridgeAdapter implements Serializable {
                     e.printStackTrace();
                     isHasClient = false;
                     listenAccept = false;
-                    Log.d(LOG_TAG, "链接线程终止!");
+                    Log.w(LOG_TAG, "Connection thread abort!");
                     break;
                 }
             }
         }
     }
 
-    class DataThread extends Thread {
-        private OutputStream os;
-        private InputStream is;
+    /**
+     * Data from socket to device transfer
+     * need client connect and stable communication!
+     */
+    private class SocketDataThread extends Thread {
         private byte[] buffer = new byte[1024 * 500];
-        private LocalSocket socket;
 
-        DataThread(LocalSocket socket, OutputStream os, InputStream is) {
-            this.os = os;
-            this.is = is;
-            this.socket = socket;
+        SocketDataThread() {
+            setPriority(MAX_PRIORITY);
         }
 
         @Override
         public void run() {
-            while (isHasClient) {
-                try {
-                    if (socket.getFileDescriptor() == null) {
-                        throw new IOException("Socket disconnected!");
-                    }
-                    if (pause) {
-                        Log.e(LOG_TAG, "pausing！");
-                        continue;
-                    }
-                    if (os != null && is != null) {
-                        int len = is.read(buffer);
+            while (true) {
+                if (isHasClient) { // 有客户端的时候才接收数据!
+                    try {
+                        int len = mInputStreamFromSocket.read(buffer);
                         if (len > 0) {
-                            os.write(Arrays.copyOf(buffer, len));
+                            mOutputStreamFromDevice.write(Arrays.copyOf(buffer, len));
+                            mOutputStreamFromDevice.flush();
                         }
-                    } else {
-                        throw new IOException("IO closed.");
+                        if (len == -1) {
+                            throw new IOException("Socket already disconnected.");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        isHasClient = false;
+                        break;
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    isHasClient = false;
+                } else {
                     break;
                 }
             }
-            isHasClient = false;
+        }
+    }
+
+    /**
+     * Data from device to socket client transfer
+     * default case, it is always worked at runtime!
+     */
+    private class DeviceDataThread extends Thread {
+        private byte[] buffer = new byte[1024 * 500];
+
+        DeviceDataThread() {
+            setPriority(MAX_PRIORITY);
+        }
+
+        @Override
+        public void run() {
+            while (forwardWork) {
+                if (isHasClient) { // 有客户端的时候才接收数据!
+                    try {
+                        int len = mInputStreamFromDevice.read(buffer);
+                        if (len > 0) {
+                            mOutputStreamFromSocket.write(Arrays.copyOf(buffer, len));
+                            mOutputStreamFromSocket.flush();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 
@@ -131,6 +169,7 @@ public final class LocalComBridgeAdapter implements Serializable {
     protected void finalize() {
         stopClient();
         stopServer();
+        forwardWork = false;
     }
 
     public static LocalComBridgeAdapter getInstance() {
@@ -138,41 +177,36 @@ public final class LocalComBridgeAdapter implements Serializable {
     }
 
     public InputStream getInputStream() {
-        return mInputStream;
+        return mInputStreamFromDevice;
     }
 
     public LocalComBridgeAdapter setInputStream(InputStream mInputStream) {
-        this.mInputStream = mInputStream;
+        this.mInputStreamFromDevice = mInputStream;
         return this;
     }
 
     public OutputStream getOutputStream() {
-        return mOutputStream;
+        return mOutputStreamFromDevice;
     }
 
     public LocalComBridgeAdapter setOutputStream(OutputStream mOutputStream) {
-        this.mOutputStream = mOutputStream;
+        this.mOutputStreamFromDevice = mOutputStream;
         return this;
     }
 
-    public void pause() {
-        pause = true;
-        Log.d(LOG_TAG, "ComBridgeAdapter pause!");
-    }
-
     public LocalComBridgeAdapter startServer() {
-        synchronized (LocalComBridgeAdapter.class) {
+        synchronized (LOCK) {
             if (!listenAccept) {
                 listenAccept = true;
                 try {
                     if (serverSocket == null) {
                         serverSocket = new LocalServerSocket(NAMESPACE);
                     }
-                    new WorkThread().start();
+                    // 创建一个客户端连接线程
+                    new ConServerThread().start();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(LOG_TAG, "If you see an error message like \"Address already in use\", check that you call the stopServer function");
-                    Log.e(LOG_TAG, "如果你看到了类似Address already in use的错误消息，请检查你是否调用停止函数");
                 }
                 Log.d(LOG_TAG, "ComBridgeAdapter start!");
             }
@@ -181,34 +215,43 @@ public final class LocalComBridgeAdapter implements Serializable {
     }
 
     public void stopServer() {
-        listenAccept = false;
-        if (serverSocket != null) {
-            try {
-                serverSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        synchronized (LOCK) {
+            listenAccept = false;
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                serverSocket = null;
             }
-            serverSocket = null;
+            Log.d(LOG_TAG, "ComBridgeAdapter server stop!");
         }
     }
 
     public void stopClient() {
-        isHasClient = false;
-        try {
+        synchronized (LOCK) {
+            isHasClient = false;
+            try {
 
-            if (socket != null) {
-                socket.shutdownInput();
-                socket.shutdownOutput();
-                socket.close();
-                socket = null;
+                if (socket != null) {
+                    socket.shutdownInput();
+                    socket.shutdownOutput();
+                    socket.close();
+                    socket = null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            Log.d(LOG_TAG, "ComBridgeAdapter client stop!");
         }
-        Log.d(LOG_TAG, "ComBridgeAdapter stop!");
     }
 
     static {
+        /*
+         * It is a single instance tools
+         * you can't instantiation than for once.
+         * */
         instance = new LocalComBridgeAdapter();
     }
 }
