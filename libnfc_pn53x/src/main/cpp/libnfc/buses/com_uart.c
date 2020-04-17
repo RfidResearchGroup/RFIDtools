@@ -7,6 +7,7 @@
 static serial_port sp = INVALID_SERIAL_PORT;
 
 bool c_open() {
+    if (sp != INVALID_SERIAL_PORT) uart_close(sp);
     sp = uart_open("socket:DXL.COM.ASL", 115200);
     return sp != INVALID_SERIAL_PORT;
 }
@@ -14,19 +15,20 @@ bool c_open() {
 void c_close() {
     if (sp != INVALID_SERIAL_PORT) {
         uart_close(sp);
+        sp = INVALID_SERIAL_PORT;
     }
 }
 
 int c_read(uint8_t *pbtRx, size_t szRx, int timeout) {
     if (sp != INVALID_SERIAL_PORT) {
-        uart_reconfigure_timeouts(88);
+        uart_reconfigure_timeouts(218);
         size_t recvLen = 0;
         size_t *pRecvLen = &recvLen;
         if (uart_receive(sp, pbtRx, szRx, pRecvLen) == NFC_SUCCESS) {
             return recvLen;
         }
-        return -1;
     }
+    sp = INVALID_SERIAL_PORT;
     return -1;
 }
 
@@ -35,5 +37,6 @@ int c_write(const uint8_t *pbtTx, size_t szTx, int timeout) {
         uart_reconfigure_timeouts((uint32_t) timeout);
         return uart_send(sp, pbtTx, szTx);
     }
+    sp = INVALID_SERIAL_PORT;
     return -1;
 }

@@ -70,15 +70,12 @@ public final class LocalComBridgeAdapter implements Serializable {
                 try {
                     if (serverSocket != null) {
                         Log.d(LOG_TAG, "服务套接字堵塞等待连接中!");
-                        socket = serverSocket.accept();
-                        if (socket != null) {
-                            synchronized (LOCK) {
-                                isHasClient = true;
-                                mInputStreamFromSocket = socket.getInputStream();
-                                mOutputStreamFromSocket = socket.getOutputStream();
-                                new SocketDataThread().start();
-                            }
-                        }
+                        LocalSocket socketInternal = serverSocket.accept();
+                        mInputStreamFromSocket = socketInternal.getInputStream();
+                        mOutputStreamFromSocket = socketInternal.getOutputStream();
+                        socket = socketInternal;
+                        isHasClient = true;
+                        new SocketDataThread().start();
                     } else {
                         return;
                     }
@@ -107,25 +104,20 @@ public final class LocalComBridgeAdapter implements Serializable {
         @Override
         public void run() {
             while (true) {
-                if (isHasClient) { // 有客户端的时候才接收数据!
-                    try {
-                        int len = mInputStreamFromSocket.read(buffer);
-                        if (len > 0) {
-                            mOutputStreamFromDevice.write(Arrays.copyOf(buffer, len));
-                            mOutputStreamFromDevice.flush();
-                        }
-                        if (len == -1) {
-                            throw new IOException("Socket already disconnected.");
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        isHasClient = false;
-                        break;
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                try {
+                    int len = mInputStreamFromSocket.read(buffer);
+                    if (len > 0) {
+                        mOutputStreamFromDevice.write(Arrays.copyOf(buffer, len));
+                        mOutputStreamFromDevice.flush();
                     }
-                } else {
+                    if (len == -1) {
+                        throw new IOException("Socket already disconnected.");
+                    }
+                } catch (IOException e) {
+                    // e.printStackTrace();
                     break;
+                } catch (Exception e) {
+                    // e.printStackTrace();
                 }
             }
         }
