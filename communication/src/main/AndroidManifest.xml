@@ -7,7 +7,7 @@
     <application>
         <!-- 全局Context提供者 -->
         <provider
-            android:name="cn.rrg.utils.ContextContentProvider"
+            android:name="cn.proxgrind.utils.ContextContentProvider"
             android:authorities="${applicationId}.contextprovider"
             android:exported="false" />
     </application>

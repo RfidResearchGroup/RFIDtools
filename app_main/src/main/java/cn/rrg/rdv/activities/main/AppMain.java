@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.iobridges.com.LocalComBridgeAdapter;
 
-import cn.dxl.com.LocalComBridgeAdapter;
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
 import cn.dxl.common.util.LogUtils;

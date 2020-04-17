@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.iobridges.com.Communication;
 import com.proxgrind.xmodem.XModem128;
 
 import java.io.ByteArrayInputStream;
@@ -46,7 +47,6 @@ import cn.rrg.chameleon.defined.ResultCallback;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.activities.tools.ChameleonSoltAliasesActivity;
 import cn.rrg.rdv.application.Properties;
-import cn.dxl.com.Communication;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.callback.DumpCallback;
 import cn.rrg.rdv.models.DumpModel;

@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
+import com.iobridges.com.DeviceChecker;
+
 import cn.dxl.common.util.AppUtil;
-import cn.rrg.com.DevCallback;
-import cn.dxl.com.DeviceChecker;
-import cn.rrg.com.DriverInterface;
-import cn.rrg.com.UsbAcr122Raw;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
+import cn.proxgrind.com.UsbAcr122Raw;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;

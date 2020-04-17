@@ -2,7 +2,7 @@ package cn.rrg.rdv.presenter;
 
 import android.content.Context;
 
-import cn.rrg.com.DevCallback;
+import cn.proxgrind.com.DevCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;

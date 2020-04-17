@@ -1,6 +1,6 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
-import cn.dxl.com.Communication;
+import com.iobridges.com.Communication;
 
 /*
  * 驱动程序类

@@ -2,11 +2,12 @@ package cn.rrg.rdv.models;
 
 import android.util.Log;
 
+import com.iobridges.com.DeviceChecker;
+
 import cn.rrg.chameleon.defined.IChameleonExecutor;
 import cn.rrg.chameleon.executor.ChameleonExecutor;
 import cn.rrg.chameleon.executor.ExecutorImpl;
-import cn.dxl.com.DeviceChecker;
-import cn.rrg.devices.EmptyDeivce;
+import cn.proxgrind.devices.EmptyDeivce;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;
 import cn.rrg.rdv.util.Commons;

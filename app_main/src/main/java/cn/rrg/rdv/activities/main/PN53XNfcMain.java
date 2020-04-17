@@ -9,8 +9,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
-import cn.dxl.com.LocalComBridgeAdapter;
-import cn.rrg.devices.PN53X;
+import com.iobridges.com.LocalComBridgeAdapter;
+
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.px53x.HardnestedConsoleActivity;
 import cn.rrg.rdv.activities.px53x.MfcukConsoleActivity;

@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -19,7 +19,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.rrg.utils.ContextContentProvider;
+import cn.proxgrind.utils.ContextContentProvider;
 
 /*
  * Usb 2 uart Serial implements

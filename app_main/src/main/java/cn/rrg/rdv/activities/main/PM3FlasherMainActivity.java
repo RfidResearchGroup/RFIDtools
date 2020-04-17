@@ -8,13 +8,13 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
+import com.iobridges.com.LocalComBridgeAdapter;
 import com.proxgrind.pm3flasher.Proxmark3Flasher;
 import com.proxgrind.pm3flasher.Target;
 
-import cn.dxl.com.LocalComBridgeAdapter;
 import cn.dxl.common.widget.ToastUtil;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.UsbSerialControl;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.UsbSerialControl;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.util.Paths;
 

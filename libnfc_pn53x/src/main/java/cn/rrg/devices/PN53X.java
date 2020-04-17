@@ -1,9 +1,9 @@
 package cn.rrg.devices;
 
-import java.io.IOException;
+import com.iobridges.com.Communication;
+import com.iobridges.com.DeviceChecker;
 
-import cn.dxl.com.Communication;
-import cn.dxl.com.DeviceChecker;
+import java.io.IOException;
 
 public class PN53X extends DeviceChecker {
 

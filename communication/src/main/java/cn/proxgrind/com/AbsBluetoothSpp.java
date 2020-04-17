@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import cn.rrg.utils.ContextContentProvider;
+import cn.proxgrind.utils.ContextContentProvider;
 
 /**
  * Created by DXL on 2019/8/1.

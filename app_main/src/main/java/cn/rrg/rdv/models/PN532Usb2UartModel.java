@@ -1,6 +1,7 @@
 package cn.rrg.rdv.models;
 
-import cn.dxl.com.DeviceChecker;
+import com.iobridges.com.DeviceChecker;
+
 import cn.rrg.devices.PN53X;
 
 public class PN532Usb2UartModel extends AbsUsb2UartModel {

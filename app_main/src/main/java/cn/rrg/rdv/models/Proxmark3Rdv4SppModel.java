@@ -3,9 +3,10 @@ package cn.rrg.rdv.models;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
-import cn.rrg.com.DriverInterface;
-import cn.dxl.com.DeviceChecker;
-import cn.rrg.com.SppNonBlock;
+import com.iobridges.com.DeviceChecker;
+
+import cn.proxgrind.com.DriverInterface;
+import cn.proxgrind.com.SppNonBlock;
 import cn.rrg.devices.Proxmark3RRGRdv4;
 
 /*

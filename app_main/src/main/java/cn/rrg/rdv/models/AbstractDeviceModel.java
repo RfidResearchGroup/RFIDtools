@@ -3,6 +3,8 @@ package cn.rrg.rdv.models;
 import android.content.Context;
 import android.util.Log;
 
+import com.iobridges.com.DeviceChecker;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,10 +12,9 @@ import java.util.List;
 
 import cn.dxl.common.util.IOUtils;
 import cn.dxl.common.util.LogUtils;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.DriverInterface;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
 
-import cn.dxl.com.DeviceChecker;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;

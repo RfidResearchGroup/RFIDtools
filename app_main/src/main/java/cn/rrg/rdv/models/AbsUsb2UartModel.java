@@ -6,9 +6,9 @@ import android.hardware.usb.UsbManager;
 import android.util.Log;
 
 import cn.dxl.common.util.AppUtil;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.DriverInterface;
-import cn.rrg.com.UsbSerialControl;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
+import cn.proxgrind.com.UsbSerialControl;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.util.Commons;

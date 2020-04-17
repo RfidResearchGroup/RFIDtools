@@ -1,8 +1,9 @@
 package cn.rrg.chameleon.utils;
 
+import com.iobridges.com.Communication;
+
 import java.io.IOException;
 
-import cn.dxl.com.Communication;
 import cn.dxl.common.util.RegexGroupUtil;
 import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.defined.BasicTypesCallback;

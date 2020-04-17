@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 import java.io.Serializable;
 

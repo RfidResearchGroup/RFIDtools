@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 /**
  * 通用USB Bulk传输实现!

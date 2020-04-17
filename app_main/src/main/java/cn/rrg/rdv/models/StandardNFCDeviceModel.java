@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.DriverInterface;
+import com.iobridges.com.DeviceChecker;
+
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
 import cn.rrg.rdv.driver.StandardDriver;
-import cn.dxl.com.DeviceChecker;
-import cn.rrg.devices.EmptyDeivce;
+import cn.proxgrind.devices.EmptyDeivce;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;

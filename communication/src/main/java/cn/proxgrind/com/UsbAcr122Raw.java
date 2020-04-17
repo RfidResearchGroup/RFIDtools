@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 public class UsbAcr122Raw extends AbsUsbBulkTransfer {
     //日志特征

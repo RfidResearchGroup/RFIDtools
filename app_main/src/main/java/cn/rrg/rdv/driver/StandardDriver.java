@@ -8,14 +8,13 @@ import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.util.Log;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.StdMifareIntent;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.DriverInterface;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
 
 public class StandardDriver implements DriverInterface<String, NfcAdapter> {
 

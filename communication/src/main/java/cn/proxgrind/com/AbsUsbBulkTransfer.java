@@ -1,4 +1,4 @@
-package cn.rrg.com;
+package cn.proxgrind.com;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -13,15 +13,16 @@ import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
+import com.iobridges.bulkio.BulkInputStream;
+import com.iobridges.bulkio.BulkOutputStream;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.rrg.utils.ContextContentProvider;
-import cn.dxl.bulkio.BulkInputStream;
-import cn.dxl.bulkio.BulkOutputStream;
+import cn.proxgrind.utils.ContextContentProvider;
 
 public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbManager> {
 

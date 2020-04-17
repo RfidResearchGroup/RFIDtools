@@ -1,9 +1,9 @@
-package cn.rrg.devices;
+package cn.proxgrind.devices;
+
+import com.iobridges.com.Communication;
+import com.iobridges.com.DeviceChecker;
 
 import java.io.IOException;
-
-import cn.dxl.com.Communication;
-import cn.dxl.com.DeviceChecker;
 
 public class EmptyDeivce extends DeviceChecker {
 

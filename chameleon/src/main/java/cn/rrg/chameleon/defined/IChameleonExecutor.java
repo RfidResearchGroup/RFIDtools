@@ -1,8 +1,8 @@
 package cn.rrg.chameleon.defined;
 
-import java.io.IOException;
+import com.iobridges.com.Communication;
 
-import cn.dxl.com.Communication;
+import java.io.IOException;
 
 /**
  * 接口，定义变色龙的执行器的功能!

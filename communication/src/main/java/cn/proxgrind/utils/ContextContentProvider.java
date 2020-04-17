@@ -1,4 +1,4 @@
-package cn.rrg.utils;
+package cn.proxgrind.utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentProvider;

@@ -2,10 +2,10 @@ package com.proxgrind.pm3flasher;
 
 import android.util.Log;
 
+import com.iobridges.com.LocalComBridgeAdapter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-
-import cn.dxl.com.LocalComBridgeAdapter;
 
 /**
  * 0. Open the device and create a connection!
