@@ -6,6 +6,8 @@ add_library(nfc SHARED
         conf.c tools.c
         log.c log-printf.c
         chips/pn53x.c
+        buses/uart_posix.c
+        buses/com_uart.c
         drivers/pn532_uart.c
         drivers/acr122_usb.c
         drivers/pn53x_usb.c

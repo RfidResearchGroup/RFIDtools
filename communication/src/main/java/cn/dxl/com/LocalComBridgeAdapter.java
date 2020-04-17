@@ -71,12 +71,6 @@ public final class LocalComBridgeAdapter implements Serializable {
                     if (serverSocket != null) {
                         Log.d(LOG_TAG, "服务套接字堵塞等待连接中!");
                         socket = serverSocket.accept();
-                        if (isHasClient) {
-                            isHasClient = false;
-                            Log.e(LOG_TAG, "The server only once online supported.");
-                            Log.e(LOG_TAG, "please disconnect your previous con.");
-                            continue;
-                        }
                         if (socket != null) {
                             synchronized (LOCK) {
                                 isHasClient = true;

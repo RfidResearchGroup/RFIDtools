@@ -48,6 +48,10 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
     private UsbEndpoint mEpIn = null;
     //USB写端点
     private UsbEndpoint mEpOut = null;
+    // 流实现!
+    private BulkOutputStream outputStream;
+    private BulkInputStream inputStream;
+
 
     //私有构造方法，避免被直接调用
     protected AbsUsbBulkTransfer() {
@@ -221,6 +225,8 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
                 return false;
             }
             //全部链接初始化成功，返回TRUE告诉调用者可以开始尝试通信
+            inputStream = new BulkInputStream(mCon, mEpIn);
+            outputStream = new BulkOutputStream(mCon, mEpOut);
             return true;
         } else {
             return false;
@@ -249,11 +255,11 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
 
     @Override
     public OutputStream getOutput() {
-        return new BulkOutputStream(mCon, mEpOut);
+        return outputStream;
     }
 
     @Override
     public InputStream getInput() {
-        return new BulkInputStream(mCon, mEpIn);
+        return inputStream;
     }
 }

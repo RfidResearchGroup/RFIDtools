@@ -43,6 +43,7 @@
 
 #include <nfc/nfc.h>
 #include <pn53x.h>
+#include <uart.h>
 
 #include "nfc-internal.h"
 #include "com.h"
@@ -77,8 +78,6 @@ pn532_uart_scan(const nfc_context *context, nfc_connstring connstrings[],
     size_t device_found = 0;
     //打开设备
     if (!c_open()) { return 0; }
-    //刷新可能残留的字节
-    c_flush();
     nfc_connstring connstring;
     snprintf(connstring, sizeof(nfc_connstring), "%s:%s:%"PRIu32, PN532_UART_DRIVER_NAME,
              "115200", PN532_UART_DEFAULT_SPEED);
@@ -148,9 +147,12 @@ pn532_uart_close(nfc_device *pnd) {
 static nfc_device *
 pn532_uart_open(const nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
-    //不需要参数
-    c_open();
-    c_flush();
+
+    if (!c_open()) {
+        // 串口打开失败!
+        return NULL;
+    }
+
     // We have a connection
     pnd = nfc_device_new(context, connstring);
     if (!pnd) {
@@ -215,7 +217,6 @@ pn532_uart_wakeup(nfc_device *pnd) {
 static int
 pn532_uart_send(nfc_device *pnd, const uint8_t *pbtData, const size_t szData, int timeout) {
     int res = 0;
-    c_flush();
     switch (CHIP_DATA(pnd)->power_mode) {
         case LOWVBAT: {
             /** PN532C106 wakeup. */
@@ -398,7 +399,6 @@ pn532_uart_receive(nfc_device *pnd, uint8_t *pbtData, const size_t szDataLen, in
     // The PN53x command is done and we successfully received the reply
     return len;
     error:
-    c_flush();
     return pnd->last_error;
 }
 

@@ -62,18 +62,6 @@ Thanks to d18c7db and Okko for example code
 
 #define DRIVER_DATA(pnd) ((struct pn53x_usb_data*)(pnd->driver_data))
 
-// 暂时处理
-
-int c_open(){}
-
-int c_close(){}
-
-int c_flush(){}
-
-int c_read(uint8_t *pbtRx, const size_t szRx, int timeout){}
-
-int c_write(const uint8_t *pbtTx, const size_t szTx, int timeout){}
-
 const nfc_modulation_type no_target_support[] = {0};
 
 typedef enum {
@@ -242,6 +230,11 @@ pn53x_usb_scan(const nfc_context *context, nfc_connstring connstrings[],
 static nfc_device *
 pn53x_usb_open(const nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
+
+    if (!c_open()) {
+        // 串口打开失败!
+        return NULL;
+    }
 
     // Allocate memory for the device info and specification, fill it and return the info
     pnd = nfc_device_new(context, connstring);

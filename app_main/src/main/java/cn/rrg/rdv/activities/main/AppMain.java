@@ -44,8 +44,6 @@ public class AppMain extends BaseActivity {
         initActions();
 
         gotoFragment(appMainDevicesFragment);
-
-        startActivity(new Intent(this, PM3FlasherMainActivity.class));
     }
 
     private void initViews() {
