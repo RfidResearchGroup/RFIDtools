@@ -241,7 +241,7 @@ jboolean testNested(JNIEnv *env, jobject instance) {
     return true;
 }
 
-jboolean testHardnested(JNIEnv *env, jobject instance, nfc_device *pnd, nfc_target_info *target) {
+jboolean testHardnested(JNIEnv *env, jobject instance) {
     return (jboolean) !testNested(env, instance);
 }
 

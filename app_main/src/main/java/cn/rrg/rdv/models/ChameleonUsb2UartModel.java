@@ -2,19 +2,20 @@ package cn.rrg.rdv.models;
 
 import android.util.Log;
 
+import com.iobridges.com.DeviceChecker;
+
 import cn.rrg.chameleon.defined.IChameleonExecutor;
 import cn.rrg.chameleon.executor.ChameleonExecutor;
 import cn.rrg.chameleon.executor.ExecutorImpl;
-import cn.rrg.com.Device;
-import cn.rrg.devices.EmptyDeivce;
+import cn.proxgrind.devices.EmptyDeivce;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.callback.InitNfcCallback;
 import cn.rrg.rdv.util.Commons;
 
 public class ChameleonUsb2UartModel extends AbsUsb2UartModel {
     @Override
-    public Device getDeviceInitImpl() {
-        return new EmptyDeivce();
+    public DeviceChecker getDeviceInitImpl() {
+        return new EmptyDeivce(null);
     }
 
     @Override

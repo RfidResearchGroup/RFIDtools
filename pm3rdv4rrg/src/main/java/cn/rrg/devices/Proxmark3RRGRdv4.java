@@ -1,24 +1,28 @@
 package cn.rrg.devices;
 
+import com.iobridges.com.Communication;
+import com.iobridges.com.DeviceChecker;
+
 import java.io.IOException;
 
-import cn.rrg.com.Device;
+public class Proxmark3RRGRdv4 extends DeviceChecker {
 
-public class Proxmark3RRGRdv4 implements Device {
-    
     static {
         System.loadLibrary("pm3rrg_rdv4");
     }
 
+    public Proxmark3RRGRdv4(Communication communication) {
+        super(communication);
+    }
+
     @Override
-    public boolean working() throws IOException {
+    public boolean checkDevice() throws IOException {
         return testPm3();
     }
 
     @Override
-    public boolean close() throws IOException {
+    public void close() throws IOException {
         closePm3();
-        return true;
     }
 
     private native boolean testPm3() throws IOException;

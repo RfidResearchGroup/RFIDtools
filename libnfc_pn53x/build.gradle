@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 19
@@ -36,9 +36,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.xianglin1998:nfctag:1.0'
+    implementation 'com.github.xianglin1998:nfc_console:1.0'
+    implementation 'com.github.xianglin1998:ComBridge:1.0'
+
     implementation project(path: ':communication')
-    implementation project(path: ':utils')
-    implementation project(path: ':console')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
 }

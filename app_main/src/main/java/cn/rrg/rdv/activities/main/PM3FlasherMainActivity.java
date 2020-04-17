@@ -1,26 +1,20 @@
 package cn.rrg.rdv.activities.main;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
+import com.iobridges.com.LocalComBridgeAdapter;
 import com.proxgrind.pm3flasher.Proxmark3Flasher;
 import com.proxgrind.pm3flasher.Target;
 
-import cn.dxl.com.Com;
-import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.widget.ToastUtil;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.UsbSerialControl;
-import cn.rrg.devices.EmptyDeivce;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.UsbSerialControl;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.util.Paths;
 
@@ -46,8 +40,11 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         setContentView(R.layout.act_pm3_flasher);
 
         // init and try to connect.
-        control.register(this, this);
-        Com.initCom(control, new EmptyDeivce());
+        control.register(this);
+
+        // start communication forward!
+        LocalComBridgeAdapter.getInstance()
+                .startServer(LocalComBridgeAdapter.NAMESPACE_DEFAULT);
 
         initViews();
         initActions();
@@ -71,6 +68,9 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
             public void onClick(View v) {
                 mode = MODE.BOOT;
                 if (control.connect(null)) {
+                    LocalComBridgeAdapter.getInstance()
+                            .setInputStream(control.getInput())
+                            .setOutputStream(control.getOutput());
                     flashDefaultFW();
                 } else {
                     ToastUtil.show(context, getString(R.string.tips_device_no_found), false);
@@ -87,6 +87,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
             public void run() {
                 if (!flasher.isStart(Target.CLIENT)) {
                     if (!flasher.start(Target.CLIENT)) {
+                        ToastUtil.show(context, "Client open failed!", false);
+                        dismissWorkingDialog();
                         return;
                     }
                 }
@@ -118,10 +120,22 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
                 } else {
                     if (!flasher.start(Target.BOOT)) {
                         ToastUtil.show(context, getString(R.string.tips_pm3_enter_failed), false);
+                        dismissWorkingDialog();
                     }
+                    // 记得关闭客户端
+                    flasher.close(Target.CLIENT);
                 }
             }
         }).start();
+    }
+
+    private void dismissWorkingDialog() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mDialogWorkingState.dismiss();
+            }
+        });
     }
 
     private void finishFlash() {
@@ -142,19 +156,29 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     protected void onDestroy() {
         super.onDestroy();
         mDialogWorkingState.dismiss();
-        control.unregister(this);
+        control.unregister();
         closeClient();
+        LocalComBridgeAdapter.getInstance()
+                .stopClient();
     }
 
     @Override
     public void onAttach(String dev) {
         // 自动连接设备!
-        control.connect(dev);
-        flashDefaultFW();
+        if (control.connect(dev)) {
+            // 更新流引用!
+            LocalComBridgeAdapter.getInstance()
+                    .setInputStream(control.getInput())
+                    .setOutputStream(control.getOutput());
+            flashDefaultFW();
+        } else {
+            ToastUtil.show(context, "Device connect failed!", false);
+        }
     }
 
     @Override
     public void onDetach(String dev) {
+
     }
 
     @Override

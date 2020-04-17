@@ -10,7 +10,7 @@ import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.LogUtils;
 import cn.dxl.mifare.MifareAdapter;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.callback.KeysAuthCallback;
 import cn.rrg.rdv.javabean.M1KeyBean;
 import cn.rrg.rdv.util.DumpUtils;
@@ -197,7 +197,7 @@ public abstract class AbsTagKeysCheckModel extends AbsStopableTask {
     private void authkeysInSector(int sector, KeysAuthCallback callBack) {
         // 初始化标签
         MifareAdapter stdMf = getTag();
-        if (!MifareUtils.validateSector(sector)) {
+        if (!MifareClassicUtils.validateSector(sector)) {
             //不是有效的扇区，可能是出现了BUG
             callBack.onResults(null);
             return;

@@ -231,6 +231,11 @@ static nfc_device *
 pn53x_usb_open(const nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
 
+    if (!c_open()) {
+        // 串口打开失败!
+        return NULL;
+    }
+
     // Allocate memory for the device info and specification, fill it and return the info
     pnd = nfc_device_new(context, connstring);
     if (!pnd) {

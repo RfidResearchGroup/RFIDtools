@@ -1,8 +1,9 @@
 package cn.rrg.chameleon.executor;
 
+import com.iobridges.com.Communication;
+
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
 import cn.rrg.chameleon.defined.IChameleonExecutor;
 
 /**
@@ -46,8 +47,8 @@ public class ExecutorImpl implements IChameleonExecutor {
     }
 
     @Override
-    public int requestChameleon(String at, int timeout) throws IOException {
-        return mExecutor.requestChameleon(at, timeout);
+    public void requestChameleon(String at) throws IOException {
+        mExecutor.requestChameleon(at);
     }
 
     @Override

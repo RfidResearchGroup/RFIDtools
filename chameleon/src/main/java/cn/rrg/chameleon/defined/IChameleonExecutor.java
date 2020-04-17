@@ -1,8 +1,8 @@
 package cn.rrg.chameleon.defined;
 
-import java.io.IOException;
+import com.iobridges.com.Communication;
 
-import cn.dxl.common.posixio.Communication;
+import java.io.IOException;
 
 /**
  * 接口，定义变色龙的执行器的功能!
@@ -16,7 +16,7 @@ public interface IChameleonExecutor {
 
     byte[] requestChameleon(int timeout, int length);
 
-    int requestChameleon(String at, int timeout) throws IOException;
+    void requestChameleon(String at) throws IOException;
 
     Communication getCom();
 

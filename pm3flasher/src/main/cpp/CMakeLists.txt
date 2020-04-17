@@ -39,8 +39,5 @@ target_include_directories(pm3_flasher PRIVATE
         ${PM3_ROOT}/client
         ${PM3_ROOT}/client/uart)
 
-#声明变量
-set(COMMAPPING_FILE ${PROJECTDIR}/communication/src/main/jniLibs/${ANDROID_ABI}/libcommapping.so)
-
 #添加动态库链接!
-target_link_libraries(pm3_flasher ${COMMAPPING_FILE} android log z)
+target_link_libraries(pm3_flasher android log z)

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.chameleon.javabean.DetectionDatas;
 import cn.dxl.common.util.HexUtil;
 
@@ -142,7 +142,7 @@ public class DetectionResult {
                     HexUtil.byte2Int(sources, (i + 1) * 16 + 12)
             ));
             // skip sectors with 0xFF
-            if (MifareUtils.validateBlock(dds.getBlock()))
+            if (MifareClassicUtils.validateBlock(dds.getBlock()))
                 mResultList.add(dds);
         }
         //进行数据排序，按照块顺序!

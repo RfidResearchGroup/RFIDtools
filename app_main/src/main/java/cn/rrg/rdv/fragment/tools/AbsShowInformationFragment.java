@@ -17,7 +17,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import cn.dxl.common.util.FragmentUtil;
-import cn.dxl.mifare.GlobalTag;
+import cn.dxl.mifare.NfcTagListenUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.fragment.base.BaseFragment;
 import cn.rrg.rdv.presenter.AbsTagInformationsPresenter;
@@ -29,7 +29,7 @@ import cn.rrg.rdv.view.TagInformationsView;
 public abstract class AbsShowInformationFragment
         extends BaseFragment implements
         TagInformationsView<CharSequence>,
-        GlobalTag.OnNewTagListener {
+        NfcTagListenUtils.OnNewTagListener {
 
     private AbsTagInformationsPresenter presenter;
 
@@ -42,7 +42,7 @@ public abstract class AbsShowInformationFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalTag.addListener(this);
+        NfcTagListenUtils.addListener(this);
         workingMsgDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.tips)
                 .setCancelable(false)
@@ -100,7 +100,7 @@ public abstract class AbsShowInformationFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
-        GlobalTag.removeListener(this);
+        NfcTagListenUtils.removeListener(this);
         presenter.detachView();
         workingMsgDialog.dismiss();
         workingMsgDialog = null;

@@ -3,8 +3,7 @@ package cn.rrg.rdv.fragment.connect;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.rrg.com.DevCallback;
-import cn.rrg.rdv.R;
+import cn.proxgrind.com.DevCallback;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.presenter.DeviceAttachPresenter;

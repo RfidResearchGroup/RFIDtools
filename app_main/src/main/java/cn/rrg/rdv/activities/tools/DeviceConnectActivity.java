@@ -59,7 +59,7 @@ public abstract class DeviceConnectActivity
         models = getModels();
         //在onCreate中注册数据源!
         for (AbstractDeviceModel model : models) {
-            model.register(this);
+            model.register();
         }
 
         Fragment newDevFragment = new DeviceConnectNewFragment();
@@ -101,7 +101,7 @@ public abstract class DeviceConnectActivity
     protected void onDestroy() {
         super.onDestroy();
         for (AbstractDeviceModel model : models) {
-            model.unregister(this);
+            model.unregister();
         }
     }
 

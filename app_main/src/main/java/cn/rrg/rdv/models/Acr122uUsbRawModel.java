@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
+import com.iobridges.com.DeviceChecker;
+
 import cn.dxl.common.util.AppUtil;
-import cn.rrg.com.DevCallback;
-import cn.rrg.com.Device;
-import cn.rrg.com.DriverInterface;
-import cn.rrg.com.UsbAcr122Raw;
+import cn.proxgrind.com.DevCallback;
+import cn.proxgrind.com.DriverInterface;
+import cn.proxgrind.com.UsbAcr122Raw;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
@@ -18,12 +19,12 @@ import cn.rrg.rdv.util.Commons;
 public class Acr122uUsbRawModel extends AbstractDeviceModel<String, UsbManager> {
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        return DriverSource.driverMap.get(0x03);
+        return UsbAcr122Raw.get();
     }
 
     @Override
-    public Device getDeviceInitImpl() {
-        return new PN53X(PN53X.NAME.ACR122);
+    public DeviceChecker getDeviceInitImpl() {
+        return new PN53X(PN53X.NAME.ACR122, mDI);
     }
 
     @Override

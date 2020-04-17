@@ -15,7 +15,7 @@ import java.util.Arrays;
 import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.mifare.GlobalTag;
+import cn.dxl.mifare.NfcTagListenUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.callback.TagInformationsCallback;
 import cn.rrg.rdv.util.Paths;
@@ -31,7 +31,7 @@ public class StdNfcInformationsModel {
 
     public void collect(TagInformationsCallback<CharSequence> callback) {
         //获得最新的标签对象!
-        Tag tag = GlobalTag.getTag();
+        Tag tag = NfcTagListenUtils.getTag();
         int mMFCSupport;
         if (tag != null) {
             Log.d(LOG_TAG, "collect调用，卡片存在!");

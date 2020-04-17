@@ -2,6 +2,8 @@ package com.proxgrind.pm3flasher;
 
 import android.util.Log;
 
+import com.iobridges.com.LocalComBridgeAdapter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -80,6 +82,7 @@ public class Proxmark3Flasher {
             switch (target) {
                 case CLIENT:
                     closeProxmark3();
+                    LocalComBridgeAdapter.getInstance().stopClient();
                     break;
                 case BOOT:
                     flashModeClose();

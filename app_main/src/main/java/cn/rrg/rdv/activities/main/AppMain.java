@@ -1,5 +1,6 @@
 package cn.rrg.rdv.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -8,9 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.iobridges.com.LocalComBridgeAdapter;
 
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
 import cn.rrg.rdv.fragment.tools.MainSettingsFragment;
@@ -88,5 +91,12 @@ public class AppMain extends BaseActivity {
         super.onBackPressed();
         // back event dispatch!
         appMainDevicesFragment.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalComBridgeAdapter.getInstance().stopServer();
+        LogUtils.d("AppMain结束!");
     }
 }

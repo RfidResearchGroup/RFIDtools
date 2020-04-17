@@ -12,8 +12,7 @@ android {
 
         externalNativeBuild {
             cmake {
-                String projectDirString = getRootDir().getPath().replaceAll("\\\\", "/")
-                arguments '-DANDROID_STL=c++_static', "-DPROJECTDIR=${projectDirString}"
+                arguments '-DANDROID_STL=c++_static'
                 abiFilters "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
         }
@@ -25,7 +24,7 @@ android {
     externalNativeBuild {
         cmake {
             version '3.10.2'
-            path 'src/main/cpp/CMakeLists.txt'
+            path 'src/main/cpp/proxmark3/client/android/CMakeLists.txt'
         }
     }
 
@@ -39,10 +38,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':console')
+    implementation 'com.github.xianglin1998:nfctag:1.0'
+    implementation 'com.github.xianglin1998:nfc_console:1.0'
+    implementation 'com.github.xianglin1998:ComBridge:1.0'
+
     implementation project(':communication')
     implementation project(path: ':utils')
-    implementation project(path: ':mifaretag')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
 }

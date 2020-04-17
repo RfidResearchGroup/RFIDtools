@@ -39,31 +39,26 @@
 
 #include "uart.h"
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <limits.h>
-#include <sys/time.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <arpa/inet.h>
 #include <netdb.h>
-#include <com.h>
-#include <tools.h>
-#include <include/pm3_cmd.h>
+#include <client/tools.h>
+#include "sys/socket.h"
+#include "sys/un.h"
+
+#include "comms.h"
 
 // Taken from https://github.com/unbit/uwsgi/commit/b608eb1772641d525bfde268fe9d6d8d0d5efde7
 #ifndef SOL_TCP
 # define SOL_TCP IPPROTO_TCP
 #endif
 
-#ifndef __ANDROID_NDK__
 typedef struct termios term_info;
 typedef struct {
     int fd;           // Serial port file descriptor
@@ -164,6 +159,52 @@ serial_port uart_open(const char *pcPortName, uint32_t speed) {
         return sp;
     }
 
+    // The socket for abstract namespace implement.
+    // Is local socket buffer, not a TCP or any net connection!
+    // so, you can't connect with address like: 127.0.0.1, or any IP
+    // see http://man7.org/linux/man-pages/man7/unix.7.html
+    if (memcmp(pcPortName, "socket:", 7) == 0) {
+        if (strlen(pcPortName) <= 7) {
+            free(sp);
+            return INVALID_SERIAL_PORT;
+        }
+
+        // we must use max timeout!
+        timeout.tv_usec = UART_TCP_CLIENT_RX_TIMEOUT_MS * 1000;
+
+        size_t servernameLen = (strlen(pcPortName) - 7) + 1;
+        char serverNameBuf[servernameLen];
+        memset(serverNameBuf, '\0', servernameLen);
+        for (int i = 7, j = 0; j < servernameLen; ++i, ++j) {
+            serverNameBuf[j] = pcPortName[i];
+        }
+        serverNameBuf[servernameLen - 1] = '\0';
+
+        int localsocket, len;
+        struct sockaddr_un remote;
+
+        remote.sun_path[0] = '\0';  // abstract namespace
+        strcpy(remote.sun_path + 1, serverNameBuf);
+        remote.sun_family = AF_LOCAL;
+        int nameLen = strlen(serverNameBuf);
+        len = 1 + nameLen + offsetof(struct sockaddr_un, sun_path);
+
+        if ((localsocket = socket(PF_LOCAL, SOCK_STREAM, 0)) == -1) {
+            free(sp);
+            return INVALID_SERIAL_PORT;
+        }
+
+        if (connect(localsocket, (struct sockaddr *) &remote, len) == -1) {
+            free(sp);
+            LOGD("连接套接字失败，请检查连接服务是否已经被停止!");
+            return INVALID_SERIAL_PORT;
+        }
+
+        sp->fd = localsocket;
+
+        return sp;
+    }
+
     sp->fd = open(pcPortName, O_RDWR | O_NOCTTY | O_NDELAY | O_NONBLOCK);
     if (sp->fd == -1) {
         uart_close(sp);
@@ -173,11 +214,11 @@ serial_port uart_open(const char *pcPortName, uint32_t speed) {
     // Finally figured out a way to claim a serial port interface under unix
     // We just try to set a (advisory) lock on the file descriptor
     struct flock fl;
-    fl.l_type   = F_WRLCK;
+    fl.l_type = F_WRLCK;
     fl.l_whence = SEEK_SET;
-    fl.l_start  = 0;
-    fl.l_len    = 0;
-    fl.l_pid    = getpid();
+    fl.l_start = 0;
+    fl.l_len = 0;
+    fl.l_pid = getpid();
 
     // Does the system allows us to place a lock on this file descriptor
     if (fcntl(sp->fd, F_SETLK, &fl) == -1) {
@@ -229,15 +270,15 @@ serial_port uart_open(const char *pcPortName, uint32_t speed) {
 }
 
 void uart_close(const serial_port sp) {
-    serial_port_unix *spu = (serial_port_unix *)sp;
+    serial_port_unix *spu = (serial_port_unix *) sp;
     tcflush(spu->fd, TCIOFLUSH);
     tcsetattr(spu->fd, TCSANOW, &(spu->tiOld));
     struct flock fl;
-    fl.l_type   = F_UNLCK;
+    fl.l_type = F_UNLCK;
     fl.l_whence = SEEK_SET;
-    fl.l_start  = 0;
-    fl.l_len    = 0;
-    fl.l_pid    = getpid();
+    fl.l_start = 0;
+    fl.l_len = 0;
+    fl.l_pid = getpid();
 
     // Does the system allows us to place a lock on this file descriptor
     int err = fcntl(spu->fd, F_SETLK, &fl);
@@ -263,9 +304,9 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
     do {
         // Reset file descriptor
         FD_ZERO(&rfds);
-        FD_SET(((serial_port_unix *)sp)->fd, &rfds);
+        FD_SET(((serial_port_unix *) sp)->fd, &rfds);
         tv = timeout;
-        int res = select(((serial_port_unix *)sp)->fd + 1, &rfds, NULL, NULL, &tv);
+        int res = select(((serial_port_unix *) sp)->fd + 1, &rfds, NULL, NULL, &tv);
 
         // Read error
         if (res < 0) {
@@ -284,7 +325,7 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
         }
 
         // Retrieve the count of the incoming bytes
-        res = ioctl(((serial_port_unix *)sp)->fd, FIONREAD, &byteCount);
+        res = ioctl(((serial_port_unix *) sp)->fd, FIONREAD, &byteCount);
 //        printf("UART:: RX ioctl res %d byteCount %u\n", res, byteCount);
         if (res < 0) return PM3_ENOTTY;
 
@@ -295,7 +336,7 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
         }
 
         // There is something available, read the data
-        res = read(((serial_port_unix *)sp)->fd, pbtRx + (*pszRxLen), byteCount);
+        res = read(((serial_port_unix *) sp)->fd, pbtRx + (*pszRxLen), byteCount);
 
         // Stop if the OS has some troubles reading the data
         if (res <= 0) {
@@ -321,9 +362,9 @@ int uart_send(const serial_port sp, const uint8_t *pbtTx, const uint32_t len) {
     while (pos < len) {
         // Reset file descriptor
         FD_ZERO(&rfds);
-        FD_SET(((serial_port_unix *)sp)->fd, &rfds);
+        FD_SET(((serial_port_unix *) sp)->fd, &rfds);
         tv = timeout;
-        int res = select(((serial_port_unix *)sp)->fd + 1, NULL, &rfds, NULL, &tv);
+        int res = select(((serial_port_unix *) sp)->fd + 1, NULL, &rfds, NULL, &tv);
 
         // Write error
         if (res < 0) {
@@ -338,7 +379,7 @@ int uart_send(const serial_port sp, const uint8_t *pbtTx, const uint32_t len) {
         }
 
         // Send away the bytes
-        res = write(((serial_port_unix *)sp)->fd, pbtTx + pos, len - pos);
+        res = write(((serial_port_unix *) sp)->fd, pbtTx + pos, len - pos);
 
         // Stop if the OS has some troubles sending the data
         if (res <= 0)
@@ -350,7 +391,7 @@ int uart_send(const serial_port sp, const uint8_t *pbtTx, const uint32_t len) {
 }
 
 bool uart_set_speed(serial_port sp, const uint32_t uiPortSpeed) {
-    const serial_port_unix *spu = (serial_port_unix *)sp;
+    const serial_port_unix *spu = (serial_port_unix *) sp;
     speed_t stPortSpeed;
     switch (uiPortSpeed) {
         case 0:
@@ -449,7 +490,7 @@ bool uart_set_speed(serial_port sp, const uint32_t uiPortSpeed) {
 uint32_t uart_get_speed(const serial_port sp) {
     struct termios ti;
     uint32_t uiPortSpeed;
-    const serial_port_unix *spu = (serial_port_unix *)sp;
+    const serial_port_unix *spu = (serial_port_unix *) sp;
 
     if (tcgetattr(spu->fd, &ti) == -1)
         return 0;
@@ -532,81 +573,5 @@ uint32_t uart_get_speed(const serial_port sp) {
     };
     return uiPortSpeed;
 }
-#else
-typedef struct termios term_info;
-typedef struct {
-    int fd;           // Serial port file descriptor
-    term_info tiOld;  // Terminal info before using the port
-    term_info tiNew;  // Terminal info during the transaction
-} serial_port_unix;
-
-/*
- * TODO 对于通信过程的改写，为了方便，我们应当直接改写封装层，不应该改写调用层!
- * 发送 ，接收 ， 刷新 ，关闭 ，改写为我们的函数
- * 逻辑复用原先实现!
- * */
-
-// see pm3_cmd.h
-struct timeval timeout = {
-        .tv_sec  = 0, // 0 second
-        .tv_usec = UART_FPC_CLIENT_RX_TIMEOUT_MS * 1000
-};
-
-uint32_t newtimeout_value = 0;
-bool newtimeout_pending = false;
-
-int uart_reconfigure_timeouts(uint32_t value) {
-    newtimeout_value = value;
-    newtimeout_pending = true;
-    return PM3_SUCCESS;
-}
-
-serial_port uart_open(const char *pcPortName, uint32_t speed) {
-    serial_port_unix *sp = malloc(sizeof(serial_port_unix));
-    if (sp == 0) return INVALID_SERIAL_PORT;
-    //TODO 随便赋值一个文件句柄，直接返回
-    sp->fd = 233;
-    c_open();
-    // init timeouts
-    timeout.tv_usec = UART_FPC_CLIENT_RX_TIMEOUT_MS * 1000;
-    return sp;
-}
-
-void uart_close(const serial_port sp) {
-    //TODO 只需要释放内存便可以!
-    free(sp);
-    c_close();
-}
-
-int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uint32_t *pszRxLen) {
-    if (newtimeout_pending) {
-        timeout.tv_usec = newtimeout_value * 1000;
-        newtimeout_pending = false;
-    }
-    //30ms timeout!!!
-    int res = c_read(pbtRx, pszMaxRxLen, 30);
-    //Some drivers read a result of -1, but not an error.
-    if (res <= 0) res = 0;
-    *pszRxLen = (uint32_t) res;
-    //length is zero and length not zero, return PM3_ENODATA
-    return res != 0 && res == pszMaxRxLen ? PM3_SUCCESS : PM3_ENODATA;
-}
-
-int uart_send(const serial_port sp, const uint8_t *pbtTx, const uint32_t len) {
-    int res = c_write(pbtTx, len, 30);
-    return res <= 0 ? PM3_EIO : PM3_SUCCESS;
-}
-
-bool uart_set_speed(serial_port sp, const uint32_t uiPortSpeed) {
-    //TODO 我们不需要设置波特率
-    return true;
-}
-
-uint32_t uart_get_speed(const serial_port sp) {
-    //TODO 默认是115200波特率
-    return 115200;
-}
-
-#endif
 
 #endif

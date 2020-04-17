@@ -13,7 +13,7 @@ import java.util.Comparator;
 import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.RegexGroupUtil;
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.javabean.M1Bean;
 import cn.rrg.rdv.javabean.M1KeyBean;
 
@@ -96,7 +96,7 @@ public class DumpUtils {
     // 根据扇区号来获取相应的空扇区!
     public static M1Bean getEmptyM1Bean(int sector) {
         M1Bean ret = new M1Bean();
-        int blockCount = MifareUtils.getBlockCountInSector(sector);
+        int blockCount = MifareClassicUtils.getBlockCountInSector(sector);
         String[] datas = new String[blockCount];
         for (int i = 0; i < blockCount; i++) {
             datas[i] = i < (blockCount - 1) ? BLANK_DATA : BLANK_TRAIL_BLOCK;
@@ -619,10 +619,10 @@ public class DumpUtils {
         for (int i = 0; i < blockCount; ) {
             M1Bean bean = new M1Bean();
             //获取当前的扇区
-            int sector = MifareUtils.blockToSector(i);
+            int sector = MifareClassicUtils.blockToSector(i);
             bean.setSector(sector);
             //获取当前的块数量统计!
-            int blockCountInSecrot = MifareUtils.getBlockCountInSector(sector);
+            int blockCountInSecrot = MifareClassicUtils.getBlockCountInSector(sector);
             String[] dataArray = new String[blockCountInSecrot];
             //进行迭代添加!
             for (int j = i, k = 0; j < blockCountInSecrot; ++j, ++k) {
@@ -801,7 +801,7 @@ public class DumpUtils {
                 String[] _tmps = null;
                 for (int i = 0; i < contents.length; ) {
                     // 进行尾部的判断，如果是256的扇区的话我们需要进行偏移量的重新设置!
-                    int count = MifareUtils.getBlockCountInSector(MifareUtils.blockToSector(i));
+                    int count = MifareClassicUtils.getBlockCountInSector(MifareClassicUtils.blockToSector(i));
                     if (DumpUtils.isHeader(i)) {
                         //在首部块!
                         bean = new M1Bean();

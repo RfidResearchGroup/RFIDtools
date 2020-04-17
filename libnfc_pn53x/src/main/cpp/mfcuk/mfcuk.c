@@ -1760,10 +1760,10 @@ int main(int argc, char *argv[]) {
 
                 // TEST
                 // Before starting a new recovery session, disconnect and reconnect to reader and then tag
-                nfc_close(pnd);
+                // nfc_close(pnd);
 
                 // Try to open the NFC reader
-                pnd = nfc_open(context, NULL);
+                // pnd = nfc_open(context, NULL);
 
                 if (pnd == NULL) {
                     ERR("connecting to NFC reader");

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import cn.dxl.mifare.MifareUtils;
+import cn.dxl.mifare.MifareClassicUtils;
 import cn.rrg.rdv.R;
 import cn.dxl.common.util.ContextUtil;
 import cn.dxl.common.util.TextStyleUtil;
@@ -34,25 +34,25 @@ public class DumpEqualAdapter extends AbsResIdArrayAdapter<String> {
         showBlock.setText(String.valueOf(position));
         //判断是否试起始扇区，是的话就显示扇区索引值
         LinearLayout layout = view.findViewById(R.id.layout_sector_label);
-        if (MifareUtils.isFirstBlock(position)) {
+        if (MifareClassicUtils.isFirstBlock(position)) {
             layout.setVisibility(View.VISIBLE);
             //填充扇区值!
             TextView txtShowSector = layout.findViewById(R.id.txtShowSector);
-            int sector = MifareUtils.blockToSector(position);
+            int sector = MifareClassicUtils.blockToSector(position);
             txtShowSector.setText(String.valueOf(sector));
         } else {
             layout.setVisibility(View.GONE);
         }
         //判断是否需要显示尾部的分割线!
         View endDivider = view.findViewById(R.id.view_divider);
-        if (MifareUtils.isTrailerBlock(position)) {
+        if (MifareClassicUtils.isTrailerBlock(position)) {
             endDivider.setVisibility(View.VISIBLE);
         } else {
             endDivider.setVisibility(View.GONE);
         }
         //判断是否需要显示块数据的分割线!
         View dataBlckDivider = view.findViewById(R.id.view_divider_1);
-        if (!MifareUtils.isTrailerBlock(position)) {
+        if (!MifareClassicUtils.isTrailerBlock(position)) {
             dataBlckDivider.setVisibility(View.VISIBLE);
         } else {
             dataBlckDivider.setVisibility(View.GONE);
@@ -91,7 +91,7 @@ public class DumpEqualAdapter extends AbsResIdArrayAdapter<String> {
                         //厂商块!
                         ssb.append(TextStyleUtil.getStyleString(getContext(), data, R.style.ManufacturerStyle));
                         if (i != contents.length - 1) ssb.append('\n');
-                    } else if (MifareUtils.isTrailerBlock(position)) {
+                    } else if (MifareClassicUtils.isTrailerBlock(position)) {
                         //尾部块!
                         //尾部块需要进行截取设置，无需最终的换行!!!
                         String keyA = data.substring(0, 12);

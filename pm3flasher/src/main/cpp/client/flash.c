@@ -674,10 +674,8 @@ jboolean open_proxmark3(JNIEnv *env, jobject thiz) {
     if (conn.run) {
         LOGD("设备已经是打开状态，将会跳过打开！");
         return true;
-    } else {
-        LOGD("开启完成.");
     }
-    return (jboolean) OpenProxmark("dxl", false, 233, true, FLASHMODE_SPEED);
+    return (jboolean) OpenProxmark("socket:DXL.COM.ASL", false, 1000, true, FLASHMODE_SPEED);
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {

@@ -2,10 +2,11 @@ package cn.rrg.chameleon.executor;
 
 import android.util.Log;
 
+import com.iobridges.com.Communication;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import cn.dxl.common.posixio.Communication;
 import cn.dxl.common.util.HexUtil;
 import cn.rrg.chameleon.utils.ChameleonResult;
 import cn.rrg.chameleon.defined.IChameleonExecutor;
@@ -55,14 +56,14 @@ public class ChameleonExecutor implements IChameleonExecutor {
         try {
             synchronized (lock) {
                 //请求并且判断结果!
-                if (requestChameleon(at, timeout) == -1) return null;
+                requestChameleon(at);
                 //初始化必须的变量
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(512);
                 long currentTime = System.currentTimeMillis();
                 //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
                 do {
                     //开始接收，每次接收一个字节!
-                    byte tmpByte = read(1);
+                    byte tmpByte = read();
                     if (tmpByte != -1) {
                         //接收完毕,有有效的字节!!!
                         bos.write(tmpByte);
@@ -75,7 +76,7 @@ public class ChameleonExecutor implements IChameleonExecutor {
                             //Log.d(LOG_TAG, "有换行，下一步判断是否需要继续接收!");
                             if (!xmodemMode) {
                                 //延迟判断新行，200ms延迟最大限度提升成功率!!!
-                                tmpByte = read(50);
+                                tmpByte = read();
                                 if (tmpByte != -1) {
                                     //Log.d(LOG_TAG, "需要");
                                     bos.write(tmpByte);
@@ -117,7 +118,7 @@ public class ChameleonExecutor implements IChameleonExecutor {
         //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
         do {
             //开始接收，每次接收一个字节!
-            byte tmpByte = read(1);
+            byte tmpByte = read();
             if (tmpByte != -1) {
                 ret[pos] = tmpByte;
                 if (++pos == length) break;
@@ -127,18 +128,16 @@ public class ChameleonExecutor implements IChameleonExecutor {
     }
 
     /**
-     * @param at      指令，ascii编码集，需要在后缀附带\r换行!
-     * @param timeout 超时，多久之后接收不到完整的数据帧自动返回?
+     * @param at 指令，ascii编码集，需要在后缀附带\r换行!
      * @return 发送成功的字节数，如果发送失败则返回 -1
      */
     @Override
-    public int requestChameleon(String at, int timeout) throws IOException {
-        if (at == null) return -1;
+    public void requestChameleon(String at) throws IOException {
         //Log.d(LOG_TAG, "尝试得到锁，当前线程ID: " + Thread.currentThread().getId());
         //发送命令必须回应，否则系命令错误!
         at = checkAT(at);
         byte[] sendBuf = HexUtil.getAsciiBytes(at);
-        return mCom.write(sendBuf, 0, sendBuf.length, timeout);
+        mCom.getOutput().write(sendBuf);
     }
 
     /**
@@ -152,17 +151,11 @@ public class ChameleonExecutor implements IChameleonExecutor {
     /**
      * 读取一个字节，简化读取!
      *
-     * @param timeout 超时值
      * @return 读取结果，-1为失败!
      */
-    private byte read(int timeout) {
-        byte[] b = new byte[1];
+    private byte read() {
         try {
-            int len = mCom.read(b, 0, 1, timeout);
-            if (len != -1) {
-                return b[0];
-            }
-            return -1;
+            return (byte) mCom.getInput().read();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -193,7 +186,7 @@ public class ChameleonExecutor implements IChameleonExecutor {
         //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
         do {
             //开始接收，每次接收一个字节!
-            byte tmpByte = read(1);
+            byte tmpByte = read();
             if (tmpByte != -1) {
                 ++count;
             }

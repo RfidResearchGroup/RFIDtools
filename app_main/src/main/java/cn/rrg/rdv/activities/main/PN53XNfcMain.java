@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
+import com.iobridges.com.LocalComBridgeAdapter;
+
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.px53x.HardnestedConsoleActivity;
 import cn.rrg.rdv.activities.px53x.MfcukConsoleActivity;
@@ -89,5 +91,12 @@ public class PN53XNfcMain extends BaseActivity {
                 startActivity(new Intent(context, NfcListConsoleActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalComBridgeAdapter.getInstance()
+                .stopClient();
     }
 }

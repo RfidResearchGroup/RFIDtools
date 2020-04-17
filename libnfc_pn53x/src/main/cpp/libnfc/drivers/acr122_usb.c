@@ -64,7 +64,6 @@ Thanks to d18c7db and Okko for example code
 #include <string.h>
 
 #include <nfc/nfc.h>
-#include <com.h>
 #include <pn53x.h>
 
 #include "nfc-internal.h"
@@ -400,6 +399,11 @@ static nfc_device *
 acr122_usb_open(const nfc_context *context, const nfc_connstring connstring) {
     nfc_device *pnd = NULL;
 
+    if (!c_open()) {
+        // 串口打开失败!
+        return NULL;
+    }
+
     /*
      * TODO 自实现区域
      * */
@@ -455,17 +459,6 @@ acr122_usb_close(nfc_device *pnd) {
     acr122_usb_ack(pnd);
     pn53x_idle(pnd);
     c_close();
-    //TODO 不需要底层关闭
-    /*int res;
-    if ((res = usb_release_interface(DRIVER_DATA(pnd)->pudh, 0)) < 0) {
-        log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR,
-                "Unable to release USB interface (%s)", _usb_strerror(res));
-    }
-
-    if ((res = usb_close(DRIVER_DATA(pnd)->pudh)) < 0) {
-        log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR,
-                "Unable to close USB connection (%s)", _usb_strerror(res));
-    }*/
     pn53x_data_free(pnd);
     nfc_device_free(pnd);
 }

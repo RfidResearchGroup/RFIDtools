@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.iobridges.com.Communication;
+import com.proxgrind.xmodem.XModem128;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,9 +46,7 @@ import cn.rrg.chameleon.javabean.ResultBean;
 import cn.rrg.chameleon.defined.ResultCallback;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.activities.tools.ChameleonSoltAliasesActivity;
-import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.application.Properties;
-import cn.dxl.common.posixio.Communication;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.callback.DumpCallback;
 import cn.rrg.rdv.models.DumpModel;
@@ -59,7 +60,6 @@ import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.implement.ItemSelectedListenerImpl;
 import cn.dxl.common.util.ViewUtil;
-import cn.dxl.common.xmodem.XModem128;
 
 /**
  * @author DXL
@@ -516,7 +516,7 @@ public class ChameleonGUIActivity
             @Override
             public void run() {
                 //文件处理完成，进行接下来的下载!
-                XModem128 modem = new XModem128(com);
+                XModem128 modem = new XModem128(com.getInput(), com.getOutput());
                 try {
                     ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 64);
                     boolean b = modem.recv(bos);
@@ -549,7 +549,7 @@ public class ChameleonGUIActivity
                         public void run() {
                             //文件处理完成，进行接下来的下载!
                             Communication com = ExecutorImpl.getInstance().getCom();
-                            XModem128 modem = new XModem128(com);
+                            XModem128 modem = new XModem128(com.getInput(), com.getOutput());
                             new FilesSelectorDialog.Builder(context)
                                     .setTitle(R.string.tips_data_select)
                                     .setCancelable(false)
@@ -625,7 +625,7 @@ public class ChameleonGUIActivity
 
     private void cancelXmodem(XModem128 modem) {
         try {
-            modem.cancel(1000);
+            modem.cancel();
         } catch (IOException e) {
             e.printStackTrace();
         }
