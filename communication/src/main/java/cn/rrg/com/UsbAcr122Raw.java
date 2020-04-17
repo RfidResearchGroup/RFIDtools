@@ -1,6 +1,6 @@
 package cn.rrg.com;
 
-public class UsbAcr122Raw extends UsbBulkTransferRaw {
+public class UsbAcr122Raw extends AbsUsbBulkTransfer {
     //日志特征
     private static final String LOG_TAG = UsbAcr122Raw.class.getSimpleName();
     // single instance!

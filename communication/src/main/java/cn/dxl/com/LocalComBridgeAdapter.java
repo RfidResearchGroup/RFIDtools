@@ -25,7 +25,7 @@ public final class LocalComBridgeAdapter implements Serializable {
      * */
 
     // The namespace of the LocalServerSocket
-    public static final String NAMESPACE = "LocalComBridgeAdapter";
+    public static final String NAMESPACE = "DXL.COM.ASL";
     // The tag of the log.
     private final String LOG_TAG = "LocalComBridgeAdapter";
     // 本地套接字服务!
@@ -33,13 +33,13 @@ public final class LocalComBridgeAdapter implements Serializable {
     // 单例!
     private static LocalComBridgeAdapter instance;
     // 设备输入流!
-    private InputStream mInputStreamFromDevice;
+    private volatile InputStream mInputStreamFromDevice;
     // 设备输出流!
-    private OutputStream mOutputStreamFromDevice;
+    private volatile OutputStream mOutputStreamFromDevice;
     // 客户端输入流
-    private InputStream mInputStreamFromSocket;
+    private volatile InputStream mInputStreamFromSocket;
     // 客户端输出流
-    private OutputStream mOutputStreamFromSocket;
+    private volatile OutputStream mOutputStreamFromSocket;
     // 是否已经连接!
     private volatile boolean isHasClient = false;
     // 是否关闭监听!
@@ -69,6 +69,7 @@ public final class LocalComBridgeAdapter implements Serializable {
             while (listenAccept) {
                 try {
                     if (serverSocket != null) {
+                        Log.d(LOG_TAG, "服务套接字堵塞等待连接中!");
                         socket = serverSocket.accept();
                         if (isHasClient) {
                             isHasClient = false;
@@ -157,8 +158,8 @@ public final class LocalComBridgeAdapter implements Serializable {
                             mOutputStreamFromSocket.write(Arrays.copyOf(buffer, len));
                             mOutputStreamFromSocket.flush();
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (Exception ignored) {
+                        // Empty
                     }
                 }
             }
@@ -173,6 +174,13 @@ public final class LocalComBridgeAdapter implements Serializable {
     }
 
     public static LocalComBridgeAdapter getInstance() {
+        synchronized (LocalComBridgeAdapter.class) {
+            /*
+             * It is a single instance tools
+             * you can't instantiation than for once.
+             * */
+            if (instance == null) instance = new LocalComBridgeAdapter();
+        }
         return instance;
     }
 
@@ -208,7 +216,7 @@ public final class LocalComBridgeAdapter implements Serializable {
                     e.printStackTrace();
                     Log.e(LOG_TAG, "If you see an error message like \"Address already in use\", check that you call the stopServer function");
                 }
-                Log.d(LOG_TAG, "ComBridgeAdapter start!");
+                Log.w(LOG_TAG, "LocalComBridgeAdapter start!");
             }
         }
         return this;
@@ -225,7 +233,7 @@ public final class LocalComBridgeAdapter implements Serializable {
                 }
                 serverSocket = null;
             }
-            Log.d(LOG_TAG, "ComBridgeAdapter server stop!");
+            Log.w(LOG_TAG, "LocalComBridgeAdapter server stop!");
         }
     }
 
@@ -233,7 +241,6 @@ public final class LocalComBridgeAdapter implements Serializable {
         synchronized (LOCK) {
             isHasClient = false;
             try {
-
                 if (socket != null) {
                     socket.shutdownInput();
                     socket.shutdownOutput();
@@ -243,15 +250,7 @@ public final class LocalComBridgeAdapter implements Serializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.d(LOG_TAG, "ComBridgeAdapter client stop!");
+            Log.d(LOG_TAG, "LocalComBridgeAdapter client stop!");
         }
-    }
-
-    static {
-        /*
-         * It is a single instance tools
-         * you can't instantiation than for once.
-         * */
-        instance = new LocalComBridgeAdapter();
     }
 }

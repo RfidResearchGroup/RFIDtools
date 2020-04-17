@@ -1,5 +1,6 @@
 package cn.rrg.rdv.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -43,6 +44,8 @@ public class AppMain extends BaseActivity {
         initActions();
 
         gotoFragment(appMainDevicesFragment);
+
+        startActivity(new Intent(this, PM3FlasherMainActivity.class));
     }
 
     private void initViews() {

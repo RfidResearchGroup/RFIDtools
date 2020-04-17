@@ -5,6 +5,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import cn.dxl.com.LocalComBridgeAdapter;
+
 /**
  * 0. Open the device and create a connection!
  * 1. Enter bootloader mode, the device will restart and the USB device will regenerate!
@@ -80,6 +82,7 @@ public class Proxmark3Flasher {
             switch (target) {
                 case CLIENT:
                     closeProxmark3();
+                    LocalComBridgeAdapter.getInstance().stopClient();
                     break;
                 case BOOT:
                     flashModeClose();

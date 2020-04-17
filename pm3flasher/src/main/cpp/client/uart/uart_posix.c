@@ -48,6 +48,7 @@
 #include <fcntl.h>
 #include <netinet/tcp.h>
 #include <netdb.h>
+#include <client/tools.h>
 #include "sys/socket.h"
 #include "sys/un.h"
 
@@ -195,6 +196,7 @@ serial_port uart_open(const char *pcPortName, uint32_t speed) {
 
         if (connect(localsocket, (struct sockaddr *) &remote, len) == -1) {
             free(sp);
+            LOGD("连接套接字失败，请检查连接服务是否已经被停止!");
             return INVALID_SERIAL_PORT;
         }
 

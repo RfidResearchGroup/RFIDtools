@@ -6,11 +6,11 @@ package cn.rrg.com;
  * @author dxl
  * @version 1.0
  */
-public class UniversalBulkTransfer extends UsbBulkTransferRaw {
+public class UsbBulkTransfer extends AbsUsbBulkTransfer {
 
-    private static UniversalBulkTransfer transfer = new UniversalBulkTransfer();
+    private static UsbBulkTransfer transfer = new UsbBulkTransfer();
 
-    public static UniversalBulkTransfer getTransfer() {
+    public static UsbBulkTransfer getTransfer() {
         return transfer;
     }
 

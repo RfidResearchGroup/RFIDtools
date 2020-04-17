@@ -11,8 +11,6 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
-import com.felhr.usbserial.SerialInputStream;
-import com.felhr.usbserial.SerialOutputStream;
 import com.felhr.usbserial.UsbSerialDevice;
 
 import java.io.IOException;
@@ -21,7 +19,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.dxl.utils.ContextContentProvider;
+import cn.rrg.utils.ContextContentProvider;
 
 /*
  * Usb 2 uart Serial implements
@@ -174,9 +172,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     @Override
     public InputStream getInput() {
         if (mPort != null) {
-            SerialInputStream is = mPort.getInputStream();
-            // is.setTimeout(2048);
-            return is;
+            return mPort.getInputStream();
         }
         return null;
     }

@@ -43,10 +43,7 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         control.register(this);
 
         // start communication forward!
-        LocalComBridgeAdapter.getInstance()
-                .setInputStream(control.getInput())
-                .setOutputStream(control.getOutput())
-                .startServer();
+        LocalComBridgeAdapter.getInstance().startServer();
 
         initViews();
         initActions();
@@ -70,6 +67,9 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
             public void onClick(View v) {
                 mode = MODE.BOOT;
                 if (control.connect(null)) {
+                    LocalComBridgeAdapter.getInstance()
+                            .setInputStream(control.getInput())
+                            .setOutputStream(control.getOutput());
                     flashDefaultFW();
                 } else {
                     ToastUtil.show(context, getString(R.string.tips_device_no_found), false);
@@ -86,6 +86,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
             public void run() {
                 if (!flasher.isStart(Target.CLIENT)) {
                     if (!flasher.start(Target.CLIENT)) {
+                        ToastUtil.show(context, "Client open failed!", false);
+                        dismissWorkingDialog();
                         return;
                     }
                 }
@@ -117,10 +119,22 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
                 } else {
                     if (!flasher.start(Target.BOOT)) {
                         ToastUtil.show(context, getString(R.string.tips_pm3_enter_failed), false);
+                        dismissWorkingDialog();
                     }
+                    // 记得关闭客户端
+                    flasher.close(Target.CLIENT);
                 }
             }
         }).start();
+    }
+
+    private void dismissWorkingDialog() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mDialogWorkingState.dismiss();
+            }
+        });
     }
 
     private void finishFlash() {
@@ -150,12 +164,20 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     @Override
     public void onAttach(String dev) {
         // 自动连接设备!
-        control.connect(dev);
-        flashDefaultFW();
+        if (control.connect(dev)) {
+            // 更新流引用!
+            LocalComBridgeAdapter.getInstance()
+                    .setInputStream(control.getInput())
+                    .setOutputStream(control.getOutput());
+            flashDefaultFW();
+        } else {
+            ToastUtil.show(context, "Device connect failed!", false);
+        }
     }
 
     @Override
     public void onDetach(String dev) {
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.dxl.utils;
+package cn.rrg.utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentProvider;

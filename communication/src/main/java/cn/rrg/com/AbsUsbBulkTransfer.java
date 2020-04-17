@@ -19,16 +19,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.dxl.utils.ContextContentProvider;
+import cn.rrg.utils.ContextContentProvider;
 import cn.dxl.bulkio.BulkInputStream;
 import cn.dxl.bulkio.BulkOutputStream;
 
-public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbManager> {
+public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbManager> {
 
     // Application context, is global. cant cache activity context!
     private Context mContext = ContextContentProvider.mContext;
     //日志特征
-    private static final String LOG_TAG = UsbBulkTransferRaw.class.getSimpleName();
+    private static final String LOG_TAG = AbsUsbBulkTransfer.class.getSimpleName();
     private DevCallback<String> mCallback = null;
     //广播接收器,在设备插入和移除时使用
     private BroadcastReceiver mReceiver;
@@ -50,7 +50,7 @@ public abstract class UsbBulkTransferRaw implements DriverInterface<String, UsbM
     private UsbEndpoint mEpOut = null;
 
     //私有构造方法，避免被直接调用
-    protected UsbBulkTransferRaw() {
+    protected AbsUsbBulkTransfer() {
         final String act = getDeviceDiscoveryAction();
         final String name = getDeviceNameOnFound();
         //建立意图过滤数组

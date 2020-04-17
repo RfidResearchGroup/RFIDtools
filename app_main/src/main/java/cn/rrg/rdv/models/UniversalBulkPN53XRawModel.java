@@ -9,8 +9,7 @@ import cn.dxl.common.util.AppUtil;
 import cn.rrg.com.DevCallback;
 import cn.dxl.com.DeviceChecker;
 import cn.rrg.com.DriverInterface;
-import cn.rrg.com.UniversalBulkTransfer;
-import cn.rrg.com.UsbBulkTransferRaw;
+import cn.rrg.com.UsbBulkTransfer;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.callback.ConnectCallback;
 import cn.rrg.rdv.javabean.DevBean;
@@ -27,7 +26,7 @@ public class UniversalBulkPN53XRawModel extends AbstractDeviceModel<String, UsbM
 
     @Override
     public DriverInterface<String, UsbManager> getDriverInterface() {
-        return UniversalBulkTransfer.getTransfer();
+        return UsbBulkTransfer.getTransfer();
     }
 
     @Override
@@ -68,7 +67,7 @@ public class UniversalBulkPN53XRawModel extends AbstractDeviceModel<String, UsbM
                     AppUtil.getInstance()
                             .getApp()
                             .sendBroadcast(
-                                    new Intent(UniversalBulkTransfer.getTransfer().getDeviceDiscoveryAction())
+                                    new Intent(UsbBulkTransfer.getTransfer().getDeviceDiscoveryAction())
                             );
                 } else Log.d(TAG, "startDiscovery: 找不到任何一个USB设备!");
         }
