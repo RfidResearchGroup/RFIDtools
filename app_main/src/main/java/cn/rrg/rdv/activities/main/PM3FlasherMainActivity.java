@@ -43,7 +43,8 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
         control.register(this);
 
         // start communication forward!
-        LocalComBridgeAdapter.getInstance().startServer();
+        LocalComBridgeAdapter.getInstance()
+                .startServer(LocalComBridgeAdapter.NAMESPACE_DEFAULT);
 
         initViews();
         initActions();

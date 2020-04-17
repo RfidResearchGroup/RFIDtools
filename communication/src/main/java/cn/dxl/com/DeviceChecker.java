@@ -27,7 +27,7 @@ public abstract class DeviceChecker implements Serializable, Closeable {
         LocalComBridgeAdapter.getInstance()
                 .setInputStream(communication.getInput())
                 .setOutputStream(communication.getOutput())
-                .startServer();
+                .startServer(LocalComBridgeAdapter.NAMESPACE_DEFAULT);
         if (!checkDevice()) {
             // if check failed, we must to close device!
             LocalComBridgeAdapter.getInstance().stopClient();

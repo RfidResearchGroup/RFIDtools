@@ -25,7 +25,7 @@ public final class LocalComBridgeAdapter implements Serializable {
      * */
 
     // The namespace of the LocalServerSocket
-    public static final String NAMESPACE = "DXL.COM.ASL";
+    public static final String NAMESPACE_DEFAULT = "DXL.COM.ASL";
     // The tag of the log.
     private final String LOG_TAG = "LocalComBridgeAdapter";
     // 本地套接字服务!
@@ -188,13 +188,13 @@ public final class LocalComBridgeAdapter implements Serializable {
         return this;
     }
 
-    public LocalComBridgeAdapter startServer() {
+    public LocalComBridgeAdapter startServer(String namespace) {
         synchronized (LOCK) {
             if (!listenAccept) {
                 listenAccept = true;
                 try {
                     if (serverSocket == null) {
-                        serverSocket = new LocalServerSocket(NAMESPACE);
+                        serverSocket = new LocalServerSocket(namespace);
                     }
                     // 创建一个客户端连接线程
                     new ConServerThread().start();
@@ -208,7 +208,7 @@ public final class LocalComBridgeAdapter implements Serializable {
         return this;
     }
 
-    public void stopServer() {
+    public LocalComBridgeAdapter stopServer() {
         synchronized (LOCK) {
             listenAccept = false;
             if (serverSocket != null) {
@@ -221,9 +221,10 @@ public final class LocalComBridgeAdapter implements Serializable {
             }
             Log.w(LOG_TAG, "LocalComBridgeAdapter server stop!");
         }
+        return this;
     }
 
-    public void stopClient() {
+    public LocalComBridgeAdapter stopClient() {
         synchronized (LOCK) {
             isHasClient = false;
             try {
@@ -238,5 +239,6 @@ public final class LocalComBridgeAdapter implements Serializable {
             }
             Log.d(LOG_TAG, "LocalComBridgeAdapter client stop!");
         }
+        return this;
     }
 }
