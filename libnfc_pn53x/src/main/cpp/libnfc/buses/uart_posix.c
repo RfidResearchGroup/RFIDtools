@@ -346,7 +346,8 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
         // Stop if the OS has some troubles reading the data
         if (res <= 0) {
             return NFC_EIO;
-        } else if (res > 0) {
+        } else if (res > 0 && pszMaxRxLen > 255) { // 只有USB通信下才有大于255个字节的通信请求
+            *pszRxLen += res;
             /*
              * TODO Look me!
              *
@@ -357,11 +358,10 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
              * so we need to return the data directly without waiting for enough 265 bytes.
              *
              * 这个UART实现是从PM3的开源库里拷贝过来的。
-             * PM3的通信过程跟LIBNFC的实现有非常大的区别（LIBNFC总是要求265个字节左右的数据），
+             * PM3的通信过程跟LIBNFC的实现有非常大的区别（LIBNFC某些驱动实现总是要求255个字节左右的数据），
              * 如果我们一直堵塞等待，将会导致程序非常缓慢，因此我们需要将数据直接返回，
-             * 而不等待足够的265个字节。
+             * 而不等待足够的255以上个字节。
              * */
-            *pszRxLen += res;
             return NFC_SUCCESS;
         }
 

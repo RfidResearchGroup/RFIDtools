@@ -1,7 +1,11 @@
 package cn.proxgrind.com;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -33,6 +37,26 @@ public class SppHasBlock extends AbsBluetoothSpp {
 
     @Override
     public InputStream getInput() {
+        // return new InternalIn();
         return inputStream;
     }
+
+    /*class InternalIn extends InputStream {
+
+        @Override
+        public int read() throws IOException {
+            if (inputStream == null) return -1;
+            return inputStream.read();
+        }
+
+        @Override
+        public int read(@NonNull byte[] b, int off, int len) throws IOException {
+            if (inputStream == null) return -1;
+            int lenRecv = inputStream.available();
+            if (lenRecv <= 0) return -1;
+            Log.d("***", "长度：" + lenRecv);
+            return inputStream.read(b, off, lenRecv);
+            //Log.d("****", "接收: " + HexUtil.toHexString(recvMsg, offset, length));
+        }
+    }*/
 }
