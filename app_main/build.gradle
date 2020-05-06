@@ -8,8 +8,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 13
-        versionName "1.4"
+        versionCode 14
+        versionName "1.4.1"
     }
     buildTypes {
         release {
