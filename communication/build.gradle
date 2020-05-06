@@ -23,6 +23,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.felHR85:UsbSerial:6.1.0'
-    implementation 'com.github.xianglin1998:ComBridge:1.0'
+    implementation 'com.github.xianglin1998:ComBridge:1.0.1'
     implementation 'androidx.annotation:annotation:1.1.0'
 }

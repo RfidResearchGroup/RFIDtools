@@ -23,7 +23,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.xianglin1998:mfkey:1.1'
     implementation 'com.github.xianglin1998:nfctag:1.0'
-    implementation 'com.github.xianglin1998:ComBridge:1.0'
+    implementation 'com.github.xianglin1998:ComBridge:1.0.1'
 
     implementation project(path: ':utils')
     implementation project(path: ':communication')
