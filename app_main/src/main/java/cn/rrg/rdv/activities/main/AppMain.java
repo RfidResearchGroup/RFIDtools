@@ -97,6 +97,7 @@ public class AppMain extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         LocalComBridgeAdapter.getInstance().stopServer();
+        LocalComBridgeAdapter.getInstance().stopClient();
         LogUtils.d("AppMain结束!");
     }
 }
