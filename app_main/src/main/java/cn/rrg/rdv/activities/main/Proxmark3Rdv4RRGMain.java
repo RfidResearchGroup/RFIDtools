@@ -26,6 +26,10 @@ public class Proxmark3Rdv4RRGMain
 
         initViews();
         initActions();
+
+        // direct goto red team console!
+        startActivity(new Intent(context, Proxmark3Rdv4RRGRedTeamConsoleActivity.class));
+        finish();
     }
 
     private void initViews() {
@@ -36,7 +40,7 @@ public class Proxmark3Rdv4RRGMain
         btnGo2Proxmark3Rdv4RRGRedTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, Proxmark3Rdv4RRGRedTeamConsoleActivity.class));
+                // startActivity(new Intent(context, Proxmark3Rdv4RRGRedTeamConsoleActivity.class));
             }
         });
     }

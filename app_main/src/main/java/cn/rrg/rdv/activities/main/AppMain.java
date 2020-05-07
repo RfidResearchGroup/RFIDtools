@@ -1,6 +1,6 @@
 package cn.rrg.rdv.activities.main;
 
-import android.content.Intent;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -14,6 +14,7 @@ import com.iobridges.com.LocalComBridgeAdapter;
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
 import cn.dxl.common.util.LogUtils;
+import cn.proxgrind.com.UsbSerialControl;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.fragment.base.AppMainDevicesFragment;
 import cn.rrg.rdv.fragment.tools.MainSettingsFragment;
@@ -88,15 +89,31 @@ public class AppMain extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        // back event dispatch!
-        appMainDevicesFragment.onBackPressed();
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setMessage("Closing...").show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LocalComBridgeAdapter.getInstance().destroy();
+                UsbSerialControl.get().disconect();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                        // back event dispatch!
+                        appMainDevicesFragment.onBackPressed();
+                        AppMain.super.onBackPressed();
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalComBridgeAdapter.getInstance().stopServer();
         LogUtils.d("AppMain结束!");
+        // System.exit(0);
     }
 }

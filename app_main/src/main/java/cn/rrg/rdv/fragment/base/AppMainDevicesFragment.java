@@ -268,7 +268,6 @@ public class AppMainDevicesFragment extends BaseFragment {
         //如果是横屏动作，那我们就没必要全部销毁。
         if (isBackPressed) {
             AppUtil.getInstance().finishAll();
-            System.exit(0);
         }
         Context context = getContext();
         if (context != null) {

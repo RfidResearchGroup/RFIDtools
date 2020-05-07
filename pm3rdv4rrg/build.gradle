@@ -40,7 +40,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.xianglin1998:nfctag:1.0'
     implementation 'com.github.xianglin1998:nfc_console:1.0'
-    implementation 'com.github.xianglin1998:ComBridge:1.0'
+
+    implementation 'com.github.xianglin1998:ComBridge:1.0.3'
 
     implementation project(':communication')
     implementation project(path: ':utils')
