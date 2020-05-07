@@ -5,6 +5,8 @@ import com.iobridges.com.DeviceChecker;
 
 import java.io.IOException;
 
+import cn.dxl.common.util.LogUtils;
+
 public class Proxmark3RRGRdv4 extends DeviceChecker {
 
     static {
@@ -17,6 +19,7 @@ public class Proxmark3RRGRdv4 extends DeviceChecker {
 
     @Override
     public boolean checkDevice() throws IOException {
+        LogUtils.d("测试顺序");
         return testPm3();
     }
 

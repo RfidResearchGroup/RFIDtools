@@ -95,11 +95,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
                     if (action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
                         //判断并且释放USB串口
                         if (mThiz != null) {
-                            try {
-                                mThiz.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            mThiz.close();
                         }
                         //回调设备移除接口
                         if (mCallback != null) mCallback.onDetach(NAME_DRIVER_USB_UART);
@@ -141,7 +137,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
         return mPort != null ? mPort.getClass().getSimpleName() : NAME_DRIVER_USB_UART;
     }
 
-    private void close() throws IOException {
+    private void close() {
         if (mPort == null) {
             //Log.e(LOG_TAG, "port is null");
             return;
@@ -152,7 +148,7 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     @Override
     public void disconect() {
-        //TODO 暂时不做处理
+        close();
     }
 
     @Override
