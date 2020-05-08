@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.github.xianglin1998:nfctag:1.0'
     implementation 'com.github.xianglin1998:nfc_console:1.0'
 
-    implementation 'com.github.xianglin1998:ComBridge:1.0.3'
+    implementation 'com.github.xianglin1998:ComBridge:v1.0.4'
 
     implementation project(':communication')
     implementation project(path: ':utils')
