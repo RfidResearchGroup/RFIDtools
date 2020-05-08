@@ -25,7 +25,7 @@ import cn.dxl.common.util.ArrayUtils;
 public class Commons {
 
     public static final String LOG_TAG = Commons.class.getSimpleName();
-    public static String PM3_CLIENT_VERSION = "RRG/Iceman// 2020/02/11";
+    public static String PM3_CLIENT_VERSION = "RRG/Iceman// 2020/05/06";
 
     private Commons() {
     }
