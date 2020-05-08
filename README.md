@@ -65,13 +65,15 @@ Download and flash [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2l
 
 ## App core implementation
 
-If you want to join our project, you must comply with the following development specifications to some extent, including macro architecture and micro implementation. Let us have target time coding.
+Comunication: LocalSocket & LocalServerSocket(Android)
+    Linux api: socket & abstract namespace
+    
+Build: gradle & cmake
 
-- Communication implementation: using JNI mapping C & Java communication, encapsulating posix-compliant UART library, using Google API in the upper layer (Java) and posix-compliant UART in the lower layer (C/C+++).
+Framework: MVP
 
-- Console program: Android defaults stdin, stdout, stderr to / dev / null, so the console program will not get normal output, we need to redirect them to the correct path, such as pointing to the file / sdcard / forward. stdxx, core: function freopen (), defined by C stdio. h, can redirect the standard stream. To local file.
-
-- Program architecture: DXL programming complies with MVP, the core architecture uses MVP to achieve layering, all the underlying data is placed in Model, all UI actions are placed in View, and all data calls are placed in Presenter. Module is used to realize resource management, reusable, and separate business can be placed in separate modules to reduce coupling and achieve reuse. Replacing concrete implementation with abstraction achieves the effects of extracting public implementation, abstracting private implementation, Interface-oriented and abstract programming, such as PN53X and mobile phone NFC read-write card use same UI, and information display.
+Now all lib is compile to "libxxx.so",  jni and ndk is basic. core is jni and ndk from java to c map.  
+not a linux executable file(Future)
 
 ## Compability list
 
