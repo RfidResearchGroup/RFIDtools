@@ -87,9 +87,5 @@ bool uart_set_speed(serial_port sp, const uint32_t uiPortSpeed);
 /* Gets the current speed of the serial port, in baud.
  */
 uint32_t uart_get_speed(const serial_port sp);
-
-/* Reconfigure timeouts
- */
-int uart_reconfigure_timeouts(uint32_t value);
 #endif // _UART_H_
 

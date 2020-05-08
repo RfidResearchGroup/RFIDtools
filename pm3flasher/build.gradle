@@ -41,6 +41,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':communication')
-    implementation 'com.github.xianglin1998:ComBridge:1.0.3'
+    implementation 'com.github.xianglin1998:ComBridge:v1.0.4'
 
 }
