@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.github.xianglin1998:nfctag:1.0'
     implementation 'com.github.xianglin1998:nfc_console:1.0'
 
-    implementation 'com.github.xianglin1998:ComBridge:v1.0.4'
+    implementation 'com.github.xianglin1998:ComBridge:1.0.5'
 
     implementation project(':utils')
     implementation project(':libnfc_pn53x')
