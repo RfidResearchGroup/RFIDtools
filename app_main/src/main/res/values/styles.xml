@@ -47,4 +47,11 @@
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
 
+    <!--自定义耗时对话框-->
+    <style name="CustomProgressDialog" parent="Theme.AppCompat.Dialog">
+        <!--此属性控制悬浮窗背景是否变暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

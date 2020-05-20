@@ -25,6 +25,7 @@ import cn.dxl.common.implement.PermissionCallback;
 import cn.dxl.common.util.FragmentUtil;
 import cn.dxl.common.util.PermissionUtil;
 import cn.rrg.rdv.application.Properties;
+import cn.rrg.rdv.util.Commons;
 
 /*
  * 登陆界面，，用于登陆用户系统，初始化环境，对于用户的验证，都放在这里实现
@@ -46,12 +47,13 @@ public class LoginActivity
         app.setCallback(new App.ApplicationCallback() {
             @Override
             public Context onAttachBaseContext(Context context) {
-                if (Properties.v_app_language.equals("auto")) {
+                String language = Commons.getLanguage();
+                if (language.equals("auto")) {
                     //如果value = auto，则设置为跟随系统!
                     return context;
                 } else {
                     //否则国际化!
-                    return LanguageUtil.setAppLanguage(context, Properties.v_app_language);
+                    return LanguageUtil.setAppLanguage(context, language);
                 }
             }
         });

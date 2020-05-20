@@ -1,10 +1,12 @@
 package cn.rrg.rdv.util;
 
 import android.app.Activity;
+import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.widget.RadioGroup;
 
@@ -13,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cn.dxl.common.util.AppUtil;
 import cn.dxl.common.util.FileUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.tools.DumpEditActivity;
+import cn.rrg.rdv.application.Properties;
 import cn.rrg.rdv.javabean.DevBean;
 import cn.dxl.common.util.ArrayUtils;
 
@@ -26,6 +30,7 @@ public class Commons {
 
     public static final String LOG_TAG = Commons.class.getSimpleName();
     public static String PM3_CLIENT_VERSION = "RRG/Iceman// 2020/05/06";
+    public static Application application = AppUtil.getInstance().getApp();
 
     private Commons() {
     }
@@ -153,5 +158,37 @@ public class Commons {
         File ret = new File(Paths.KEY_DIRECTORY + File.separator + name);
         FileUtils.createFile(ret);
         return ret;
+    }
+
+    public static File getInternalPath() {
+        return application.getFilesDir();
+    }
+
+    public static File getInternalPath(String sub) {
+        File file = new File(getInternalPath().getPath() + File.separator + sub);
+        FileUtils.createFile(file);
+        return file;
+    }
+
+    public static SharedPreferences getPrivatePreferences() {
+        return AppUtil.getInstance()
+                .getApp()
+                .getSharedPreferences("Main", Activity.MODE_PRIVATE);
+    }
+
+    public static String getLanguage() {
+        return getPrivatePreferences()
+                .getString(Properties.k_app_language, "auto");
+    }
+
+    public static void setLanguage(String language) {
+        getPrivatePreferences().edit()
+                .putString(Properties.k_app_language, language).apply();
+    }
+
+    public static boolean isPM3ResInitialled() {
+        File pm3Path = new File(Paths.PM3_DIRECTORY + File.separator + "resources");
+        String[] list = pm3Path.list();
+        return list != null && list.length > 0;
     }
 }

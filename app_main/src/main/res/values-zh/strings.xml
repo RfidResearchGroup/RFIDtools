@@ -283,5 +283,15 @@
     <string name="tips_pm3_enter_failed">PM3进入刷写模式失败!</string>
     <string name="read_a_sector">读取一个扇区</string>
     <string name="write_a_block">写入一个块</string>
+    <string name="tips_language_change">更改APP的语言为：</string>
+    <string name="tips_res_init">资源初始化</string>
+    <string name="title_app_language">App语言</string>
+    <string name="title_pm3_res_init">PM3(RDV4 RRG)资源初始化</string>
+    <string name="title_pm3_res_sub_title"><![CDATA[Hardnested和其他的资源]]></string>
+    <string name="executing">执行中</string>
+    <string name="initialized">已初始化</string>
+    <string name="uninitialized">未初始化</string>
+    <string name="initializing">初始化中</string>
+    <string name="finished">已完成</string>
 
 </resources>

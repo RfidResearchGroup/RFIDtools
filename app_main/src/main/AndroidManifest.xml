@@ -101,6 +101,7 @@
         <activity android:name=".activities.tools.DumpListActivity" />
         <activity android:name=".activities.tools.KeyFileListActivity" />
         <activity android:name=".activities.main.PM3FlasherMainActivity" />
+        <activity android:name=".activities.tools.Proxmark3FirmwareActivity" />
 
     </application>
 

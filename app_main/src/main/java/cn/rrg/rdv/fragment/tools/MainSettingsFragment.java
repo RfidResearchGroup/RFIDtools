@@ -1,29 +1,42 @@
 package cn.rrg.rdv.fragment.tools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
+import android.widget.NumberPicker;
 
 import java.io.File;
-import java.io.IOException;
 
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.DiskKVUtil;
+import cn.dxl.common.util.AssetsUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.util.RestartUtils;
+import cn.dxl.common.widget.ToastUtil;
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.activities.main.BaseActivity;
+import cn.rrg.rdv.binder.ItemSingleTextBean;
+import cn.rrg.rdv.binder.ItemTextBinder;
+import cn.rrg.rdv.binder.ItemToggleBinder;
 import cn.rrg.rdv.fragment.base.BaseFragment;
+import cn.rrg.rdv.javabean.ItemTextBean;
+import cn.rrg.rdv.javabean.ItemToggleBean;
+import cn.rrg.rdv.javabean.TitleBean;
+import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
-import cn.rrg.rdv.application.Properties;
+import cn.rrg.rdv.widget.ProDialog1;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /*
  * 主设置活动!
@@ -31,7 +44,10 @@ import cn.rrg.rdv.application.Properties;
 public class MainSettingsFragment
         extends BaseFragment {
 
-    RadioGroup radioGroupLanguages;
+    private RecyclerView rvSettingsList;
+    private SharedPreferences preferences;
+    private MultiTypeAdapter multiTypeAdapter;
+    private Items items = new Items();
 
     @Nullable
     @Override
@@ -41,70 +57,124 @@ public class MainSettingsFragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        preferences = Commons.getPrivatePreferences();
+        multiTypeAdapter = new MultiTypeAdapter();
+
         initViews(view);
+        initList();
         initActions(view.getContext());
     }
 
     private void initViews(View v) {
-        radioGroupLanguages = v.findViewById(R.id.rdoGroup);
-        switch (Properties.v_app_language) {
-            //选中了中文!
-            case "zh":
-                radioGroupLanguages.check(R.id.rdoBtnLanguageChineseSimple);
-                break;
-            //选中了英文!
-            case "en":
-                radioGroupLanguages.check(R.id.rdoBtnLanguageEnglish);
-                break;
-            //类型错误或者未选时是跟随系统!
-            case "auto":
-            default:
-                radioGroupLanguages.check(R.id.rdoBtnLanguageAuto);
-                break;
-        }
+        rvSettingsList = v.findViewById(R.id.rvSettingsList);
+        rvSettingsList.setLayoutManager(new LinearLayoutManager(v.getContext()));
+        rvSettingsList.setAdapter(multiTypeAdapter);
+
+        multiTypeAdapter.register(ItemTextBean.class, new ItemTextBinder());
+        multiTypeAdapter.register(ItemToggleBean.class, new ItemToggleBinder());
+        multiTypeAdapter.register(TitleBean.class, new ItemSingleTextBean());
+
+        multiTypeAdapter.setItems(items);
     }
 
-    private void initActions(Context context) {
-        radioGroupLanguages.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void initList() {
+        items.add(new TitleBean(getString(R.string.language)));
+
+        ItemTextBean languageItem = new ItemTextBean(getString(R.string.title_app_language)) {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rdoBtnLanguageAuto:
-                        //切换为跟随系统!
-                        Properties.v_app_language = "auto";
-                        updateLanguage("auto");
-                        break;
-                    case R.id.rdoBtnLanguageChineseSimple:
-                        //切换为中文简体!
-                        Properties.v_app_language = "zh";
-                        updateLanguage("zh");
-                        break;
-                    case R.id.rdoBtnLanguageEnglish:
-                        //切换为英文!
-                        Properties.v_app_language = "en";
-                        updateLanguage("en");
-                        break;
-                }
-                new AlertDialog.Builder(context)
-                        .setTitle(R.string.tips)
-                        .setMessage(R.string.msg_language_change_success)
-                        .setPositiveButton(getString(R.string.restart), new DialogInterface.OnClickListener() {
+            public void onClick(View view, int pos) {
+                String[] languages = new String[]{"English", "中文", getString(R.string.following_system)};
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle(R.string.tips_language_change)
+                        .setItems(languages, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                RestartUtils.restartAPP(context, 0);
-                                //结束所有的act!
-                                AppUtil.getInstance().finishAll();
+                                switch (which) {
+                                    case 0:
+                                        Commons.setLanguage("en");
+                                        showRestartDialog();
+                                        break;
+                                    case 1:
+                                        Commons.setLanguage("zh");
+                                        showRestartDialog();
+                                        break;
+                                    case 2:
+                                        Commons.setLanguage("auto");
+                                        showRestartDialog();
+                                        break;
+                                }
                             }
                         }).show();
             }
-        });
+        };
+        languageItem.setSubTitle("Set the language of the app.");
+        languageItem.setMessage(languageTran());
+        items.add(languageItem);
+
+        items.add(new TitleBean(getString(R.string.tips_res_init)));
+
+        ItemTextBean pm3Res = new ItemTextBean(getString(R.string.title_pm3_res_init)) {
+            @Override
+            public void onClick(View view, int pos) {
+                pm3ResInit();
+            }
+        };
+        pm3Res.setSubTitle(getString(R.string.title_pm3_res_sub_title));
+        pm3Res.setMessage(Commons.isPM3ResInitialled() ? getString(R.string.initialized) : getString(R.string.uninitialized));
+        items.add(pm3Res);
+
+        multiTypeAdapter.notifyDataSetChanged();
     }
 
-    private void updateLanguage(String language) {
-        try {
-            DiskKVUtil.update2Disk(Properties.k_app_language, language, new File(Paths.SETTINGS_FILE));
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void initActions(Context context) {
+
+    }
+
+    private String languageTran() {
+        String currentLanguage = Commons.getLanguage();
+        switch (currentLanguage) {
+            case "en":
+                return "English";
+            case "zh":
+                return "中文";
+            case "auto":
+            default:
+                return getString(R.string.following_system);
+        }
+    }
+
+    private void showRestartDialog() {
+        Context context = getContext();
+        if (context != null) {
+            new AlertDialog.Builder(context)
+                    .setTitle(R.string.tips)
+                    .setMessage(R.string.msg_language_change_success)
+                    .setPositiveButton(getString(R.string.restart), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            RestartUtils.restartAPP(context, 0);
+                            //结束所有的act!
+                            AppUtil.getInstance().finishAll();
+                        }
+                    }).show();
+        }
+    }
+
+    private void pm3ResInit() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            ProDialog1 proDialog1 = new ProDialog1(activity);
+            proDialog1.show(getString(R.string.initializing));
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // move res to /data/xxxx
+                    new AssetsUtil(activity)
+                            .copyDirs(new File("pm3"), new File(Paths.TOOLS_DIRECTORY));
+                    proDialog1.dismiss();
+                    showToast(getString(R.string.finished));
+                }
+            }).start();
         }
     }
 }

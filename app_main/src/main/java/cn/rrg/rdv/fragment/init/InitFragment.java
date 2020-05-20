@@ -59,7 +59,7 @@ public class InitFragment
                 //初始化程序所需要的资源
                 InitUtil.initApplicationResource(getContext());
                 //开启日志打印!
-                InitUtil.startLogcat(true);
+                // InitUtil.startLogcat(true);
                 //进行一些设置的读取初始化!
                 InitUtil.initSettings();
             } catch (Exception e) {

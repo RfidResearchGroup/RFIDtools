@@ -28,6 +28,7 @@ import cn.dxl.mifare.NfcTagListenUtils;
 import cn.dxl.mifare.StdMifareIntent;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.application.Properties;
+import cn.rrg.rdv.util.Commons;
 
 /**
  * Created by DXL on 2017/10/26.
@@ -55,7 +56,7 @@ public abstract class BaseActivity
         onTouchListeners = new ArrayList<>();
 
         // 在onCreate()也要设置一下语言，有可能attachBaseContext()不生效。
-        LanguageUtil.setAppLanguage(this, Properties.v_app_language);
+        LanguageUtil.setAppLanguage(this, Commons.getLanguage());
     }
 
     @Override
@@ -107,12 +108,13 @@ public abstract class BaseActivity
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        if (Properties.v_app_language.equals("auto")) {
+        String language = Commons.getLanguage();
+        if (language.equals("auto")) {
             //如果value = auto，则设置为跟随系统!
             super.attachBaseContext(newBase);
         } else {
             //否则国际化!
-            super.attachBaseContext(LanguageUtil.setAppLanguage(newBase, Properties.v_app_language));
+            super.attachBaseContext(LanguageUtil.setAppLanguage(newBase, language));
         }
     }
 

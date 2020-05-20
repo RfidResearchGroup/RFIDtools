@@ -34,6 +34,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    android.libraryVariants.all { variant ->
+        def rootPath = getRootDir();
+        File targetPath = new File(rootPath.path + "/app_main/src/main/assets/pm3/resources");
+        def sourcePath = "src/main/cpp/proxmark3/client/resources"
+        // first we need delete history
+        // delete targetPath
+        if (!targetPath.exists()) targetPath.mkdirs()
+        variant.mergeAssets.doLast {
+            println "${targetPath}"  // 打印路径
+            copy { // 将from目录下的资源拷贝到into 下目录去
+                from "${sourcePath}"
+                into "${targetPath}"
+            }
+        }
+    }
 }
 
 dependencies {
