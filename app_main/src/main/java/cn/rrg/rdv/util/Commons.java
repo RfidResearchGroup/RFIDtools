@@ -191,4 +191,11 @@ public class Commons {
         String[] list = pm3Path.list();
         return list != null && list.length > 0;
     }
+
+    public static File createTmpFile(String fileName) {
+        File file = new File(application.getCacheDir(), fileName);
+        FileUtils.delete(file);
+        FileUtils.createFile(file);
+        return file;
+    }
 }

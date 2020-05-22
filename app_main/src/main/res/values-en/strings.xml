@@ -287,5 +287,18 @@
     <string name="uninitialized">Uninitialized</string>
     <string name="initializing">Initializing</string>
     <string name="finished">Finished</string>
+    <string name="title_pm3_firmware_flasher">PM3 Firmware Flasher</string>
+    <string name="tips_bootrom_flash_finish">BootRom flash finish, next to flash OS.</string>
+    <string name="tips_bootrom_flash_successfully">BootRom flash successfully</string>
+    <string name="tips_image_select_bt_fi">Please select BootRom or FullImage or both to flash.</string>
+    <string name="tips_fullimage_flashing">FullImage flashing.</string>
+    <string name="tips_basic_info">Basic information</string>
+    <string name="firmware_source">Firmware source</string>
+    <string name="tips_client_provider_rrg">Client provider：RfidResearchGroup</string>
+    <string name="tips_client_version">Client version：</string>
+    <string name="app_supporting_firmware">App supporting firmware</string>
+    <string name="custom_firmware">Custom firmware</string>
+    <string name="title_select_bootrom">Select BootRom</string>
+    <string name="select_fullimage">Select FullImage</string>
 
 </resources>

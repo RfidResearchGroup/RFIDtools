@@ -293,5 +293,18 @@
     <string name="uninitialized">未初始化</string>
     <string name="initializing">初始化中</string>
     <string name="finished">已完成</string>
+    <string name="title_pm3_firmware_flasher">PM3固件烧写</string>
+    <string name="tips_bootrom_flash_finish">BootRom烧写完成, 下一步刷写操作系统。</string>
+    <string name="tips_bootrom_flash_successfully">BootRom烧写成功。</string>
+    <string name="tips_image_select_bt_fi">请至少要选择BootRom和FullImage其中一个来烧写</string>
+    <string name="tips_fullimage_flashing">FullImage烧写中</string>
+    <string name="tips_basic_info">基础信息</string>
+    <string name="firmware_source">固件来源</string>
+    <string name="tips_client_provider_rrg">客户端提供者：RfidResearchGroup</string>
+    <string name="tips_client_version">客户端版本：</string>
+    <string name="app_supporting_firmware">APP配套固件</string>
+    <string name="custom_firmware">自定义固件</string>
+    <string name="title_select_bootrom">选择引导器</string>
+    <string name="select_fullimage">选择系统固件</string>
 
 </resources>

@@ -116,7 +116,7 @@ public class MainSettingsFragment
         ItemTextBean pm3Res = new ItemTextBean(getString(R.string.title_pm3_res_init)) {
             @Override
             public void onClick(View view, int pos) {
-                pm3ResInit();
+                pm3ResInit(this);
             }
         };
         pm3Res.setSubTitle(getString(R.string.title_pm3_res_sub_title));
@@ -160,7 +160,7 @@ public class MainSettingsFragment
         }
     }
 
-    private void pm3ResInit() {
+    private void pm3ResInit(ItemTextBean item) {
         Activity activity = getActivity();
         if (activity != null) {
             ProDialog1 proDialog1 = new ProDialog1(activity);
@@ -173,6 +173,13 @@ public class MainSettingsFragment
                             .copyDirs(new File("pm3"), new File(Paths.TOOLS_DIRECTORY));
                     proDialog1.dismiss();
                     showToast(getString(R.string.finished));
+                    item.setMessage(getString(R.string.initialized));
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            multiTypeAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
             }).start();
         }

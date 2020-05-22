@@ -34,7 +34,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import cn.dxl.common.R;
-import cn.dxl.common.util.IOUtils;
 
 /*
  * 一系列文件操作的封装!
@@ -202,6 +201,10 @@ public class FileUtils {
         return mime;
     }
 
+    public static boolean isFile(String file) {
+        return new File(file).isFile();
+    }
+
     //删除文件夹目录下所有的文件
     public static boolean delete(File dir) {
         if (dir.isDirectory()) {
@@ -219,6 +222,83 @@ public class FileUtils {
             return delete(dir);
         } else {
             return dir.delete();
+        }
+    }
+
+    public static boolean move(File file, File path) {
+        String pathStr = path.getAbsolutePath();
+        pathStr = pathStr.endsWith(File.separator) ? pathStr : pathStr + File.separator;
+        String targetFile = pathStr + file.getName();
+        File tmp = new File(targetFile);
+        createFile(tmp);
+        if (tmp.exists() && tmp.isFile()) {
+            // 开始写入!
+            return file.renameTo(new File(targetFile));
+        }
+        return true;
+    }
+
+    public static boolean copy(Uri source, File target) {
+        return copy(source, Uri.fromFile(target));
+    }
+
+    public static boolean copy(Uri source, Uri target) {
+        try {
+            byte[] data = readBytes(source);
+            writeBytes(data, target);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean copy(File source, File target) {
+        if (target == null || source == null) return false;
+        FileChannel inputChannel = null;
+        FileChannel outputChannel = null;
+        try {
+            File parentFile = target.getParentFile();
+            if (parentFile != null) {
+                createPaths(parentFile);
+            }
+            createFile(target);
+            inputChannel = new FileInputStream(source).getChannel();
+            outputChannel = new FileOutputStream(target).getChannel();
+            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.close(inputChannel);
+            IOUtils.close(outputChannel);
+        }
+        return true;
+    }
+
+    public static boolean copy(FileDescriptor descriptor, FileDescriptor target) {
+        if (target == null || descriptor == null) return false;
+        FileChannel inputChannel = null;
+        FileChannel outputChannel = null;
+        try {
+            inputChannel = new FileInputStream(descriptor).getChannel();
+            outputChannel = new FileOutputStream(target).getChannel();
+            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.close(inputChannel);
+            IOUtils.close(outputChannel);
+        }
+        return true;
+    }
+
+    public static boolean copy(byte[] rawData, File target) {
+        try {
+            writeBytes(rawData, target, false);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -513,75 +593,15 @@ public class FileUtils {
         return ret;
     }
 
-    //判断文件名是否有效!
     public static boolean isValidFileName(String name) {
         return !StringUtil.isEmpty(name) && !name.contains("/");
     }
 
-    //获得so库的地址!
     public static String getNativePath() {
         String ss = context.getApplicationInfo().nativeLibraryDir;
         if (ss == null)
             ss = context.getFilesDir().getPath() + "/lib";
         return ss;
-    }
-
-    public static boolean moveFile(File file, File path) {
-        String pathStr = path.getAbsolutePath();
-        pathStr = pathStr.endsWith(File.separator) ? pathStr : pathStr + File.separator;
-        String targetFile = pathStr + file.getName();
-        File tmp = new File(targetFile);
-        createFile(tmp);
-        if (tmp.exists() && tmp.isFile()) {
-            // 开始写入!
-            return file.renameTo(new File(targetFile));
-        }
-        return true;
-    }
-
-    public static boolean copy(File source, File target) throws IOException {
-        if (target == null || source == null) return false;
-        FileChannel inputChannel = null;
-        FileChannel outputChannel = null;
-        try {
-            File parentFile = target.getParentFile();
-            if (parentFile != null) {
-                createPaths(parentFile);
-            }
-            createFile(target);
-            inputChannel = new FileInputStream(source).getChannel();
-            outputChannel = new FileOutputStream(target).getChannel();
-            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
-        } finally {
-            IOUtils.close(inputChannel);
-            IOUtils.close(outputChannel);
-        }
-        return true;
-    }
-
-    public static boolean copy(FileDescriptor descriptor, FileDescriptor target) throws IOException {
-        if (target == null || descriptor == null) return false;
-        FileChannel inputChannel = null;
-        FileChannel outputChannel = null;
-        try {
-            inputChannel = new FileInputStream(descriptor).getChannel();
-            outputChannel = new FileOutputStream(target).getChannel();
-            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
-        } finally {
-            IOUtils.close(inputChannel);
-            IOUtils.close(outputChannel);
-        }
-        return true;
-    }
-
-    public static boolean copy(byte[] rawData, File target) {
-        try {
-            writeBytes(rawData, target, false);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
     public static String getFileCountIfFolder(File[] files) {
