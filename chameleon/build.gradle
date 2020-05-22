@@ -24,7 +24,7 @@ dependencies {
     implementation 'com.github.xianglin1998:mfkey:1.1'
     implementation 'com.github.xianglin1998:nfctag:1.0'
 
-    implementation 'com.github.xianglin1998:ComBridge:v1.0.4'
+    implementation 'com.github.xianglin1998:ComBridge:1.0.5'
 
     implementation project(path: ':utils')
     implementation project(path: ':communication')

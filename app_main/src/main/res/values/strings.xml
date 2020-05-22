@@ -276,5 +276,28 @@
     <string name="tips_pm3_enter_failed">PM3 failed to enter flash mode!</string>
     <string name="read_a_sector">Read One Sector</string>
     <string name="write_a_block">Write One Block</string>
+    <string name="tips_language_change">Change the language of app to:</string>
+    <string name="tips_res_init">Resources initialization</string>
+    <string name="title_app_language">App language</string>
+    <string name="title_pm3_res_init">PM3(RDV4 RRG) resource initialization</string>
+    <string name="title_pm3_res_sub_title"><![CDATA[Hardnested & other resources]]></string>
+    <string name="executing">Executing</string>
+    <string name="initialized">Initialized</string>
+    <string name="uninitialized">Uninitialized</string>
+    <string name="initializing">Initializing</string>
+    <string name="finished">Finished</string>
+    <string name="title_pm3_firmware_flasher">PM3 Firmware Flasher</string>
+    <string name="tips_bootrom_flash_finish">BootRom flash finish, next to flash OS.</string>
+    <string name="tips_bootrom_flash_successfully">BootRom flash successfully</string>
+    <string name="tips_image_select_bt_fi">Please select BootRom or FullImage or both to flash.</string>
+    <string name="tips_fullimage_flashing">FullImage flashing.</string>
+    <string name="tips_basic_info">Basic information</string>
+    <string name="firmware_source">Firmware source</string>
+    <string name="tips_client_provider_rrg">Client provider：RfidResearchGroup</string>
+    <string name="tips_client_version">Client version：</string>
+    <string name="app_supporting_firmware">App supporting firmware</string>
+    <string name="custom_firmware">Custom firmware</string>
+    <string name="title_select_bootrom">Select BootRom</string>
+    <string name="select_fullimage">Select FullImage</string>
 
 </resources>

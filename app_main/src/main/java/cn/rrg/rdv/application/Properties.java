@@ -23,7 +23,6 @@ public class Properties {
 
     //语言切换设置!
     public static String k_app_language = "language";
-    public static String v_app_language = "auto";
 
     //读写卡历史选择的秘钥!
     public static String k_common_rw_keyfile_selected = "commomRWKeyFilesSelected";

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 第二组item：设置spinner箭头图片(替换默认箭头) -->
+    <item
+        android:drawable="@drawable/ic_off_green_38x28dp"
+        android:gravity="center" />
+</layer-list>

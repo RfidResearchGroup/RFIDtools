@@ -669,8 +669,7 @@ public class DumpUtils {
         String[] datas = new String[aBean.getDatas().length];
         //取出块数据
         String[] tmpA = aBeanDatas;
-        String[] tmpB = bBean.getDatas() == null ?
-                getEmptyM1Bean(bBean.getSector()).getDatas() : bBean.getDatas();
+        String[] tmpB = bBean.getDatas() == null ? getEmptyM1Bean(bBean.getSector()).getDatas() : bBean.getDatas();
         for (int i = 0; i <= last; ++i) {
             //先判断两组块数据是否相同
             if (tmpA[i].equals(tmpB[i])) {
@@ -678,29 +677,28 @@ public class DumpUtils {
                 datas[i] = tmpA[i];
             } else {
                 if (i != last) {
-                    //否则判断哪个数据是有效的,如果全部为零则优先考虑其他的情况!
-                    //将有效的数据合并到ret中，优先用KeyB的数据!
+                    //否则是否全都是0,如果全部为零则优先考虑其他的情况!
                     boolean isADataAllZero = isBlockAllZero(tmpA[i]);
                     boolean isBDataAllZero = isBlockAllZero(tmpB[i]);
                     // 两者都是零，说明数据真的是0
                     if (isADataAllZero && isBDataAllZero) {
                         // 开始选择用正确的数据
-                        if (DumpUtils.isBlockData(tmpB[i])) {
+                        if (DumpUtils.isValidBlockData(tmpB[i])) {
                             datas[i] = tmpB[i];
-                        } else if (DumpUtils.isBlockData(tmpA[i])) {
+                        } else if (DumpUtils.isValidBlockData(tmpA[i])) {
                             datas[i] = tmpA[i];
                         } else {
-                            //不符合数据规范，填充异常字符，跳过操作
+                            //不符合数据规范，跳过操作
                             datas[i] = DumpUtils.BLANK_DATA;
                         }
                     } else {
                         // 开始选择用正确的数据
-                        if (DumpUtils.isBlockData(tmpB[i]) && isADataAllZero) {
+                        if (DumpUtils.isValidBlockData(tmpB[i]) && isADataAllZero) {
                             datas[i] = tmpB[i];
-                        } else if (DumpUtils.isBlockData(tmpA[i]) && isBDataAllZero) {
+                        } else if (DumpUtils.isValidBlockData(tmpA[i]) && isBDataAllZero) {
                             datas[i] = tmpA[i];
                         } else {
-                            //不符合数据规范，填充异常字符，跳过操作
+                            //不符合数据规范，跳过操作
                             datas[i] = DumpUtils.BLANK_DATA;
                         }
                     }
@@ -716,10 +714,10 @@ public class DumpUtils {
                         // 随便填充一个就行了!
                         datas[i] = tmpA[i];
                     } else {
-                        if (DumpUtils.isBlockData(tmpB[i]) && isADataTrialerAllDefault) {
+                        if (DumpUtils.isValidBlockData(tmpB[i]) && isADataTrialerAllDefault) {
                             //有效的尾部块
                             datas[i] = tmpB[i];
-                        } else if (DumpUtils.isBlockData(tmpA[i]) && isBDataTrialerAllDefault) {
+                        } else if (DumpUtils.isValidBlockData(tmpA[i]) && isBDataTrialerAllDefault) {
                             datas[i] = tmpA[i];
                         } else {
                             //有效的尾部块

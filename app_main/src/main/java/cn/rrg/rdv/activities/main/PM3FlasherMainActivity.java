@@ -180,11 +180,4 @@ public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<
     public void onDetach(String dev) {
 
     }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // LogUtils.d("X: " + event.getRawX());
-        // LogUtils.d("Y: " + event.getRawY());
-        return super.onTouchEvent(event);
-    }
 }
