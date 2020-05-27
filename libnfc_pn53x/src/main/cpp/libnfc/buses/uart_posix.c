@@ -289,7 +289,7 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
         FD_SET(((serial_port_unix *) sp)->fd, &rfds);
 
         // int res = select(((serial_port_unix *) sp)->fd + 1, &rfds, NULL, NULL, NULL);
-        struct timeval timeval = {.tv_sec  = 2};
+        struct timeval timeval = {.tv_sec  = 3};
         int res = select(((serial_port_unix *) sp)->fd + 1, &rfds, NULL, NULL, &timeval);
 
         // Read error
@@ -302,7 +302,7 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
         if (res == 0) {
             if (*pszRxLen == 0) {
                 // We received no data
-                // LOGD("We received no data");
+                LOGD("We received no data");
                 return NFC_ETIMEOUT;
             } else {
                 // We received some data, but nothing more is available
@@ -310,6 +310,8 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
                 return NFC_SUCCESS;
             }
         }
+
+        LOGD("Has data can received");
 
         // Retrieve the count of the incoming bytes
         res = ioctl(((serial_port_unix *) sp)->fd, FIONREAD, &byteCount);
@@ -360,9 +362,29 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
 
 int uart_send(const serial_port sp, const uint8_t *pbtTx, const uint32_t len) {
     uint32_t pos = 0;
+    fd_set rfds;
+
     while (pos < len) {
+        // Reset file descriptor
+        FD_ZERO(&rfds);
+        FD_SET(((serial_port_unix *) sp)->fd, &rfds);
+        struct timeval timeval = {.tv_sec  = 3};
+        int res = select(((serial_port_unix *) sp)->fd + 1, NULL, &rfds, NULL, &timeval);
+
+        // Write error
+        if (res < 0) {
+            printf("UART:: write error (%d)\n", res);
+            return NFC_EIO;
+        }
+
+        // Write time-out
+        if (res == 0) {
+            printf("UART:: write time-out\n");
+            return NFC_ETIMEOUT;
+        }
+
         // Send away the bytes
-        int res = write(((serial_port_unix *) sp)->fd, pbtTx + pos, len - pos);
+        res = write(((serial_port_unix *) sp)->fd, pbtTx + pos, len - pos);
 
         // Stop if the OS has some troubles sending the data
         if (res <= 0)

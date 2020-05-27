@@ -8,8 +8,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 20
-        versionName "1.4.4"
+        versionCode 21
+        versionName "1.4.5"
     }
     buildTypes {
         release {
@@ -58,7 +58,8 @@ dependencies {
     implementation 'com.github.xianglin1998:nfctag:1.0'
     implementation 'com.github.xianglin1998:nfc_console:1.0'
 
-    implementation 'com.github.xianglin1998:ComBridge:1.0.5'
+    implementation 'com.github.xianglin1998:ComBridge:1.0.7'
+    // implementation project(path: ':iobridges')
 
     implementation project(':utils')
     implementation project(':libnfc_pn53x')
