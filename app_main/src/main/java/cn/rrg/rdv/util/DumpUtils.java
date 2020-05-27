@@ -676,6 +676,15 @@ public class DumpUtils {
                 //相同则取任意一个合并到ret中
                 datas[i] = tmpA[i];
             } else {
+                // 修复某些块异常也被用来处理的问题
+                if (!isValidBlockData(tmpA[i]) && isValidBlockData(tmpB[i])) {
+                    datas[i] = tmpB[i];
+                    continue;
+                }
+                if (!isValidBlockData(tmpB[i]) && isValidBlockData(tmpA[i])) {
+                    datas[i] = tmpA[i];
+                    continue;
+                }
                 if (i != last) {
                     //否则是否全都是0,如果全部为零则优先考虑其他的情况!
                     boolean isADataAllZero = isBlockAllZero(tmpA[i]);

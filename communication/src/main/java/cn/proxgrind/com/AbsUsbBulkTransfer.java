@@ -185,20 +185,19 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
         if (isRawDevice(mDevice.getProductId(), mDevice.getVendorId())) {
             for (int iIndex = 0; iIndex < mDevice.getInterfaceCount(); ++iIndex) {
                 UsbInterface tmpUi = mDevice.getInterface(iIndex);
-                int tmpClass = tmpUi.getInterfaceClass();
-                if (tmpClass == 11) {
+                if (tmpUi.getInterfaceClass() == UsbConstants.USB_CLASS_CSCID) {
                     // 3 Endpoints maximum: Interrupt In, Bulk In, Bulk Out
                     mUi = tmpUi;
                 }
-                Log.d(LOG_TAG, "interface class: " + tmpClass);
             }
             if (mUi == null) {
                 Log.d(LOG_TAG, "usb interface is null!");
                 return false;
             }
             if (mCon != null) {
-                if (!mCon.claimInterface(mUi, false) && !mCon.claimInterface(mUi, true)) {
-                    throw new IllegalArgumentException("Cannot claim interface.");
+                if (!mCon.claimInterface(mUi, true)) {
+                    Log.e(LOG_TAG, "Cannot claim interface.");
+                    return false;
                 }
             }
             //端点初始化
@@ -246,7 +245,7 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
 
     @Override
     public void disconect() {
-        //TODO don't need
+        mCon.releaseInterface(mUi);
     }
 
     @Override

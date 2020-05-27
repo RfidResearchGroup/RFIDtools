@@ -110,10 +110,12 @@ public abstract class DeviceConnectActivity
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new AlertDialog.Builder(context)
-                        .setTitle(getString(R.string.connect_faild))
-                        .setMessage(getString(R.string.msg_connect_err_common))
-                        .show();
+                if (!isDestroyed()) {
+                    new AlertDialog.Builder(context)
+                            .setTitle(getString(R.string.connect_faild))
+                            .setMessage(getString(R.string.msg_connect_err_common))
+                            .show();
+                }
             }
         });
     }
