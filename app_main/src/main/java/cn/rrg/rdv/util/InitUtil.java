@@ -68,12 +68,10 @@ public class InitUtil {
             if (!pm3_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init pm3 dir fail!");
             } else {
-                initProxmark3RDV4ImageFile(au);
                 initEasyButtonFile(au);
                 initPM3ForwardFile();
             }
         } else {
-            initProxmark3RDV4ImageFile(au);
             initEasyButtonFile(au);
             initPM3ForwardFile();
         }
@@ -91,19 +89,6 @@ public class InitUtil {
                 e.printStackTrace();
             }
         }
-    }
-
-    private static void initProxmark3RDV4ImageFile(AssetsUtil au) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //初始化标准输入的文件!
-                File boot = new File(Paths.PM3_IMAGE_BOOT_FILE);
-                File os = new File(Paths.PM3_IMAGE_OS_FILE);
-                au.copyFile(Paths.PM3_BOOT_FILE_NAME, boot.getAbsolutePath());
-                au.copyFile(Paths.PM3_OS_FILE_NAME, os.getAbsolutePath());
-            }
-        }).start();
     }
 
     private static void initMfInfoMapsFile(AssetsUtil au) {
