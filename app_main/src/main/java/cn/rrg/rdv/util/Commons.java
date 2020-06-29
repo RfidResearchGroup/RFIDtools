@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -197,5 +198,28 @@ public class Commons {
         FileUtils.delete(file);
         FileUtils.createFile(file);
         return file;
+    }
+
+    public static Set<String> getKeyFilesSelected() {
+        return getPrivatePreferences()
+                .getStringSet(Properties.k_common_rw_keyfile_selected, new HashSet<>());
+    }
+
+    public static void addKeyFileSelect(String path) {
+        Set<String> old = getKeyFilesSelected();
+        old.add(path);
+        getPrivatePreferences()
+                .edit()
+                .putStringSet(Properties.k_common_rw_keyfile_selected, old)
+                .apply();
+    }
+
+    public static void delKeyFileSelected(String path) {
+        Set<String> old = getKeyFilesSelected();
+        old.remove(path);
+        getPrivatePreferences()
+                .edit()
+                .putStringSet(Properties.k_common_rw_keyfile_selected, old)
+                .apply();
     }
 }

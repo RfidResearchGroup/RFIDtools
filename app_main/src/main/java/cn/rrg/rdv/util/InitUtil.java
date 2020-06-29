@@ -9,9 +9,6 @@ import java.io.IOException;
 import cn.rrg.rdv.settings.BaseSetting;
 import cn.rrg.rdv.settings.ChameleonSlotAliasesSetting;
 import cn.rrg.rdv.settings.ChameleonSlotAliasesStatusSetting;
-import cn.rrg.rdv.settings.CommonRWKeyFilesSelectedSettings;
-import cn.rrg.rdv.settings.MainPageColumnCountSetting;
-import cn.rrg.rdv.settings.Proxmark3ConsleDelaySetting;
 import cn.dxl.common.util.AssetsUtil;
 import cn.dxl.common.util.DiskKVUtil;
 
@@ -224,9 +221,6 @@ public class InitUtil {
         BaseSetting[] baseSettings = new BaseSetting[]{
                 new ChameleonSlotAliasesSetting(),
                 new ChameleonSlotAliasesStatusSetting(),
-                new MainPageColumnCountSetting(),
-                new Proxmark3ConsleDelaySetting(),
-                new CommonRWKeyFilesSelectedSettings()
         };
         //迭代设置配置实现类，进行设置参数的初始化!
         for (BaseSetting setting : baseSettings) {

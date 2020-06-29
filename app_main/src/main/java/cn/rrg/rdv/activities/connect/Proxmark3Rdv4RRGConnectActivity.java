@@ -9,13 +9,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import android.text.Html;
-import android.widget.TextView;
+import com.termux.app.TermuxActivity;
 
-import cn.dxl.common.util.DisplayUtil;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.PM3FlasherMainActivity;
-import cn.rrg.rdv.activities.main.Proxmark3Rdv4RRGMain;
 import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.models.AbstractDeviceModel;
@@ -54,7 +51,7 @@ public class Proxmark3Rdv4RRGConnectActivity
     @Override
     public Class getTarget() {
         //连接成功后将跳转到该界面!
-        return Proxmark3Rdv4RRGMain.class;
+        return TermuxActivity.class;
     }
 
     @Override

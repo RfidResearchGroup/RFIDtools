@@ -15,10 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.termux.app.TermuxActivity;
 
 import java.util.ArrayList;
 
@@ -26,15 +27,12 @@ import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.StdMifareImpl;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.activities.chameleon.ChameleonGUIActivity;
 import cn.rrg.rdv.activities.connect.Acr122uHkUsbConnectActivity;
-import cn.rrg.rdv.activities.connect.ChameleonUsb2UartConnectActivity;
 import cn.rrg.rdv.activities.connect.PN532UartConnectActivity;
 import cn.rrg.rdv.activities.connect.PN53XUsbBulkTransferActivity;
 import cn.rrg.rdv.activities.connect.Proxmark3Rdv4RRGConnectActivity;
 import cn.rrg.rdv.activities.main.GeneralNfcDeviceMain;
 import cn.rrg.rdv.activities.main.PN53XNfcMain;
-import cn.rrg.rdv.activities.main.Proxmark3Rdv4RRGMain;
 import cn.rrg.rdv.binder.BannerImageViewBinder;
 import cn.rrg.rdv.binder.DeviceInfoViewBinder;
 import cn.rrg.rdv.binder.TitleTextViewBinder;
@@ -45,9 +43,7 @@ import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
- * 界面重构在2019/7/29启动!
- * 此次重构主要是将设备的可用列表迁移到主页面进行全览
- * 此页面应当只需要跳转到对应的设备的设备连接界面，不应当做过多的逻辑！
+ * UI redesign starts on July 29, 2019!
  *
  * @author DXL
  */
@@ -175,17 +171,19 @@ public class AppMainDevicesFragment extends BaseFragment {
                 }
             }
         });
-        deviceItems.add(new DeviceInfoBean("Proxmark3 Rdv4.0", R.drawable.rdv4) {
+        deviceItems.add(new DeviceInfoBean("Proxmark3 Rdv4.0 for Termux", R.drawable.rdv4) {
             @Override
             public void onClick() {
                 deviceInfoBean = this;
                 connectOrGotoFunctionMain(
                         Proxmark3Rdv4RRGConnectActivity.class,
-                        Proxmark3Rdv4RRGMain.class
+                        TermuxActivity.class
                 );
             }
         });
-        deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2) {
+        // TODO
+        // The Chameleon have some problem, So we temporarily close the entrance.
+        /*deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2) {
             @Override
             public void onClick() {
                 deviceInfoBean = this;
@@ -194,7 +192,7 @@ public class AppMainDevicesFragment extends BaseFragment {
                         ChameleonGUIActivity.class
                 );
             }
-        });
+        });*/
         deviceItems.add(new DeviceInfoBean(PN53X.NAME.PN532, R.drawable.pn532core) {
             @Override
             public void onClick() {
@@ -226,7 +224,6 @@ public class AppMainDevicesFragment extends BaseFragment {
     }
 
     private void updateDeviceStatus(boolean status) {
-        Log.d("TAG", "新状态：" + status);
         // update device status to bean!
         if (status) {
             if (deviceInfoBean != null) {
@@ -265,7 +262,6 @@ public class AppMainDevicesFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //如果是横屏动作，那我们就没必要全部销毁。
         if (isBackPressed) {
             AppUtil.getInstance().finishAll();
         }

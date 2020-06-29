@@ -48,6 +48,7 @@ import cn.rrg.rdv.presenter.AbsTagKeysCheckPresenter;
 import cn.rrg.rdv.presenter.AbsTagReadPresenter;
 import cn.rrg.rdv.presenter.AbsTagStatePresenter;
 import cn.rrg.rdv.presenter.AbsTagWritePresenter;
+import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.DumpUtils;
 import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.view.MfKeysCheckView;
@@ -306,7 +307,7 @@ public abstract class AbsMfOperatesFragment
                         for (File tmpFile : file) {
                             keyFilesSelectedList.remove(tmpFile);
                             // 从本地持久域中删除
-                            delSelected(tmpFile.getAbsolutePath());
+                            Commons.delKeyFileSelected(tmpFile.getAbsolutePath());
                         }
                     }
                 });
@@ -319,7 +320,7 @@ public abstract class AbsMfOperatesFragment
                             if (!keyFilesSelectedList.contains(tmp)) {
                                 keyFilesSelectedList.add(tmp);
                                 // 添加到本地持久域!
-                                addSelected(tmp.getAbsolutePath());
+                                Commons.addKeyFileSelect(tmp.getAbsolutePath());
                                 Log.d(LOG_TAG, "添加了秘钥文件: " + tmp.getName());
                             }
                         }
@@ -362,44 +363,30 @@ public abstract class AbsMfOperatesFragment
     }
 
     private void initSelected() {
-        if (Properties.v_common_rw_keyfile_selected != null) {
-            for (String v : Properties.v_common_rw_keyfile_selected) {
-                File f = new File(v);
-                if (f.exists() && f.isFile()) {
-                    keyFilesSelectedList.add(new File(v));
-                }
-            }
-            if (Properties.v_common_rw_keyfile_selected.length > 0) {
-                updateKeyFileSelectedName();
+        String[] ss = Commons.getKeyFilesSelected().toArray(new String[0]);
+        for (String v : ss) {
+            File f = new File(v);
+            if (f.exists() && f.isFile()) {
+                keyFilesSelectedList.add(new File(v));
             }
         }
+        updateKeyFileSelectedName();
     }
 
     private void updateKeyFileSelectedName() {
-        txtShowKeyFileSelectedList.setText("");
-        // 拼接显示!
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < keyFilesSelectedList.size(); i++) {
-            if (i != keyFilesSelectedList.size() - 1) {
-                Log.d(LOG_TAG, "添加了文件名: " + keyFilesSelectedList.get(i).getName());
-                sb.append(keyFilesSelectedList.get(i).getName()).append("\n-\n");
-            } else {
-                sb.append(keyFilesSelectedList.get(i).getName());
-                Log.d(LOG_TAG, "添加了文件名: " + keyFilesSelectedList.get(i).getName());
+        if (keyFilesSelectedList.size() > 0) {
+            // Show!
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < keyFilesSelectedList.size(); i++) {
+                if (i != keyFilesSelectedList.size() - 1) {
+                    sb.append(keyFilesSelectedList.get(i).getName()).append("\n-\n");
+                } else {
+                    sb.append(keyFilesSelectedList.get(i).getName());
+                }
             }
-        }
-        //Log.d(LOG_TAG, "本次设置的文件名: " + sb);
-        txtShowKeyFileSelectedList.setText(sb);
-    }
-
-    private void addSelected(String file) {
-        File settingsFile = new File(Paths.SETTINGS_FILE);
-        try {
-            if (!DiskKVUtil.isKVExists(Properties.k_common_rw_keyfile_selected, file, settingsFile)) {
-                DiskKVUtil.insertKV(Properties.k_common_rw_keyfile_selected, file, settingsFile);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            txtShowKeyFileSelectedList.setText(sb);
+        } else {
+            txtShowKeyFileSelectedList.setText("");
         }
     }
 
