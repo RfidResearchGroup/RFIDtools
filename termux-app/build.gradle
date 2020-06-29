@@ -1,0 +1,137 @@
+plugins {
+  id "com.android.library"
+}
+
+android {
+    compileSdkVersion 28
+    ndkVersion '21.3.6528147'
+
+    dependencies {
+        implementation "androidx.annotation:annotation:1.1.0"
+        implementation "androidx.viewpager:viewpager:1.0.0"
+        implementation "androidx.drawerlayout:drawerlayout:1.0.0"
+        implementation project(":terminal-view")
+    }
+
+    defaultConfig {
+        // applicationId "com.termux"
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 95
+        versionName "0.95"
+
+        /*externalNativeBuild {
+            ndkBuild {
+                cFlags "-std=c11", "-Wall", "-Wextra", "-Werror", "-Os", "-fno-stack-protector", "-Wl,--gc-sections"
+            }
+        }
+
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+        }*/
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            // shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    /*externalNativeBuild {
+        ndkBuild {
+            path "src/main/cpp/Android.mk"
+        }
+    }*/
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+}
+
+/*
+task versionName {
+  doLast {
+    print android.defaultConfig.versionName
+  }
+}
+
+def downloadBootstrap(String arch, String expectedChecksum, int version) {
+    def digest = java.security.MessageDigest.getInstance("SHA-256")
+
+    def localUrl = "src/main/cpp/bootstrap-" + arch + ".zip"
+    def file = new File(projectDir, localUrl)
+    if (file.exists()) {
+        def buffer = new byte[8192]
+        def input = new FileInputStream(file)
+        while (true) {
+            def readBytes = input.read(buffer)
+            if (readBytes < 0) break
+            digest.update(buffer, 0, readBytes)
+        }
+        def checksum = new BigInteger(1, digest.digest()).toString(16)
+        if (checksum == expectedChecksum) {
+            return
+        } else {
+            logger.quiet("Deleting old local file with wrong hash: " + localUrl)
+            file.delete()
+        }
+    }
+
+    def remoteUrl = "https://bintray.com/termux/bootstrap/download_file?file_path=bootstrap-" + arch + "-v" + version + ".zip"
+    logger.quiet("Downloading " + remoteUrl + " ...")
+
+    file.parentFile.mkdirs()
+    def out = new BufferedOutputStream(new FileOutputStream(file))
+
+    def connection = new URL(remoteUrl).openConnection()
+    connection.setInstanceFollowRedirects(true)
+    def digestStream = new java.security.DigestInputStream(connection.inputStream, digest)
+    out << digestStream
+    out.close()
+
+    def checksum = new BigInteger(1, digest.digest()).toString(16)
+    if (checksum != expectedChecksum) {
+        file.delete()
+        throw new GradleException("Wrong checksum for " + remoteUrl + ": expected: " + expectedChecksum + ", actual: " + checksum)
+    }
+}
+
+clean {
+    doLast {
+        def tree = fileTree(new File(projectDir, 'src/main/cpp'))
+        tree.include 'bootstrap-*.zip'
+        tree.each { it.delete() }
+    }
+}
+
+task downloadBootstraps(){
+    doLast {
+        def version = 25
+        downloadBootstrap("aarch64", "633baa1f7edfd81f6064338a68d1149aa203d4b24cbc4f7c64283aaca109609e", version)
+        downloadBootstrap("arm",     "a581a22e0d79a0e8cef9395b1bd951ba066ac2d688522e17cca0b3e1c0649daa", version)
+        downloadBootstrap("i686",    "8288e13f0a6ddeb2ff9406d8f968a8930a58e9318d09fadb2b7c8970a034cfdc", version)
+        downloadBootstrap("x86_64",  "c99b80a18d6bbb64c24c5a64d6ee6b8d4306729ebd172662b807bcb4a46dd39a", version)
+    }
+}
+
+afterEvaluate {
+  android.libraryVariants.all { variant ->
+    variant.javaCompileProvider.get().dependsOn(downloadBootstraps)
+  }
+}
+*/
