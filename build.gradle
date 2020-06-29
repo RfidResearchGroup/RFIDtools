@@ -5,8 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        //这里指定构建工具支持的版本仓库
-        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.android.tools.build:gradle:3.6.3'
         classpath('com.github.dcendents:android-maven-gradle-plugin:1.5')
     }
 }

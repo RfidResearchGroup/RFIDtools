@@ -21,12 +21,12 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         cmake {
             version '3.10.2'
             path 'src/main/cpp/proxmark3/client/android/CMakeLists.txt'
         }
-    }
+    }*/
 
     buildTypes {
         release {
@@ -35,7 +35,7 @@ android {
         }
     }
 
-    android.libraryVariants.all { variant ->
+    /*android.libraryVariants.all { variant ->
         def rootPath = getRootDir();
         File targetPath = new File(rootPath.path + "/app_main/src/main/assets/pm3/resources");
         def sourcePath = "src/main/cpp/proxmark3/client/resources"
@@ -43,13 +43,13 @@ android {
         // delete targetPath
         if (!targetPath.exists()) targetPath.mkdirs()
         variant.mergeAssets.doLast {
-            println "${targetPath}"  // 打印路径
-            copy { // 将from目录下的资源拷贝到into 下目录去
+            println "${targetPath}"
+            copy {
                 from "${sourcePath}"
                 into "${targetPath}"
             }
         }
-    }
+    }*/
 }
 
 dependencies {

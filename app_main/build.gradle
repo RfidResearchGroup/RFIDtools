@@ -70,4 +70,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation project(path: ':pm3flasher')
     implementation project(path: ':xmodem')
+    implementation project(":terminal-view")
 }
