@@ -45,6 +45,7 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+*.zip
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
@@ -60,3 +61,22 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+# Crashlytics configuations
+com_crashlytics_export_strings.xml
+
+# Gradle generated files
+.gradle/
+
+# Signing files
+.signing/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.swp
+ehthumbs.db
+Thumbs.db

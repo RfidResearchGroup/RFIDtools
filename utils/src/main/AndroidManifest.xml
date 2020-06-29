@@ -18,7 +18,6 @@
 
         </provider>
 
-        <!--APP重启服务-->
         <service
             android:name="cn.dxl.common.services.RestartService"
             android:enabled="true"
