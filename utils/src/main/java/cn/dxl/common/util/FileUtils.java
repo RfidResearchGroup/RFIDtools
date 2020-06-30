@@ -542,6 +542,10 @@ public class FileUtils {
 
     public static boolean createFile(File file) {
         try {
+            File tmpParent = file.getParentFile();
+            if (tmpParent != null && !tmpParent.exists()) {
+                createPaths(tmpParent);
+            }
             if (!file.exists())
                 if (file.createNewFile()) return true;
         } catch (IOException e) {
