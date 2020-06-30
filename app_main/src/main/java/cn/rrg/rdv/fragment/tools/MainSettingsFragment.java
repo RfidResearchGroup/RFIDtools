@@ -34,6 +34,7 @@ import cn.rrg.rdv.javabean.ItemToggleBean;
 import cn.rrg.rdv.javabean.TitleBean;
 import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
+import cn.rrg.rdv.util.Proxmark3Installer;
 import cn.rrg.rdv.widget.ProDialog1;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -163,25 +164,14 @@ public class MainSettingsFragment
     private void pm3ResInit(ItemTextBean item) {
         Activity activity = getActivity();
         if (activity != null) {
-            ProDialog1 proDialog1 = new ProDialog1(activity);
-            proDialog1.show(getString(R.string.initializing));
-            new Thread(new Runnable() {
+            Proxmark3Installer.installIfNeed(activity, new Runnable() {
                 @Override
                 public void run() {
-                    // move res to /data/xxxx
-                    new AssetsUtil(activity)
-                            .copyDirs(new File("pm3"), new File(Paths.TOOLS_DIRECTORY));
-                    proDialog1.dismiss();
                     showToast(getString(R.string.finished));
                     item.setMessage(getString(R.string.initialized));
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            multiTypeAdapter.notifyDataSetChanged();
-                        }
-                    });
+                    multiTypeAdapter.notifyDataSetChanged();
                 }
-            }).start();
+            });
         }
     }
 }

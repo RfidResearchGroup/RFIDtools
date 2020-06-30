@@ -8,7 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.widget.RadioGroup;
+
+import com.termux.app.TermuxService;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import java.util.Set;
 
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.common.util.FileUtils;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.application.Properties;
@@ -188,7 +192,7 @@ public class Commons {
     }
 
     public static boolean isPM3ResInitialled() {
-        File pm3Path = new File(Paths.PM3_DIRECTORY + File.separator + "resources");
+        File pm3Path = new File(TermuxService.HOME_PATH + File.separator + Paths.PM3_PATH);
         String[] list = pm3Path.list();
         return list != null && list.length > 0;
     }
@@ -221,5 +225,36 @@ public class Commons {
                 .edit()
                 .putStringSet(Properties.k_common_rw_keyfile_selected, old)
                 .apply();
+    }
+
+    public static String getABISupported(boolean has64So) {
+        if (has64So && Build.SUPPORTED_64_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_64_BIT_ABIS[0];
+        if (!has64So && Build.SUPPORTED_32_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_32_BIT_ABIS[0];
+        if (Build.SUPPORTED_64_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_64_BIT_ABIS[0];
+        if (Build.SUPPORTED_32_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_32_BIT_ABIS[0];
+        return null;
+    }
+
+    public static String getPM3ClientPath() {
+        return TermuxService.HOME_PATH +
+                File.separator +
+                Paths.PM3_PATH +
+                File.separator +
+                Paths.PM3_PATH +
+                "_" +
+                getABISupported(true);
+    }
+
+    public static boolean isPM3ClientDecompressed() {
+        return new File(getPM3ClientPath()).exists();
+    }
+
+    public static boolean isElfDecompressed() {
+        return new File(Paths.PM3_IMAGE_OS_FILE).exists() &&
+                new File(Paths.PM3_IMAGE_BOOT_FILE).exists();
     }
 }

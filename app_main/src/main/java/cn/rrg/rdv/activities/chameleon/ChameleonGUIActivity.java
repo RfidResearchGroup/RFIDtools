@@ -138,7 +138,7 @@ public class ChameleonGUIActivity
 
         progressDialog = new AlertDialog.Builder(this).create();
         progressDialog.setView(ViewUtil.inflate(this, R.layout.dialog_working_msg));
-        progressDialog.setTitle(getString(R.string.woring));
+        progressDialog.setTitle(getString(R.string.working));
         progressDialog.setCancelable(false);
 
         ListView msgListView = new ListView(this);

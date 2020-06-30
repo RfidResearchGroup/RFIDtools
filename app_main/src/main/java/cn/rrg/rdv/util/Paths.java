@@ -2,6 +2,10 @@ package cn.rrg.rdv.util;
 
 import android.os.Environment;
 
+import com.termux.app.TermuxService;
+
+import java.io.File;
+
 public interface Paths {
 
     String EXTERNAL_STORAGE_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
@@ -12,7 +16,7 @@ public interface Paths {
     String HARDNESTED_PATH = "hardnested";
     String TABLES_PATH = "tables";
     String LOG_PATH = "log";
-    String PM3_PATH = "pm3";
+    String PM3_PATH = "proxmark3";
     String COMMON_PATH = "common";
     String PN53X_PATH = "pn53x";
     String DRIVER_PATH = "driver";
@@ -56,8 +60,8 @@ public interface Paths {
     //PM3 Easy Button
     String PM3_CMD_FILE = PM3_DIRECTORY + "/" + DEFAULT_CMD_NAME;
     // PM3 Image
-    String PM3_IMAGE_BOOT_FILE = Paths.PM3_DIRECTORY + "/" + PM3_BOOT_FILE_NAME;
-    String PM3_IMAGE_OS_FILE = Paths.PM3_DIRECTORY + "/" + PM3_OS_FILE_NAME;
+    String PM3_IMAGE_BOOT_FILE = TermuxService.HOME_PATH + File.separator + PM3_PATH + File.separator + PM3_BOOT_FILE_NAME;
+    String PM3_IMAGE_OS_FILE = TermuxService.HOME_PATH + File.separator + PM3_PATH + File.separator + PM3_OS_FILE_NAME;
 
     String PN53X_FORWARD_O = PN53X_DIRRECTORY + "/" + "pn53x_forward_o.txt";
     String PN53X_FORWARD_E = PN53X_DIRRECTORY + "/" + "pn53x_forward_e.txt";

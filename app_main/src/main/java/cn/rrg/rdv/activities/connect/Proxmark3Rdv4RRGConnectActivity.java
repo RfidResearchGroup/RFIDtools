@@ -9,17 +9,15 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.termux.app.TermuxActivity;
-
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.PM3FlasherMainActivity;
 import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
+import cn.rrg.rdv.activities.tools.Proxmark3NewTerminalInitActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.models.Proxmark3Rdv4SppModel;
 import cn.rrg.rdv.models.Proxmark3Rdv4UsbModel;
 import cn.dxl.common.util.PermissionUtil;
-import cn.rrg.rdv.util.Commons;
 
 /**
  * 专供RDV4连接设备
@@ -50,18 +48,12 @@ public class Proxmark3Rdv4RRGConnectActivity
 
     @Override
     public Class getTarget() {
-        //连接成功后将跳转到该界面!
-        return TermuxActivity.class;
+        return Proxmark3NewTerminalInitActivity.class;
     }
 
     @Override
     public String getConnectingMsg() {
-        String msg = getString(R.string.progress_msg);
-        msg += "\n\nFirmware: ";
-        String version = Commons.PM3_CLIENT_VERSION;
-        msg += version + "\n\n";
-        String tips = getString(R.string.tips_pm3_version);
-        return msg + tips;
+        return getString(R.string.tips_view_use_termux);
     }
 
     @Override

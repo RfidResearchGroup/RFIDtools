@@ -27,6 +27,7 @@ import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
+import cn.rrg.rdv.util.Proxmark3Installer;
 import cn.rrg.rdv.widget.MaterialAlertDialog;
 import cn.rrg.rdv.widget.ProDialog1;
 
@@ -88,6 +89,10 @@ public class Proxmark3FirmwareActivity extends BaseActivity implements DevCallba
                 .startServer(LocalComBridgeAdapter.NAMESPACE_DEFAULT);
 
         proDialog1 = new ProDialog1(context);
+
+        if (!Commons.isElfDecompressed()) {
+            Proxmark3Installer.installIfNeed(this, null);
+        }
 
         initViews();
         initActions();

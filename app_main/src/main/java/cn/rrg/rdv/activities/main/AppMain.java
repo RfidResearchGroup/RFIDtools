@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.iobridges.com.LocalComBridgeAdapter;
-import com.termux.app.TermuxActivity;
 
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.FragmentUtil;
@@ -47,8 +46,6 @@ public class AppMain extends BaseActivity {
         initActions();
 
         gotoFragment(appMainDevicesFragment);
-
-        startActivity(new Intent(this, TermuxActivity.class));
     }
 
     private void initViews() {

@@ -240,7 +240,7 @@
     <string name="title_tag_data_download">Data Dwonload</string>
     <string name="title_data_upload">Data Upload</string>
     <string name="title_data_clear">Data Clear</string>
-    <string name="woring">Working</string>
+    <string name="working">Working</string>
     <string name="msg_not_data">No data to save!</string>
     <string name="msg_create_chameleon_keyfile_err">Failed to create a chameleon-specific key file!</string>
     <string name="finish">finish</string>
@@ -299,5 +299,6 @@
     <string name="custom_firmware">Custom firmware</string>
     <string name="title_select_bootrom">Select BootRom</string>
     <string name="select_fullimage">Select FullImage</string>
+    <string name="tips_view_use_termux">Will use TERMUX implement UI</string>
 
 </resources>

@@ -2,7 +2,6 @@ package cn.rrg.rdv.activities.main;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,7 +15,9 @@ import cn.dxl.common.widget.ToastUtil;
 import cn.proxgrind.com.DevCallback;
 import cn.proxgrind.com.UsbSerialControl;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
+import cn.rrg.rdv.util.Proxmark3Installer;
 
 public class PM3FlasherMainActivity extends BaseActivity implements DevCallback<String> {
 

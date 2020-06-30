@@ -26,7 +26,6 @@ import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.BaseActivity;
 import cn.rrg.rdv.binder.FileInfoBinder;
 import cn.rrg.rdv.javabean.FileBean;
-import cn.rrg.rdv.util.DumpUtils;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -81,7 +80,7 @@ public abstract class FileListActivity extends BaseActivity {
         rvDumpList.setAdapter(multiTypeAdapter);
 
         workDialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.woring)
+                .setTitle(R.string.working)
                 .setView(View.inflate(context, R.layout.dialog_working_msg, null))
                 .create();
 
