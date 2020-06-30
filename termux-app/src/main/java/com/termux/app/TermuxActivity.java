@@ -20,8 +20,11 @@ import android.graphics.Typeface;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.system.ErrnoException;
+import android.system.Os;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -609,17 +612,40 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         return (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
-    String getPM3ExecutablePath() {
-        return TermuxService.HOME_PATH + File.separator + "proxmark3";
-    }
-
     String[] getPM3Args() {
-        if (true) return null;
+        if (false) return null;
         else {
             return new String[]{
                     "socket:DXL.COM.ASL"
             };
         }
+    }
+
+    public static String getABISupported(boolean has64So) {
+        if (has64So && Build.SUPPORTED_64_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_64_BIT_ABIS[0];
+        if (!has64So && Build.SUPPORTED_32_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_32_BIT_ABIS[0];
+        if (Build.SUPPORTED_64_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_64_BIT_ABIS[0];
+        if (Build.SUPPORTED_32_BIT_ABIS.length > 0)
+            return Build.SUPPORTED_32_BIT_ABIS[0];
+        return null;
+    }
+
+    public static String getPM3ClientPath() {
+        String file = TermuxService.HOME_PATH +
+                File.separator +
+                "proxmark3" +
+                File.separator +
+                "proxmark3_" +
+                getABISupported(true);
+        try {
+            Os.chmod(file, 0700);
+        } catch (ErrnoException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     void addNewSession(boolean failSafe, String sessionName) {
@@ -629,7 +655,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         } else {
             TerminalSession currentSession = getCurrentTermSession();
             String workingDirectory = (currentSession == null) ? null : currentSession.getCwd();
-            TerminalSession newSession = mTermService.createTermSession(getPM3ExecutablePath(), getPM3Args(), workingDirectory, failSafe);
+            TerminalSession newSession = mTermService.createTermSession(getPM3ClientPath(), getPM3Args(), workingDirectory, failSafe);
             if (sessionName != null) {
                 newSession.mSessionName = sessionName;
             }

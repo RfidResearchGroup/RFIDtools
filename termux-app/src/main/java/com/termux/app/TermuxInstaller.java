@@ -130,9 +130,6 @@ final class TermuxInstaller {
                         throw new RuntimeException("Unable to rename staging folder");
                     }*/
 
-                    //TODO PM3 Client init
-
-
                     activity.runOnUiThread(whenDone);
                 } catch (final Exception e) {
                     Log.e(EmulatorDebug.LOG_TAG, "Bootstrap error", e);
