@@ -15,4 +15,6 @@ public class Properties {
     public static String k_app_language = "language";
     //Key files select history!
     public static String k_common_rw_keyfile_selected = "commonRWKeyFilesSelected";
+    // Auto Goto Termux View
+    public static String k_auto_goto_termux = "autoGotoTermuxView";
 }

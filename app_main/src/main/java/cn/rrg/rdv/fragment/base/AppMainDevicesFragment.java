@@ -19,8 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.termux.app.TermuxActivity;
-
 import java.util.ArrayList;
 
 import cn.dxl.common.util.AppUtil;
@@ -33,6 +31,7 @@ import cn.rrg.rdv.activities.connect.PN53XUsbBulkTransferActivity;
 import cn.rrg.rdv.activities.connect.Proxmark3Rdv4RRGConnectActivity;
 import cn.rrg.rdv.activities.main.GeneralNfcDeviceMain;
 import cn.rrg.rdv.activities.main.PN53XNfcMain;
+import cn.rrg.rdv.activities.tools.Proxmark3NewTerminalInitActivity;
 import cn.rrg.rdv.binder.BannerImageViewBinder;
 import cn.rrg.rdv.binder.DeviceInfoViewBinder;
 import cn.rrg.rdv.binder.TitleTextViewBinder;
@@ -177,7 +176,7 @@ public class AppMainDevicesFragment extends BaseFragment {
                 deviceInfoBean = this;
                 connectOrGotoFunctionMain(
                         Proxmark3Rdv4RRGConnectActivity.class,
-                        TermuxActivity.class
+                        Proxmark3NewTerminalInitActivity.class
                 );
             }
         });

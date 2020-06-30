@@ -257,4 +257,14 @@ public class Commons {
         return new File(Paths.PM3_IMAGE_OS_FILE).exists() &&
                 new File(Paths.PM3_IMAGE_BOOT_FILE).exists();
     }
+
+    public static void setAutoGoToTermux(boolean auto) {
+        getPrivatePreferences().edit()
+                .putBoolean(Properties.k_auto_goto_termux, auto)
+                .apply();
+    }
+
+    public static boolean getAutoGoToTermux() {
+        return getPrivatePreferences().getBoolean(Properties.k_auto_goto_termux, false);
+    }
 }

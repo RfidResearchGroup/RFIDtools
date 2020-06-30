@@ -307,5 +307,16 @@
     <string name="title_select_bootrom">选择引导器</string>
     <string name="select_fullimage">选择系统固件</string>
     <string name="tips_view_use_termux">将会使用TERMUX实现终端视图</string>
+    <string name="tips_fw_client_version_same">1. 你的固件不能比客户端版本太低或太高，太高或者太低都需要去刷固件。</string>
+    <string name="tips_check_auto_go_termux">2. 勾选 \'自动跳转\', 将自动转到TERMUX视图。</string>
+    <string name="auto_go">自动跳转</string>
+    <string name="title_flash_firmware_otg">刷写固件(OTG)</string>
+    <string name="title_go_termux">跳转到Termux</string>
+    <string name="title_set_language">设置APP使用的语言</string>
+    <string name="other">其他</string>
+    <string name="title_open_source">开源计划</string>
+    <string name="tips_opensource_welcome">欢迎加入我们的开源计划。</string>
+    <string name="tips_power">由Proxgrind强力驱动\n由RFID Research Group (RRG)管理发布</string>
+    <string name="unknown">unknown</string>
 
 </resources>
