@@ -596,15 +596,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     public void onDestroy() {
         super.onDestroy();
         if (mTermService != null) {
-            // RFIDTools change: exit on activity destroy.
-            startService(new Intent(this, TermuxService.class).setAction(TermuxService.ACTION_STOP_SERVICE));
             // Do not leave service with references to activity.
             mTermService.mSessionChangeCallback = null;
             mTermService = null;
         }
-        // RFIDTools change: same top
-        TerminalSession session = getCurrentTermSession();
-        if (session != null) session.finishIfRunning();
         unbindService(this);
     }
 
