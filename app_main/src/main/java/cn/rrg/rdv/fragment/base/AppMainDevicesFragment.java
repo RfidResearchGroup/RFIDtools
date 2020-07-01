@@ -25,7 +25,9 @@ import cn.dxl.common.util.AppUtil;
 import cn.dxl.mifare.StdMifareImpl;
 import cn.rrg.devices.PN53X;
 import cn.rrg.rdv.R;
+import cn.rrg.rdv.activities.chameleon.ChameleonGUIActivity;
 import cn.rrg.rdv.activities.connect.Acr122uHkUsbConnectActivity;
+import cn.rrg.rdv.activities.connect.ChameleonUsb2UartConnectActivity;
 import cn.rrg.rdv.activities.connect.PN532UartConnectActivity;
 import cn.rrg.rdv.activities.connect.PN53XUsbBulkTransferActivity;
 import cn.rrg.rdv.activities.connect.Proxmark3Rdv4RRGConnectActivity;
@@ -180,9 +182,7 @@ public class AppMainDevicesFragment extends BaseFragment {
                 );
             }
         });
-        // TODO
-        // The Chameleon have some problem, So we temporarily close the entrance.
-        /*deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2) {
+        deviceItems.add(new DeviceInfoBean("ChameleonMini RevE", R.drawable.chameleon_rdv2) {
             @Override
             public void onClick() {
                 deviceInfoBean = this;
@@ -191,7 +191,7 @@ public class AppMainDevicesFragment extends BaseFragment {
                         ChameleonGUIActivity.class
                 );
             }
-        });*/
+        });
         deviceItems.add(new DeviceInfoBean(PN53X.NAME.PN532, R.drawable.pn532core) {
             @Override
             public void onClick() {

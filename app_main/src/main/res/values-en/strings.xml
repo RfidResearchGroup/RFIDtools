@@ -312,5 +312,11 @@
     <string name="tips_opensource_welcome">Welcome join our open source.</string>
     <string name="tips_power">Power by Proxgrind\nDistributed by RFID Research Group (RRG)</string>
     <string name="unknown">unknown</string>
+    <string name="tips_download_size_select">Select download capacity</string>
+    <string name="confirm">Confirm</string>
+    <string name="tips_size_get_failed">Request to get the number of bytes occupied by capacity failed!</string>
+    <string name="send">Send</string>
+    <string name="console">Console</string>
+    <string name="title_use_slot_alias">Use slot alias</string>
 
 </resources>

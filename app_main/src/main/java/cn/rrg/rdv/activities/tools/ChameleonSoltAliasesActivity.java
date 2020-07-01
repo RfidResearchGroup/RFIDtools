@@ -1,8 +1,10 @@
 package cn.rrg.rdv.activities.tools;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -73,13 +75,9 @@ public class ChameleonSoltAliasesActivity
                     DiskKVUtil.update2Disk(Properties.k_chameleon_aliases_status, String.valueOf(isChecked), setFile);
                     //更新全局参数!
                     Properties.v_chameleon_aliases_status = isChecked;
-                    if (isChecked)
-                        ToastUtil.show(context, "启用成功", false);
-                    else
-                        ToastUtil.show(context, "禁用成功", false);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    ToastUtil.show(context, "启用失败", false);
+                    ToastUtil.show(context, getString(R.string.failed), false);
                 }
             }
         });
@@ -101,10 +99,10 @@ public class ChameleonSoltAliasesActivity
                     DiskKVUtil.update2Disk(Properties.k_chameleon_aliases, aliases, setFile);
                     //更新到内存中!
                     Properties.v_chameleon_aliases = aliases;
-                    ToastUtil.show(context, "保存成功!", false);
+                    ToastUtil.show(context, getString(R.string.successful), false);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    ToastUtil.show(context, "保存失败!", false);
+                    ToastUtil.show(context, getString(R.string.failed), false);
                 }
             }
         });

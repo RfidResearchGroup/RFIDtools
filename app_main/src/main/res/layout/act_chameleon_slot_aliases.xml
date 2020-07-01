@@ -5,6 +5,10 @@
     android:background="@color/md_grey_50"
     android:orientation="vertical">
 
+    <cn.dxl.common.widget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swUseAliases"
         android:layout_width="match_parent"
@@ -12,7 +16,7 @@
         android:background="@color/md_white_1000"
         android:gravity="center"
         android:padding="16dp"
-        android:text="使用卡槽别名"
+        android:text="@string/title_use_slot_alias"
         android:textColor="@color/md_blue_600"
         android:textSize="14sp" />
 
@@ -47,7 +51,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -71,7 +75,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -95,7 +99,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -119,7 +123,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -143,7 +147,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -167,7 +171,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -191,7 +195,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -215,7 +219,7 @@
                     android:background="@color/md_white_1000"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="编辑框"
+                    android:text="..."
                     android:textColor="@color/md_grey_600" />
 
             </LinearLayout>
@@ -227,7 +231,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/btn_selector_blue"
-                android:text="保存"
+                android:text="@string/save"
                 android:textColor="@color/md_white_1000" />
 
         </LinearLayout>

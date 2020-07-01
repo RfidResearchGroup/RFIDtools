@@ -317,6 +317,12 @@
     <string name="title_open_source">开源计划</string>
     <string name="tips_opensource_welcome">欢迎加入我们的开源计划。</string>
     <string name="tips_power">由Proxgrind强力驱动\n由RFID Research Group (RRG)管理发布</string>
-    <string name="unknown">unknown</string>
+    <string name="unknown">未知</string>
+    <string name="tips_download_size_select">选择下载容量</string>
+    <string name="confirm">确认</string>
+    <string name="tips_size_get_failed">请求获得容量占用字节数失败!</string>
+    <string name="send">发送</string>
+    <string name="console">控制台</string>
+    <string name="title_use_slot_alias">使用卡槽别名</string>
 
 </resources>

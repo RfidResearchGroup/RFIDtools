@@ -25,7 +25,6 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
         return new DevCallback<String>() {
             @Override
             public void onAttach(String dev) {
-                //添加设备进列表中!
                 DevBean devBean = new DevBean(dev, "00:00:00:00:00:00");
                 addDev2List(devBean);
                 attachDispatcher(devBean);
@@ -34,9 +33,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
             @Override
             public void onDetach(String dev) {
                 DevBean devBean = new DevBean(dev, "00:00:00:00:00:00");
-                //再自己移除!
                 Commons.removeDevByList(devBean, devAttachList);
-                //如果设置了接口实现则需要通知接口移除
                 detachDispatcher(devBean);
             }
         };
@@ -49,7 +46,7 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
             if (manager != null)
                 if (manager.getDeviceList().size() > 0) {
                     AppUtil.getInstance().getApp().sendBroadcast(new Intent(UsbSerialControl.ACTION_BROADCAST));
-                } else Log.d(TAG, "startDiscovery: 找不到任何一个USB设备!");
+                }
         }
     }
 
@@ -61,14 +58,11 @@ public abstract class AbsUsb2UartModel extends AbstractDeviceModel<String, UsbMa
     @Override
     public void connect(String address, ConnectCallback callback) {
         if (mDI == null) {
-            Log.d(TAG, "驱动为空!");
             callback.onConnectFail();
             return;
         }
-        Log.d(TAG, "开始连接Rdv4 Usb!");
         if (Commons.isUsbDevice(address)) {
             boolean ret = mDI.connect(address);
-            Log.d(TAG, "连接完成: " + ret);
             if (ret) {
                 callback.onConnectSucces();
             } else {
