@@ -8,8 +8,8 @@ android {
         minSdkVersion 24
         targetSdkVersion 28
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 21
-        versionName "1.4.5"
+        versionCode 24
+        versionName "1.4.6 Termux"
     }
     buildTypes {
         release {
