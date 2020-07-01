@@ -3,8 +3,6 @@ package cn.rrg.rdv.util;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.system.ErrnoException;
-import android.system.Os;
 
 import com.termux.app.TermuxService;
 
