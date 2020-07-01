@@ -92,6 +92,13 @@ The app has been tested with these Android phones.  Feel free to contribute with
 
 Open issues here relating to the source code,  other support questions use `android@rfidresearchgroup.com`
 
+## Dependents
+
+Thanks:
+
+- Terminal: [TERMUX](https://github.com/termux)
+- Communication: [UsbSerial](https://github.com/felHR85/UsbSerial) 
+
 ## Maintainer
 Feel free to contribute and make this app better!
 

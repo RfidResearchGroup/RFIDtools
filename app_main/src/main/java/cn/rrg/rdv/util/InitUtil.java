@@ -9,9 +9,6 @@ import java.io.IOException;
 import cn.rrg.rdv.settings.BaseSetting;
 import cn.rrg.rdv.settings.ChameleonSlotAliasesSetting;
 import cn.rrg.rdv.settings.ChameleonSlotAliasesStatusSetting;
-import cn.rrg.rdv.settings.CommonRWKeyFilesSelectedSettings;
-import cn.rrg.rdv.settings.MainPageColumnCountSetting;
-import cn.rrg.rdv.settings.Proxmark3ConsleDelaySetting;
 import cn.dxl.common.util.AssetsUtil;
 import cn.dxl.common.util.DiskKVUtil;
 
@@ -71,12 +68,10 @@ public class InitUtil {
             if (!pm3_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init pm3 dir fail!");
             } else {
-                initProxmark3RDV4ImageFile(au);
                 initEasyButtonFile(au);
                 initPM3ForwardFile();
             }
         } else {
-            initProxmark3RDV4ImageFile(au);
             initEasyButtonFile(au);
             initPM3ForwardFile();
         }
@@ -94,19 +89,6 @@ public class InitUtil {
                 e.printStackTrace();
             }
         }
-    }
-
-    private static void initProxmark3RDV4ImageFile(AssetsUtil au) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //初始化标准输入的文件!
-                File boot = new File(Paths.PM3_IMAGE_BOOT_FILE);
-                File os = new File(Paths.PM3_IMAGE_OS_FILE);
-                au.copyFile(Paths.PM3_BOOT_FILE_NAME, boot.getAbsolutePath());
-                au.copyFile(Paths.PM3_OS_FILE_NAME, os.getAbsolutePath());
-            }
-        }).start();
     }
 
     private static void initMfInfoMapsFile(AssetsUtil au) {
@@ -224,9 +206,6 @@ public class InitUtil {
         BaseSetting[] baseSettings = new BaseSetting[]{
                 new ChameleonSlotAliasesSetting(),
                 new ChameleonSlotAliasesStatusSetting(),
-                new MainPageColumnCountSetting(),
-                new Proxmark3ConsleDelaySetting(),
-                new CommonRWKeyFilesSelectedSettings()
         };
         //迭代设置配置实现类，进行设置参数的初始化!
         for (BaseSetting setting : baseSettings) {

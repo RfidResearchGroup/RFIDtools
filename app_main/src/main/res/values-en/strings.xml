@@ -241,7 +241,7 @@
     <string name="title_tag_data_download">Data Dwonload</string>
     <string name="title_data_upload">Data Upload</string>
     <string name="title_data_clear">Data Clear</string>
-    <string name="woring">Working</string>
+    <string name="working">Working</string>
     <string name="msg_not_data">No data to save!</string>
     <string name="msg_create_chameleon_keyfile_err">Failed to create a chameleon-specific key file!</string>
     <string name="finish">finish</string>
@@ -300,5 +300,23 @@
     <string name="custom_firmware">Custom firmware</string>
     <string name="title_select_bootrom">Select BootRom</string>
     <string name="select_fullimage">Select FullImage</string>
+    <string name="tips_view_use_termux">Will use TERMUX implement UI</string>
+    <string name="tips_fw_client_version_same">1. Your FW can\'t than for client version too low or high , you need go flash FW.</string>
+    <string name="tips_check_auto_go_termux">2. Check \'Auto Go\', it will auto go to termux view.</string>
+    <string name="auto_go">Auto Go</string>
+    <string name="title_flash_firmware_otg">Flash Firmware(OTG)</string>
+    <string name="title_go_termux">Go Termux</string>
+    <string name="title_set_language">Set the language of the app.</string>
+    <string name="other">Other</string>
+    <string name="title_open_source">Open Source</string>
+    <string name="tips_opensource_welcome">Welcome join our open source.</string>
+    <string name="tips_power">Power by Proxgrind\nDistributed by RFID Research Group (RRG)</string>
+    <string name="unknown">unknown</string>
+    <string name="tips_download_size_select">Select download capacity</string>
+    <string name="confirm">Confirm</string>
+    <string name="tips_size_get_failed">Request to get the number of bytes occupied by capacity failed!</string>
+    <string name="send">Send</string>
+    <string name="console">Console</string>
+    <string name="title_use_slot_alias">Use slot alias</string>
 
 </resources>

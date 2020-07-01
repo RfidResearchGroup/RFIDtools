@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatSpinner;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,7 +62,7 @@ import cn.dxl.common.util.ViewUtil;
 
 /**
  * @author DXL
- * 提供变色龙的界面支持!
+ * Chameleon View!
  */
 public class ChameleonGUIActivity
         extends BaseActivity
@@ -138,7 +137,7 @@ public class ChameleonGUIActivity
 
         progressDialog = new AlertDialog.Builder(this).create();
         progressDialog.setView(ViewUtil.inflate(this, R.layout.dialog_working_msg));
-        progressDialog.setTitle(getString(R.string.woring));
+        progressDialog.setTitle(getString(R.string.working));
         progressDialog.setCancelable(false);
 
         ListView msgListView = new ListView(this);
@@ -306,9 +305,7 @@ public class ChameleonGUIActivity
                             util.resetDevice(new ResultCallback<String, String>() {
                                 @Override
                                 public void onSuccess(String s) {
-                                    //隐藏对话框后进行重启!
                                     dialog.dismiss();
-                                    //成功后进行APP重启!
                                     RestartUtils.restartAPP(context, 1000, () -> true);
                                 }
 
@@ -414,7 +411,7 @@ public class ChameleonGUIActivity
                 @Override
                 public void onInt(int i) {
                     if (i == -1) {
-                        showToast("请求获得容量占用字节数失败!");
+                        showToast(getString(R.string.tips_size_get_failed));
                     } else {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -457,12 +454,12 @@ public class ChameleonGUIActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            String[] sizeList = {"MF_1K卡", "MF_4K卡", "MF_UL卡"};
+                            String[] sizeList = {"MF_1K", "MF_4K", "MF_UL"};
                             new AlertDialog.Builder(context)
-                                    .setTitle("选择下载容量")
+                                    .setTitle(R.string.tips_download_size_select)
                                     .setCancelable(false)
                                     .setSingleChoiceItems(sizeList, 0, null)
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             which = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -478,7 +475,6 @@ public class ChameleonGUIActivity
                                                     size = 320;
                                                     break;
                                             }
-                                            Log.d(LOG_TAG, "当前选择的容量: " + size);
                                             downloadFinallly(size);
                                         }
                                     }).show();
@@ -496,15 +492,14 @@ public class ChameleonGUIActivity
     }
 
     private void downloadFinallly(int size) {
-        showToast("开始下载到本地dump文件夹!");
         //开始执行下载，下载到本地!
         Communication com = ExecutorImpl.getInstance().getCom();
-        File file = new File(Paths.DUMP_DIRECTORY + "/" + "变色龙.bin");
+        File file = new File(Paths.DUMP_DIRECTORY + "/" + "Chameleon.bin");
         if (!file.exists()) {
             try {
                 boolean b = file.createNewFile();
                 if (!b) {
-                    showToast("文件创建失败!");
+                    showToast(getString(R.string.failed));
                     dismissProgressDialog();
                     return;
                 }
@@ -521,9 +516,9 @@ public class ChameleonGUIActivity
                     ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 64);
                     boolean b = modem.recv(bos);
                     if (b) {
-                        showToast("下载成功!");
+                        showToast(getString(R.string.successful));
                     } else {
-                        showToast("下载失败!");
+                        showToast(getString(R.string.failed));
                     }
                     byte[] result = Arrays.copyOfRange(bos.toByteArray(), 0, size);
                     FileUtils.writeBytes(result, file, false);

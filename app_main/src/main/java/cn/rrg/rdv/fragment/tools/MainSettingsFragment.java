@@ -3,7 +3,11 @@ package cn.rrg.rdv.fragment.tools;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,6 +38,7 @@ import cn.rrg.rdv.javabean.ItemToggleBean;
 import cn.rrg.rdv.javabean.TitleBean;
 import cn.rrg.rdv.util.Commons;
 import cn.rrg.rdv.util.Paths;
+import cn.rrg.rdv.util.Proxmark3Installer;
 import cn.rrg.rdv.widget.ProDialog1;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -62,7 +67,6 @@ public class MainSettingsFragment
 
         initViews(view);
         initList();
-        initActions(view.getContext());
     }
 
     private void initViews(View v) {
@@ -107,7 +111,7 @@ public class MainSettingsFragment
                         }).show();
             }
         };
-        languageItem.setSubTitle("Set the language of the app.");
+        languageItem.setSubTitle(getString(R.string.title_set_language));
         languageItem.setMessage(languageTran());
         items.add(languageItem);
 
@@ -123,12 +127,35 @@ public class MainSettingsFragment
         pm3Res.setMessage(Commons.isPM3ResInitialled() ? getString(R.string.initialized) : getString(R.string.uninitialized));
         items.add(pm3Res);
 
+        items.add(new TitleBean(getString(R.string.other)));
+
+        ItemTextBean openSourceItem = new ItemTextBean(getString(R.string.title_open_source)) {
+            @Override
+            public void onClick(View view, int pos) {
+                Uri uri = Uri.parse("https://github.com/RfidResearchGroup/RFIDtools");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        };
+        openSourceItem.setMessage(getString(R.string.go2));
+        openSourceItem.setSubTitle(getString(R.string.tips_opensource_welcome));
+        items.add(openSourceItem);
+
         multiTypeAdapter.notifyDataSetChanged();
     }
 
-    private void initActions(Context context) {
-
+    public static String getVersion(Context context) {
+        if (context == null) return "unknown";
+        try {
+            PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return pi.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return context.getString(R.string.unknown);
+        }
     }
+
 
     private String languageTran() {
         String currentLanguage = Commons.getLanguage();
@@ -163,25 +190,14 @@ public class MainSettingsFragment
     private void pm3ResInit(ItemTextBean item) {
         Activity activity = getActivity();
         if (activity != null) {
-            ProDialog1 proDialog1 = new ProDialog1(activity);
-            proDialog1.show(getString(R.string.initializing));
-            new Thread(new Runnable() {
+            Proxmark3Installer.installIfNeed(activity, new Runnable() {
                 @Override
                 public void run() {
-                    // move res to /data/xxxx
-                    new AssetsUtil(activity)
-                            .copyDirs(new File("pm3"), new File(Paths.TOOLS_DIRECTORY));
-                    proDialog1.dismiss();
                     showToast(getString(R.string.finished));
                     item.setMessage(getString(R.string.initialized));
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            multiTypeAdapter.notifyDataSetChanged();
-                        }
-                    });
+                    multiTypeAdapter.notifyDataSetChanged();
                 }
-            }).start();
+            });
         }
     }
 }

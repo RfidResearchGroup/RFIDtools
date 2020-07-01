@@ -4,16 +4,6 @@ package cn.rrg.rdv.application;
  * @author DXL
  */
 public class Properties {
-    /*
-     * 程序参数缓存...
-     * 类型_模块_作用
-     * */
-    public static String k_pm3_delayTime = "pm3DelayTime";
-    public static int v_pm3_delayTime = 50;
-
-    public static String k_view_main_page_column_count = "mainPageColumnCount";
-    public static int v_view_main_page_column_count = 4;
-
     //变色龙的卡槽是否使用别名!
     public static String k_chameleon_aliases_status = "chameleonSlotAliasesStatus";
     public static boolean v_chameleon_aliases_status = false;
@@ -23,8 +13,8 @@ public class Properties {
 
     //语言切换设置!
     public static String k_app_language = "language";
-
-    //读写卡历史选择的秘钥!
-    public static String k_common_rw_keyfile_selected = "commomRWKeyFilesSelected";
-    public static String[] v_common_rw_keyfile_selected = null;
+    //Key files select history!
+    public static String k_common_rw_keyfile_selected = "commonRWKeyFilesSelected";
+    // Auto Goto Termux View
+    public static String k_auto_goto_termux = "autoGotoTermuxView";
 }

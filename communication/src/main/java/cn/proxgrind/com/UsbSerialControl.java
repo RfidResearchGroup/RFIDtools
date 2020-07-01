@@ -49,7 +49,6 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
     //广播过滤!
     private IntentFilter filter = new IntentFilter();
 
-    /*私有化构造方法，懒汉单例模式*/
     private UsbSerialControl() {
         filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
@@ -84,20 +83,14 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
                             if (mCallback != null) {
                                 //初始化成功则回调串口设备加入方法
                                 mCallback.onAttach(NAME_DRIVER_USB_UART);
-                            } else {
-                                //不成则打印到LOG
-                                //Log.e(LOG_TAG, "no usb permission!");
                             }
                         }
                     }
 
-                    //在设备移除时应当释放USB设备
                     if (action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
-                        //判断并且释放USB串口
                         if (mThiz != null) {
                             mThiz.close();
                         }
-                        //回调设备移除接口
                         if (mCallback != null) mCallback.onDetach(NAME_DRIVER_USB_UART);
                     }
                 }
@@ -153,7 +146,6 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
 
     @Override
     public void unregister() {
-        //广播解注册
         unregister1();
     }
 

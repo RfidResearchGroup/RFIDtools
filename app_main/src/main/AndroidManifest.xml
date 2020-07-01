@@ -2,21 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.rrg.rdv">
 
-    <!--蓝牙使用-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <!--蓝牙管理-->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!--定位权限-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--定位权限-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--写入文件-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--读取文件-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--NFC权限-->
     <uses-permission android:name="android.permission.NFC" />
-    <!--网络连接-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -30,17 +22,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
 
-        <!--初始化Activity-->
         <activity android:name=".activities.tools.LoginActivity">
             <intent-filter>
-                <!--桌面启动的意图!-->
                 <action android:name="android.intent.action.MAIN" />
-                <!--USB插入的意图!-->
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-                <!--桌面启动的标签!-->
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--USB的支持类型静态注册!-->
             <meta-data
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
@@ -51,7 +39,6 @@
         <activity android:name=".activities.tools.DumpEditActivity" />
         <activity android:name=".activities.tools.FormatCovertActivity" />
         <activity android:name=".activities.tools.ChameleonSoltAliasesActivity" />
-        <activity android:name=".fragment.tools.ToolsAccessFragment" />
         <activity android:name=".activities.tools.AboutActicity" />
 
         <activity android:name=".activities.px53x.EmulateConsoleActivity" />
@@ -61,19 +48,7 @@
         <activity android:name=".activities.px53x.HardnestedConsoleActivity" />
 
         <activity
-            android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGConsoleActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
-
-        <activity
             android:name=".activities.connect.Proxmark3Rdv4RRGConnectActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
-
-        <activity
-            android:name=".activities.main.Proxmark3Rdv4RRGMain"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
-
-        <activity
-            android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGRedTeamConsoleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
 
         <activity android:name=".activities.main.GeneralNfcDeviceMain">
@@ -102,6 +77,7 @@
         <activity android:name=".activities.tools.KeyFileListActivity" />
         <activity android:name=".activities.main.PM3FlasherMainActivity" />
         <activity android:name=".activities.tools.Proxmark3FirmwareActivity" />
+        <activity android:name=".activities.tools.Proxmark3NewTerminalInitActivity" />
 
     </application>
 

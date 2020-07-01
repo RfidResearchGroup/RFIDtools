@@ -5,11 +5,11 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.rfidresearchgroup.rfidtools"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion 24
+        targetSdkVersion 28
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 21
-        versionName "1.4.5"
+        versionCode 24
+        versionName "1.4.6 Termux"
     }
     buildTypes {
         release {
@@ -65,9 +65,11 @@ dependencies {
     implementation project(':libnfc_pn53x')
     implementation project(':chameleon')
     implementation project(':communication')
-    implementation project(':pm3rdv4rrg')
 
     testImplementation 'junit:junit:4.12'
     implementation project(path: ':pm3flasher')
     implementation project(path: ':xmodem')
+
+    // The dep from TERMUX(A FullTerminal implements.)
+    implementation project(":termux-app")
 }

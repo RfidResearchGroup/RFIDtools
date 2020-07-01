@@ -7,18 +7,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 
 /*
  * 针对Assets进行操作的类!
  * */
 public class AssetsUtil {
 
-    private Context context;
     private AssetManager manager;
 
     public AssetsUtil(Context context) {
-        this.context = context;
         manager = context.getAssets();
     }
 
@@ -42,13 +39,13 @@ public class AssetsUtil {
         //移动默认key文件
         AssetManager am = manager;
         InputStream is = null;
-        FileOutputStream fos = null;
-        try {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            byte[] buffer = new byte[1024 * 1024];
             is = am.open(asFile);
-            fos = new FileOutputStream(file);
-            int len = is.available();
-            for (int i = 0; i < len; ++i) {
-                fos.write((byte) is.read());
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+                fos.flush();
             }
             ret = true;
         } catch (IOException e) {
@@ -56,7 +53,6 @@ public class AssetsUtil {
         } finally {
             try {
                 if (is != null) is.close();
-                if (fos != null) fos.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

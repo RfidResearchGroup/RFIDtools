@@ -24,7 +24,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/btn_selector_blue"
-            android:text="发送"
+            android:text="@string/send"
             android:textColor="@color/md_white_1000" />
 
     </LinearLayout>
@@ -37,7 +37,7 @@
         android:background="@color/md_blue_600"
         android:gravity="center"
         android:padding="10dp"
-        android:text="原生CMD控制台"
+        android:text="@string/console"
         android:textColor="@color/md_white_1000" />
 
     <TextView

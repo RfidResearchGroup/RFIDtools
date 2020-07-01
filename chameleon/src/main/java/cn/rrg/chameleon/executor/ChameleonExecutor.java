@@ -2,12 +2,16 @@ package cn.rrg.chameleon.executor;
 
 import android.util.Log;
 
+import com.felhr.usbserial.SerialInputStream;
+import com.iobridges.bulkio.BulkInputStream;
 import com.iobridges.com.Communication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import cn.dxl.common.util.HexUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.chameleon.utils.ChameleonResult;
 import cn.rrg.chameleon.defined.IChameleonExecutor;
 
@@ -55,36 +59,22 @@ public class ChameleonExecutor implements IChameleonExecutor {
     public byte[] requestChameleon(String at, int timeout, boolean xmodemMode) {
         try {
             synchronized (lock) {
-                //请求并且判断结果!
                 requestChameleon(at);
-                //初始化必须的变量
                 ByteArrayOutputStream bos = new ByteArrayOutputStream(512);
                 long currentTime = System.currentTimeMillis();
-                //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
                 do {
-                    //开始接收，每次接收一个字节!
-                    byte tmpByte = read();
+                    byte tmpByte = read(1);
                     if (tmpByte != -1) {
-                        //接收完毕,有有效的字节!!!
                         bos.write(tmpByte);
-                        //Log.d(LOG_TAG, "打印接收到的字节: " + HexUtil.toHexString(tmpByte));
-                        //有有效数据，进行超时拖延!
+                        Log.d(LOG_TAG, "打印接收到的字节: " + HexUtil.toHexString(tmpByte));
                         currentTime = System.currentTimeMillis();
-                        //判断到换行，则可能是一帧的结束!
-                        // FIXME: 2019/4/21 谨记，上传或下载将会打开xmodem通道，此时应当进行判断，断定下一步的操作!
                         if (tmpByte == 0x0A) {
-                            //Log.d(LOG_TAG, "有换行，下一步判断是否需要继续接收!");
                             if (!xmodemMode) {
-                                //延迟判断新行，200ms延迟最大限度提升成功率!!!
-                                tmpByte = read();
+                                tmpByte = read(100);
                                 if (tmpByte != -1) {
-                                    //Log.d(LOG_TAG, "需要");
                                     bos.write(tmpByte);
                                     currentTime = System.currentTimeMillis();
                                 } else {
-                                    //Log.d(LOG_TAG, "不需要");
-                                    //接收完毕，直接返回!
-                                    //Log.d(LOG_TAG, "锁释放完成: " + Thread.currentThread().getId());
                                     return bos.toByteArray();
                                 }
                             } else {
@@ -92,14 +82,12 @@ public class ChameleonExecutor implements IChameleonExecutor {
                             }
                         }
                     }
-                } while (System.currentTimeMillis() - currentTime < timeout);   //超时中处理!
+                } while (System.currentTimeMillis() - currentTime < timeout);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d(LOG_TAG, "104锁释放完成: " + Thread.currentThread().getId());
             return null;
         }
-        Log.d(LOG_TAG, "107锁释放完成: " + Thread.currentThread().getId());
         return null;
     }
 
@@ -118,7 +106,7 @@ public class ChameleonExecutor implements IChameleonExecutor {
         //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
         do {
             //开始接收，每次接收一个字节!
-            byte tmpByte = read();
+            byte tmpByte = read(timeout);
             if (tmpByte != -1) {
                 ret[pos] = tmpByte;
                 if (++pos == length) break;
@@ -153,9 +141,18 @@ public class ChameleonExecutor implements IChameleonExecutor {
      *
      * @return 读取结果，-1为失败!
      */
-    private byte read() {
+    private byte read(int timeout) {
         try {
-            return (byte) mCom.getInput().read();
+            InputStream bis = mCom.getInput();
+            if (bis instanceof BulkInputStream) {
+                ((BulkInputStream) bis).setTimeout(timeout);
+                LogUtils.d("The BulkInputStream timeout set successfully");
+            }
+            if (bis instanceof SerialInputStream) {
+                ((SerialInputStream) bis).setTimeout(timeout);
+                LogUtils.d("The SerialInputStream timeout set successfully");
+            }
+            return (byte) bis.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -186,7 +183,7 @@ public class ChameleonExecutor implements IChameleonExecutor {
         //Log.d(LOG_TAG, "得到锁成功，当前线程ID: " + Thread.currentThread().getId());
         do {
             //开始接收，每次接收一个字节!
-            byte tmpByte = read();
+            byte tmpByte = read(timeout);
             if (tmpByte != -1) {
                 ++count;
             }

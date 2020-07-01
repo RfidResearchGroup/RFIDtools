@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.util.Log;
 import android.view.MotionEvent;
@@ -42,21 +43,15 @@ public abstract class BaseActivity
 
     private StdMifareIntent mStdMfUtil = null;
 
-    private ArrayList<OnTouchListener> onTouchListeners;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(LOG_TAG, "Act is create");
-        //实例化一个标准NFC设备工具对象!
         mStdMfUtil = new StdMifareIntent(this);
-        //添加全局的标签状态监听!
         NfcTagListenUtils.addListener(this);
-        //建立事件观察数列!
-        onTouchListeners = new ArrayList<>();
 
-        // 在onCreate()也要设置一下语言，有可能attachBaseContext()不生效。
         LanguageUtil.setAppLanguage(this, Commons.getLanguage());
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     @Override
@@ -145,34 +140,6 @@ public abstract class BaseActivity
             }
         }
         super.onNewIntent(intent);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        //Log.d(LOG_TAG, "观察者数量: " + onTouchListeners.size());
-        //在act获得了event的时候回调!
-        if (onTouchListeners.size() == 0) return super.dispatchTouchEvent(ev);
-        for (OnTouchListener listener : onTouchListeners) {
-            // 进行相关的事件下发!
-            if (listener != null) {
-                //Log.d(LOG_TAG, "观察者: " + listener.toString());
-                try {
-                    listener.onTouch(ev);
-                } catch (Exception ignored) {
-                }
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }
-
-    public void addTouchListener(OnTouchListener listener) {
-        //Log.d(LOG_TAG, "添加观察者: " + listener.toString());
-        onTouchListeners.add(listener);
-    }
-
-    public void removeTouchListener(OnTouchListener listener) {
-        //Log.d(LOG_TAG, "移除观察者: " + listener.toString());
-        onTouchListeners.remove(listener);
     }
 
     @Override

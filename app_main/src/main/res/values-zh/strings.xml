@@ -237,7 +237,7 @@
     <string name="title_tag_data_download">数据下载</string>
     <string name="title_data_upload">数据上载</string>
     <string name="title_data_clear">数据清除</string>
-    <string name="woring">工作中</string>
+    <string name="working">工作中</string>
     <string name="msg_not_data">无可用数据可以被保存!</string>
     <string name="msg_create_chameleon_keyfile_err">创建变色龙专用的密钥文件失败!</string>
     <string name="finish">完成</string>
@@ -306,5 +306,23 @@
     <string name="custom_firmware">自定义固件</string>
     <string name="title_select_bootrom">选择引导器</string>
     <string name="select_fullimage">选择系统固件</string>
+    <string name="tips_view_use_termux">将会使用TERMUX实现终端视图</string>
+    <string name="tips_fw_client_version_same">1. 你的固件不能比客户端版本太低或太高，太高或者太低都需要去刷固件。</string>
+    <string name="tips_check_auto_go_termux">2. 勾选 \'自动跳转\', 将自动转到TERMUX视图。</string>
+    <string name="auto_go">自动跳转</string>
+    <string name="title_flash_firmware_otg">刷写固件(OTG)</string>
+    <string name="title_go_termux">跳转到Termux</string>
+    <string name="title_set_language">设置APP使用的语言</string>
+    <string name="other">其他</string>
+    <string name="title_open_source">开源计划</string>
+    <string name="tips_opensource_welcome">欢迎加入我们的开源计划。</string>
+    <string name="tips_power">由Proxgrind强力驱动\n由RFID Research Group (RRG)管理发布</string>
+    <string name="unknown">未知</string>
+    <string name="tips_download_size_select">选择下载容量</string>
+    <string name="confirm">确认</string>
+    <string name="tips_size_get_failed">请求获得容量占用字节数失败!</string>
+    <string name="send">发送</string>
+    <string name="console">控制台</string>
+    <string name="title_use_slot_alias">使用卡槽别名</string>
 
 </resources>
