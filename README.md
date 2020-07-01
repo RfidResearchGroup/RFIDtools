@@ -73,7 +73,9 @@ Build: gradle & cmake
 Framework: MVP
 
 Now all lib is compile to "libxxx.so",  jni and ndk is basic. core is jni and ndk from java to c map.  
-not a linux executable file(Future)
+~~not a linux executable file(Future)~~  
+Now, proxmark3 client is a linux executable, the executable pack in: app_main/src/main/assets/proxmark3.zip  
+You can compile your client and use zip to pack client and update on app settings page(Future).  
 
 ## Compability list
 
