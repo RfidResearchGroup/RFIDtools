@@ -77,7 +77,8 @@
         <activity android:name=".activities.tools.KeyFileListActivity" />
         <activity android:name=".activities.main.PM3FlasherMainActivity" />
         <activity android:name=".activities.tools.Proxmark3FirmwareActivity" />
-        <activity android:name=".activities.tools.Proxmark3NewTerminalInitActivity" />
+        <activity android:name=".activities.proxmark3.rdv4_rrg.Proxmark3NewTerminalInitActivity" />
+        <activity android:name=".activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGRedTeamConsoleActivity" />
 
     </application>
 
