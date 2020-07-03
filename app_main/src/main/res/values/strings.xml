@@ -327,5 +327,6 @@
     <string name="title_terminal_type_setting">Proxmark3 terminal view type</string>
     <string name="title_sub_terminal_type_setting">The complete terminal view is suitable for developers or masters, while the simple terminal view is suitable for novice users.</string>
     <string name="unselected">Unselected</string>
+    <string name="tips_plz_wait">Please wait.</string>
 
 </resources>
