@@ -77,9 +77,12 @@ public class Proxmark3NewTerminalInitActivity extends BaseActivity {
                 Commons.setAutoGoToTerminal(isChecked);
             }
         });
+        box.setChecked(Commons.getAutoGoToTerminal());
 
-        // Must have init pm3 client and check auto go!
-        if (Commons.getAutoGoToTerminal() && Commons.isPM3ClientDecompressed()) {
+        // Must have init pm3 client and check auto go and have the terminal type selected!
+        if (Commons.getAutoGoToTerminal()
+                && Commons.isPM3ClientDecompressed()
+                && Commons.getTerminalType() != -1) {
             go();
         }
     }
