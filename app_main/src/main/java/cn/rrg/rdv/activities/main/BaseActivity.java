@@ -12,23 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import cn.dxl.common.interfaces.OnTouchListener;
 import cn.dxl.common.util.DisplayUtil;
 import cn.dxl.common.util.HexUtil;
 import cn.dxl.common.util.LanguageUtil;
+import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.util.StatusBarUtil;
 import cn.dxl.common.widget.ToastUtil;
 import cn.dxl.common.util.VibratorUtils;
 import cn.dxl.mifare.NfcTagListenUtils;
 import cn.dxl.mifare.StdMifareIntent;
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.application.Properties;
 import cn.rrg.rdv.util.Commons;
 
 /**
@@ -95,9 +91,6 @@ public abstract class BaseActivity
     protected void onPause() {
         Log.d(LOG_TAG, "Act is pause");
         super.onPause();
-        /*
-         * 在这里解注册各大前台事件!
-         * */
         mStdMfUtil.disableForegroundDispatch(this);
     }
 
@@ -105,10 +98,9 @@ public abstract class BaseActivity
     protected void attachBaseContext(Context newBase) {
         String language = Commons.getLanguage();
         if (language.equals("auto")) {
-            //如果value = auto，则设置为跟随系统!
             super.attachBaseContext(newBase);
         } else {
-            //否则国际化!
+            LogUtils.d("New app language: " + language);
             super.attachBaseContext(LanguageUtil.setAppLanguage(newBase, language));
         }
     }
@@ -125,16 +117,12 @@ public abstract class BaseActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
-        //有新的意图时会启动
         Bundle data = intent.getExtras();
         if (data != null) {
             Tag tag = data.getParcelable(NfcAdapter.EXTRA_TAG);
             if (tag != null) {
-                //存入全局操作域!
                 NfcTagListenUtils.setTag(tag);
-                //显示 UID！
                 ToastUtil.show(this, getString(R.string.tips_uid) + HexUtil.toHexString(tag.getId()), true);
-                //震动一下!
                 VibratorUtils.runOneAsDelay(context, 1000);
                 NfcTagListenUtils.notifyOnNewTag(tag);
             }
