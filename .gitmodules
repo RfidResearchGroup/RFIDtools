@@ -1,0 +1,6 @@
+[submodule "pm3rdv4rrg/src/main/cpp/proxmark3"]
+	path = pm3rdv4rrg/src/main/cpp/proxmark3
+	url = https://github.com/xianglin1998/proxmark3.git
+[submodule "pm3rdv4rrg/src/main/cpp/bzip2"]
+	path = pm3rdv4rrg/src/main/cpp/bzip2
+	url = http://sourceware.org/git/bzip2.git
