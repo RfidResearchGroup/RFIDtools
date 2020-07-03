@@ -53,7 +53,7 @@ public class Proxmark3Rdv4RRGConnectActivity
 
     @Override
     public String getConnectingMsg() {
-        return getString(R.string.tips_view_use_termux);
+        return getString(R.string.tips_plz_wait);
     }
 
     @Override
