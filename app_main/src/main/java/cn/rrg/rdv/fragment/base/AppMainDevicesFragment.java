@@ -33,7 +33,7 @@ import cn.rrg.rdv.activities.connect.PN53XUsbBulkTransferActivity;
 import cn.rrg.rdv.activities.connect.Proxmark3Rdv4RRGConnectActivity;
 import cn.rrg.rdv.activities.main.GeneralNfcDeviceMain;
 import cn.rrg.rdv.activities.main.PN53XNfcMain;
-import cn.rrg.rdv.activities.tools.Proxmark3NewTerminalInitActivity;
+import cn.rrg.rdv.activities.proxmark3.rdv4_rrg.Proxmark3NewTerminalInitActivity;
 import cn.rrg.rdv.binder.BannerImageViewBinder;
 import cn.rrg.rdv.binder.DeviceInfoViewBinder;
 import cn.rrg.rdv.binder.TitleTextViewBinder;
