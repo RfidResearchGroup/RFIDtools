@@ -21,7 +21,6 @@ import java.util.Set;
 
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.common.util.FileUtils;
-import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.tools.DumpEditActivity;
 import cn.rrg.rdv.application.Properties;
@@ -258,13 +257,30 @@ public class Commons {
                 new File(Paths.PM3_IMAGE_BOOT_FILE).exists();
     }
 
-    public static void setAutoGoToTermux(boolean auto) {
+    public static void setAutoGoToTerminal(boolean auto) {
         getPrivatePreferences().edit()
-                .putBoolean(Properties.k_auto_goto_termux, auto)
+                .putBoolean(Properties.k_auto_goto_terminal, auto)
                 .apply();
     }
 
-    public static boolean getAutoGoToTermux() {
-        return getPrivatePreferences().getBoolean(Properties.k_auto_goto_termux, false);
+    public static boolean getAutoGoToTerminal() {
+        return getPrivatePreferences().getBoolean(Properties.k_auto_goto_terminal, false);
+    }
+
+    /**
+     * Set terminal type
+     *
+     * @param type 0 = full terminal view
+     *             1= simple terminal view
+     */
+    public static void setTerminalType(int type) {
+        getPrivatePreferences().edit()
+                .putInt(Properties.k_terminal_type, type)
+                .apply();
+    }
+
+    public static int getTerminalType() {
+        return getPrivatePreferences()
+                .getInt(Properties.k_terminal_type, -1);
     }
 }

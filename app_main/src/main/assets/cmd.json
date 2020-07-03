@@ -13,7 +13,8 @@
         {"name": "Mifare 1k Dump", "cmd": "hf mf dump"},
         {"name": "Read iclass", "cmd": "hf iclass reader"},
         {"name": "Dump iclass legacy", "cmd": "hf iclass dump k afa785a7dab33378"},
-        {"name": "Hardware Test", "cmd": "hw tune"}
+        {"name": "Hardware Test", "cmd": "hw tune"},
+        {"name": "Hardware Version", "cmd": "hw version"},
     ],
     [
       {"name" : "High Frequency"},

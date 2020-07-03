@@ -277,7 +277,7 @@
     <string name="read_a_sector">Read One Sector</string>
     <string name="write_a_block">Write One Block</string>
     <string name="tips_language_change">Change the language of app to:</string>
-    <string name="tips_res_init">Resources initialization</string>
+    <string name="tips_pm3_settings">Proxmark3 Settings</string>
     <string name="title_app_language">App language</string>
     <string name="title_pm3_res_init">PM3(RDV4 RRG) resource initialization</string>
     <string name="title_pm3_res_sub_title"><![CDATA[Hardnested & other resources]]></string>
@@ -301,7 +301,7 @@
     <string name="select_fullimage">Select FullImage</string>
     <string name="tips_view_use_termux">Will use TERMUX implement UI</string>
     <string name="tips_fw_client_version_same">1. Your FW can\'t than for client version too low or high , you need go flash FW.</string>
-    <string name="tips_check_auto_go_termux">2. Check \'Auto Go\', it will auto go to termux view.</string>
+    <string name="tips_check_auto_go_termux">2. Check \'Auto Go\', it will auto go to terminal view.</string>
     <string name="auto_go">Auto Go</string>
     <string name="title_flash_firmware_otg">Flash Firmware(OTG)</string>
     <string name="title_go_termux">Go Termux</string>
@@ -317,5 +317,16 @@
     <string name="send">Send</string>
     <string name="console">Console</string>
     <string name="title_use_slot_alias">Use slot alias</string>
+    <string name="title_select_full_terminal">Full terminal view (TERMUX based)</string>
+    <string name="title_select_simple_terminal">Simple terminal view (TextView based)</string>
+    <string name="tips_terminal_select_like">Please select your preferred terminal view.</string>
+    <string name="title_pm3_autogo_setting">Proxmark3 auto goto terminal view</string>
+    <string name="title_sub_pm3_autogo_setting">If checked, will automatically jump to the terminal view after the connection is successful.</string>
+    <string name="item_full_terminal_view">FullTerminalView(TERMUX)</string>
+    <string name="item_simple_terminal_view">SimpleTerminalView(TextView)</string>
+    <string name="title_terminal_type_setting">Proxmark3 terminal view type</string>
+    <string name="title_sub_terminal_type_setting">The complete terminal view is suitable for developers or masters, while the simple terminal view is suitable for novice users.</string>
+    <string name="unselected">Unselected</string>
+    <string name="tips_plz_wait">Please wait.</string>
 
 </resources>

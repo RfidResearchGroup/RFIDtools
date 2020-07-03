@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.activities.main.PM3FlasherMainActivity;
 import cn.rrg.rdv.activities.tools.DeviceConnectActivity;
-import cn.rrg.rdv.activities.tools.Proxmark3NewTerminalInitActivity;
+import cn.rrg.rdv.activities.proxmark3.rdv4_rrg.Proxmark3NewTerminalInitActivity;
 import cn.rrg.rdv.callback.ConnectFailedCtxCallback;
 import cn.rrg.rdv.models.AbstractDeviceModel;
 import cn.rrg.rdv.models.Proxmark3Rdv4SppModel;
@@ -53,7 +53,7 @@ public class Proxmark3Rdv4RRGConnectActivity
 
     @Override
     public String getConnectingMsg() {
-        return getString(R.string.tips_view_use_termux);
+        return getString(R.string.tips_plz_wait);
     }
 
     @Override

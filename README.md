@@ -63,6 +63,19 @@ Download and flash [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2l
 - CMAKE: 3.10
 - NDK: 20.0.5594570
 
+## How to build?
+The RFIDTools have some gitsubmodule 
+
+Get the source from GitHub:
+
+      git clone https://github.com/xianglin1998/RFIDtools RFIDtools
+      cd RFIDtools
+      git submodule init
+      git submodule update 
+
+  
+After clone and init submodule, you can use your AndroidStudio open this project.  
+
 ## App core implementation
 
 Comunication: LocalSocket & LocalServerSocket(Android)

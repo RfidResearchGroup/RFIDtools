@@ -14,7 +14,6 @@ public interface Paths {
     String MCT_PATH = "MifareClassicTool";
     String MTools_PATH = "MTools";
     String HARDNESTED_PATH = "hardnested";
-    String TABLES_PATH = "tables";
     String LOG_PATH = "log";
     String PM3_PATH = "proxmark3";
     String COMMON_PATH = "common";

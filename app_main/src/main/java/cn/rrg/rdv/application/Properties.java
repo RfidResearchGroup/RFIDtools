@@ -15,6 +15,8 @@ public class Properties {
     public static String k_app_language = "language";
     //Key files select history!
     public static String k_common_rw_keyfile_selected = "commonRWKeyFilesSelected";
-    // Auto Goto Termux View
-    public static String k_auto_goto_termux = "autoGotoTermuxView";
+    // Auto Goto terminal View
+    public static String k_auto_goto_terminal = "autoGotoTermuxView";
+    // The type of terminal
+    public static String k_terminal_type = "terminal_type";
 }
