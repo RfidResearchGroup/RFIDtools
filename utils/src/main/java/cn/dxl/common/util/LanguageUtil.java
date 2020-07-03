@@ -37,7 +37,7 @@ public class LanguageUtil {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1) {
             switch (language) {
                 case "zh":
-                    configuration.setLocale(Locale.SIMPLIFIED_CHINESE);
+                    configuration.setLocale(Locale.CHINESE);
                     break;
                 case "en":
                 default:
