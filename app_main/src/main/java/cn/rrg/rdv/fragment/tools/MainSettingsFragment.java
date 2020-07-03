@@ -19,15 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.NumberPicker;
-
-import java.io.File;
 
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.AssetsUtil;
-import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.util.RestartUtils;
-import cn.dxl.common.widget.ToastUtil;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.binder.ItemSingleTextBean;
 import cn.rrg.rdv.binder.ItemTextBinder;
@@ -37,9 +31,7 @@ import cn.rrg.rdv.javabean.ItemTextBean;
 import cn.rrg.rdv.javabean.ItemToggleBean;
 import cn.rrg.rdv.javabean.TitleBean;
 import cn.rrg.rdv.util.Commons;
-import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.util.Proxmark3Installer;
-import cn.rrg.rdv.widget.ProDialog1;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -115,7 +107,7 @@ public class MainSettingsFragment
         languageItem.setMessage(languageTran());
         items.add(languageItem);
 
-        items.add(new TitleBean(getString(R.string.tips_res_init)));
+        items.add(new TitleBean(getString(R.string.tips_pm3_settings)));
 
         ItemTextBean pm3Res = new ItemTextBean(getString(R.string.title_pm3_res_init)) {
             @Override
@@ -126,6 +118,36 @@ public class MainSettingsFragment
         pm3Res.setSubTitle(getString(R.string.title_pm3_res_sub_title));
         pm3Res.setMessage(Commons.isPM3ResInitialled() ? getString(R.string.initialized) : getString(R.string.uninitialized));
         items.add(pm3Res);
+
+        ItemToggleBean pm3AutoGo = new ItemToggleBean(getString(R.string.title_pm3_autogo_setting)) {
+            @Override
+            public void onChange(View view, int pos, boolean checked) {
+                Commons.setAutoGoToTerminal(checked);
+            }
+        };
+        pm3AutoGo.setSubTitle(getString(R.string.title_sub_pm3_autogo_setting));
+        pm3AutoGo.setChecked(Commons.getAutoGoToTerminal());
+        items.add(pm3AutoGo);
+
+        ItemTextBean pm3TerminalTypeItem = new ItemTextBean(getString(R.string.title_terminal_type_setting)) {
+            @Override
+            public void onClick(View view, int pos) {
+                String[] languages = new String[]{getString(R.string.item_full_terminal_view), getString(R.string.item_simple_terminal_view)};
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle(R.string.tips_terminal_select_like)
+                        .setItems(languages, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Commons.setTerminalType(which);
+                                setMessage(currentTerminalType());
+                                multiTypeAdapter.notifyDataSetChanged();
+                            }
+                        }).show();
+            }
+        };
+        pm3TerminalTypeItem.setSubTitle(getString(R.string.title_sub_terminal_type_setting));
+        pm3TerminalTypeItem.setMessage(currentTerminalType());
+        items.add(pm3TerminalTypeItem);
 
         items.add(new TitleBean(getString(R.string.other)));
 
@@ -198,6 +220,18 @@ public class MainSettingsFragment
                     multiTypeAdapter.notifyDataSetChanged();
                 }
             });
+        }
+    }
+
+    private String currentTerminalType() {
+        switch (Commons.getTerminalType()) {
+            case -1:
+            default:
+                return getString(R.string.unselected);
+            case 0:
+                return getString(R.string.item_full_terminal_view);
+            case 1:
+                return getString(R.string.item_simple_terminal_view);
         }
     }
 }
