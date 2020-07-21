@@ -213,7 +213,9 @@ public abstract class AbsUsbBulkTransfer implements DriverInterface<String, UsbM
 
     @Override
     public void disconect() {
-        mCon.releaseInterface(mUi);
+        if (mCon != null && mUi != null) {
+            mCon.releaseInterface(mUi);
+        }
     }
 
     @Override
