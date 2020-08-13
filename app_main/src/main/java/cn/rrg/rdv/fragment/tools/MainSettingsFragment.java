@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.dxl.common.util.AppUtil;
+import cn.dxl.common.util.FileUtils;
+import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.util.RestartUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.binder.ItemSingleTextBean;
@@ -31,9 +34,12 @@ import cn.rrg.rdv.javabean.ItemTextBean;
 import cn.rrg.rdv.javabean.ItemToggleBean;
 import cn.rrg.rdv.javabean.TitleBean;
 import cn.rrg.rdv.util.Commons;
+import cn.rrg.rdv.util.Paths;
 import cn.rrg.rdv.util.Proxmark3Installer;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
+
+import static android.app.Activity.RESULT_OK;
 
 /*
  * 主设置活动!
@@ -119,35 +125,51 @@ public class MainSettingsFragment
         pm3Res.setMessage(Commons.isPM3ResInitialled() ? getString(R.string.initialized) : getString(R.string.uninitialized));
         items.add(pm3Res);
 
-        ItemToggleBean pm3AutoGo = new ItemToggleBean(getString(R.string.title_pm3_autogo_setting)) {
+        // 只有SDK版本大于等于24的时候才使能PM3的高级视图
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+            ItemToggleBean pm3AutoGo = new ItemToggleBean(getString(R.string.title_pm3_autogo_setting)) {
+                @Override
+                public void onChange(View view, int pos, boolean checked) {
+                    Commons.setAutoGoToTerminal(checked);
+                }
+            };
+            pm3AutoGo.setSubTitle(getString(R.string.title_sub_pm3_autogo_setting));
+            pm3AutoGo.setChecked(Commons.getAutoGoToTerminal());
+            items.add(pm3AutoGo);
+
+            ItemTextBean pm3TerminalTypeItem = new ItemTextBean(getString(R.string.title_terminal_type_setting)) {
+                @Override
+                public void onClick(View view, int pos) {
+                    String[] languages = new String[]{getString(R.string.item_full_terminal_view), getString(R.string.item_simple_terminal_view)};
+                    new AlertDialog.Builder(view.getContext())
+                            .setTitle(R.string.tips_terminal_select_like)
+                            .setItems(languages, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Commons.setTerminalType(which);
+                                    setMessage(currentTerminalType());
+                                    multiTypeAdapter.notifyDataSetChanged();
+                                }
+                            }).show();
+                }
+            };
+            pm3TerminalTypeItem.setSubTitle(getString(R.string.title_sub_terminal_type_setting));
+            pm3TerminalTypeItem.setMessage(currentTerminalType());
+            items.add(pm3TerminalTypeItem);
+        }
+
+        // PM3 work directory select
+        ItemToggleBean pm3HomePathItem = new ItemToggleBean(getString(R.string.title_pm3_home)) {
             @Override
             public void onChange(View view, int pos, boolean checked) {
-                Commons.setAutoGoToTerminal(checked);
+                Commons.setPM3ExternalWorkDirectoryEnable(checked);
+                Commons.updatePM3Cwd();
             }
         };
-        pm3AutoGo.setSubTitle(getString(R.string.title_sub_pm3_autogo_setting));
-        pm3AutoGo.setChecked(Commons.getAutoGoToTerminal());
-        items.add(pm3AutoGo);
-
-        ItemTextBean pm3TerminalTypeItem = new ItemTextBean(getString(R.string.title_terminal_type_setting)) {
-            @Override
-            public void onClick(View view, int pos) {
-                String[] languages = new String[]{getString(R.string.item_full_terminal_view), getString(R.string.item_simple_terminal_view)};
-                new AlertDialog.Builder(view.getContext())
-                        .setTitle(R.string.tips_terminal_select_like)
-                        .setItems(languages, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Commons.setTerminalType(which);
-                                setMessage(currentTerminalType());
-                                multiTypeAdapter.notifyDataSetChanged();
-                            }
-                        }).show();
-            }
-        };
-        pm3TerminalTypeItem.setSubTitle(getString(R.string.title_sub_terminal_type_setting));
-        pm3TerminalTypeItem.setMessage(currentTerminalType());
-        items.add(pm3TerminalTypeItem);
+        pm3HomePathItem.setSubTitle(Paths.PM3_CWD);
+        pm3HomePathItem.setChecked(Commons.isPM3ExternalWorkDirectoryEnable());
+        items.add(pm3HomePathItem);
 
         items.add(new TitleBean(getString(R.string.other)));
 
@@ -164,6 +186,20 @@ public class MainSettingsFragment
         items.add(openSourceItem);
 
         multiTypeAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x77 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                // get file path
+                String path = FileUtils.getFilePathByUri(uri);
+                // save
+                LogUtils.d("获取到的路径: " + path);
+            }
+        }
     }
 
     public static String getVersion(Context context) {
