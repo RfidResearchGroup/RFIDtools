@@ -21,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.termux.app.TermuxService;
+
 import cn.dxl.common.util.AppUtil;
 import cn.dxl.common.util.FileUtils;
 import cn.dxl.common.util.LogUtils;
@@ -164,7 +166,9 @@ public class MainSettingsFragment
             @Override
             public void onChange(View view, int pos, boolean checked) {
                 Commons.setPM3ExternalWorkDirectoryEnable(checked);
-                Commons.updatePM3Cwd();
+                setSubTitle(Commons.updatePM3Cwd());
+                setChecked(checked);
+                multiTypeAdapter.notifyDataSetChanged();
             }
         };
         pm3HomePathItem.setSubTitle(Paths.PM3_CWD);

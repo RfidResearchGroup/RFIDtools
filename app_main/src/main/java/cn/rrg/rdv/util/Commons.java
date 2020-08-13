@@ -295,13 +295,16 @@ public class Commons {
                 .getBoolean(Properties.k_pm3_externl_cwd_enable, false);
     }
 
-    public static void updatePM3Cwd() {
+    public static String updatePM3Cwd() {
         // init pm3 cwd
         if (Commons.isPM3ExternalWorkDirectoryEnable()) {
-            TermuxService.PM3_CWD = Paths.PM3_CWD;
-            new File(TermuxService.PM3_CWD).mkdirs();
+            TermuxService.PM3_CWD = Paths.PM3_CWD_FINAL;
+            Paths.PM3_CWD = TermuxService.PM3_CWD;
+            new File(Paths.PM3_CWD).mkdirs();
         } else {
             Paths.PM3_CWD = TermuxService.HOME_PATH;
+            TermuxService.PM3_CWD = null;
         }
+        return Paths.PM3_CWD;
     }
 }

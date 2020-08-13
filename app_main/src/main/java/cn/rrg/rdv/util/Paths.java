@@ -63,6 +63,7 @@ public class Paths {
     public static String PM3_IMAGE_OS_FILE = TermuxService.HOME_PATH + File.separator + PM3_PATH + File.separator + PM3_OS_FILE_NAME;
     // pm3 cwd -> sdcard
     public static String PM3_CWD = PM3_DIRECTORY + File.separator + "home";
+    public static final String PM3_CWD_FINAL = PM3_DIRECTORY + File.separator + "home";
 
     public static String PN53X_FORWARD_O = PN53X_DIRRECTORY + "/" + "pn53x_forward_o.txt";
     public static String PN53X_FORWARD_E = PN53X_DIRRECTORY + "/" + "pn53x_forward_e.txt";
