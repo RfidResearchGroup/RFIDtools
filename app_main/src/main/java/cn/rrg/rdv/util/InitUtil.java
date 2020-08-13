@@ -3,6 +3,9 @@ package cn.rrg.rdv.util;
 import android.content.Context;
 import android.util.Log;
 
+import com.termux.app.TermuxActivity;
+import com.termux.app.TermuxService;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -75,6 +78,7 @@ public class InitUtil {
             initEasyButtonFile(au);
             initPM3ForwardFile();
         }
+        Commons.updatePM3Cwd();
     }
 
     private static void initCommonInFile() {
