@@ -299,7 +299,6 @@
     <string name="custom_firmware">Custom firmware</string>
     <string name="title_select_bootrom">Select BootRom</string>
     <string name="select_fullimage">Select FullImage</string>
-    <string name="tips_view_use_termux">Will use TERMUX implement UI</string>
     <string name="tips_fw_client_version_same">1. Your FW can\'t than for client version too low or high , you need go flash FW.</string>
     <string name="tips_check_auto_go_termux">2. Check \'Auto Go\', it will auto go to terminal view.</string>
     <string name="auto_go">Auto Go</string>
@@ -328,5 +327,7 @@
     <string name="title_sub_terminal_type_setting">The complete terminal view is suitable for developers or masters, while the simple terminal view is suitable for novice users.</string>
     <string name="unselected">Unselected</string>
     <string name="tips_plz_wait">Please wait.</string>
+    <string name="select">select</string>
+    <string name="title_pm3_home">Proxmark3 External Work Directory</string>
 
 </resources>
