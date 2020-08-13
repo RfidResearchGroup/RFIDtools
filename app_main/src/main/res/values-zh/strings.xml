@@ -334,5 +334,7 @@
     <string name="title_sub_terminal_type_setting">完整的终端视图适合开发人员或大师，而简单终端视图适合新手用户。</string>
     <string name="unselected">未选择</string>
     <string name="tips_plz_wait">请稍等。</string>
+    <string name="select">选择</string>
+    <string name="title_pm3_home">Proxmark3 外部工作目录</string>
 
 </resources>

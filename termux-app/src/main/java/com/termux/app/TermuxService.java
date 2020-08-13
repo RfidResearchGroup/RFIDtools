@@ -56,6 +56,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
     public static final String FILES_PATH = "/data/data/" + packageName + "/files";
     public static final String PREFIX_PATH = FILES_PATH + "/usr";
     public static final String HOME_PATH = FILES_PATH + "/home";
+    public static String PM3_CWD = null;
 
     private static final int NOTIFICATION_ID = 1337;
 
@@ -122,7 +123,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
             if (mWakeLock == null) {
                 PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
                 mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, EmulatorDebug.LOG_TAG);
-                mWakeLock.acquire();
+                mWakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
 
                 // http://tools.android.com/tech-docs/lint-in-studio-2-3#TOC-WifiManager-Leak
                 WifiManager wm = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -130,16 +131,18 @@ public final class TermuxService extends Service implements SessionChangedCallba
                 mWifiLock.acquire();
 
                 String packageName = getPackageName();
-                if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                    Intent whitelist = new Intent();
-                    whitelist.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                    whitelist.setData(Uri.parse("package:" + packageName));
-                    whitelist.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                        Intent whitelist = new Intent();
+                        whitelist.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                        whitelist.setData(Uri.parse("package:" + packageName));
+                        whitelist.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    try {
-                        startActivity(whitelist);
-                    } catch (ActivityNotFoundException e) {
-                        Log.e(EmulatorDebug.LOG_TAG, "Failed to call ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS", e);
+                        try {
+                            startActivity(whitelist);
+                        } catch (ActivityNotFoundException e) {
+                            Log.e(EmulatorDebug.LOG_TAG, "Failed to call ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS", e);
+                        }
                     }
                 }
 
@@ -299,6 +302,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
     TerminalSession createTermSession(String executablePath, String[] arguments, String cwd, boolean failSafe) {
         new File(HOME_PATH).mkdirs();
 
+        if (PM3_CWD != null) cwd = PM3_CWD;
         if (cwd == null) cwd = HOME_PATH;
 
         String[] env = BackgroundJob.buildEnvironment(failSafe, cwd);

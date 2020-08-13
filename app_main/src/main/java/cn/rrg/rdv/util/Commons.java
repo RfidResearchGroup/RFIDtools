@@ -283,4 +283,28 @@ public class Commons {
         return getPrivatePreferences()
                 .getInt(Properties.k_terminal_type, -1);
     }
+
+    public static void setPM3ExternalWorkDirectoryEnable(boolean enable) {
+        getPrivatePreferences().edit()
+                .putBoolean(Properties.k_pm3_externl_cwd_enable, enable)
+                .apply();
+    }
+
+    public static boolean isPM3ExternalWorkDirectoryEnable() {
+        return getPrivatePreferences()
+                .getBoolean(Properties.k_pm3_externl_cwd_enable, false);
+    }
+
+    public static String updatePM3Cwd() {
+        // init pm3 cwd
+        if (Commons.isPM3ExternalWorkDirectoryEnable()) {
+            TermuxService.PM3_CWD = Paths.PM3_CWD_FINAL;
+            Paths.PM3_CWD = TermuxService.PM3_CWD;
+            new File(Paths.PM3_CWD).mkdirs();
+        } else {
+            Paths.PM3_CWD = TermuxService.HOME_PATH;
+            TermuxService.PM3_CWD = null;
+        }
+        return Paths.PM3_CWD;
+    }
 }
