@@ -11,9 +11,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.termux.app.TermuxService;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,13 +63,8 @@ public class Proxmark3Rdv4RRGRedTeamConsoleActivity
         initViews();
         initActions();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // 更改工作目录!
-                IORedirector.chdir(TermuxService.HOME_PATH + File.separator + Paths.PM3_PATH);
-            }
-        }).start();
+        // 更改工作目录!
+        IORedirector.chdir(Paths.PM3_CWD);
     }
 
     private void initViews() {
