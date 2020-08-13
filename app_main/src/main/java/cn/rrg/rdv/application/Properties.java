@@ -19,4 +19,6 @@ public class Properties {
     public static String k_auto_goto_terminal = "autoGotoTermuxView";
     // The type of terminal
     public static String k_terminal_type = "terminal_type";
+    // The enable status of p3m external work directory
+    public static String k_pm3_externl_cwd_enable = "pm3_cwd_external_enable";
 }
