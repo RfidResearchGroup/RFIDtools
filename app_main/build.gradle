@@ -8,8 +8,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 25
-        versionName "1.4.7 Termux and SimpleView"
+        versionCode 26
+        versionName "1.4.8 SDK21 && PM3 CWD"
     }
     buildTypes {
         release {
