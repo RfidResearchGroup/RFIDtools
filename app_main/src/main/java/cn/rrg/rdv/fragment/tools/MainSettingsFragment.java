@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,11 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.termux.app.TermuxService;
-
 import cn.dxl.common.util.AppUtil;
-import cn.dxl.common.util.FileUtils;
-import cn.dxl.common.util.LogUtils;
 import cn.dxl.common.util.RestartUtils;
 import cn.rrg.rdv.R;
 import cn.rrg.rdv.binder.ItemSingleTextBean;
@@ -41,8 +34,6 @@ import cn.rrg.rdv.util.Proxmark3Installer;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
-import static android.app.Activity.RESULT_OK;
-
 /*
  * 主设置活动!
  * */
@@ -50,9 +41,8 @@ public class MainSettingsFragment
         extends BaseFragment {
 
     private RecyclerView rvSettingsList;
-    private SharedPreferences preferences;
     private MultiTypeAdapter multiTypeAdapter;
-    private Items items = new Items();
+    private final Items items = new Items();
 
     @Nullable
     @Override
@@ -62,7 +52,6 @@ public class MainSettingsFragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        preferences = Commons.getPrivatePreferences();
         multiTypeAdapter = new MultiTypeAdapter();
 
         initViews(view);
@@ -127,7 +116,7 @@ public class MainSettingsFragment
         pm3Res.setMessage(Commons.isPM3ResInitialled() ? getString(R.string.initialized) : getString(R.string.uninitialized));
         items.add(pm3Res);
 
-        // 只有SDK版本大于等于24的时候才使能PM3的高级视图
+        // PM3 Full terminal only run on sdk > 23
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
             ItemToggleBean pm3AutoGo = new ItemToggleBean(getString(R.string.title_pm3_autogo_setting)) {
@@ -190,32 +179,6 @@ public class MainSettingsFragment
         items.add(openSourceItem);
 
         multiTypeAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0x77 && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            if (uri != null) {
-                // get file path
-                String path = FileUtils.getFilePathByUri(uri);
-                // save
-                LogUtils.d("获取到的路径: " + path);
-            }
-        }
-    }
-
-    public static String getVersion(Context context) {
-        if (context == null) return "unknown";
-        try {
-            PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return pi.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return context.getString(R.string.unknown);
-        }
     }
 
 
