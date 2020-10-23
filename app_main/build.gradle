@@ -68,7 +68,6 @@ dependencies {
 
     implementation project(path: ':pm3flasher')
     implementation project(':pm3rdv4rrg')
-    implementation project(path: ':xmodem')
 
     // The dep from TERMUX(A FullTerminal implements.)
     implementation project(":termux-app")

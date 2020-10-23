@@ -1,4 +1,3 @@
 include ':app_main', ':chameleon', ':communication', ':libnfc_pn53x'
-include ':pm3flasher', ':pm3rdv4rrg'
-include ':xmodem', ':utils'
+include ':pm3flasher', ':pm3rdv4rrg',':utils'
 include ':termux-app', ':terminal-emulator', ':terminal-view'

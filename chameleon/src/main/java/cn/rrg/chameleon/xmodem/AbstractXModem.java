@@ -1,4 +1,4 @@
-package com.proxgrind.xmodem;
+package cn.rrg.chameleon.xmodem;
 
 import java.io.IOException;
 import java.io.InputStream;
