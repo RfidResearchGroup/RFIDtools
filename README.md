@@ -45,13 +45,6 @@ The app support the following devices
 
 - [View note][link_updated_note]
 
-## Proxmark3 firmware
-
-To use your Proxmark3 RDV4 with blueshark via bluetooth with this app there is an extra step.
-Until some android issues is resolved with the RRG/Iceman repo you must use a special android adapted firmware with your Proxmark3 RDV4.  
-
-Download and flash [Compiled FW 12 August](https://www.dropbox.com/s/416lsrqpr2lfeis/%5BCompiled%5DPM3-RRG-20190812.rar?dl=0)
-
 ## Developement tools list
 
 - IDE: Android Studio 3.5
