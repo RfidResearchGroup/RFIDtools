@@ -336,5 +336,6 @@
     <string name="tips_plz_wait">请稍等。</string>
     <string name="select">选择</string>
     <string name="title_pm3_home">Proxmark3 外部工作目录</string>
+    <string name="tips_pm3_res_err">读取PM3的资源版本失败</string>
 
 </resources>

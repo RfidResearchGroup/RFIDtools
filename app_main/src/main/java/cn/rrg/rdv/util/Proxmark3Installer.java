@@ -3,15 +3,45 @@ package cn.rrg.rdv.util;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 
 import com.termux.app.TermuxService;
 
 import java.io.File;
 
 import cn.dxl.common.util.AssetsUtil;
+import cn.dxl.common.util.FileUtils;
+import cn.dxl.common.util.LogUtils;
 import cn.rrg.rdv.R;
 
 public class Proxmark3Installer {
+    static String zipName = "proxmark3.zip";
+    static String verName = "pm3_version.txt";
+    static String zipFile = TermuxService.HOME_PATH + File.separator + zipName;
+    static String verFile = TermuxService.HOME_PATH + File.separator + verName;
+
+    public static boolean isCanInstall(Context context) {
+        try {
+            String version_assets = AssetsUtil.readLines(context, verName);
+
+            // read version for res installed
+            String version_installed = FileUtils.readLine(new File(verFile));
+            // check version
+            if (version_installed.length() == 0) {
+                // no file found or file have some problem, we need reinstall
+                return true;
+            }
+            if (version_installed.equals(version_assets)) {
+                // if version same, we can stop install
+                LogUtils.d("Proxmark3Installer->installIfNeed(): version same, we can stop install.");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Install the pm3 client and resource if need!
@@ -29,10 +59,23 @@ public class Proxmark3Installer {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String zipName = "proxmark3.zip";
-                String zipFile = TermuxService.HOME_PATH + File.separator + zipName;
-                new AssetsUtil(activity).copyFile(zipName, zipFile);
                 try {
+                    if (!isCanInstall(activity)) {
+                        if (whenDone != null) activity.runOnUiThread(whenDone);
+                        progress.cancel();
+                        return;
+                    }
+
+                    // before install, we need delete all old res
+                    FileUtils.delete(new File(TermuxService.HOME_PATH));
+                    // and recreate path
+                    FileUtils.createPaths(new File(TermuxService.HOME_PATH));
+
+                    // copy zip file from apk to local
+                    AssetsUtil.copyFile(activity, zipName, zipFile);
+                    AssetsUtil.copyFile(activity, verName, verFile);
+
+                    // unzip to home path
                     ZipUtils.UnZipFolder(zipFile, TermuxService.HOME_PATH, new ZipUtils.Progress() {
                         @Override
                         public void onProgress(int max, int current, String file) {
@@ -45,37 +88,49 @@ public class Proxmark3Installer {
                             });
                         }
                     });
+
+                    LogUtils.d("PM3 Resource install finish.");
+
                 } catch (Exception e) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            new AlertDialog.Builder(activity)
-                                    .setTitle(R.string.error)
-                                    .setMessage(e.getMessage())
-                                    .show();
-                            activity.runOnUiThread(() -> {
-                                try {
-                                    progress.dismiss();
-                                } catch (RuntimeException e) {
-                                    // Activity already dismissed - ignore.
-                                }
-                            });
-                            if (whenDone != null)
-                                whenDone.run();
-                        }
-                    });
+                    showDialogOnErr(activity, progress, e.getMessage(), whenDone);
                     e.printStackTrace();
                 }
+                showDialogOnOk(activity, progress);
+                if (whenDone != null) activity.runOnUiThread(whenDone);
+            }
+        }).start();
+    }
+
+    //  show dialog if task execute success
+    public static void showDialogOnOk(Activity activity, ProgressDialog dialog) {
+        activity.runOnUiThread(() -> {
+            try {
+                dialog.dismiss();
+            } catch (RuntimeException e) {
+                // Activity already dismissed - ignore.
+            }
+        });
+    }
+
+    // show dialog if has err
+    public static void showDialogOnErr(Activity activity, ProgressDialog dialog, String errMsg, Runnable call) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(activity)
+                        .setTitle(R.string.error)
+                        .setMessage(errMsg)
+                        .show();
                 activity.runOnUiThread(() -> {
                     try {
-                        progress.dismiss();
+                        dialog.dismiss();
                     } catch (RuntimeException e) {
                         // Activity already dismissed - ignore.
                     }
                 });
-                if (whenDone != null)
-                    activity.runOnUiThread(whenDone);
+                if (call != null)
+                    call.run();
             }
-        }).start();
+        });
     }
 }

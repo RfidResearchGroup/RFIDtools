@@ -63,52 +63,6 @@
                 android:text="@string/title_pm3_firmware_flasher"
                 android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/btnDiffTool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_selectot_white"
-                android:gravity="start|center"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/data_diff"
-                android:textAllCaps="false"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btnUnionKeyEditor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_selectot_white"
-                android:drawableEnd="@drawable/main_union_key"
-                android:gravity="start|center"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/union_keys"
-                android:textAllCaps="false"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btnConvertFormat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_selectot_white"
-                android:gravity="start|center"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/format_covert"
-                android:textAllCaps="false"
-                android:visibility="gone" />
-
         </LinearLayout>
 
     </ScrollView>

@@ -3,25 +3,22 @@ package cn.dxl.common.util;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /*
  * 针对Assets进行操作的类!
  * */
 public class AssetsUtil {
 
-    private AssetManager manager;
-
-    public AssetsUtil(Context context) {
-        manager = context.getAssets();
-    }
-
-    // 得到 assets指定目录下的所有文件!
-    public String[] getFiles(String root) {
+    public static String[] getFiles(Context context, String root) {
         String[] files = new String[0];
+        AssetManager manager = context.getAssets();
         try {
             files = manager.list(root);
         } catch (IOException e) {
@@ -31,13 +28,11 @@ public class AssetsUtil {
         return files;
     }
 
-    // 复制 assets中的文件到指定目录
-    public boolean copyFile(String asFile, String targetPath) {
+    public static boolean copyFile(Context context, String asFile, String targetPath) {
         File file = new File(targetPath);
         if (!FileUtils.createFile(file)) return false;
         boolean ret = false;
-        //移动默认key文件
-        AssetManager am = manager;
+        AssetManager am = context.getAssets();
         InputStream is = null;
         try (FileOutputStream fos = new FileOutputStream(file)) {
             byte[] buffer = new byte[1024 * 1024];
@@ -60,9 +55,10 @@ public class AssetsUtil {
         return ret;
     }
 
-    public boolean isFile(String path) {
+    public static boolean isFile(Context context, String path) {
+        AssetManager am = context.getAssets();
         try {
-            IOUtils.close(manager.open(path));
+            IOUtils.close(am.open(path));
             return true;
         } catch (IOException e) {
             // e.printStackTrace();
@@ -70,13 +66,13 @@ public class AssetsUtil {
         return false;
     }
 
-    public void copyDirs(File sourcePath, File targetPath) {
+    public static void copyDirs(Context context, File sourcePath, File targetPath) {
         // create target path!
         final String rawPath = targetPath.getPath();
         targetPath = new File(targetPath + File.separator + sourcePath.getPath());
         FileUtils.createPaths(targetPath);
         // list files!
-        String[] files = getFiles(sourcePath.getPath());
+        String[] files = getFiles(context, sourcePath.getPath());
         if (files == null) {
             return;
         }
@@ -84,11 +80,24 @@ public class AssetsUtil {
         for (String fileStr : files) {
             File file = new File(sourcePath + File.separator + fileStr);
             // if is file, we need copy to target path!
-            if (isFile(file.getPath())) {
-                copyFile(file.getPath(), targetPath.getPath() + File.separator + file.getName());
+            if (isFile(context, file.getPath())) {
+                copyFile(context, file.getPath(), targetPath.getPath() + File.separator + file.getName());
             } else {
-                copyDirs(file, new File(rawPath));
+                copyDirs(context, file, new File(rawPath));
             }
         }
+    }
+
+    public static String readLines(Context context, String file) {
+        StringBuilder builder = new StringBuilder();
+        AssetManager am = context.getAssets();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(am.open(file)));
+            String line;
+            while ((line = br.readLine()) != null) builder.append(line);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return builder.toString();
     }
 }

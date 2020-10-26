@@ -1,0 +1,10 @@
+20201026_5
+
+pattern:	*_*
+
+frist *:	date
+second:	number
+
+example:	20201026_1
+example:	20201026_2
+example:	20201027_1

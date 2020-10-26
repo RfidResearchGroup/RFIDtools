@@ -1,18 +1,21 @@
 package cn.rrg.rdv.util;
 
-import android.util.Log;
-
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import cn.dxl.common.util.LogUtils;
 
 /**
  * @author: lijuan
@@ -224,5 +227,33 @@ public class ZipUtils {
         }
         inZip.close();
         return fileList;
+    }
+
+    /**
+     * @author dxl
+     * read a file from zip file(no unzip)
+     */
+    public static String readZipFile(File zipFile, String readFileName) throws Exception {
+        ZipFile zf = new ZipFile(zipFile);
+        InputStream in = new BufferedInputStream(new FileInputStream(zipFile));
+        ZipInputStream zin = new ZipInputStream(in);
+        ZipEntry ze;
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((ze = zin.getNextEntry()) != null) {
+            LogUtils.d("项目名: " + ze.getName());
+            if (!ze.isDirectory()) {
+                if (ze.getName().contains(readFileName)) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(zf.getInputStream(ze)));
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    br.close();
+                }
+            }
+        }
+        zin.closeEntry();
+        in.close();
+        return sb.toString();
     }
 }

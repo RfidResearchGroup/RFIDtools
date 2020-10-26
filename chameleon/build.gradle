@@ -21,12 +21,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.xianglin1998:mfkey:1.1'
-    implementation 'com.github.xianglin1998:nfctag:1.0'
+
     implementation 'com.github.felHR85:UsbSerial:6.1.0'
 
-    implementation 'com.github.xianglin1998:ComBridge:1.0.7'
-    // implementation project(path: ':iobridges')
+    implementation project(path: ':iobridges')
+    implementation project(path: ':mfkey')
+    implementation project(path: ':nfctag')
+    implementation project(path: ':iobridges')
 
     implementation project(path: ':utils')
     implementation project(path: ':communication')

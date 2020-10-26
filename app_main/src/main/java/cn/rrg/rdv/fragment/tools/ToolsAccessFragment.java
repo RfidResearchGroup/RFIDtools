@@ -12,13 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.proxgrind.pm3flasher.Proxmark3Flasher;
-
 import cn.rrg.rdv.R;
-import cn.rrg.rdv.activities.tools.DumpEqualActivity;
 import cn.rrg.rdv.activities.tools.DumpListActivity;
 import cn.rrg.rdv.activities.tools.FileListActivity;
-import cn.rrg.rdv.activities.tools.FormatCovertActivity;
 import cn.rrg.rdv.activities.tools.KeyFileListActivity;
 import cn.rrg.rdv.activities.tools.Proxmark3FirmwareActivity;
 import cn.rrg.rdv.fragment.base.BaseFragment;
@@ -28,8 +24,6 @@ public class ToolsAccessFragment
 
     private Button btnDataEditor = null;
     private Button btnKeyEditor = null;
-    private Button btnFormatCovert = null;
-    private Button btnDiffTools = null;
     private Button btnPM3Flasher;
 
     @Nullable
@@ -49,8 +43,6 @@ public class ToolsAccessFragment
     private void initViews(View view) {
         btnDataEditor = view.findViewById(R.id.btnDumpEditor);
         btnKeyEditor = view.findViewById(R.id.btnKeyEditor);
-        btnFormatCovert = view.findViewById(R.id.btnConvertFormat);
-        btnDiffTools = view.findViewById(R.id.btnDiffTool);
         btnPM3Flasher = view.findViewById(R.id.btnPM3Flasher);
     }
 
@@ -58,10 +50,6 @@ public class ToolsAccessFragment
         btnDataEditor.setOnClickListener(v -> {
             startActivity(new Intent(context, DumpListActivity.class).putExtra("mode", DumpListActivity.MODE.EDIT));
         });
-
-        btnDiffTools.setOnClickListener(v -> startActivity(new Intent(context, DumpEqualActivity.class)));
-
-        btnFormatCovert.setOnClickListener(v -> startActivity(new Intent(context, FormatCovertActivity.class)));
 
         btnKeyEditor.setOnClickListener(v -> startActivity(
                 new Intent(context, KeyFileListActivity.class).putExtra("mode", FileListActivity.MODE.EDIT))

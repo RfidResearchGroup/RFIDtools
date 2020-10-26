@@ -47,31 +47,31 @@ public final class TermuxService extends Service implements SessionChangedCallba
     private static final String NOTIFICATION_CHANNEL_ID = "termux_notification_channel";
 
     // My main app package name.(important)
-    public static final String packageName = "com.rfidresearchgroup.rfidtools";
+    public static final String PACKAGE_NAME = "com.rfidresearchgroup.rfidtools";
 
     /**
      * Note that this is a symlink on the Android M preview.
      */
     @SuppressLint("SdCardPath")
-    public static final String FILES_PATH = "/data/data/" + packageName + "/files";
+    public static final String FILES_PATH = "/data/data/" + PACKAGE_NAME + "/files";
     public static final String PREFIX_PATH = FILES_PATH + "/usr";
     public static final String HOME_PATH = FILES_PATH + "/home";
     public static String PM3_CWD = null;
 
     private static final int NOTIFICATION_ID = 1337;
 
-    public static final String ACTION_STOP_SERVICE = packageName + ".service_stop";
-    public static final String ACTION_LOCK_WAKE = packageName + ".service_wake_lock";
-    public static final String ACTION_UNLOCK_WAKE = packageName + ".service_wake_unlock";
+    public static final String ACTION_STOP_SERVICE = PACKAGE_NAME + ".service_stop";
+    public static final String ACTION_LOCK_WAKE = PACKAGE_NAME + ".service_wake_lock";
+    public static final String ACTION_UNLOCK_WAKE = PACKAGE_NAME + ".service_wake_unlock";
     /**
      * Intent action to launch a new terminal session. Executed from TermuxWidgetProvider.
      */
-    public static final String ACTION_EXECUTE = packageName + ".service_execute";
+    public static final String ACTION_EXECUTE = PACKAGE_NAME + ".service_execute";
 
-    public static final String EXTRA_ARGUMENTS = packageName + ".execute.arguments";
+    public static final String EXTRA_ARGUMENTS = PACKAGE_NAME + ".execute.arguments";
 
-    public static final String EXTRA_CURRENT_WORKING_DIRECTORY = packageName + ".execute.cwd";
-    private static final String EXTRA_EXECUTE_IN_BACKGROUND = packageName + ".execute.background";
+    public static final String EXTRA_CURRENT_WORKING_DIRECTORY = PACKAGE_NAME + ".execute.cwd";
+    private static final String EXTRA_EXECUTE_IN_BACKGROUND = PACKAGE_NAME + ".execute.background";
 
     /**
      * This service is only bound from inside the same process and never uses IPC.

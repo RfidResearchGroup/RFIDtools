@@ -35,9 +35,7 @@
         </activity>
 
         <activity android:name=".activities.tools.KeyFileEditActivity" />
-        <activity android:name=".activities.tools.DumpEqualActivity" />
         <activity android:name=".activities.tools.DumpEditActivity" />
-        <activity android:name=".activities.tools.FormatCovertActivity" />
         <activity android:name=".activities.tools.ChameleonSoltAliasesActivity" />
         <activity android:name=".activities.tools.AboutActicity" />
 

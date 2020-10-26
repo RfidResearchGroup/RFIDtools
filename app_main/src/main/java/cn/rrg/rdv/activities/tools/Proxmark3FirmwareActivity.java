@@ -90,9 +90,7 @@ public class Proxmark3FirmwareActivity extends BaseActivity implements DevCallba
 
         proDialog1 = new ProDialog1(context);
 
-        if (!Commons.isElfDecompressed()) {
-            Proxmark3Installer.installIfNeed(this, null);
-        }
+        Proxmark3Installer.installIfNeed(this, null);
 
         initViews();
         initActions();

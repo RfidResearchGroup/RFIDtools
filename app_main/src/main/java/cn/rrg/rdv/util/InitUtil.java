@@ -20,16 +20,15 @@ public class InitUtil {
     public static final String LOG_TAG = InitUtil.class.getSimpleName();
 
     public static void initApplicationResource(Context context) {
-        AssetsUtil au = new AssetsUtil(context);
         File dump_dir = new File(Paths.DUMP_DIRECTORY);
         if (!dump_dir.exists()) {
             if (!dump_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init dumps dir fail!");
             } else {
-                initDumpFile(au);
+                initDumpFile(context);
             }
         } else {
-            initDumpFile(au);
+            initDumpFile(context);
         }
         File driver_dir = new File(Paths.DRIVER_DIRECTORY);
         if (!driver_dir.exists()) {
@@ -42,20 +41,20 @@ public class InitUtil {
             if (!keys_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init keys dir fail!");
             } else {
-                initKeysFile(au);
+                initKeysFile(context);
             }
         } else {
-            initKeysFile(au);
+            initKeysFile(context);
         }
         File common_dir = new File(Paths.COMMON_DIRECTORY);
         if (!common_dir.exists()) {
             if (common_dir.mkdirs()) {
                 initCommonInFile();
-                initMfInfoMapsFile(au);
+                initMfInfoMapsFile(context);
             }
         } else {
             initCommonInFile();
-            initMfInfoMapsFile(au);
+            initMfInfoMapsFile(context);
         }
         File pn53x_dir = new File(Paths.PN53X_DIRRECTORY);
         if (!pn53x_dir.exists()) {
@@ -71,11 +70,11 @@ public class InitUtil {
             if (!pm3_dir.mkdirs()) {
                 Log.d(LOG_TAG, "init pm3 dir fail!");
             } else {
-                initEasyButtonFile(au);
+                initEasyButtonFile(context);
                 initPM3ForwardFile();
             }
         } else {
-            initEasyButtonFile(au);
+            initEasyButtonFile(context);
             initPM3ForwardFile();
         }
         Commons.updatePM3Cwd();
@@ -95,45 +94,45 @@ public class InitUtil {
         }
     }
 
-    private static void initMfInfoMapsFile(AssetsUtil au) {
+    private static void initMfInfoMapsFile(Context context) {
         File f1 = new File(Paths.COMMON_DIRECTORY + "/" + "template_mifare_info_en.html");
         File f2 = new File(Paths.COMMON_DIRECTORY + "/" + "template_tag_info_en.html");
 
         //移动两个标签信息HTML文件到指定目录!
-        au.copyFile("template_mifare_info_en.html",
+        AssetsUtil.copyFile(context, "template_mifare_info_en.html",
                 new File(Paths.COMMON_DIRECTORY + "/" + "template_mifare_info_en.html").getAbsolutePath());
-        au.copyFile("template_tag_info_en.html",
+        AssetsUtil.copyFile(context, "template_tag_info_en.html",
                 new File(Paths.COMMON_DIRECTORY + "/" + "template_tag_info_en.html").getAbsolutePath());
     }
 
-    private static void initDumpFile(AssetsUtil au) {
+    private static void initDumpFile(Context context) {
         File target = new File(Paths.DEFAULT_DUMP_FILE);
         //目标文件夹里是否有这个文件!
         if (!(target.exists() && target.isFile())) {
             //包里面是否有这个资源文件!
-            if (au.copyFile(Paths.DEFAULT_DUMP_NAME, Paths.DEFAULT_DUMP_FILE)) {
+            if (AssetsUtil.copyFile(context, Paths.DEFAULT_DUMP_NAME, Paths.DEFAULT_DUMP_FILE)) {
                 Log.d(LOG_TAG, "创建默认的空白数据文件成功!");
             }
         }
     }
 
-    private static void initKeysFile(AssetsUtil au) {
+    private static void initKeysFile(Context context) {
         File target = new File(Paths.DEFAULT_KEYS_FILE);
         //目标文件夹里是否有这个文件!
         if (!(target.exists() && target.isFile())) {
             //包里面是否有这个资源文件!
-            if (au.copyFile(Paths.DEFAULT_KEYS_NAME, Paths.DEFAULT_KEYS_FILE)) {
+            if (AssetsUtil.copyFile(context, Paths.DEFAULT_KEYS_NAME, Paths.DEFAULT_KEYS_FILE)) {
                 Log.d(LOG_TAG, "创建默认的空白数据文件成功!");
             }
         }
     }
 
-    private static void initEasyButtonFile(AssetsUtil au) {
+    private static void initEasyButtonFile(Context context) {
         File target = new File(Paths.PM3_CMD_FILE);
         //目标文件夹里是否有这个文件!
         if (!(target.exists() && target.isFile())) {
             //包里面是否有这个资源文件!
-            if (au.copyFile(Paths.DEFAULT_CMD_NAME, Paths.PM3_CMD_FILE)) {
+            if (AssetsUtil.copyFile(context, Paths.DEFAULT_CMD_NAME, Paths.PM3_CMD_FILE)) {
                 Log.d(LOG_TAG, "创建默认的动态按钮文件成功!");
             }
         }
