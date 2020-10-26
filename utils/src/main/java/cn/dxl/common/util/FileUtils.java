@@ -32,6 +32,7 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.dxl.common.R;
 
@@ -130,6 +131,20 @@ public class FileUtils {
             resultList.add(tmpBUf);
         }
         return ArrayUtils.list2Arr(resultList);
+    }
+
+    // read all lines to a line
+    public static String readLine(File file) {
+        StringBuilder builder = new StringBuilder();
+        try {
+            String[] lines = readLines(file);
+            for (String line : lines) {
+                builder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return builder.toString();
     }
 
     //按匹配的行读取文件

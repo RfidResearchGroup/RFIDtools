@@ -329,5 +329,6 @@
     <string name="tips_plz_wait">Please wait.</string>
     <string name="select">select</string>
     <string name="title_pm3_home">Proxmark3 External Work Directory</string>
+    <string name="tips_pm3_res_err">The version for proxmark3 resource read failed.</string>
 
 </resources>
