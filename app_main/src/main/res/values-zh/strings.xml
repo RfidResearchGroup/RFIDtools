@@ -8,7 +8,7 @@
     <string name="cancel">取消</string>
     <string name="agree">同意</string>
     <string name="go2">前往</string>
-    <string name="ok">可以</string>
+    <string name="ok">确定</string>
     <string name="clear">清空</string>
 
 
@@ -19,8 +19,8 @@
     </string>
     <string name="mfoc">半加测试</string>
     <string name="mfcuk">全加测试</string>
-    <string name="hardnested">Hard测试</string>
-    <string name="nfclist">近场列表</string>
+    <string name="hardnested">Hard攻击</string>
+    <string name="nfclist">NFC 清单</string>
     <string name="emulate">模拟卡片</string>
     <string name="readtag">读取卡片</string>
     <string name="writetag">刷写卡片</string>
@@ -29,8 +29,8 @@
     <string name="usage">使用帮助</string>
     <string name="disclaimer">免责声明</string>
     <string name="joinGroup">加入Q群</string>
-    <string name="contactDev">联系Dev</string>
-    <string name="sendLog">发送Log</string>
+    <string name="contactDev">联系开发者</string>
+    <string name="sendLog">发送日志</string>
     <string name="clearData">清除数据</string>
     <string name="checkUpdate">检查更新</string>
     <string name="logList">日志列表</string>
@@ -38,7 +38,7 @@
     <string name="cleaning">正在清除数据.....</string>
     <string name="clearFinish">清除完成，将会重启.....</string>
     <string name="version">版本</string>
-    <string name="device_connect_empty">未发现设备， 下拉可寻找....</string>
+    <string name="device_connect_empty">未发现设备，下拉可寻找....</string>
     <string name="menu_title_newDevice">新设备</string>
     <string name="menu_title_allDevice">已连接</string>
 
@@ -76,10 +76,10 @@
     <string name="tips_pm3_version">如果固件非上述版本，可能会导致无法连接或使用过程有一些异常!</string>
     <string name="command_input">命令输入</string>
     <string name="title_input">标题输入</string>
-    <string name="button_edit">按钮编辑</string>
-    <string name="enter_delete">确定删除吗?</string>
-    <string name="yes">是的</string>
-    <string name="no">不</string>
+    <string name="button_edit">编辑按钮</string>
+    <string name="enter_delete">是否确定删除？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
     <string name="btn_add">添加按钮</string>
     <string name="success">成功</string>
     <string name="failed">失败</string>
@@ -97,7 +97,7 @@
     <string name="pm3">PM3</string>
     <string name="title_select_dump_file">请选择需要编辑的DUMP文件!</string>
     <string name="title_dump_save_mode">请选择保存方式!</string>
-    <string name="newFile">新的</string>
+    <string name="newFile">新文件</string>
     <string name="input_err">输入有误!</string>
     <string name="cover">覆盖</string>
     <string name="title_dump_select_cover">选择要覆盖的文件</string>
@@ -106,7 +106,7 @@
     <string name="delete_failed">删除失败:</string>
     <string name="cant_select_not_file">不可以选择非文件!</string>
     <string name="data_err">数据集合异常，请确认您的操作,是否选择了正确的文件之类的!</string>
-    <string name="data_name_dafault">无名数据</string>
+    <string name="data_name_dafault">正常数据</string>
     <string name="title_shared_dump_file">共享选定的Dump文件</string>
     <string name="newName">新名字</string>
     <string name="illegal_filenames">非法的文件名!</string>
@@ -139,8 +139,8 @@
     <string name="unrepeat_no_line">没有可以被去重的行!</string>
     <string name="keys_show_failed">密钥显示失败</string>
     <string name="file_create_failed">文件创建失败</string>
-    <string name="data_block_diff_count">不同的块计数:</string>
-    <string name="data_char_diff_count">,不同的字符计数:</string>
+    <string name="data_block_diff_count">差异块计数：</string>
+    <string name="data_char_diff_count">，差异字符计数：</string>
     <string name="data_identical">数据完全相同!</string>
     <string name="title_format_convert">格式转换</string>
     <string name="tisp_select_convert_target">请选择转换目标!</string>
@@ -153,8 +153,8 @@
     <string name="app">本APP目录</string>
     <string name="mct">MCT目录</string>
     <string name="format_convert_file_name_input">文件名，不输入或者存在都将会覆盖</string>
-    <string name="format_convert_file_what_fromat">3、转为啥格式</string>
-    <string name="format_convert_to_where">2、保存到哪里</string>
+    <string name="format_convert_file_what_fromat">3、执行转换</string>
+    <string name="format_convert_to_where">2、保存路径</string>
     <string name="format_bin">二进制文件格式</string>
     <string name="format_txt">文本文件格式</string>
     <string name="format_between">它们的区别?</string>
@@ -182,8 +182,8 @@
     <string name="language">语言</string>
     <string name="following_system">跟随系统</string>
     <string name="settings">设置</string>
-    <string name="chinese_simple">中文简体</string>
-    <string name="english">English</string>
+    <string name="chinese_simple">简体中文</string>
+    <string name="english">英文</string>
     <string name="msg_language_change_success">切换语言成功，重启后生效。</string>
     <string name="restart">重启</string>
     <string name="keyfiles_no_select">秘钥文件未选择</string>

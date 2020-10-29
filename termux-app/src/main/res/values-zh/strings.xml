@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>		
+<resources>		
+    <string name="shared_user_label">Termux 用户</string>
+    <string name="run_command_permission_label">在Termux环境中运行命令</string>
+    <string name="run_command_permission_description">允许第三方应用程序在Termux环境中执行任意命令。</string>
+    <string name="new_session">新会话</string>
+    <string name="new_session_failsafe">故障保护</string>
+    <string name="toggle_soft_keyboard">键盘</string>
+    <string name="reset_terminal">重置</string>
+    <string name="style_terminal">样式</string>
+    <string name="share_transcript_title">终端输出</string>
+    <string name="help">帮助</string>
+    <string name="toggle_keep_screen_on">保存屏幕常亮</string>
+
+    <string name="bootstrap_installer_body">正在安装</string>
+    <string name="bootstrap_error_title">无法安装</string>
+    <string name="bootstrap_error_body">Termux无法安装引导程序包。</string>
+    <string name="bootstrap_error_abort">放弃</string>
+    <string name="bootstrap_error_try_again">再尝试一次</string>
+    <string name="bootstrap_error_not_primary_user_message">Termux只能安装在主用户帐户上。</string>
+
+    <string name="max_terminals_reached_title">已达到最大终端数</string>
+    <string name="max_terminals_reached_message">在创建新的之前需要关闭现有的。</string>
+		
+    <string name="reset_toast_notification">重置终端.</string>
+	
+    <string name="select_url">选择URL</string>
+    <string name="select_url_dialog_title">点击URL进行复制或长按打开</string>
+    <string name="select_all_and_share">分享输出</string>
+    <string name="select_url_no_found">在终端中找不到URL.</string>
+    <string name="select_url_copied_to_clipboard">URL 复制到剪切板</string>
+    <string name="share_transcript_chooser_title">发送文本至:</string>
+		
+    <string name="kill_process">终止进程 (%d)</string>
+    <string name="confirm_kill_process">真的要终止这个会话吗?</string>
+		
+    <string name="session_rename_title">设置会话名称</string>
+    <string name="session_rename_positive_button">设置</string>
+    <string name="session_new_named_title">新建命名会话</string>
+    <string name="session_new_named_positive_button">创建</string>
+		
+    <string name="styling_not_installed">这个Termux:样式附加组件未安装。</string>
+    <string name="styling_install">安装</string>
+		
+    <string name="notification_action_exit">退出</string>
+    <string name="notification_action_wake_lock">获取唤醒锁</string>
+    <string name="notification_action_wake_unlock">解除唤醒锁定</string>
+		
+    <string name="file_received_title">文件保存在 ~/downloads/</string>
+    <string name="file_received_edit_button">编辑</string>
+    <string name="file_received_open_folder_button">打开文件夹</string>
+</resources>		
