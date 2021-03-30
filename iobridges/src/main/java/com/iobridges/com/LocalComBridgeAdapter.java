@@ -1,19 +1,15 @@
 package com.iobridges.com;
 
-import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbEndpoint;
 import android.net.LocalServerSocket;
 import android.net.LocalSocket;
 import android.net.LocalSocketAddress;
 import android.util.Log;
 
-import com.iobridges.utils.HexUtil;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * @author DXL
@@ -128,7 +124,7 @@ public final class LocalComBridgeAdapter implements Serializable {
                         int len = mInputStreamFromSocket.read(buffer);
                         // Log.d(LOG_TAG, "mInputStreamFromSocket.read()->len: " + len);
                         if (len > 0) {
-                            mOutputStreamFromDevice.write(Arrays.copyOf(buffer, len));
+                            mOutputStreamFromDevice.write(buffer, 0, len);
                             mOutputStreamFromDevice.flush();
                             // Log.d(LOG_TAG, "SocketDataThread数据传输: " + HexUtil.toHexString(buffer, 0, len));
                         }
@@ -171,7 +167,7 @@ public final class LocalComBridgeAdapter implements Serializable {
                         int len = mInputStreamFromDevice.read(buffer);
                         if (len > 0) {
                             // Log.d(LOG_TAG, "mInputStreamFromDevice.read()->len: " + len);
-                            mOutputStreamFromSocket.write(Arrays.copyOf(buffer, len));
+                            mOutputStreamFromSocket.write(buffer, 0, len);
                             mOutputStreamFromSocket.flush();
                             // Log.d(LOG_TAG, "DeviceDataThread数据传输: " + HexUtil.toHexString(buffer));
                         }
