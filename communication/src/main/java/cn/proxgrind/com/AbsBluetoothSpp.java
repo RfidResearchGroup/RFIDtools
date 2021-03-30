@@ -26,10 +26,6 @@ import cn.proxgrind.utils.ContextContentProvider;
 public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice, BluetoothAdapter> {
 
     private Context context = ContextContentProvider.mContext;
-    //允许失败的次数上限，事不过三...
-    private static final int FAILD_MAX = 3;
-    //优化，超过多少次就判断失败，不自动连接!
-    private int faildCount = 0;
     //广播对象实例
     private static BroadcastReceiver btBroadcastRecv = null;
     //蓝牙设备套接字
@@ -111,35 +107,31 @@ public abstract class AbsBluetoothSpp implements DriverInterface<BluetoothDevice
     @Override
     public boolean connect(BluetoothDevice t) {
         try {
-            //设备搜寻与设备链接有冲突
+            // can't connect at scanning.
             if (btAdapter.isDiscovering()) btAdapter.cancelDiscovery();
-            //在重新连接前先尝试关闭旧的连接!
+            // close prev connect!
             if (btSocket != null && btSocket.isConnected()) {
                 close();
-                //1秒半延迟。防止蓝牙出现射频迟缓问题!
                 Thread.sleep(1500);
             }
-            //根据UUID连接SPP
             btSocket = t.createRfcommSocketToServiceRecord(SPP_UUID);
-            //链接设备
-            btSocket.connect();
+            // auto retry connect.
+            for (int i = 0; ; i++) {
+                try {
+                    btSocket.connect();
+                    break;
+                } catch (IOException ex) {
+                    if (i < 5) {
+                        continue;
+                    }
+                    break;
+                }
+            }
             inputStream = btSocket.getInputStream();
             outputStream = btSocket.getOutputStream();
-            //连接成功后清除异常次数!
-            faildCount = 0;
             return true;
-        } catch (IOException ioe) {
+        } catch (IOException | InterruptedException ioe) {
             ioe.printStackTrace();
-            //异常次数自增!
-            ++faildCount;
-            //判断是否超出了异常上限!
-            if (faildCount >= FAILD_MAX) {
-                return false;
-            }
-            //进行重试连接!
-            connect(t);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         return false;
     }
