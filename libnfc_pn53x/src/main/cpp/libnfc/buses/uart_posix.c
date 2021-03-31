@@ -311,7 +311,7 @@ int uart_receive(const serial_port sp, uint8_t *pbtRx, uint32_t pszMaxRxLen, uin
             }
         }
 
-        LOGD("Has data can received");
+        // LOGD("Has data can received");
 
         // Retrieve the count of the incoming bytes
         res = ioctl(((serial_port_unix *) sp)->fd, FIONREAD, &byteCount);
