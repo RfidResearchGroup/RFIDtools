@@ -8,22 +8,13 @@ import android.os.Environment;
 import android.os.UserManager;
 import android.system.Os;
 import android.util.Log;
-import android.util.Pair;
 import android.view.WindowManager;
 
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 /**
  * Install the Termux bootstrap packages if necessary by following the below steps:

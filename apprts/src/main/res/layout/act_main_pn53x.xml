@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <com.rfidresearchgroup.common.widget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="2"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+        <!--column：列-->
+        <!--row: 行-->
+
+        <Button
+            android:id="@+id/btnStartPN53XReaderAct"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/ic_write_tag"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/reader"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+        <Button
+            android:id="@+id/btnStartPN53XConsole"
+            android:layout_width="0dp"
+            android:layout_height="158dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/selector_shadow"
+            android:drawableTop="@drawable/ic_terminal"
+            android:drawablePadding="-50dp"
+            android:gravity="bottom|center"
+            android:paddingTop="38dp"
+            android:paddingBottom="28dp"
+            android:text="@string/console"
+            android:textAllCaps="false"
+            app:layout_columnWeight="1" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</LinearLayout>

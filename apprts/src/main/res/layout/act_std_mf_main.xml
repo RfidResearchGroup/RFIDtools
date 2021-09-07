@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rfidresearchgroup.common.widget.StatusBarHeightView
+        android:id="@+id/sbh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvChangerSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/color_state_menu_navi_main"
+        app:menu="@menu/bottom_std_mf_changer" />
+
+    <!--双页面，读写操作和信息展示!-->
+    <com.rfidresearchgroup.common.widget.ViewPagerSlide
+        android:id="@+id/vpContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bnvChangerSwitch"
+        android:layout_below="@id/sbh" />
+
+</RelativeLayout>

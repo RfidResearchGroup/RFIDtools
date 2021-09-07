@@ -8,22 +8,17 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.widget.Toast;
 import com.termux.terminal.TerminalSession;
-import org.json.JSONArray;
+
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import androidx.annotation.IntDef;

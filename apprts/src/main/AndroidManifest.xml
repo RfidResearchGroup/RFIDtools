@@ -1,0 +1,77 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rfidresearchgroup.rfidtools">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="com.rfidresearchgroup.common.application.App"
+        android:allowBackup="false"
+        android:icon="@drawable/rfid"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="q">
+
+        <activity android:name="com.rfidresearchgroup.activities.tools.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+
+        <activity android:name="com.rfidresearchgroup.activities.tools.KeyFileEditActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.DumpEditActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.ChameleonSoltAliasesActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.AboutActicity" />
+
+
+        <activity
+            android:name="com.rfidresearchgroup.activities.connect.Proxmark3Rdv4RRGConnectActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
+
+        <activity android:name="com.rfidresearchgroup.activities.main.GeneralNfcDeviceMain">
+            <!-- NFC Tech Filter -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_filter" />
+        </activity>
+
+        <activity android:name="com.rfidresearchgroup.activities.connect.Acr122uHkUsbConnectActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.main.PN53XNfcMain" />
+        <activity android:name="com.rfidresearchgroup.activities.main.PN53XReaderMain" />
+        <activity android:name="com.rfidresearchgroup.activities.connect.PN532UartConnectActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.connect.ChameleonUsb2UartConnectActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.chameleon.ChameleonGUIActivity" />
+
+        <activity
+            android:name="com.rfidresearchgroup.activities.main.AppMain"
+            android:screenOrientation="nosensor" />
+
+        <activity android:name="com.rfidresearchgroup.activities.connect.PN53XUsbBulkTransferActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.DumpListActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.KeyFileListActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.main.PM3FlasherMainActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.tools.Proxmark3FirmwareActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.proxmark3.rdv4_rrg.Proxmark3NewTerminalInitActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.proxmark3.rdv4_rrg.Proxmark3Rdv4RRGConsoleActivity" />
+        <activity android:name="com.rfidresearchgroup.activities.px53x.PN53XConsoleActivity" />
+
+    </application>
+
+</manifest>

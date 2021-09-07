@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     ndkVersion '21.3.6528147'
 
     dependencies {
@@ -16,9 +16,7 @@ android {
     defaultConfig {
         // applicationId "com.termux"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 95
-        versionName "0.95"
+        targetSdkVersion 29
 
         /*externalNativeBuild {
             ndkBuild {

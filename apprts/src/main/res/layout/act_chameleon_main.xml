@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.rfidresearchgroup.common.widget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/bg_border_blue"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="13dp"
+                android:text="@string/title_slot_pos"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spChameleon_Slot_Select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/chameleon_slot_list"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnChameleon_Slot_Aliases"
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_selector_blue"
+            android:text="@string/aliases"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white_1000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_blue">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:paddingStart="13dp"
+                android:text="@string/title_mode"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spChameleon_Mode_Select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/chameleon_type_list"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:paddingStart="13dp"
+                android:text="@string/title_click"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spChameleon_Click_Select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/chameleon_click_list"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:paddingStart="13dp"
+                android:text="@string/title_long_click"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <!--<android.support.v7.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/chameleon_type_list"
+                android:gravity="center" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="..."
+                android:textColor="@color/md_grey_600" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:paddingStart="13dp"
+                android:text="@string/title_memory"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtChameleon_Size_Show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="..."
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_blue"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingStart="13dp"
+                android:text="@string/title"
+                android:textColor="@color/md_blue_700"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btnChameleon_Command_Show"
+                    android:layout_width="76dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/btn_selector_blue"
+                    android:text="@string/open"
+                    android:textColor="@color/md_white_1000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/bg_border_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="13dp"
+            android:text="@string/title_unique_id"
+            android:textColor="@color/md_blue_700"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp">
+
+            <EditText
+                android:id="@+id/edtChameleon_UID_Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="@string/hint_click_input_uid"
+                android:maxLength="14" />
+
+            <Button
+                android:id="@+id/btnChameleon_UID_Set"
+                android:layout_width="76dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:text="@string/flash"
+                android:textColor="@color/md_white_1000" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/view_h_line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="2">
+
+            <Button
+                android:id="@+id/btnChameleon_Information_Dowmload"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/download"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_information_download"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Version_Show"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/info"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_version_info"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Device_Reset"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/reset"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_dev_reset"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+
+            <Button
+                android:id="@+id/btnChameleon_Sniff_Decrypt"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/all"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_decrypt_all"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Sniff_Decrypt_One"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/single"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_decrypt_one"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Sniff_Decrypt_Log"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/log"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_decrypt_history"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Datas_Dowmload"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/data"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_tag_data_download"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Datas_Upload"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/upload"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_data_upload"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+            <Button
+                android:id="@+id/btnChameleon_Datas_Reset"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_selector_blue"
+                android:drawableTop="@drawable/clear"
+                android:paddingTop="38dp"
+                android:paddingBottom="6dp"
+                android:text="@string/title_data_clear"
+                android:textColor="@color/md_white_1000"
+                app:layout_columnWeight="1" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>
