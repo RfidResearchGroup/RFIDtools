@@ -59,6 +59,7 @@ dependencies {
     implementation project(':libnfc')
     implementation project(':libcml')
     implementation project(':libcom')
+    implementation project(':libpm3')
 
     implementation project(':libflasher')
 
