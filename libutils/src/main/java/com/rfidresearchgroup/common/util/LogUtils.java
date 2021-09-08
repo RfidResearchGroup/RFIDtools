@@ -5,7 +5,6 @@ import android.util.Log;
 import com.rfidresearchgroup.common.BuildConfig;
 
 public class LogUtils {
-    private static String TAG = "LogUtils";
     private static boolean log_open;
 
     static {
@@ -17,61 +16,63 @@ public class LogUtils {
         log_open = enable;
     }
 
-    public static void setTAG(String tag) {
-        TAG = tag;
-    }
-
-    public static String getTag() {
-        return TAG;
+    public static String makeStackTrace() {
+        StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
+        return String.format("Clz:%s,Fun:%s,File:%s,Line:%s",
+                stacks[2].getClassName(),
+                stacks[2].getMethodName(),
+                stacks[2].getFileName(),
+                stacks[2].getLineNumber()
+        );
     }
 
     public static void v(String msg) {
         if (log_open)
-            Log.v(TAG, msg);
+            Log.v(makeStackTrace(), msg);
     }
 
     public static void v(String msg, Throwable throwable) {
         if (log_open)
-            Log.v(TAG, msg, throwable);
+            Log.v(makeStackTrace(), msg, throwable);
     }
 
     public static void d(String msg) {
         if (log_open)
-            Log.d(TAG, msg);
+            Log.d(makeStackTrace(), msg);
     }
 
     public static void d(String msg, Throwable throwable) {
         if (log_open)
-            Log.d(TAG, msg, throwable);
+            Log.d(makeStackTrace(), msg, throwable);
     }
 
     public static void i(String msg) {
         if (log_open)
-            Log.i(TAG, msg);
+            Log.i(makeStackTrace(), msg);
     }
 
     public static void i(String msg, Throwable throwable) {
         if (log_open)
-            Log.i(TAG, msg, throwable);
+            Log.i(makeStackTrace(), msg, throwable);
     }
 
     public static void w(String msg) {
         if (log_open)
-            Log.w(TAG, msg);
+            Log.w(makeStackTrace(), msg);
     }
 
     public static void w(String msg, Throwable throwable) {
         if (log_open)
-            Log.w(TAG, msg, throwable);
+            Log.w(makeStackTrace(), msg, throwable);
     }
 
     public static void e(String msg) {
         if (log_open)
-            Log.e(TAG, msg);
+            Log.e(makeStackTrace(), msg);
     }
 
     public static void e(String msg, Throwable throwable) {
         if (log_open)
-            Log.e(TAG, msg, throwable);
+            Log.e(makeStackTrace(), msg, throwable);
     }
 }
