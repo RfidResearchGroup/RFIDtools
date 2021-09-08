@@ -47,27 +47,16 @@ The app support the following devices
 
 ## Developement tools list
 
-- IDE: Android Studio 3.5
-- JRE: 1.8.0_202-release-1483-b03 amd64
-- JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
-- OS: Windows 10 10.0
-- SDK: MIN 18 -> MAX 29
-- ANDROID SDK Tools: 26.1.1
-- CMAKE: 3.10
-- NDK: 20.0.5594570
+- IDE: Android Studio
+- CMAKE: 3.10 + 
+- NDK: 20.0.5594570 + 
 
 ## How to build?
-The RFIDTools have some gitsubmodule 
-
-Get the source from GitHub:
+So easy, first you can get the source from GitHub:
 
       git clone https://github.com/xianglin1998/RFIDtools RFIDtools
-      cd RFIDtools
-      git submodule init
-      git submodule update 
-
   
-After clone and init submodule, you can use your AndroidStudio open this project.  
+after git clone, open "RFIDtools" with AndroidStudio.
 
 ## App core implementation
 
@@ -81,6 +70,17 @@ Framework: MVP
 Now all lib is compile to "libxxx.so",  jni and ndk is basic. core is jni and ndk from java to c map.  
 ~~not a linux executable file(Future)~~  
 Now, proxmark3 client is a linux executable.
+
+## It's second crazy reconstruction
+
+It should take some time, because I'm the fighting alone
+Before the reconstruction is completed, the whole project may have some big problems, such as build failure or crash at runtime.
+
+- 1. Redesign the UI, simplify the page hierarchy and simplify the operation logic.
+- 2. Discard the strong dependency of proxmark3 repo and use the external proxmark3 executable(and resources) instead. 
+- 3. Discard the strong dependency of pn53x tools(mfcuk, mfoc...) and use the external executable(and resources) instead.
+- 4. Optimize communication implementation and reduce communication delay.
+- 5. Add support for some ble devices.
 
 ## Compability list
 
