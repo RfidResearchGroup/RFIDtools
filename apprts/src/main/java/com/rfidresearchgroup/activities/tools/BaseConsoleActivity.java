@@ -54,7 +54,6 @@ public abstract class BaseConsoleActivity extends BaseActivity {
     protected FillParentWidthDialog mDialogGUI = null;
     protected AlertDialog mDialog = null;
 
-    protected ProcessBuilder processBuilder = null;
     protected Process process = null;
 
     private long mBackTime = 0;
@@ -262,7 +261,19 @@ public abstract class BaseConsoleActivity extends BaseActivity {
      * else send char to stdin
      * */
     protected void start(String exe, String... args) {
-        if (processBuilder == null || process == null) {
+        LogUtils.d("Execute cmd: " + exe);
+        if (isProcessAlive()) {
+            // The process exists, we can write some text to stdin...
+            try {
+                if (!exe.endsWith("\n")) {
+                    exe += "\n";
+                }
+                process.getOutputStream().write(exe.getBytes());
+                process.getOutputStream().flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
             ArrayList<String> cmds = new ArrayList<>();
             cmds.add(exe);
             if (args != null && args.length > 0) {
@@ -272,7 +283,7 @@ public abstract class BaseConsoleActivity extends BaseActivity {
                     }
                 }
             }
-            processBuilder = new ProcessBuilder(cmds)
+            ProcessBuilder processBuilder = new ProcessBuilder(cmds)
                     .directory(new File(getDefaultCWD()))
                     .redirectErrorStream(true);
             processBuilder.environment().put("LD_LIBRARY_PATH", FileUtils.getNativePath());
@@ -282,20 +293,7 @@ public abstract class BaseConsoleActivity extends BaseActivity {
             } catch (IOException e) {
                 e.printStackTrace();
                 showToast(e.getMessage());
-                processBuilder = null;
                 process = null;
-            }
-        } else {
-            // The process exists, we can write some text to stdin...
-            try {
-                if (!exe.endsWith("\n")) {
-                    exe += "\n";
-                }
-                Log.d("???", "发送指令: " + exe);
-                process.getOutputStream().write(exe.getBytes());
-                process.getOutputStream().flush();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
