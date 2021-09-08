@@ -24,15 +24,14 @@ import android.widget.Toast;
 
 import com.rfidresearchgroup.activities.main.BaseActivity;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.rfidresearchgroup.common.util.FileUtils;
+import com.rfidresearchgroup.common.util.IOUtils;
+import com.rfidresearchgroup.common.util.LogUtils;
 import com.rfidresearchgroup.common.widget.FillParentWidthDialog;
 import com.rfidresearchgroup.common.widget.ToastUtil;
 import com.rfidresearchgroup.rfidtools.R;
@@ -60,8 +59,9 @@ public abstract class BaseConsoleActivity extends BaseActivity {
 
     private long mBackTime = 0;
     private boolean isConsoleReady = false;
+    private boolean isTaskBusy = false;
 
-    private Handler handler = new Handler(Looper.getMainLooper()) {
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 1) {
@@ -74,11 +74,10 @@ public abstract class BaseConsoleActivity extends BaseActivity {
 
         @Override
         public void run() {
-            Log.d("???", "打印线程启动！");
             // the stdout thread must run on process running and activity not destroyed!
             if (isProcessAlive()) {
                 //转成字符输入流
-                InputStreamReader inputStreamReader;
+                InputStreamReader inputStreamReader = null;
                 try {
                     inputStreamReader = new InputStreamReader(process.getInputStream());
                     int len;
@@ -95,16 +94,15 @@ public abstract class BaseConsoleActivity extends BaseActivity {
                             msgObj.obj = s;
                             handler.sendMessage(msgObj);
                         }
-                        Log.d("???", "接收线程判断到流结尾！");
                     }
-                    Log.d("???", "接收线程判断到进程退出！");
-                    process.getInputStream().close();
-                    Log.d("???", "返回码: " + process.exitValue());
                 } catch (Exception e) {
                     e.printStackTrace();
+                } finally {
+                    IOUtils.close(inputStreamReader);
                 }
+            } else {
+                LogUtils.e("The process is dead before thread started.");
             }
-            Log.d("???", "打印线程结束！");
         }
     }
 
@@ -163,24 +161,36 @@ public abstract class BaseConsoleActivity extends BaseActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // If console is ready, we can send cmd to process to execute.
-                // or else we need to prepare some resources.
-                if (!isConsoleReady) {
-                    isConsoleReady = prepareConsole();
-                    if (!isConsoleReady) {
-                        Log.d(LOG_TAG, "Prepare console failed, check log and display.");
-                        return;
+                // If task is running, we can repeat start.
+                if (isTaskBusy) return;
+                isTaskBusy = true;
+                // Create a new thread to prepare resources or execute cmd.
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // If console is ready, we can send cmd to process to execute.
+                            // or else we need to prepare some resources.
+                            if (!isConsoleReady) {
+                                isConsoleReady = prepareConsole();
+                                if (!isConsoleReady) {
+                                    Log.d(LOG_TAG, "Prepare console failed, check log and display.");
+                                    return;
+                                }
+                            }
+                            // After prepare, We can execute cmd from user.
+                            String cmd = edtInputCmd.getText().toString();
+                            if (cmd.length() > 0) {
+                                start(cmd, (String) null);
+                            } else {
+                                // The cmd length is invalid.
+                                // We need tell user, enter some cmd.
+                            }
+                        } finally {
+                            isTaskBusy = false;
+                        }
                     }
-                }
-
-                // After prepare, We can execute cmd from user.
-                String cmd = edtInputCmd.getText().toString();
-                if (cmd.length() > 0) {
-                    start(cmd, (String) null);
-                } else {
-                    // The cmd length is invalid.
-                    // We need tell user, enter some cmd.
-                }
+                }).start();
             }
         });
     }
@@ -189,13 +199,9 @@ public abstract class BaseConsoleActivity extends BaseActivity {
      *  Set cmd to input view and start process.
      * */
     protected void putCMDAndClosePop(String cmd) {
-        //设置默认的命令
         mDefaultCMD = cmd;
-        //设置进入输入框中
         edtInputCmd.setText(cmd);
-        //模拟点击，请求开启执行!
         btnStart.performClick();
-        //关闭窗口
         mDialogGUI.dismiss();
     }
 
@@ -266,14 +272,12 @@ public abstract class BaseConsoleActivity extends BaseActivity {
                     }
                 }
             }
-            Log.d("???", "开始启动进程: " + cmds);
             processBuilder = new ProcessBuilder(cmds)
                     .directory(new File(getDefaultCWD()))
                     .redirectErrorStream(true);
             processBuilder.environment().put("LD_LIBRARY_PATH", FileUtils.getNativePath());
             try {
                 process = processBuilder.start();
-                Log.d("???", "启动进程完成！");
                 new StdoutThread().start();
             } catch (IOException e) {
                 e.printStackTrace();
