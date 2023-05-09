@@ -185,7 +185,12 @@ public class UsbSerialControl implements DriverInterface<String, UsbManager> {
         //如果对于这个设备没有权限!
         if (!usbManager.hasPermission(usbDevice)) {
             //发送广播申请权限
-            PendingIntent intent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_PERMISSION), 0);
+            PendingIntent intent;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                intent = PendingIntent.getActivity(mContext, 0, new Intent(ACTION_PERMISSION), PendingIntent.FLAG_IMMUTABLE);
+            } else {
+                intent = PendingIntent.getActivity(mContext, 0, new Intent(ACTION_PERMISSION), PendingIntent.FLAG_ONE_SHOT);
+            }
             //Log.d(LOG_TAG, "尝试获得USB权限!");
             usbManager.requestPermission(usbDevice, intent);
             //当没有权限的时候应当直接返回

@@ -74,6 +74,7 @@
             android:label="@string/application_name"
             android:noHistory="true"
             android:resizeableActivity="true"
+            android:exported="true"
             android:taskAffinity="com.termux.filereceiver">
             <!-- Accept multiple file types when sending. -->
             <intent-filter>
@@ -104,7 +105,8 @@
 
         <activity-alias
             android:name=".HomeActivity"
-            android:targetActivity="com.termux.app.TermuxActivity">
+            android:targetActivity="com.termux.app.TermuxActivity"
+            android:exported="true">
 
             <!-- Launch activity automatically on boot on Android Things devices -->
             <intent-filter>

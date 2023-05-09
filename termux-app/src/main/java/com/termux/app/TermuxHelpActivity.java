@@ -32,7 +32,8 @@ public final class TermuxHelpActivity extends Activity {
         mWebView = new WebView(this);
         WebSettings settings = mWebView.getSettings();
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        settings.setAppCacheEnabled(false);
+        // deprecate api
+        // settings.setAppCacheEnabled(false);
         setContentView(progressLayout);
         mWebView.clearCache(true);
 

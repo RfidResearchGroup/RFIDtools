@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.rfidresearchgroup.rfidtools"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 33
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         versionCode 26
         versionName "1.4.8 SDK21 && PM3 CWD"

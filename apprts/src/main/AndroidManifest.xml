@@ -2,8 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rfidresearchgroup.rfidtools">
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Request legacy Bluetooth permissions on older devices. -->
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,7 +30,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
 
-        <activity android:name="com.rfidresearchgroup.activities.tools.LoginActivity">
+        <activity android:name="com.rfidresearchgroup.activities.tools.LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,7 +50,7 @@
             android:name="com.rfidresearchgroup.activities.connect.Proxmark3Rdv4RRGConnectActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
 
-        <activity android:name="com.rfidresearchgroup.activities.main.GeneralNfcDeviceMain">
+        <activity android:name="com.rfidresearchgroup.activities.main.GeneralNfcDeviceMain" android:exported="true">
             <!-- NFC Tech Filter -->
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />

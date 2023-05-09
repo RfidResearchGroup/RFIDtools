@@ -32,13 +32,15 @@ public class StdMifareIntent {
     public void enableForegroundDispatch(Activity targetAct) {
         if (mAdapter == null) return;
         //进行前台广播拦截!
-        Intent intent = new Intent(targetAct,
-                targetAct.getClass()).addFlags(
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                targetAct, 0, intent, 0);
-        mAdapter.enableForegroundDispatch(targetAct, pendingIntent, null, new String[][]{
-                new String[]{MifareClassic.class.getName()}});
+        Intent intent = new Intent(targetAct, targetAct.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getActivity(targetAct, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getActivity(targetAct, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        }
+
+        mAdapter.enableForegroundDispatch(targetAct, pendingIntent, null, new String[][]{new String[]{MifareClassic.class.getName()}});
     }
 
     /*

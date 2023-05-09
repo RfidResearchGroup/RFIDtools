@@ -3,6 +3,7 @@ package com.rfidresearchgroup.activities.tools;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,10 @@ import com.rfidresearchgroup.common.util.LanguageUtil;
 import com.rfidresearchgroup.common.implement.PermissionCallback;
 import com.rfidresearchgroup.common.util.FragmentUtil;
 import com.rfidresearchgroup.common.util.PermissionUtil;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /*
  * 登陆界面，，用于登陆用户系统，初始化环境，对于用户的验证，都放在这里实现
@@ -90,11 +95,21 @@ public class LoginActivity
             }
         });
 
-        String[] permissionArray = new String[]{
+        ArrayList<String> permissionArray = new ArrayList<>();
+        Collections.addAll(permissionArray,
+                // 以下是一定要添加的权限
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-        };
-        permissionUtil.setPermissions(permissionArray);
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        );
+
+        // android 12或者以上，要单独申请蓝牙权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            permissionArray.add( Manifest.permission.BLUETOOTH_SCAN);
+            permissionArray.add( Manifest.permission.BLUETOOTH_CONNECT);
+            permissionArray.add( Manifest.permission.BLUETOOTH_ADVERTISE);
+        }
+
+        permissionUtil.setPermissions(permissionArray.toArray(new String[]{}));
         permissionUtil.checks();
     }
 
