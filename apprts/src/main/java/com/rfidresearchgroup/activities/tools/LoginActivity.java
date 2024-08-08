@@ -96,11 +96,13 @@ public class LoginActivity
         });
 
         ArrayList<String> permissionArray = new ArrayList<>();
-        Collections.addAll(permissionArray,
-                // 以下是一定要添加的权限
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-        );
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            Collections.addAll(permissionArray,
+                    // 以下是一定要添加的权限
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            );
+        }
 
         // android 12或者以上，要单独申请蓝牙权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
