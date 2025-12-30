@@ -685,7 +685,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
     (*jniEnv)->GetJavaVM(jniEnv, &g_JavaVM);
     jclass clazz_flasher = (*jniEnv)->FindClass(jniEnv,
-                                                "com/proxgrind/pm3flasher/Proxmark3Flasher");
+                                                "com/rfidresearchgroup/pm3flasher/Proxmark3Flasher");
     //构建和初始化函数结构体,分别是java层的函数名称，签名，对应的函数指针
     JNINativeMethod methods_flasher[] = {
             {"isPM3Opened",      "()Z",                    is_proxmark3_opened},
